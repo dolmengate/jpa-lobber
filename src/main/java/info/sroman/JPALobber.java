@@ -6,25 +6,30 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.SharedCacheMode;
+import javax.persistence.ValidationMode;
 import javax.persistence.spi.ClassTransformer;
 import javax.persistence.spi.PersistenceUnitInfo;
 import javax.persistence.spi.PersistenceUnitTransactionType;
 import javax.sql.DataSource;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Properties;
 
 public class JPALobber
 {
 
-    private static Logger _logger = LogManager.getLogger(JPALobber.class);
+    private static Logger _logger = LogManager.getLogger();
+    private static String BASE_PROPERTIES_FILE = "./base-hibernate.properties";
 
     private static PersistenceUnitInfo srcInfo = new PersistenceUnitInfo() {
-
         @Override
         public String getPersistenceUnitName() {
             return "src-db";
@@ -224,12 +229,10 @@ public class JPALobber
         }
     };
 
-    private static Properties properties = new Properties();
     private static EntityManagerFactory srcSessionFactory;
     private static EntityManagerFactory destSessionFactory;
     static {
         try {
-            properties.load(new FileInputStream(new File("./base-hibernate.properties")));
             srcSessionFactory = configSourcePersistenceUnit();
             destSessionFactory = configDestPersistenceUnit();
         } catch (IOException e) {
@@ -268,22 +271,30 @@ public class JPALobber
 
     private static EntityManagerFactory configSourcePersistenceUnit() throws IOException {
         return new HibernatePersistenceProvider()
-                .createContainerEntityManagerFactory(srcInfo, overlayProperties(properties, "./src-db.properties"));
+                .createContainerEntityManagerFactory(srcInfo, overlayProperties(BASE_PROPERTIES_FILE, "./src-db.properties"));
     }
 
     private static EntityManagerFactory configDestPersistenceUnit() throws IOException {
         return new HibernatePersistenceProvider()
-                .createContainerEntityManagerFactory(destInfo, overlayProperties(properties, "./dest-db.properties"));
+                .createContainerEntityManagerFactory(destInfo, overlayProperties(BASE_PROPERTIES_FILE, "./dest-db.properties"));
     }
 
-    private static Properties overlayProperties(Properties properties, String... files) throws IOException {
+    private static Properties overlayProperties(String baseFile, String... propFiles) throws IOException {
+        Properties baseProps = new Properties();
+        baseProps.load(new FileInputStream(new File(baseFile)));
+        _logger.info("Applying property overlay. Base properties at " + baseFile + " follow: ");
+        for (String bp : baseProps.stringPropertyNames())
+            _logger.info(bp + ": " + baseProps.getProperty(bp));
+
         Properties props = new Properties();
-        props.putAll(properties);
-        for (String f : files) {
-            properties.load(new FileInputStream(new File(f)));
-            props.putAll(properties);
+        for (String f : propFiles) {
+            props.load(new FileInputStream(new File(f)));
+            _logger.info("Overlay of base properties " + baseFile + " with properties for file " + f +
+                    ". Overlay properties follow: " );
+            for (String p : props.stringPropertyNames())
+                _logger.info( p + ": " + props.getProperty(p));
+            baseProps.putAll(props);
         }
-        return props;
+        return baseProps;
     }
 }
-
