@@ -1,15 +1,12 @@
 package info.sroman;
 
 
-import info.sroman.entity.XmlpRpt;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.jpa.HibernatePersistenceProvider;
+import org.reflections.Reflections;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.SharedCacheMode;
-import javax.persistence.ValidationMode;
+import javax.persistence.*;
 import javax.persistence.spi.ClassTransformer;
 import javax.persistence.spi.PersistenceUnitInfo;
 import javax.persistence.spi.PersistenceUnitTransactionType;
@@ -18,16 +15,17 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class JPALobber
 {
 
     private static Logger _logger = LogManager.getLogger();
     private static String BASE_PROPERTIES_FILE = "./base-hibernate.properties";
+    private static Properties BASE_PROPERTIES = new Properties();
+    private static Properties SOURCE_PROPERTIES;
+    private static Properties DESTINATION_PROPERTIES;
 
     private static PersistenceUnitInfo srcInfo = new PersistenceUnitInfo() {
         @Override
@@ -233,6 +231,9 @@ public class JPALobber
     private static EntityManagerFactory destSessionFactory;
     static {
         try {
+            BASE_PROPERTIES.load(new FileInputStream(new File(BASE_PROPERTIES_FILE)));
+            SOURCE_PROPERTIES  = overlayProperties(BASE_PROPERTIES_FILE, "./src-db.properties");
+            DESTINATION_PROPERTIES = overlayProperties(BASE_PROPERTIES_FILE, "./dest-db.properties");
             srcSessionFactory = configSourcePersistenceUnit();
             destSessionFactory = configDestPersistenceUnit();
         } catch (IOException e) {
@@ -248,25 +249,52 @@ public class JPALobber
         srcEntityManager.getTransaction().begin();
         destEntityManager.getTransaction().begin();
 
-        List<XmlpRpt> srcReports = srcEntityManager.createQuery("select x from XmlpRpt x", XmlpRpt.class).getResultList();
-        List<XmlpRpt> destReports = destEntityManager.createQuery("select x from XmlpRpt x", XmlpRpt.class).getResultList();
+        String[] tables = SOURCE_PROPERTIES.getProperty("lobber.tables").split(",");
 
-        _logger.info("----- SOURCE DB REPORTS --------");
-        for (XmlpRpt rpt : srcReports) {
-//            destEntityManager.persist(rpt);
-            _logger.info(rpt.toString());
+        for (String table : tables) {
+            try {
+                Class<?> entityClazz = Class.forName(findEntityClassNameForTableName(table));
+                List srcRecords = selectAllFromTable(srcEntityManager, entityClazz);
+                List destRecords = selectAllFromTable(destEntityManager, entityClazz);
+
+                // todo this just pulls and prints the table contents - need to add pull from src persist to dest
+
+                _logger.info("------ DESTINATION CONTENTS FOR TABLE " + table + " ------");
+                for (Object rpt : destRecords) {
+                    _logger.info(rpt.toString());
+                }
+
+                _logger.info("------ SOURCE CONTENTS FOR TABLE " + table + " ------");
+                for (Object rpt : srcRecords) {
+                    _logger.info(rpt.toString());
+//                        destEntityManager.persist(rpt);
+//                    destEntityManager.getTransaction().commit();
+                }
+
+            } catch (ClassNotFoundException e) {
+                _logger.error("Error occurred while attempting to find class for table name " + table
+                        + ". Ensure you entered valid tables names in properties file", e);
+                srcEntityManager.getTransaction().rollback();
+                destEntityManager.getTransaction().rollback();
+            }
         }
 
-        _logger.info("----- DEST DB REPORTS --------");
-        for (XmlpRpt rpt : destReports) {
-            _logger.info(rpt.toString());
-        }
-
-//        destEntityManager.getTransaction().commit();
         destEntityManager.close();
         srcEntityManager.close();
 
         System.exit(0);
+    }
+
+    private static String findEntityClassNameForTableName(String tableName) {
+        Reflections reflections = new Reflections("info.sroman.entity");
+        Set<Class<?>> clazzes = reflections.getTypesAnnotatedWith(javax.persistence.Table.class);
+        return clazzes.stream()
+                .filter( c -> c.getAnnotationsByType(javax.persistence.Table.class)[0].name().equals(tableName))
+                .collect(Collectors.toSet()).iterator().next().getName();
+    }
+
+    private static <T> List<T> selectAllFromTable(EntityManager entityManager, Class<T> clazz) {
+        return entityManager.createQuery("select x from " + clazz.getSimpleName() + " x", clazz).getResultList();
     }
 
     private static EntityManagerFactory configSourcePersistenceUnit() throws IOException {

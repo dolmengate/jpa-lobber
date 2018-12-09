@@ -157,8 +157,22 @@ public class XmlpRptLyt  implements java.io.Serializable {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "XmlpRptLyt{" +
+                "idLytRpt=" + idLytRpt +
+                ", nmLytRpt='" + nmLytRpt + '\'' +
+                ", tyLytRpt='" + tyLytRpt + '\'' +
+                ", doLytRpt=" + doLytRpt +
+                ", flHtmlRpt=" + flHtmlRpt +
+                ", flPdfRpt=" + flPdfRpt +
+                ", flRtfRpt=" + flRtfRpt +
+                ", flExcelRpt=" + flExcelRpt +
+                ", flXmlRpt=" + flXmlRpt +
+                ", xmlpRptLytI8s=" + xmlpRptLytI8s +
+                ", xmlpRpts=" + xmlpRpts +
+                '}';
+    }
 }
 
 

@@ -79,8 +79,15 @@ public class XmlpRptLytI8  implements java.io.Serializable {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "XmlpRptLytI8{" +
+                "id=" + id +
+                ", xmlpRptLyt=" + xmlpRptLyt +
+                ", doLcl=" + doLcl +
+                ", tyDo='" + tyDo + '\'' +
+                '}';
+    }
 }
 
 

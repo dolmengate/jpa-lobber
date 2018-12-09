@@ -60,9 +60,15 @@ public class XmlpRptCfgPrmtId  implements java.io.Serializable {
          result = 37 * result + ( getIdPrmtCfgRpt() == null ? 0 : this.getIdPrmtCfgRpt().hashCode() );
          result = 37 * result + ( getIdRptXmlp() == null ? 0 : this.getIdRptXmlp().hashCode() );
          return result;
-   }   
+   }
 
-
+    @Override
+    public String toString() {
+        return "XmlpRptCfgPrmtId{" +
+                "idPrmtCfgRpt=" + idPrmtCfgRpt +
+                ", idRptXmlp=" + idRptXmlp +
+                '}';
+    }
 }
 
 

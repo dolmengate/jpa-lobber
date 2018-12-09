@@ -92,8 +92,16 @@ public class XmlpRptDtTmpl  implements java.io.Serializable {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "XmlpRptDtTmpl{" +
+                "idDtTmplRpt=" + idDtTmplRpt +
+                ", nmMdlRpt='" + nmMdlRpt + '\'' +
+                ", tyMdlRpt='" + tyMdlRpt + '\'' +
+                ", doMdlRpt=" + doMdlRpt +
+                ", xmlpRpts=" + xmlpRpts +
+                '}';
+    }
 }
 
 

@@ -60,9 +60,15 @@ public class XmlpRptI8Id  implements java.io.Serializable {
          result = 37 * result + ( getIdRptXmlp() == null ? 0 : this.getIdRptXmlp().hashCode() );
          result = 37 * result + ( getLcl() == null ? 0 : this.getLcl().hashCode() );
          return result;
-   }   
+   }
 
-
+    @Override
+    public String toString() {
+        return "XmlpRptI8Id{" +
+                "idRptXmlp=" + idRptXmlp +
+                ", lcl='" + lcl + '\'' +
+                '}';
+    }
 }
 
 

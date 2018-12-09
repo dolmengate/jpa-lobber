@@ -138,7 +138,20 @@ public class XmlpRpt  implements java.io.Serializable {
         this.xmlpRptCfgPrmts = xmlpRptCfgPrmts;
     }
 
-
+    @Override
+    public String toString() {
+        return "XmlpRpt{" +
+                "idRptXmlp=" + idRptXmlp +
+                ", xmlpRptDtTmpl=" + xmlpRptDtTmpl +
+                ", xmlpRptLyt=" + xmlpRptLyt +
+                ", nmRptXmlp='" + nmRptXmlp + '\'' +
+                ", nmDsplRptXmlp='" + nmDsplRptXmlp + '\'' +
+                ", ctgRptXmlp='" + ctgRptXmlp + '\'' +
+                ", nmDaDftRptXmlp='" + nmDaDftRptXmlp + '\'' +
+                ", nmRlRptXmlp='" + nmRlRptXmlp + '\'' +
+                ", xmlpRptCfgPrmts=" + xmlpRptCfgPrmts +
+                '}';
+    }
 }
 
 
