@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+
+    <Properties>
+        <Property name="filename">../../lobber.log</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="console-appender" target="SYSTEM_OUT">
+            <PatternLayout pattern="%C{1}.%M %m %ex%n"/>
+        </Console>
+        <File name="file-appender" fileName="${filename}">
+            <PatternLayout pattern="%C{1}.%M %m %ex%n"/>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Root level="trace">
+            <AppenderRef ref="file-appender" />
+        </Root>
+    </Loggers>
+</Configuration>
