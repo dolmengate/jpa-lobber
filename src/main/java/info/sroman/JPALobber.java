@@ -22,7 +22,10 @@ public class JPALobber
 {
 
     private static Logger _logger = LogManager.getLogger();
-    private static String BASE_PROPERTIES_FILE = "./base-hibernate.properties";
+
+    private static String BASE_PROPERTIES_PATH = "./base-hibernate.properties";
+    private static String SOURCE_PROPERTIES_PATH = "./src-db.properties";
+    private static String DESTINATION_PROPERTIES_PATH = "./dest-db.properties";
     private static Properties BASE_PROPERTIES = new Properties();
     private static Properties SOURCE_PROPERTIES;
     private static Properties DESTINATION_PROPERTIES;
@@ -231,9 +234,9 @@ public class JPALobber
     private static EntityManagerFactory destSessionFactory;
     static {
         try {
-            BASE_PROPERTIES.load(new FileInputStream(new File(BASE_PROPERTIES_FILE)));
-            SOURCE_PROPERTIES  = overlayProperties(BASE_PROPERTIES_FILE, "./src-db.properties");
-            DESTINATION_PROPERTIES = overlayProperties(BASE_PROPERTIES_FILE, "./dest-db.properties");
+            BASE_PROPERTIES.load(new FileInputStream(new File(BASE_PROPERTIES_PATH)));
+            SOURCE_PROPERTIES  = overlayProperties(BASE_PROPERTIES_PATH, SOURCE_PROPERTIES_PATH);
+            DESTINATION_PROPERTIES = overlayProperties(BASE_PROPERTIES_PATH, DESTINATION_PROPERTIES_PATH);
             srcSessionFactory = configSourcePersistenceUnit();
             destSessionFactory = configDestPersistenceUnit();
         } catch (IOException e) {
@@ -299,12 +302,14 @@ public class JPALobber
 
     private static EntityManagerFactory configSourcePersistenceUnit() throws IOException {
         return new HibernatePersistenceProvider()
-                .createContainerEntityManagerFactory(srcInfo, overlayProperties(BASE_PROPERTIES_FILE, "./src-db.properties"));
+                .createContainerEntityManagerFactory(srcInfo,
+                        overlayProperties(BASE_PROPERTIES_PATH, SOURCE_PROPERTIES_PATH));
     }
 
     private static EntityManagerFactory configDestPersistenceUnit() throws IOException {
         return new HibernatePersistenceProvider()
-                .createContainerEntityManagerFactory(destInfo, overlayProperties(BASE_PROPERTIES_FILE, "./dest-db.properties"));
+                .createContainerEntityManagerFactory(destInfo,
+                        overlayProperties(BASE_PROPERTIES_PATH, DESTINATION_PROPERTIES_PATH));
     }
 
     private static Properties overlayProperties(String baseFile, String... propFiles) throws IOException {
