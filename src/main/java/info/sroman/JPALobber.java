@@ -1,6 +1,5 @@
 package info.sroman;
 
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.jpa.HibernatePersistenceProvider;
@@ -16,7 +15,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class JPALobber
 {
@@ -290,10 +288,14 @@ public class JPALobber
 
     private static String findEntityClassNameForTableName(String tableName) {
         Reflections reflections = new Reflections("info.sroman.entity");
-        Set<Class<?>> clazzes = reflections.getTypesAnnotatedWith(javax.persistence.Table.class);
-        return clazzes.stream()
-                .filter( c -> c.getAnnotationsByType(javax.persistence.Table.class)[0].name().equals(tableName))
-                .collect(Collectors.toSet()).iterator().next().getName();
+        Set<Class<?>> clazzes = reflections.getTypesAnnotatedWith(Table.class);
+        for (Class<?> c : clazzes) {
+            String tName = c.getAnnotation(Table.class).name();
+            if (tName.equals(tableName)) {
+                return c.getSimpleName();
+            }
+        }
+        return null;
     }
 
     private static <T> List<T> selectAllFromTable(EntityManager entityManager, Class<T> clazz) {
