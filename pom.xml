@@ -6,7 +6,7 @@
 
   <groupId>info.sroman</groupId>
   <artifactId>jpa-lobber</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.2-SNAPSHOT</version>
   <packaging>jar</packaging>
 
 
@@ -35,7 +35,13 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
-      <version>5.3.7.Final</version>
+      <version>5.1.16.Final</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <version>5.1.16.Final</version>
     </dependency>
 
     <dependency>
@@ -96,8 +102,6 @@
                   <resource>
                     <directory>${basedir}</directory>
                     <includes>
-                      <include>base-hibernate.properties</include>
-                      <include>dest-db.properties</include>
                       <include>src-db.properties</include>
                     </includes>
                   </resource>

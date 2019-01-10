@@ -4,6 +4,7 @@ package info.sroman.entity;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -140,17 +141,21 @@ public class XmlpRpt  implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "XmlpRpt{" +
-                "idRptXmlp=" + idRptXmlp +
-                ", xmlpRptDtTmpl=" + xmlpRptDtTmpl +
-                ", xmlpRptLyt=" + xmlpRptLyt +
-                ", nmRptXmlp='" + nmRptXmlp + '\'' +
-                ", nmDsplRptXmlp='" + nmDsplRptXmlp + '\'' +
-                ", ctgRptXmlp='" + ctgRptXmlp + '\'' +
-                ", nmDaDftRptXmlp='" + nmDaDftRptXmlp + '\'' +
-                ", nmRlRptXmlp='" + nmRlRptXmlp + '\'' +
-                ", xmlpRptCfgPrmts=" + xmlpRptCfgPrmts +
-                '}';
+        StringBuilder str =
+                new StringBuilder("XmlpRpt{" +
+                        "idRptXmlp=" + idRptXmlp +
+                        ", xmlpRptDtTmpl=" + xmlpRptDtTmpl.getIdDtTmplRpt() +
+                        ", xmlpRptLyt=" + xmlpRptLyt.getIdLytRpt() +
+                        ", nmRptXmlp='" + nmRptXmlp + '\'' +
+                        ", nmDsplRptXmlp='" + nmDsplRptXmlp + '\'' +
+                        ", ctgRptXmlp='" + ctgRptXmlp + '\'' +
+                        ", nmDaDftRptXmlp='" + nmDaDftRptXmlp + '\'' +
+                        ", nmRlRptXmlp='" + nmRlRptXmlp + '\'' +
+                        ", xmlpRptCfgPrmts={");
+
+         for (XmlpRptCfgPrmt p : xmlpRptCfgPrmts) { str.append(p.getId()).append(", "); }
+         str.append("}");
+        return str.toString();
     }
 }
 

@@ -156,6 +156,7 @@ public class XmlpRptLyt  implements java.io.Serializable {
         this.xmlpRpts = xmlpRpts;
     }
 
+    // todo better toString
 
     @Override
     public String toString() {
@@ -169,7 +170,7 @@ public class XmlpRptLyt  implements java.io.Serializable {
                 ", flRtfRpt=" + flRtfRpt +
                 ", flExcelRpt=" + flExcelRpt +
                 ", flXmlRpt=" + flXmlRpt +
-                ", xmlpRptLytI8s=" + xmlpRptLytI8s +
+//                ", xmlpRptLytI8s=" + xmlpRptLytI8s +
                 ", xmlpRpts=" + xmlpRpts +
                 '}';
     }
