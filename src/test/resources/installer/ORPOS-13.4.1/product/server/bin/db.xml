@@ -1,0 +1,3002 @@
+<!--
+/* ===========================================================================
+* Copyright (c) 2008, 2012, Oracle and/or its affiliates. All rights reserved. 
+ * ===========================================================================
+ * $Header: rgbustores/modules/common/deploy/server/common/db/db.xml /rgbustores_13.4x_generic_branch/14 2012/02/17 04:28:16 drbarber Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    drbarber  02/13/12 - BUG 13657941: Introduce ant targets for upgrade
+ *                         scripts
+ *    tzgarba   10/20/11 - Put exception handlers around stringenc calls used
+ *                         by unittest targets
+ *    abondala  10/05/11 - introduced ant task for all string encryption
+ *                         functions which will be used by all the installers
+ *    ohorne    09/19/11 - decoupled sample data from installers
+ *    mchellap  09/07/11 - Remove UOM tables from CO sample insert
+ *    ohorne    07/22/11 - added InsertTableWorkWeek.sql to sample
+ *    ohorne    07/18/11 - CreateTableTempStoreJoin.sql does not exist
+ *    jkoppolu  06/24/11 - Modified insert_sample target to load scan sheet
+ *                         sample images to the table as blobs
+ *    abondala  05/20/11 - fix the classpath and replaced the datafiler
+ *                         property with the dataencrypt.classpath
+ *    abondala  05/13/11 - replace classpath element with the classpath
+ *                         attribute for java as there are some issues with the
+ *                         class path resolution.
+ *    hyin      04/13/11 - spring upgrade second round
+ *    hyin      04/05/11 - spring 3 upgrade
+ *    abondala  04/11/11 - XbranchMerge
+ *                         abondala_bug11827952-salting_passwords_phase2 from
+ *                         main
+ *    abondala  04/11/11 - XbranchMerge
+ *                         abondala_bug11827952-salting_passwords_phase1 from
+ *                         main
+ *    abondala  04/11/11 - XbranchMerge abondala_bug11827952-salting_passwords
+ *                         from main
+ *    abondala  03/31/11 - fix the classpath issues for the unit tests
+ *    abondala  03/29/11 - updated
+ *    abondala  03/29/11 - add encryptionclient jar to the classpath.
+ *    abondala  03/25/11 - merging
+ *    abondala  03/25/11 - implement salting for the passwords
+ *    abondala  03/23/11 - Implemented salting for the passwords
+ *    sgu       03/03/11 - remove echo
+ *    sgu       03/03/11 - fix regular expr
+ *    sgu       03/03/11 - check in after merge
+ *    sgu       03/03/11 - fix regular expression
+ *    sgu       03/03/11 - check isset property check for insert.sample.exclude
+ *    sgu       03/01/11 - exclude files from CO
+ *    sgu       03/01/11 - filter sql files based on application
+ *    abondala  02/28/11 - added secure util jar in the classpath
+ *    abondala  02/24/11 - create a seperate jar for independent util classes
+ *                         that can be deployed outside the ear in the
+ *                         application server.
+ *    npoola    10/15/10 - added ant lib task location to the setup_ctr target
+ *    abondala  08/06/10 - updated
+ *    abondala  08/06/10 - access sequences using dbowner.schemaName and will
+ *                         not be creating either synonyms or aliases on oracle
+ *                         and db2 as we have some issues with sharing the
+ *                         sequences between schemas by creating aliases.
+ *    abondala  07/28/10 - fix antcontrib classpath issue
+ *    abondala  07/27/10 - use owner connection to execute stored procedures.
+ *                         As DB2 doesnt support synonyms for the procedures
+ *                         that can be executed by the data source user
+ *    sgu       07/01/10 - check in after merge
+ *    sgu       07/01/10 - fix defects in SQL padder
+ *    sgu       06/29/10 - generate mocked and non-mocked SQL files into
+ *                         different directories
+ *    sgu       06/28/10 - don't pad mock string if resource.mock is set to
+ *                         false
+ *    sgu       06/28/10 - fix generate_localized_sql
+ *    sgu       06/28/10 - generate localized sql even if the resource.mock
+ *                         property is set to false
+ *    npoola    06/22/10 - added sqls to move the SEQUENCEs to separate sql for
+ *                         DB User to execute
+ *    npoola    06/17/10 - removed the synonyms dir
+ *    npoola    06/14/10 - mocksql location is corrected to copy
+ *    cgreene   05/26/10 - convert to oracle packaging
+ *    cgreene   05/24/10 - generate mocked sql then copy it into sql dir
+ *    djenning  04/29/10 - update lost tech branch changes
+ *    slgonzal  04/28/10 - Corrected filenames, removed obsolete
+ *                         ApplicationSchemaVersion file
+ *    ohorne    04/27/10 - XbranchMerge ohorne_tech61 from
+ *                         st_rgbustores_techissueseatel_generic_branch
+ *    ohorne    04/26/10 - XbranchMerge ohorne_tech86 from
+ *                         st_rgbustores_techissueseatel_generic_branch
+ *    cgreene   04/15/10 - update oracle.stores jar names
+ *    ohorne    03/31/10 - relocated InsertTableRetailStoreItem.sql from
+ *                         Customizable to basetest and sample
+ *    ohorne    03/26/10 - removed ref to CreateTableTestData.sql
+ *    slgonzal  03/11/10 - Update purge procedure name from Event to
+ *                         PromotionEvent
+ *    mchellap  03/10/10 - Merge
+ *    mchellap  03/10/10 - Removed the CSF developer targets
+ *    slgonzal  03/09/10 - Add PurgeDuplicatePriceChangeEvent and
+ *                         PurgePriceChangeEvent procedures to ant target
+ *    ohorne    03/08/10 - concat of default scripts now uses app-specific
+ *                         filters
+ *    mchellap  02/16/10 - Added targets to list,add csf aliases
+ *    slgonzal  02/01/10 - Add new training mode transaction purge to
+ *                         procedures target
+ *    abondala  01/30/10 - use commons-logging-1.1.1.jar in all applications to
+ *                         be consistent
+ *    sgu       01/19/10 - use lowercase layout.xml
+ *    abondala  01/02/10 - Update Header date
+ *    abondala  12/21/09 - create third party tables before executing
+ *                         permissions
+ *    nkgautam  12/21/09 - removed CreateDBQueueTable entry
+ *    sgu       12/11/09 - remove duplicates in mock tax tables
+ *    abondala  12/09/09 - datbase can be loaded through installer for POS
+ *                         Server. Use this option if POS is not integrated
+ *                         with BO.
+ *    mchellap  12/01/09 - Fixed application admin password issue
+ *    mchellap  11/27/09 - Reverse DIMP performance changes
+ *    tzgarba   11/20/09 - Fixed login issue with dbbuild script
+ *    cgreene   11/10/09 - switch pos installed -encrypted keys to -property
+ *    mchellap  11/09/09 - Merge checkin
+ *    mchellap  11/09/09 - Added new target to create dimp procedure
+ *    nkgautam  10/22/09 - Added entry for new sql CreateDBQueueTable
+ *    tzgarba   11/02/09 - Phase 2 of third party refactor. Refactored
+ *                         remaining libraries and removed 11 more unused
+ *                         libraries.
+ *    ohorne    10/01/09 - now using ordered.inserts.default.app in concat of
+ *                         app-default scripts
+ *    ohorne    09/30/09 - fix for missing app.product/default data
+ *    ohorne    09/25/09 - moved permission granting to end of minimum db
+ *                         creation
+ *    ohorne    09/25/09 - resolved missing file warnings during concat_sql
+ *    abondala  09/25/09 - updated related to LAT weblogic installer
+ *    mchellap  09/22/09 - Merge Checkin
+ *    tzgarba   09/23/09 - Updated database configuration for refactored third
+ *                         party jars
+ *    mchellap  09/16/09 - Updates for CSF support
+ *    ohorne    09/15/09 - base/seed database script reorg
+ *    ohorne    08/12/09 - added BO Report support for XLIFF
+ *    ohorne    06/17/09 - added CalendarReportingTimePeriod to ordered
+ *                         properties
+ *    npoola    05/04/09 - changed the DTM to replicate the CO_PRCGP table in
+ *                         to scratchpad
+ *    abondala  04/06/09 - Grant execute permissions to the data source user on
+ *                         procedure object.
+ *    ohorne    02/24/09 - now filters upgrade sql
+ *    miparek   02/22/09 - removed InsertItemFieldsTestDataI18N.sql entry from
+ *                         ordered.inserts.qa to remove dbbuild concat error
+ *    abondala  02/16/09 - updated
+ *    abondala  02/16/09 - removed app.server.product from db.properties
+ *    ranojha   02/09/09 - Fixed item test data for QA
+ *    kulu      02/06/09 - Fix Mock CO report import
+ *    kulu      02/04/09 - Merge
+ *    kulu      02/04/09 - Separate report import xml files
+ *    abondala  01/30/09 - updated files related to hash algorithm which can be
+ *                         configurable
+ *    abondala  01/29/09 - updated files related to hashing algorithm which can
+ *                         be configured through properties file.
+ *    miparek   01/23/09 - I18N QA sql insert fix for installer crash
+ *    sgu       01/21/09 - translate bundle
+ *    miparek   01/20/09 - use template to generate I18N QA inserts
+ *    sgu       12/15/08 - use template to generated i8 insert sql
+ *    acadar    11/13/08 - cleanup
+ *    acadar    11/12/08 - added 18n table for reason codes
+ *    miparek   11/12/08 - update to pick up I18N files from Seed/locales dir
+ *    sgu       11/12/08 - refresh to tip
+ *    sgu       11/12/08 - update db.xml to pick up I18N files from locales dir
+ *    acadar    11/11/08 - added missing i18 tables to the build.integration
+ *                         target
+ *    acadar    11/11/08 - added I8 tables
+ *    sgu       11/11/08 - check in xmlp report config for different locales
+ *    vikini    11/11/08 - Changes to make the ILRM Messages available offline
+ *    vikini    11/08/08 - Changes to Add Create scripts for ILRM tables
+ *
+ * ===========================================================================
+ */
+-->
+<!-- ========================================================================
+     db.xml that will be shared by all projects
+     ========================================================================-->
+<project name="build" default="create_sample_db">
+    <property file="db.properties"/>
+    <property environment="env"/>
+    <property name="gensql.dir.dist" value="${db.dir.dist}/gensql"/>
+    <property name="mockgensql.dir.dist" value="${db.dir.dist}/mockgensql"/>
+    <property name="mock.string.1" value="\\\\u54e6\\\\u00e3\\\\u00e7"/>
+    <property name="mock.string.2" value="\\\\u7c21\\\\u5358\\\\u00a3"/>
+    <taskdef name="stringenc" classname="oracle.retail.stores.common.utility.StringEncryptionAntTask" classpath="${db.encrypt.classpath}">
+       <classpath>
+           <pathelement location="${db.encrypt.classpath}/" />
+       </classpath>
+    </taskdef>
+
+    <!--<target name="echo_classpath">-->
+        <!--<echo>****CLASSPATH FOR TARGET create_sample_db IS: ****</echo>-->
+        <!--<echo> ${toString:project.class.path} </echo>-->
+    <!--</target>-->
+
+    <target name="show_props">
+        <echo message="------------------ Using Properties -------------------------------"/>
+        <echo message="db.vendor=${db.vendor}"/>
+        <echo message="db.product=${db.product}"/>
+        <echo message="db.version=${db.version}"/>
+        <echo message="db.jdbc-driver=${db.jdbc-driver}"/>
+        <echo message="db.jdbc-url=${db.jdbc-url}"/>
+        <echo message="db.jdbc-path=${db.jdbc-path}"/>
+        <echo message="db.jdbc-jar=${db.jdbc-jar}"/>
+        <echo message="db.jdbc-jar2=${db.jdbc-jar2}"/>
+        <echo message="db.owner.user=${db.owner.user}"/>
+        <echo message="db.user=${db.user}"/>
+        <echo message="db.install.dir=${db.install.dir}"/>
+        <echo message="install.dir=${install.dir}"/>
+        <echo message="dist.sql.dir=${dist.sql.dir}"/>
+        <echo message="filtered.sql.dir=${filtered.sql.dir}"/>
+        <echo message="app.product=${app.product}"/>
+        <echo message="db.autocommit=${db.autocommit}"/>
+        <echo message="db.encrypt.classpath=${db.encrypt.classpath}"/>
+        <echo message="db.buildforeignkey=${db.buildforeignkey}"/>
+        <echo message="db.createview=${db.createview}"/>
+        <echo message="resource.encoding=${resource.encoding}"/>
+        <echo message="resource.mock=${resource.mock}"/>
+        <echo message="tax.enableTaxInclusive (VAT)=${tax.enableTaxInclusive}"/>
+        <echo message="inst.hash.algorithm =${inst.hash.algorithm}"/>
+        <echo message="gensql.dir.dist =${gensql.dir.dist}"/>
+        <echo message="mockgensql.dir.dist =${mockgensql.dir.dist}"/>
+
+    </target>
+
+    <target name="setup" depends="init, setup_general,show_props"/>
+
+    <target name="init" depends="init_ordered_tables"/>
+
+    <target name="init_macros">
+
+        <taskdef resource="net/sf/antcontrib/antcontrib.properties">
+            <classpath>
+                <pathelement location="${ant.contrib.location}"/>
+            </classpath>
+        </taskdef>
+        
+        <macrodef name="sha1-password-hash">
+            <attribute name="password"/>
+            <attribute name="property"/>
+            <sequential>
+
+                <!-- Generate a SHA1 hash for the password -->
+                <trycatch property="exception.@{property}">
+
+                    <try>
+
+                        <!-- Write the plaintext password to a text file -->
+                        <echo file="passwd.txt" message="@{password}"/>
+
+                        <!-- generate a SHA1 hash of the file -->
+                        <checksum file="passwd.txt" algorithm="SHA1" property="@{property}"/>
+
+                    </try>
+
+                    <catch>
+                        <fail message="SHA1 password hash failed: ${exception.@{property}}"/>
+                    </catch>
+
+                    <finally>
+
+                        <!-- Delete the plaintext password file -->
+                        <delete file="passwd.txt"/>
+
+                    </finally>
+
+                </trycatch>
+
+            </sequential>
+        </macrodef>
+
+        <macrodef name="saveCredential">
+            <attribute name="userNameAlias"/>
+            <attribute name="userName"/>
+            <attribute name="password"/>
+            <attribute name="property"/>
+            <sequential>
+                <var name="@{property}" unset="true"/>
+                <stringenc operation="save" csfUserNameAlias="@{userNameAlias}" csfUserName="@{userName}" csfPassword="@{password}" outputproperty="@{property}"/>
+            </sequential>
+        </macrodef>
+
+        <macrodef name="encrypt">
+            <attribute name="password"/>
+            <attribute name="property"/>
+            <sequential>
+                <var name="@{property}" unset="true"/>
+                <stringenc operation="encrypt" value="@{password}" outputproperty="@{property}"/>
+            </sequential>
+        </macrodef>
+
+        <macrodef name="validate-admin-password">
+            <attribute name="password"/>
+            <sequential>
+                <var name="temp.result" unset="true"/>
+                <stringenc operation="validate" value="@{password}" outputproperty="temp.result"/>
+                <if>
+                    <not><equals arg1="${temp.result}" arg2="SUCCESS"/></not>
+                    <then>
+                        <fail message="Application administrator password does not satisfy the following criteria: 1) at least 7 characters; (2) contains an alphabetic charaacter; (3) contains a numeric character."/>
+                    </then>
+                </if>
+            </sequential>
+        </macrodef>
+
+        <macrodef name="encrypt-passwords">
+            <attribute name="install-type"/>
+            <sequential>
+
+                <!-- validate the install type -->
+                <if>
+                    <not>
+                        <or>
+                            <equals arg1="@{install-type}" arg2="webapp" casesensitive="false"/>
+                            <equals arg1="@{install-type}" arg2="pos" casesensitive="false"/>
+                        </or>
+                    </not>
+                    <then>
+                        <fail message="&apos;install-type&apos; attribute for encrypt-passwords macro must be one of the following values: &apos;pos&apos; &apos;webapp&apos;"/>
+                    </then>
+                </if>
+
+                <echo>This target will prompt you for passwords for your db.properties file, encrypt them and insert them into your db.properties file</echo>
+                <input message="Press &lt;Enter&gt; to continue"/>
+
+                <!-- Prompt for application administrator password -->
+                <echo>Enter the value for &apos;inst.app.admin.password&apos; (the application administrator password).</echo>
+                <echo>The password must satisfy the following criteria:</echo>
+                <echo>    1) Is at least 7 characters in length.</echo>
+                <echo>    2) Contains at least one alphabetic charaacter. </echo>
+                <echo>    3) Contains at least one numeric character.  </echo>
+                <input message="[&lt;Enter&gt; to skip]:" addproperty="temp.app.admin.password"/>
+
+                <!-- Prompt for DB datasource user password -->
+                <input message="Enter the value for &apos;db.password&apos; (the DB application datasource password) [&lt;Enter&gt; to skip]:" addproperty="temp.db.datasource.password"/>
+
+                <!-- Prompt for DB owner password -->
+                <input message="Enter the value for &apos;db.owner.password&apos; (the DB schema owner password) [&lt;Enter&gt; to skip]:" addproperty="temp.db.owner.password"/>
+
+                <!-- If this is a POS install, prompt for scratchpad DB password -->
+                <if>
+                    <equals arg1="@{install-type}" arg2="pos" casesensitive="false"/>
+                    <then>
+                        <!-- Prompt for DB owner password -->
+                        <input message="Enter the value for &apos;ctr.db.password&apos; (the POS CTR scratchpad DB password) [&lt;Enter&gt; to skip]:" addproperty="temp.db.scratchpad.password"/>
+                    </then>
+                </if>
+
+                <!-- Encrypt the application administrator password and insert into db.properties -->
+                <if>
+                    <not><equals arg1="${temp.app.admin.password}" arg2=""/></not>
+                    <then>
+                        <echo>Validating: Application administrator password</echo>
+                        <validate-admin-password password="${temp.app.admin.password}"/>
+                        <echo>Encrypting: application administrator password</echo>
+                        <!-- If this is a POS install, use CSF -->
+                        <if>
+                            <equals arg1="@{install-type}" arg2="pos" casesensitive="false"/>
+                            <then>
+                                <encrypt password="${temp.app.admin.password}" property="temp.app.admin.password-encrypted"/>
+                                <replaceregexp file="db.properties"
+                                               match="inst.app.admin.password-encrypted\s*=.*"
+                                               replace="inst.app.admin.password-encrypted=${temp.app.admin.password-encrypted}"/>
+                            </then>
+                            <else>
+                                <encrypt password="${temp.app.admin.password}" property="temp.app.admin.password-encrypted"/>
+                                <replaceregexp file="db.properties"
+                                    match="inst.app.admin.password-encrypted\s*=.*"
+                                    replace="inst.app.admin.password-encrypted=${temp.app.admin.password-encrypted}"/>
+                            </else>
+                        </if>
+                    </then>
+                    <else>
+                        <echo>Skipping: Application administrator password</echo>
+                    </else>
+                </if>
+
+                <!-- Encrypt the DB datasource password and insert into db.properties -->
+                <if>
+                    <not><equals arg1="${temp.db.datasource.password}" arg2=""/></not>
+                    <then>
+                        <echo>Encrypting: DB datasource password</echo>
+                        <!-- If this is a POS install, use CSF -->
+                        <if>
+                            <equals arg1="@{install-type}" arg2="pos" casesensitive="false"/>
+                            <then>
+                                <encrypt password="${temp.db.datasource.password}" property="temp.db.datasource.password-encrypted"/>
+                                <replaceregexp file="db.properties"
+                                               match="db.password-encrypted\s*=.*"
+                                               replace="db.password-encrypted=${temp.db.datasource.password-encrypted}"/>
+                            </then>
+                            <else>
+                                <encrypt password="${temp.db.datasource.password}" property="temp.db.datasource.password-encrypted"/>
+                                <replaceregexp file="db.properties"
+                                    match="db.password-encrypted\s*=.*"
+                                    replace="db.password-encrypted=${temp.db.datasource.password-encrypted}"/>
+                            </else>
+                        </if>
+                    </then>
+                    <else>
+                        <echo>Skipping: DB datasource password</echo>
+                    </else>
+                </if>
+
+                <!-- Encrypt the DB owner password and insert into db.properties -->
+                <if>
+                    <not><equals arg1="${temp.db.owner.password}" arg2=""/></not>
+                    <then>
+                        <echo>Encrypting: DB owner password</echo>
+                        <!-- If this is a POS install, use CSF -->
+                        <if>
+                            <equals arg1="@{install-type}" arg2="pos" casesensitive="false"/>
+                            <then>
+                                <encrypt password="${temp.db.owner.password}" property="temp.db.owner.password-encrypted"/>
+                                <replaceregexp file="db.properties"
+                                               match="db.owner.password-encrypted\s*=.*"
+                                               replace="db.owner.password-encrypted=${temp.db.owner.password-encrypted}"/>
+                            </then>
+                            <else>
+                                <encrypt password="${temp.db.owner.password}" property="temp.db.owner.password-encrypted"/>
+                                <replaceregexp file="db.properties"
+                                    match="db.owner.password-encrypted\s*=.*"
+                                    replace="db.owner.password-encrypted=${temp.db.owner.password-encrypted}"/>
+                            </else>
+                        </if>
+                    </then>
+                    <else>
+                        <echo>Skipping: DB owner password</echo>
+                    </else>
+                </if>
+
+                <!-- If this is a POS install, encrypt the scratchpad DB password if specified-->
+                <if>
+                    <equals arg1="@{install-type}" arg2="pos" casesensitive="false"/>
+                    <then>
+                        <if>
+                            <not><equals arg1="${temp.db.scratchpad.password}" arg2=""/></not>
+                            <then>
+                                <echo>Encrypting: POS CTR scratchpad DB password</echo>
+                                <!-- Save the password to csf wallet, using scratchpadSchemaUser as user alias name for this password -->
+                                <saveCredential userNameAlias="scratchpadSchemaUser" userName="scratchpadSchemaUser" password="${temp.db.scratchpad.password}" property="temp.db.scratchpad.password-property"/>
+                                <replaceregexp file="db.properties"
+                                    match="ctr.db.password-property\s*=.*"
+                                    replace="ctr.db.password-property=${temp.db.scratchpad.password-property}"/>
+                            </then>
+                            <else>
+                                <echo>Skipping: POS CTR scratchpad DB password</echo>
+                            </else>
+                        </if>
+                    </then>
+                </if>
+
+            </sequential>
+        </macrodef>
+
+    </target>
+
+    <!-- Convenience target for developers: prompts the user for all the passwords required for webapp (BO/CO/LAT) installs, encrypts them
+        and inserts the encrypted passwords into db.properties.
+        Usage: ant -f db.xml encrypt-webapp-passwords
+    -->
+    <target name="encrypt-webapp-passwords" depends="init_macros">
+
+        <encrypt-passwords install-type="webapp"/>
+
+    </target>
+
+    <!-- Convenience target for developers: prompts the user for all the passwords required for POS installs, encrypts them
+        and inserts the encrypted passwords into db.properties.
+        Usage: ant -f db.xml encrypt-pos-passwords
+    -->
+    <target name="encrypt-pos-passwords" depends="init_macros">
+
+        <encrypt-passwords install-type="pos"/>
+
+    </target>
+
+    <!-- Convenience target for developers; encrypts text using oracle.retail.stores.common.utility.StringEncryptionUtility class
+        Used to generate values for inst.db.password-encrypted/inst.db.owner.password-encrypted/ctr.db.password-encrypted properties
+        in db.properties. Ant will prompt the user for the plaintext to encrypt.
+        Usage: Usage: ant -f db.xml encrypt
+    -->
+    <target name="encrypt" depends="init_macros">
+
+        <!-- Prompt the user for the plaintext input -->
+        <input message="Enter the plaintext:" addproperty="password"/>
+
+        <!-- Generate the encrypted password -->
+        <encrypt password="${password}" property="password-encrypted"/>
+
+        <echo>encrypt(&apos;${password}&apos;) = &apos;${password-encrypted}&apos;</echo>
+
+    </target>
+
+    <!-- Using db.properties, setup the property values -->
+    <target name="setup_general">
+
+        <property name="db.vendor" value="${inst.db.vendor}"/>
+        <property name="db.product" value="${inst.db.product}"/>
+        <property name="db.jdbc-driver" value="${inst.db.jdbc-driver}"/>
+        <property name="db.jdbc-url" value="${inst.db.jdbc-url}"/>
+        <property name="db.jdbc-path" value="${inst.db.jdbc-path}"/>
+        <property name="db.jdbc-jar" value="${inst.db.jdbc-jar}"/>
+        <property name="db.jdbc-jar2" value="${inst.db.jdbc-jar2}"/>
+        <property name="db.user" value="${inst.db.user}"/>
+        <property name="db.password-encrypted" value="${inst.db.password-encrypted}"/>
+        <property name="db.password-property" value="${inst.db.password-encrypted}"/>
+        <property name="db.owner.user" value="${inst.db.owner.user}"/>
+        <property name="db.owner.password-encrypted" value="${inst.db.owner.password-encrypted}"/>
+        <property name="db.owner.password-property" value="${inst.db.owner.password-encrypted}"/>
+        <property name="db.install.dir" value="${inst.db.install.dir}"/>
+        <property name="install.dir" value="${inst.install.dir}"/>
+        <property name="execute.dir" value="${inst.execute.dir}"/>
+        <property name="dist.sql.dir" value="${sql.dir.dist}"/>
+        <property name="filtered.sql.dir" value="${sql.dir.filtered}"/>
+        <property name="db.encrypt.classpath" value="${db.encrypt.classpath}"/>
+        <property name="encrypt.classpath" value="${db.encrypt.classpath}"/>
+        <property name="jboss.j2ee.jar" value="${inst.jboss.j2ee.jar}"/>
+        <property name="app.product" value="${db.app.product}"/>
+        <property name="db.autocommit" value="${gen.db.autocommit}"/>
+        <property name="db.createforeignkey" value="${inst.db.createforeignkey}"/>
+
+        <path id="project.class.path">
+            <pathelement location="."/>
+            <pathelement location="${install.dir}/pos"/>
+            <pathelement location="${install.dir}/pos/lib"/>
+            <pathelement location="${install.dir}/pos/config"/>
+            <pathelement location="${install.dir}/common/lib/oracle.stores.commext.jar"/>
+            <pathelement location="${install.dir}/common/lib/oracle.stores.domain.jar"/>
+            <pathelement location="${install.dir}/common/lib/oracle.stores.foundation.jar"/>
+            <pathelement location="${install.dir}/common/lib/oracle.stores.common.jar"/>
+            <pathelement location="${install.dir}/common/lib/oracle.stores.utility.jar"/>
+            <pathelement location="${install.dir}/common/lib/oracle.stores.secure.utility.jar"/>
+            <pathelement location="${install.dir}/common/lib/oracle.stores.encryptionclient.jar"/>
+            <pathelement location="${install.dir}/pos/lib/oracle.stores.pos.jar"/>
+            <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
+            <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
+            <pathelement location="${jboss.j2ee.jar}"/>
+            <!--<pathelement location="C:/Users/stephen/repos/jpa-lobber/src/test/resources/installer/ORPOS-13.4.1/ant-ext/" />-->
+            <!--<pathelement location="C:/Users/stephen/repos/jpa-lobber/src/test/resources/installer/ORPOS-13.4.1/product/shared/lib/" />-->
+            <!--<pathelement location="C:/Users/stephen/repos/jpa-lobber/src/test/resources/installer/ORPOS-13.4.1/product/shared/common/lib/" />-->
+            <!--<pathelement location="C:/Users/stephen/repos/jpa-lobber/src/test/resources/installer/ORPOS-13.4.1/product/shared/common/lib/oracle.stores.secure.utility.jar" />-->
+            <!--<pathelement location="C:/Users/stephen/repos/jpa-lobber/src/test/resources/installer/ORPOS-13.4.1/product/server/common/lib/" />-->
+            <!--<pathelement location="C:/Users/stephen/repos/jpa-lobber/src/test/resources/installer/ORPOS-13.4.1/product/server/common/lib/ext/" />-->
+            <!--<pathelement location="C:/Users/stephen/repos/jpa-lobber/src/test/resources/installer/ORPOS-13.4.1/product/server/common/db/lib/" />-->
+            <!--<fileset dir="${install.dir}/common/common/build">-->
+            <!--<include name="**/org.springframework.*-3.0.5.RELEASE.jar"/>-->
+            <!--<include name="**/com.springsource.org.aopalliance-1.0.0.jar"/>-->
+            <!--<include name="**/commons-logging-1.1.1.jar"/>-->
+            <!--</fileset>-->
+        </path>
+
+        <path id="xmlp.class.path">
+            <!--<pathelement location="lib/reportTemplates.jar"/>-->
+            <!--<pathelement location="lib/xmlparserv2-904.jar"/>-->
+            <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
+            <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
+            <pathelement location="${db.encrypt.classpath}"/>
+        </path>
+        
+        <!-- Decrypt DB owner password -->
+        <trycatch property="stringenc.exception">
+            <try>
+                <!-- Use CSF for POS -->
+                <if>
+                    <equals arg1="${app.product}" arg2="pos"/>
+                    <then>
+                        <stringenc operation="retrieve" csfUserNameAlias="${db.owner.password-property}" outputproperty="db.owner.password"/>
+                     </then>
+                     <else>
+                        <stringenc operation="decrypt" value="${db.owner.password-encrypted}" outputproperty="db.owner.password"/>
+                    </else>
+                </if>
+        
+                <!-- Decrypt DB user password -->
+                <!-- Use CSF for POS -->
+                <if>
+                    <equals arg1="${app.product}" arg2="pos"/>
+                    <then>
+                        <stringenc operation="retrieve" csfUserNameAlias="${db.password-property}" outputproperty="db.password"/>
+                    </then>
+                    <else>
+                        <stringenc operation="decrypt" value="${db.password-encrypted}" outputproperty="db.password"/>
+                    </else>
+                </if>
+            </try>
+            <catch>
+                <echo>Stringenc task failed with ${stringenc.exception}</echo>
+            </catch>
+        </trycatch>
+
+    </target>
+
+    <target name="delete_old_files" depends="setup">
+      <delete verbose="true">
+        <fileset dir="${execute.dir}">
+          <include name="*.dat*"/>
+          <include name="jnl*.*"/>
+          <include name="journal.txt"/>
+          <include name="TransactionQueue.queue"/>
+          <include name="item_id*"/>
+          <include name="*.ser"/>
+          <include name="*.log"/>
+        </fileset>
+        <fileset dir="${filtered.sql.dir}">
+          <include name="**/*.logs"/>
+        </fileset>
+        <fileset dir="${filtered.sql.dir}">
+          <include name="*.sql"/>
+        </fileset>
+      </delete>
+    </target>
+
+     <target name="create_db" depends="setup">
+      <condition property="db.executable" value="${db.install.dir}/bin/mysql">
+        <and>
+          <equals arg1="${db.product}" arg2="mysql"/>
+        </and>
+      </condition>
+      <condition property="db.executable" value="${db.install.dir}/bin/db2cmd db2">
+        <and>
+          <equals arg1="${db.product}" arg2="db2"/>
+          <os family="windows"/>
+        </and>
+      </condition>
+      <condition property="db.executable" value="${db.install.dir}/bin/db2">
+        <and>
+          <equals arg1="${db.product}" arg2="db2"/>
+          <not>
+            <os family="windows"/>
+          </not>
+        </and>
+      </condition>
+      <condition property="os.family" value="windows">
+        <and>
+          <os family="windows"/>
+        </and>
+      </condition>
+      <condition property="os.family" value="linux">
+        <not>
+          <os family="windows"/>
+        </not>
+      </condition>
+        <java classname="oracle.retail.stores.commerceservices.DBSetup"
+            fork="true"
+            failonerror="true"
+            maxmemory="128m">
+            <arg value="${db.product}"/>
+            <arg value="${os.family}"/>
+            <arg value="quarrysb"/>
+            <arg value="${db.executable}"/>
+            <arg value="${db.jdbc-driver}"/>
+            <arg value="${db.jdbc-url}"/>
+            <arg value="${db.user}"/>
+            <arg value="dbuser"/>
+            <classpath refid="project.class.path"/>
+        </java>
+    </target>
+
+    <target name="start_db"
+            depends="setup, init_start_parameters, start_db2_linux, start_db2_windows, start_mysql_windows, start_mysql_linux"/>
+
+    <target name="init_start_parameters">
+        <condition property="use_db2_windows" value="true">
+        <and>
+          <equals arg1="${db.product}" arg2="db2"/>
+          <os family="windows"/>
+        </and>
+      </condition>
+        <condition property="use_db2_linux" value="true">
+        <and>
+          <equals arg1="${db.product}" arg2="db2"/>
+          <not>
+            <os family="windows"/>
+          </not>
+        </and>
+      </condition>
+        <condition property="use_mysql_windows" value="true">
+        <and>
+          <equals arg1="${db.product}" arg2="mysql"/>
+          <os family="windows"/>
+        </and>
+      </condition>
+        <condition property="use_mysql_linux" value="true">
+        <and>
+          <equals arg1="${db.product}" arg2="mysql"/>
+          <not>
+            <os family="windows"/>
+          </not>
+        </and>
+      </condition>
+    </target>
+
+    <target name="start_db2_linux" if="use_db2_linux">
+       <exec executable="su db2admin -lc ${db.install.dir}/db2start"/>
+       <exec executable="su db2admin -lc ${db.install.dir}/db2jstrt"/>
+    </target>
+
+    <target name="start_db2_windows" if="use_db2_windows">
+       <exec dir="${db.install.dir}" executable="db2start.exe"/>
+    </target>
+
+    <target name="start_mysql_linux" if="use_mysql_linux">
+       <exec dir="${db.install.dir}" executable="mysqld"/>
+    </target>
+
+    <target name="start_mysql_windows" if="use_mysql_windows">
+       <exec executable="net">
+         <arg line="start mysql"/>
+       </exec>
+    </target>
+
+    <!-- target for creating database without loading any datasets -->
+    <target name="create_empty_db" depends="setup, create_360_schema, load_3rdparty, create_view, create_procedure, create_foreign_key, grant_table_view_perm, create_table_view_synonym" if="db.product"/>
+
+    <!-- targets for creating database loaded with minimum, sample, test, unittest, qa, or integration datasets -->
+    <target name="create_minimum_db" depends="create_empty_db, core_data, default_data, customizable_data" if="db.product"/>
+    <target name="create_sample_db" depends="create_minimum_db, insert_sample" if="db.product"/>
+    <target name="create_basetest_db" depends="create_minimum_db, insert_basetest" if="db.product"/>
+    <target name="create_unittest_db" depends="create_basetest_db, insert_unittest" if="db.product"/>
+    <target name="create_qatest_db" depends="create_basetest_db, insert_qatest" if="db.product"/>
+    <target name="create_integration_db" depends="create_minimum_db, insert_integration" if="db.product"/>
+
+    <!-- minimum dataset targets -->
+    <target name="core_data" depends="create_empty_db, insert_core" if="db.product"/>
+    <target name="default_data" depends="core_data, insert_default, load_reports" if="db.product"/>
+    <target name="customizable_data" depends="default_data, insert_customizable" if="db.product"/>
+
+    <!-- scratch pad -->
+    <target name="base_data_ctr" depends="setup_ctr, show_props, create_empty_db" if="db.product"/>
+
+    <target name="create_and_start_db" depends="start_db, create_unittest_db" if="db.product"/>
+
+    <target name="create_filter_sql" depends="filter_sql, filter_table_perm_sql, filter_seq_perm_sql, filter_view_perm_sql, filter_table_synonyms_sql, filter_view_synonyms_sql, filter_table_3rdparty_perm_sql1, filter_table_3rdparty_perm_sql2, filter_3rdparty_table_syn_sql1, filter_3rdparty_table_syn_sql2" if="db.product"/>
+
+    <!-- The targets  grant_schema, grant_schema_permissions are used to give access to a owner schema for a data source schema -->
+    <target name="grant_schema" depends="verify_grant_inputs" if="db.product"/>
+
+    <target name="grant_schema_permissions" depends="create_filter_sql, grant_table_view_perm, create_table_view_synonym" if="db.product"/>
+    <!-- The targets  grant_schema, grant_schema_permissions are used to give access to a owner schema for a data source schema -->
+
+    <target name="verify_grant_inputs" if="db.product">
+        <taskdef resource="net/sf/antcontrib/antcontrib.properties">
+            <classpath>
+               <pathelement location="${ant.contrib.location}"/>
+            </classpath>
+        </taskdef>
+        <if>
+            <and>
+                <isset property="schema.user"/>
+                <isset property="schema.password"/>
+            </and>
+            <then>
+                <antcall target="grant_schema_permissions">
+                    <param name="db.user" value="${schema.user}"/>
+                    <param name="db.password" value="${schema.password}"/>
+                </antcall>
+            </then>
+            <else>
+                <echo message="USAGE: ant -f db.xml -Dschema.user=SCHEMA_USER -Dschema.password=SCHEMA_PASSWORD grant_schema"/>
+            </else>
+        </if>
+    </target>
+
+    <!-- Extract datasets distributed in zip files into sql directory -->
+    <target name="extract_dataset" depends="setup" if="db.product">
+        <echo>dataset.sample=${dataset.sample}</echo>
+        <echo>dataset.sample.zip=${dataset.sample.zip}</echo>
+        <echo>dist.sql.dir=${dist.sql.dir}</echo>
+
+        <!-- sample dataset-->
+        <if>
+            <istrue value="${dataset.sample}" />
+            <then>
+               <echo message="Extracting dataset: sample" />
+               <unzip src="${dataset.sample.zip}" dest="${dist.sql.dir}" overwrite="true"/>
+            </then>
+        </if>
+    </target>
+
+    <!-- Removes identified datasets.  This target is used to clean-up datasets 
+         distributed in zip files into sql directory -->
+    <target name="remove_dataset" depends="setup" if="db.product">
+        <echo>dataset.sample=${dataset.sample}</echo>
+        <echo>dataset.sample.remove=${dataset.sample.remove}</echo>
+        <echo>dist.sql.dir=${dist.sql.dir}</echo>
+
+        <!-- sample dataset -->
+        <if>
+            <and>
+                <istrue value="${dataset.sample}" />
+                <istrue value="${dataset.sample.remove}" />
+            </and>
+            <then>
+                <echo message="Removing dataset: sample" />
+                <delete verbose="false" includeemptydirs="true">
+                    <fileset dir="${dist.sql.dir}/sample"/>
+                </delete>
+            </then>
+        </if>
+    </target>
+
+    <!-- Create the schema -->
+    <target name="create_360_schema" depends="create_filter_sql" if="db.product">
+        <sql
+            autocommit="${db.autocommit}"
+            onerror="continue"
+            driver="${db.jdbc-driver}"
+            url="${db.jdbc-url}"
+            userid="${db.owner.user}"
+            password="dbowner">
+            <transaction src="${filtered.sql.dir}/FilteredCreateSchema.sql"/>
+            <classpath>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
+            </classpath>
+        </sql>
+    </target>
+
+    <target name="stage_templates" description="Stage a copy of the designated sample templates source zip file for loading">
+        <copy file="${template.sample.zip}" tofile="${dataset.load.dir.root}/../template.zip" overwrite="true"/>
+    </target>
+
+    <target name="init_labels">
+        <taskdef resource="net/sf/antcontrib/antcontrib.properties">
+            <classpath>
+               <pathelement location="${ant.contrib.location}"/>
+            </classpath>
+        </taskdef>
+        <!-- Decrypt DB password -->
+        <!-- Use CSF for POS -->
+        <if>
+            <equals arg1="${app.product}" arg2="pos"/>
+            <then>
+                <stringenc operation="retrieve" csfUserNameAlias="${db.owner.password-property}" outputproperty="db.owner.password"/>
+            </then>
+            <else>
+                <stringenc operation="decrypt" value="${db.owner.password-encrypted}" outputproperty="db.owner.password"/>
+            </else>
+        </if>
+
+        <sql
+             autocommit="${db.autocommit}"
+             onerror="continue"
+             driver="${db.jdbc-driver}"
+             url="${db.jdbc-url}"
+             userid="${db.owner.user}"
+             password="dbowner">
+             <classpath>
+                 <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
+                 <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
+             </classpath>
+
+            UPDATE SGCONFIG
+                SET FCONFIGPARAMVALUE='${dsignIniPath}'
+                WHERE FCONFIGPARAMNAME='AccessViaIniFilePath'
+
+         </sql>
+
+    </target>
+
+
+    <target name="init_mpos" depends="init_macros">
+
+        <propertyregex property="legal-register"
+              input="${mpos.register}"
+              regexp="^(...)$"
+              select="\1" />
+        <fail unless="legal-register" message="register must be exactly 3 characters long."/>
+
+        <!-- Decrypt DB password -->
+        <!-- Use CSF for POS -->
+        <if>
+        <equals arg1="${app.product}" arg2="pos"/>
+        <then>
+            <stringenc operation="retrieve" csfUserNameAlias="${inst.db.owner.password-property}" outputproperty="inst.db.owner.password"/>
+        </then>
+        <else>
+            <stringenc operation="decrypt" value="${inst.db.owner.password-encrypted}" outputproperty="inst.db.owner.password"/>
+        </else>
+        </if>
+
+        <sql
+             autocommit="${db.autocommit}"
+             onerror="continue"
+             driver="${inst.db.jdbc-driver}"
+             url="${inst.db.jdbc-url}"
+             userid="${inst.db.owner.user}"
+             password="${inst.db.owner.password}">
+             <classpath>
+                 <pathelement location="${inst.db.jdbc-path}/${inst.db.jdbc-jar}"/>
+                 <pathelement location="${inst.db.jdbc-path}/${inst.db.jdbc-jar2}"/>
+             </classpath>
+
+            UPDATE as_ws
+                SET cd_act='0'
+                WHERE id_ws='${mpos.register}'
+
+         </sql>
+
+    </target>
+
+
+    <target name="load_purge_procedures" depends="setup" if="db.product">
+        <sql
+            autocommit="${db.autocommit}"
+            delimiter="go"
+            delimitertype="row"
+            onerror="continue"
+            driver="${db.jdbc-driver}"
+            url="${db.jdbc-url}"
+            userid="${db.owner.user}"
+            password="dbowner">
+            <transaction src="${sql.dir.dist}/procedures/${db.vendor}/${db.product}/purge/CreateProcedurePurgeAdvancedPricing.sql"/>
+            <transaction src="${sql.dir.dist}/procedures/${db.vendor}/${db.product}/purge/CreateProcedurePurgeEJournal.sql"/>
+            <transaction src="${sql.dir.dist}/procedures/${db.vendor}/${db.product}/purge/CreateProcedurePurgePromotionEvent.sql"/>
+            <transaction src="${sql.dir.dist}/procedures/${db.vendor}/${db.product}/purge/CreateProcedurePurgeFinancialHistory.sql"/>
+            <transaction src="${sql.dir.dist}/procedures/${db.vendor}/${db.product}/purge/CreateProcedurePurgeTransaction.sql"/>
+            <transaction src="${sql.dir.dist}/procedures/${db.vendor}/${db.product}/purge/CreateProcedurePurgeRetailTransactionLineItem.sql"/>
+            <transaction src="${sql.dir.dist}/procedures/${db.vendor}/${db.product}/purge/CreateProcedurePurgeSaleReturnLineItem.sql"/>
+            <transaction src="${sql.dir.dist}/procedures/${db.vendor}/${db.product}/purge/CreateProcedurePurgeTenderLineItem.sql"/>
+            <transaction src="${sql.dir.dist}/procedures/${db.vendor}/${db.product}/purge/CreateProcedurePurgeRetailTransactionCommon.sql"/>
+            <transaction src="${sql.dir.dist}/procedures/${db.vendor}/${db.product}/purge/CreateProcedurePurgeControlTransaction.sql"/>
+            <transaction src="${sql.dir.dist}/procedures/${db.vendor}/${db.product}/purge/CreateProcedurePurgeFinancialSummary.sql"/>
+            <transaction src="${sql.dir.dist}/procedures/${db.vendor}/${db.product}/purge/CreateProcedurePurgeFinancialTransaction.sql"/>
+            <transaction src="${sql.dir.dist}/procedures/${db.vendor}/${db.product}/purge/CreateProcedurePurgeLayaway.sql"/>
+            <transaction src="${sql.dir.dist}/procedures/${db.vendor}/${db.product}/purge/CreateProcedurePurgeOrder.sql"/>
+            <transaction src="${sql.dir.dist}/procedures/${db.vendor}/${db.product}/purge/CreateProcedurePurgeRetailTransaction.sql"/>
+            <transaction src="${sql.dir.dist}/procedures/${db.vendor}/${db.product}/purge/CreateProcedurePurgeTrainingModeTransaction.sql"/>
+            <transaction src="${sql.dir.dist}/procedures/${db.vendor}/${db.product}/purge/CreateProcedurePurgeDuplicatePriceChangeEvent.sql"/>
+            <transaction src="${sql.dir.dist}/procedures/${db.vendor}/${db.product}/purge/CreateProcedurePurgePriceChangeEvent.sql"/>
+            <classpath>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
+            </classpath>
+        </sql>
+    </target>
+
+    <!-- Create foreign keys -->
+    <target name="create_foreign_key" depends="create_360_schema" if="db.buildforeignkey">
+         <sql
+             autocommit="${db.autocommit}"
+             onerror="continue"
+             driver="${db.jdbc-driver}"
+             url="${db.jdbc-url}"
+             userid="${db.owner.user}"
+             password="dbowner">
+             <transaction src="${filtered.sql.dir}/FilteredCreateForeignKeys.sql"/>
+             <classpath>
+                 <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
+                 <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
+             </classpath>
+         </sql>
+    </target>
+
+    <!-- Create views -->
+    <target name="create_view" depends="create_360_schema" if="db.createview">
+        <sql
+            autocommit="${db.autocommit}"
+            onerror="continue"
+            driver="${db.jdbc-driver}"
+            url="${db.jdbc-url}"
+            userid="${db.owner.user}"
+            password="dbowner">
+            <transaction src="${filtered.sql.dir}/FilteredCreateViews.sql"/>
+            <classpath>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
+            </classpath>
+        </sql>
+    </target>
+
+    <!-- grant table, view permissions -->
+    <target name="grant_table_view_perm" if="db.product">
+       <sql
+            autocommit="${db.autocommit}"
+            onerror="continue"
+            driver="${db.jdbc-driver}"
+            url="${db.jdbc-url}"
+            userid="${db.owner.user}"
+            password="dbowner">
+            <transaction src="${filtered.sql.dir}/FilteredGrantTablePermissions.sql"/>
+            <transaction src="${filtered.sql.dir}/FilteredGrantSequencePermissions.sql"/>
+            <transaction src="${filtered.sql.dir}/FilteredGrant3rdPartyTablePerm1.sql"/>
+            <transaction src="${filtered.sql.dir}/FilteredGrant3rdPartyTablePerm2.sql"/>
+            <transaction src="${filtered.sql.dir}/FilteredGrantViewPermissions.sql"/>
+            <classpath>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
+            </classpath>
+        </sql>
+    </target>
+
+     <!-- grant procedure permissions -->
+    <target name="grant_proc_perm" if="db.product">
+       <sql
+            autocommit="${db.autocommit}"
+            onerror="continue"
+            driver="${db.jdbc-driver}"
+            url="${db.jdbc-url}"
+            userid="${db.owner.user}"
+            password="dbowner">
+            <transaction src="${filtered.sql.dir}/FilteredGrantProcedurePermissions.sql"/>
+            <classpath>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
+            </classpath>
+        </sql>
+    </target>
+
+
+    <!-- create table, view synonyms -->
+   <target name="create_table_view_synonym" if="db.product">
+        <sql
+            autocommit="${db.autocommit}"
+            onerror="continue"
+            driver="${db.jdbc-driver}"
+            url="${db.jdbc-url}"
+            userid="${db.user}"
+            password="dbuser">
+            <transaction src="${filtered.sql.dir}/FilteredTableSynonyms.sql"/>
+            <transaction src="${filtered.sql.dir}/Filtered3rdPartyTableSynonyms1.sql"/>
+            <transaction src="${filtered.sql.dir}/Filtered3rdPartyTableSynonyms2.sql"/>
+            <transaction src="${filtered.sql.dir}/FilteredViewSynonyms.sql"/>
+            <classpath>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
+            </classpath>
+        </sql>
+    </target>
+
+    <!-- create procedure synonyms -->
+    <target name="create_proc_syn" if="db.product">
+        <sql
+            autocommit="${db.autocommit}"
+            onerror="continue"
+            driver="${db.jdbc-driver}"
+            url="${db.jdbc-url}"
+            userid="${db.user}"
+            password="dbuser">
+            <transaction src="${filtered.sql.dir}/FilteredProcedureSynonyms.sql"/>
+            <classpath>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
+            </classpath>
+        </sql>
+    </target>
+
+
+    <!-- create stored procedures -->
+    <target name="create_procedure" depends="create_360_schema, create_returns_procedures" if="db.createprocedure"/>
+
+    <!-- give execute permissions to the data source user for the RM procedure. This procedure is called by the post processor -->
+    <target name="exec_proc_permissions" depends="filter_rm_proc_perm_sql, filter_rm_proc_syn_sql, grant_proc_perm, create_proc_syn" if="db.createprocedure"/>
+
+    <!-- creates stored procedures used by returns management -->
+    <target name="create_returns_procedures" depends="setup" if="db.product">
+        <sql
+            autocommit="${db.autocommit}"
+            delimiter="go"
+            delimitertype="row"
+            onerror="continue"
+            driver="${db.jdbc-driver}"
+            url="${db.jdbc-url}"
+            userid="${db.owner.user}"
+            password="dbowner">
+           <transaction src="${sql.dir.dist}/procedures/${db.vendor}/${db.product}/returns/CreateProcedureReturnsSummary.sql"/>
+            <classpath>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
+            </classpath>
+        </sql>
+    </target>
+
+    <target name="build_integration">
+        <!-- no longer needed because integration depends on minimum dataset -->
+    </target>
+
+    <!-- Insert the core data -->
+    <target name="insert_core" depends="create_360_schema" if="db.product">
+        <sql
+            autocommit="${db.autocommit}"
+            onerror="continue"
+            driver="${db.jdbc-driver}"
+            url="${db.jdbc-url}"
+            userid="${db.owner.user}"
+            password="dbowner"
+            encoding="${resource.encoding}">
+            <transaction src="${filtered.sql.dir}/FinalCoreInsert.sql"/>
+            <classpath>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
+            </classpath>
+        </sql>
+    </target>
+
+    <!-- Insert the default data -->
+    <target name="insert_default" depends="create_360_schema" if="db.product">
+        <sql
+            autocommit="${db.autocommit}"
+            onerror="continue"
+            driver="${db.jdbc-driver}"
+            url="${db.jdbc-url}"
+            userid="${db.owner.user}"
+            password="dbowner"
+            encoding="${resource.encoding}">
+            <transaction src="${filtered.sql.dir}/FinalDefaultInsert.sql"/>
+            <classpath>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
+            </classpath>
+        </sql>
+    </target>
+
+    <!-- Insert the customizable data -->
+    <target name="insert_customizable" depends="create_360_schema" if="db.product">
+        <sql
+            autocommit="${db.autocommit}"
+            onerror="continue"
+            driver="${db.jdbc-driver}"
+            url="${db.jdbc-url}"
+            userid="${db.owner.user}"
+            password="dbowner"
+            encoding="${resource.encoding}">
+            <transaction src="${filtered.sql.dir}/FinalCustomizableInsert.sql"/>
+            <classpath>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
+            </classpath>
+        </sql>
+    </target>
+
+    <!-- Insert the sample data -->
+    <target name="insert_sample" depends="create_360_schema" if="db.product">
+ 
+        <sql
+            autocommit="${db.autocommit}"
+            onerror="continue"
+            driver="${db.jdbc-driver}"
+            url="${db.jdbc-url}"
+            userid="${db.owner.user}"
+            password="dbowner"
+            encoding="${resource.encoding}">
+            <transaction src="${filtered.sql.dir}/FinalSampleInsert.sql"/>
+            <classpath>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
+            </classpath>
+        </sql>        
+        <!-- Load scan sheet sample images as blobs -->
+        <java classname="oracle.retail.stores.common.utility.ScanSheetImageLoader" 
+              classpath="${db.encrypt.classpath}"        
+              failonerror="true"
+              fork="true">
+            <arg value="db.properties"/>                   
+            <arg value="${sql.dir.dist}/sample/images/"/>
+            <classpath>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
+            </classpath>
+        </java>
+    </target>
+
+    <!-- Insert the basetest data -->
+    <target name="insert_basetest" depends="create_360_schema" if="db.product">
+        <sql
+            autocommit="${db.autocommit}"
+            onerror="continue"
+            driver="${db.jdbc-driver}"
+            url="${db.jdbc-url}"
+            userid="${db.owner.user}"
+            password="dbowner"
+            encoding="${resource.encoding}">
+            <transaction src="${filtered.sql.dir}/FinalBasetestInsert.sql"/>
+            <classpath>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
+            </classpath>
+        </sql>
+    </target>
+
+    <!-- Insert the unittest data -->
+    <target name="insert_unittest" depends="create_360_schema" if="db.product">
+        <sql
+            autocommit="${db.autocommit}"
+            onerror="continue"
+            driver="${db.jdbc-driver}"
+            url="${db.jdbc-url}"
+            userid="${db.owner.user}"
+            password="dbowner"
+            encoding="${resource.encoding}">
+            <transaction src="${filtered.sql.dir}/FinalUnittestInsert.sql"/>
+            <classpath>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
+            </classpath>
+        </sql>
+    </target>
+
+    <!-- Insert the qatest data -->
+    <target name="insert_qatest" depends="create_360_schema" if="db.product">
+        <sql
+            autocommit="${db.autocommit}"
+            onerror="continue"
+            driver="${db.jdbc-driver}"
+            url="${db.jdbc-url}"
+            userid="${db.owner.user}"
+            password="dbowner"
+            encoding="${resource.encoding}">
+            <transaction src="${filtered.sql.dir}/FinalQatestInsert.sql"/>
+            <classpath>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
+            </classpath>
+        </sql>
+    </target>
+
+
+    <!-- Insert the integration data -->
+    <target name="insert_integration" if="db.product">
+        <sql
+            autocommit="${db.autocommit}"
+            onerror="continue"
+            driver="${db.jdbc-driver}"
+            url="${db.jdbc-url}"
+            userid="${db.owner.user}"
+            password="dbowner">
+            <transaction src="${filtered.sql.dir}/FinalIntegrationInsert.sql"/>
+            <classpath>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
+            </classpath>
+        </sql>
+    </target>
+
+    <!-- create third party tables -->
+    <target name="load_3rdparty" if="db.product" description="Loads up Quartz SQL">
+        <sql
+            autocommit="${db.autocommit}"
+             onerror="continue"
+             driver="${db.jdbc-driver}"
+             url="${db.jdbc-url}"
+             userid="${db.owner.user}"
+             password="dbowner">
+            <transaction src="${sql.dir.dist}/shared/${db.vendor}/${db.product}/quartz.sql"/>
+            <transaction src="${sql.dir.dist}/shared/${db.vendor}/${db.product}/access-via.sql"/>
+            <classpath>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
+                <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
+            </classpath>
+        </sql>
+    </target>
+
+    <!-- Insert the reports -->
+    <target name="load_reports" depends="setup" description="Loads the Report Layout/Data templates into the database" >
+
+        <taskdef resource="net/sf/antcontrib/antcontrib.properties">
+            <classpath>
+                <pathelement location="${ant.contrib.location}"/>
+            </classpath>
+        </taskdef>
+    <if>
+        <equals arg1="${app.product}" arg2="backoffice"/>
+        <then>
+
+            <!-- update report dataModel import according to vat flag -->
+            <xslt style="reports/dataModels.xsl"
+                in="reports/dataModels.xml"
+                out="reports/updatedDataModels.xml"
+                force="true">
+                <param name="vat" expression="${tax.enableTaxInclusive}"/>
+            </xslt>
+            <move file="reports/updatedDataModels.xml"
+                  tofile="reports/dataModels.xml"
+                  overwrite="true"
+                  encoding="${resource.encoding}"/>
+
+            <!-- update report layout import according to vat flag -->
+            <xslt style="reports/layouts.xsl"
+                in="reports/layouts.xml"
+                out="reports/updatedLayouts.xml"
+                force="true">
+                <param name="vat" expression="${tax.enableTaxInclusive}"/>
+            </xslt>
+            <move file="reports/updatedLayouts.xml"
+                  tofile="reports/layouts.xml"
+                  overwrite="true"
+                  encoding="${resource.encoding}"/>
+
+            <if>
+                <istrue value="${resource.mock}"/>
+                <then>
+                   <for list="${gen.locales}" param="lcl">
+                      <sequential>
+                         <echo>generating locale @{lcl}</echo>
+
+                         <copy todir="reports/locales/@{lcl}" overwrite="true" encoding="${resource.encoding}">
+                               <fileset dir="reports/mock/locales">
+                                    <include name="**/*.xml.template"/>
+                               </fileset>
+                               <filterset>
+                                    <filter token="lang" value="@{lcl}"/>
+                               </filterset>
+                               <mapper type="glob" from="*.xml.template" to="*.xml"/>
+                         </copy>
+
+                        <xslt style="reports/mock/locales/mockXliff.xsl"
+                              extension=".xlf"
+                              basedir="reports/financial/locales/en"
+                              destdir="reports/financial/locales/@{lcl}"
+                              force="true">
+                            <mapper type="glob" from="*_en.xlf" to="*_@{lcl}.xlf"/>
+                            <param name="target-language" expression="@{lcl}"/>
+                        </xslt>
+
+                        <xslt style="reports/mock/locales/mockXliff.xsl"
+                              extension=".xlf"
+                              basedir="reports/sales/locales/en"
+                              destdir="reports/sales/locales/@{lcl}"
+                              force="true">
+                            <mapper type="glob" from="*_en.xlf" to="*_@{lcl}.xlf"/>
+                            <param name="target-language" expression="@{lcl}"/>
+                        </xslt>
+
+                        <xslt style="reports/mock/locales/mockXliff.xsl"
+                              extension=".xlf"
+                              basedir="reports/storeops/locales/en"
+                              destdir="reports/storeops/locales/@{lcl}"
+                              force="true">
+                            <mapper type="glob" from="*_en.xlf" to="*_@{lcl}.xlf"/>
+                            <param name="target-language" expression="@{lcl}"/>
+                        </xslt>
+
+                        <xslt style="reports/mock/locales/mockXliff.xsl"
+                              extension=".xlf"
+                              basedir="reports/timemaintenance/locales/en"
+                              destdir="reports/timemaintenance/locales/@{lcl}"
+                              force="true">
+                            <mapper type="glob" from="*_en.xlf" to="*_@{lcl}.xlf"/>
+                            <param name="target-language" expression="@{lcl}"/>
+                        </xslt>
+
+                        <xslt style="reports/mock/locales/mockXliff.xsl"
+                              extension=".xlf"
+                              basedir="reports/transactionexceptions/locales/en"
+                              destdir="reports/transactionexceptions/locales/@{lcl}"
+                              force="true">
+                            <mapper type="glob" from="*_en.xlf" to="*_@{lcl}.xlf"/>
+                            <param name="target-language" expression="@{lcl}"/>
+                        </xslt>
+
+                        <xslt style="reports/mock/locales/mockLayouts.xsl"
+                              in="reports/layouts.xml"
+                              out="reports/mockedLayouts.xml"
+                              force="true">
+                            <param name="locale" expression="@{lcl}"/>
+                        </xslt>
+
+                        <move file="reports/mockedLayouts.xml"
+                              tofile="reports/layouts.xml"
+                              overwrite="true"
+                              encoding="${resource.encoding}"/>
+
+                     </sequential>
+                   </for>
+               </then>
+            </if>
+
+                <if>
+                   <available file="./reports"/>
+                   <then>
+                       <replace dir="reports" token="@configured.store.id@" value="${configured.store.id}"  encoding="${resource.encoding}" >
+                           <include name="**/*.xml"/>
+                       </replace>
+                   </then>
+                </if>
+                <echo message="using report import file: reportImport.xml"/>
+                <java classname="oracle.retail.stores.report.utility.ReportImportUtility"
+                        fork="true"
+                        failonerror="true"
+                        maxmemory="128m">
+
+                   <arg value="reports/reportImport.xml"/>  <!-- path to reportImport.xml -->
+                   <arg value="db.properties"/>         <!-- path to db.properties -->
+                   <arg value="reports"/>         <!-- path to report templates -->
+                   <classpath>
+                     <path refid="xmlp.class.path"/>
+                     <path path="${db.encrypt.classpath}"/>
+                   </classpath>
+                </java>
+            </then>
+            <else>
+                 <echo message="No reports to import for ${app.product}"/>
+            </else>
+        </if>
+    </target>
+
+    <target name="generate_sql" depends="init_macros, generate_localized_sql">
+
+        <!-- Generate InsertAdminUser.sql from InsertTableEmployee.sql.template by replacing tokens
+             in the InsertTableEmployee.sql.template with the username and SHA1-hashed password
+             of the POS administrator account
+        -->
+
+        <!-- Decrypt the password -->
+        <trycatch property="stringenc.exception2">
+            <try>
+                <!-- Use CSF for POS -->
+                <if>
+                    <equals arg1="${app.product}" arg2="pos"/>
+                    <then>
+                        <stringenc operation="retrieve" csfUserNameAlias="${inst.app.admin.password-property}" outputproperty="temp.app.admin.password"/>
+                    </then>
+                    <else>
+                        <stringenc operation="decrypt" value="${inst.app.admin.password-encrypted}" outputproperty="temp.app.admin.password"/>
+                    </else>
+                </if>
+            </try>
+            <catch>
+                <echo>Stringenc task failed with ${stringenc.exception2}</echo>
+            </catch>
+        </trycatch>
+        
+        <java classname="oracle.retail.stores.keystoreencryption.CustomKeyStoreEncryptionService"
+            classpath="${db.encrypt.classpath}"
+            failonerror="true"
+            outputproperty="app.admin.password.salt"
+            fork="true">
+            <arg value="uuid"/>
+        </java>        
+        
+        <!-- Generate a super hash of the decrypted password with the given algorithm -->
+        <java classname="oracle.retail.stores.keystoreencryption.CustomKeyStoreEncryptionService"
+            classpath="${db.encrypt.classpath}"
+            failonerror="true"
+            outputproperty="temp.app.admin.password.hashed"
+            fork="true">
+            <arg value="superhash"/>
+            <arg value="${temp.app.admin.password}"/>
+            <arg value="${inst.hash.algorithm}"/>
+            <arg value="${app.admin.password.salt}"/>
+            <arg value="false"/>
+        </java>        
+        
+        <filterset id="db.sql.seed.filters">
+          <filter token="APP_ADMIN_USERNAME" value="${inst.app.admin.user}"/>
+          <filter token="APP_ADMIN_PASSWORD_SALT" value="${app.admin.password.salt}"/> 
+          <filter token="APP_ADMIN_PASSWORD_SHA" value="${temp.app.admin.password.hashed}"/>
+        </filterset>
+        
+        <copy file="${sql.dir.dist}/${app.product}/customizable/InsertTableEmployee.sql.template"
+              tofile="${sql.dir.dist}/${app.product}/customizable/InsertAdminUser.sql"
+              overwrite="true"
+              verbose="true"
+              filtering="true">
+          <filterset refid="db.sql.seed.filters"/>
+        </copy>
+    </target>
+
+    <!-- Concatenate all sql files for sql operations -->
+    <target name="concat_sql" depends="setup, generate_sql, mock_data, build_integration" if="db.product">
+
+        <!-- Verify existence of SQL directories excluded during EPD Packaging before attempting to concatenate -->
+        <!-- This ensures the EPD packaging does not include SQL used in development/QA environments -->
+        <available file="${sql.dir.dist}/sample" type="dir" property="sample.dir.present"/>
+        <available file="${sql.dir.dist}/basetest" type="dir" property="basetest.dir.present"/>
+        <available file="${sql.dir.dist}/unittest" type="dir" property="unittest.dir.present"/>
+        <available file="${sql.dir.dist}/qatest" type="dir" property="qatest.dir.present"/>
+        <available file="${sql.dir.dist}/integration" type="dir" property="integration.dir.present"/>
+
+        <mkdir dir="${filtered.sql.dir}"/>
+
+        <!-- 1. Tables - concatenate all the Create*.sql files into one giant file -->
+        <concat destfile="${filtered.sql.dir}/RawCreateSchema.sql" encoding="${resource.encoding}">
+            <filelist dir="${sql.dir.dist}/Create"
+                files="${ordered.creates}"/>
+            <fileset dir="${sql.dir.dist}/Create"
+                includes="Create*.sql"
+                excludes="${ordered.creates}, CreateForeignKey*.sql, CreateView*.sql"/>
+        </concat>
+        <!-- guarantee output file exists -->
+        <touch file="${filtered.sql.dir}/RawCreateSchema.sql"/>
+
+        <!-- 2. ForeignKeys - concatenate all the CreateForeign*.sql files into one giant file -->
+        <concat destfile="${filtered.sql.dir}/RawCreateForeignKeys.sql" encoding="${resource.encoding}">
+            <fileset dir="${sql.dir.dist}/Create">
+                <include name="CreateForeignKey*.sql"/>
+            </fileset>
+        </concat>
+        <!-- guarantee output file exists -->
+        <touch file="${filtered.sql.dir}/RawCreateForeignKeys.sql"/>
+
+        <!-- 3. Views - concatenate all the CreateView*.sql files into one giant file -->
+        <concat destfile="${filtered.sql.dir}/RawCreateViews.sql" encoding="${resource.encoding}">
+            <fileset dir="${sql.dir.dist}/Create">
+                 <include name="CreateView*.sql"/>
+            </fileset>
+        </concat>
+        <!-- guarantee output file exists -->
+        <touch file="${filtered.sql.dir}/RawCreateViews.sql"/>
+
+        <!-- 4. Replace configured.store.id token with specified Store ID -->
+        <replace dir="${sql.dir.dist}" token="@configured.store.id@" value="${configured.store.id}" encoding="${resource.encoding}">
+            <include name="**/*.sql"/>
+        </replace>
+
+        <!-- 5. Inserts: core - concatenate all of the core Inserts -->
+        <concat destfile="${filtered.sql.dir}/RawCoreSqlInsert.sql" encoding="${resource.encoding}">
+          <filelist dir="${sql.dir.dist}/core"
+              files="${ordered.inserts.core}"/>
+            <fileset dir="${sql.dir.dist}/core"
+              includes="**/Insert*.sql"
+                excludes="${ordered.inserts.core}"/>
+            <!-- the following two filesets need to be removed after all the sql is fixed -->
+            <fileset dir="${sql.dir.dist}/${app.product}/core">
+                <include name="Insert*.sql"/>
+            </fileset>
+        </concat>
+        <!-- guarantee output file exists -->
+        <touch file="${filtered.sql.dir}/RawCoreSqlInsert.sql"/>
+
+        <!-- 6. Inserts: default - concatenate all of the default Inserts -->
+        <concat destfile="${filtered.sql.dir}/RawDefaultSqlInsert.sql" encoding="${resource.encoding}">
+          <filelist dir="${sql.dir.dist}/default"
+              files="${ordered.inserts.default}"/>
+          <fileset dir="${sql.dir.dist}/default"
+              includes="**/Insert*.sql"
+              excludes="${ordered.inserts.default}"/>
+        </concat>
+        <!-- guarantee output file exists -->
+        <touch file="${filtered.sql.dir}/RawDefaultSqlInsert.sql"/>
+
+        <!-- 7. Inserts: application - append all of the default application-specific Inserts-->
+        <if>
+           <equals arg1="${app.product}" arg2="centraloffice"/>
+           <then>
+             <concat destfile="${filtered.sql.dir}/RawDefaultSqlInsert.sql" encoding="${resource.encoding}" append="true">
+                <filelist dir="${sql.dir.dist}/${app.product}/default"
+                        files="${ordered.inserts.default.app.co}"/>
+                <fileset dir="${sql.dir.dist}/${app.product}/default"
+                    includes="**/Insert*.sql"
+                    excludes="${ordered.inserts.default.app.co}"/>
+             </concat>
+           </then>
+        </if>
+        <if>
+           <equals arg1="${app.product}" arg2="returnsmanagement"/>
+           <then>
+             <concat destfile="${filtered.sql.dir}/RawDefaultSqlInsert.sql" encoding="${resource.encoding}" append="true">
+                <filelist dir="${sql.dir.dist}/${app.product}/default"
+                        files="${ordered.inserts.default.app.rm}"/>
+                <fileset dir="${sql.dir.dist}/${app.product}/default"
+                    includes="**/Insert*.sql"
+                    excludes="${ordered.inserts.default.app.rm}"/>
+             </concat>
+           </then>
+        </if>
+
+        <!-- 8. Inserts: customizable - concatenate all of the customizable Inserts -->
+        <java classname="oracle.retail.stores.common.utility.SQLFileFilter"
+            classpath="${db.encrypt.classpath}"
+            failonerror="true"
+            fork="true">
+            <arg value="${db.app.product}"/>
+            <arg value="${sql.dir.dist}/customizable"/>
+            <arg value="sqlfilter.out"/>
+        </java>
+        <loadfile property="insert.customizable.exclude" srcFile="sqlfilter.out" />
+        <if>
+            <isset property="insert.customizable.exclude"/>
+            <then>
+                <propertyregex property="insert.customizable.exclude"
+                     input="${insert.customizable.exclude}"
+                     regexp="\\"
+                     replace="/"
+                     override="true"/>
+                <!-- remove excluded files from ordered.inserts.sample file list -->
+                <for list="${insert.customizable.exclude}" param="exclude">
+                    <sequential>
+                        <propertyregex property="ordered.inserts.customizable"
+                            input="${ordered.inserts.customizable}"
+                            regexp="@{exclude}"
+                            replace=""
+                            casesensitive="false"
+                            override="true"/>
+                    </sequential>
+                </for>
+            </then>
+        </if>
+        <delete file="sqlfilter.out"/>        
+        <concat destfile="${filtered.sql.dir}/RawCustomizableSqlInsert.sql" encoding="${resource.encoding}">
+
+            <filelist dir="${sql.dir.dist}/customizable"
+              files="${ordered.inserts.customizable}"/>
+
+            <fileset dir="${sql.dir.dist}/customizable"
+              includes="**/Insert*.sql"
+                excludes="${ordered.inserts.customizable},${insert.customizable.exclude}"/>
+
+            <!-- the following two filesets need to be removed after all the sql is fixed -->
+            <fileset dir="${sql.dir.dist}/${app.product}/customizable">
+                <include name="Insert*.sql"/>
+            </fileset>
+        </concat>
+        <!-- guarantee output file exists -->
+        <touch file="${filtered.sql.dir}/RawCustomizableSqlInsert.sql"/>
+
+        <!-- 9. Inserts: sample - concatenate all of the sample Inserts -->
+        <!-- calculate sql files that need to be excluded for this application -->
+        <if>
+            <istrue value="${sample.dir.present}"/>
+            <then>
+                <java classname="oracle.retail.stores.common.utility.SQLFileFilter"
+                    classpath="${db.encrypt.classpath}"
+                    failonerror="true"
+                    fork="true">
+                    <arg value="${db.app.product}"/>
+                    <arg value="${sql.dir.dist}/sample"/>
+                    <arg value="sqlfilter.out"/>
+                </java>
+                <loadfile property="insert.sample.exclude" srcFile="sqlfilter.out" />
+                <if>
+                    <isset property="insert.sample.exclude"/>
+                    <then>
+                        <propertyregex property="insert.sample.exclude"
+                             input="${insert.sample.exclude}"
+                             regexp="\\"
+                             replace="/"
+                             override="true"/>
+                        <!-- remove excluded files from ordered.inserts.sample file list -->
+                        <for list="${insert.sample.exclude}" param="exclude">
+                            <sequential>
+                                <propertyregex property="ordered.inserts.sample"
+                                    input="${ordered.inserts.sample}"
+                                    regexp="@{exclude}"
+                                    replace=""
+                                    casesensitive="false"
+                                    override="true"/>
+                            </sequential>
+                        </for>
+                    </then>
+                </if>
+                <delete file="sqlfilter.out"/>
+                <concat destfile="${filtered.sql.dir}/RawSampleSqlInsert.sql" encoding="${resource.encoding}">
+                    <filelist dir="${sql.dir.dist}/sample"
+                      files="${ordered.inserts.sample}"/>
+
+                    <fileset dir="${sql.dir.dist}/sample"
+                      includes="**/Insert*.sql"
+                        excludes="${ordered.inserts.sample},${inserts.seed.exclude},${insert.sample.exclude}"/>
+
+                    <fileset dir="${sql.dir.dist}/sample"
+                              includes="**/Update*.sql"
+                              excludes="${insert.sample.exclude}"/>
+
+                </concat>
+            </then>
+        </if>
+
+        <!-- guarantee output file exists -->
+        <touch file="${filtered.sql.dir}/RawSampleSqlInsert.sql"/>
+
+        <!-- 10. Inserts: basetest - concatenate all of the basetest Inserts -->
+        <if>
+            <isset property="basetest.dir.present"/>
+            <then>
+                <concat destfile="${filtered.sql.dir}/RawBasetestSqlInsert.sql" encoding="${resource.encoding}">
+
+                    <filelist dir="${sql.dir.dist}/basetest"
+                      files="${ordered.inserts.basetest}"/>
+
+                    <fileset dir="${sql.dir.dist}/basetest"
+                      includes="**/Insert*.sql"
+                        excludes="${ordered.inserts.basetest},${inserts.seed.exclude}"/>
+
+                    <fileset dir="${sql.dir.dist}/basetest"
+                      includes="**/Update*.sql"/>
+
+                </concat>
+            </then>
+        </if>
+        <!-- guarantee output file exists -->
+        <touch file="${filtered.sql.dir}/RawBasetestSqlInsert.sql"/>
+
+        <!-- 11. Inserts: unittest - concatenate all of the unittest Inserts -->
+        <if>
+            <isset property="unittest.dir.present"/>
+            <then>
+                <concat destfile="${filtered.sql.dir}/RawUnittestSqlInsert.sql" encoding="${resource.encoding}">
+
+                    <filelist dir="${sql.dir.dist}/unittest"
+                      files="${ordered.inserts.unittest}"/>
+
+                    <fileset dir="${sql.dir.dist}/unittest"
+                      includes="**/Insert*.sql"
+                        excludes="${ordered.inserts.unittest},${inserts.test.exclude}"/>
+                </concat>
+            </then>
+        </if>
+        <!-- guarantee output file exists -->
+        <touch file="${filtered.sql.dir}/RawUnittestSqlInsert.sql"/>
+
+        <!-- 12. Inserts: qatest - concatenate all of the qatest Inserts -->
+        <if>
+            <isset property="qatest.dir.present"/>
+            <then>
+                <concat destfile="${filtered.sql.dir}/RawQatestSqlInsert.sql" encoding="${resource.encoding}">
+
+                    <filelist dir="${sql.dir.dist}/qatest"
+                      files="${ordered.inserts.qatest}"/>
+
+                    <fileset dir="${sql.dir.dist}/qatest"
+                      includes="**/Insert*.sql"
+                        excludes="${ordered.inserts.qatest}"/>
+                </concat>
+            </then>
+        </if>
+        <!-- guarantee output file exists -->
+        <touch file="${filtered.sql.dir}/RawQatestSqlInsert.sql"/>
+
+        <!-- 13. Inserts: integration - concatenate all of the integration Inserts -->
+        <if>
+            <isset property="integration.dir.present"/>
+            <then>
+                <concat destfile="${filtered.sql.dir}/RawIntegrationSqlInsert.sql" encoding="${resource.encoding}">
+                    <fileset dir="${sql.dir.dist}/integration"
+                      includes="**/Insert*.sql"/>
+                </concat>
+            </then>
+        </if>
+        <!-- guarantee output file exists -->
+        <touch file="${filtered.sql.dir}/RawIntegrationSqlInsert.sql"/>
+
+    </target>
+
+    <!-- set the filter datafilter properties -->
+    <target name="set_datafilter_props" if="db.product" description="Set the data filter properties">
+
+        <condition property="db.datafilter" value="oracle.retail.stores.datafilters.Db2DataFilter">
+            <equals arg1="${db.product}" arg2="db2"/>
+        </condition>
+        <condition property="db.datafilter" value="oracle.retail.stores.datafilters.DataFilter">
+            <equals arg1="${db.product}" arg2="sybase"/>
+        </condition>
+        <condition property="db.datafilter" value="oracle.retail.stores.datafilters.MySQLDataFilter">
+            <equals arg1="${db.product}" arg2="mysql"/>
+        </condition>
+        <condition property="db.datafilter" value="oracle.retail.stores.datafilters.OracleDataFilter">
+            <equals arg1="${db.vendor}" arg2="oracle"/>
+        </condition>
+        <condition property="db.datafilter" value="oracle.retail.stores.datafilters.PostgresqlDataFilter">
+            <equals arg1="${db.product}" arg2="postgresql"/>
+        </condition>
+
+    </target>
+
+    <!-- filter the concatenated files for db specific data -->
+    <target name="filter_sql" depends="concat_sql,set_datafilter_props" if="db.product">
+
+        <!-- filter rest of schema -->
+        <java classname="${db.datafilter}"
+            classpath="${db.encrypt.classpath}"
+            fork="true"
+            failonerror="true"
+            maxmemory="128m">
+            <arg value="${filtered.sql.dir}/RawCreateSchema.sql"/>
+            <arg value="${filtered.sql.dir}/FilteredCreateSchema.sql"/>
+            <arg value="${resource.encoding}"/>
+        </java>
+
+        <java classname="${db.datafilter}"
+            classpath="${db.encrypt.classpath}"
+            fork="true"
+            failonerror="true"
+            maxmemory="128m">
+            <arg value="${filtered.sql.dir}/RawCreateForeignKeys.sql"/>
+            <arg value="${filtered.sql.dir}/FilteredCreateForeignKeys.sql"/>
+            <arg value="${resource.encoding}"/>
+        </java>
+
+        <java classname="${db.datafilter}"
+            classpath="${db.encrypt.classpath}"
+            fork="true"
+            failonerror="true"
+            maxmemory="128m">
+            <arg value="${filtered.sql.dir}/RawCreateViews.sql"/>
+            <arg value="${filtered.sql.dir}/FilteredCreateViews.sql"/>
+            <arg value="${resource.encoding}"/>
+        </java>
+
+        <java classname="${db.datafilter}"
+            classpath="${db.encrypt.classpath}"
+            fork="true"
+            failonerror="true"
+            maxmemory="128m">
+            <arg value="${filtered.sql.dir}/RawCoreSqlInsert.sql"/>
+            <arg value="${filtered.sql.dir}/FinalCoreInsert.sql"/>
+            <arg value="${resource.encoding}"/>
+        </java>
+
+        <java classname="${db.datafilter}"
+            classpath="${db.encrypt.classpath}"
+            fork="true"
+            failonerror="true"
+            maxmemory="128m">
+            <arg value="${filtered.sql.dir}/RawDefaultSqlInsert.sql"/>
+            <arg value="${filtered.sql.dir}/FinalDefaultInsert.sql"/>
+            <arg value="${resource.encoding}"/>
+        </java>
+
+        <java classname="${db.datafilter}"
+            classpath="${db.encrypt.classpath}"
+            fork="true"
+            failonerror="true"
+            maxmemory="128m">
+            <arg value="${filtered.sql.dir}/RawCustomizableSqlInsert.sql"/>
+            <arg value="${filtered.sql.dir}/FinalCustomizableInsert.sql"/>
+            <arg value="${resource.encoding}"/>
+        </java>
+
+        <java classname="${db.datafilter}"
+            classpath="${db.encrypt.classpath}"
+            fork="true"
+            failonerror="true"
+            maxmemory="128m">
+            <arg value="${filtered.sql.dir}/RawSampleSqlInsert.sql"/>
+            <arg value="${filtered.sql.dir}/FinalSampleInsert.sql"/>
+            <arg value="${resource.encoding}"/>
+        </java>
+
+        <java classname="${db.datafilter}"
+            classpath="${db.encrypt.classpath}"
+            fork="true"
+            failonerror="true"
+            maxmemory="128m">
+            <arg value="${filtered.sql.dir}/RawBasetestSqlInsert.sql"/>
+            <arg value="${filtered.sql.dir}/FinalBasetestInsert.sql"/>
+            <arg value="${resource.encoding}"/>
+        </java>
+
+        <java classname="${db.datafilter}"
+            classpath="${db.encrypt.classpath}"
+            fork="true"
+            failonerror="true"
+            maxmemory="128m">
+            <arg value="${filtered.sql.dir}/RawUnittestSqlInsert.sql"/>
+            <arg value="${filtered.sql.dir}/FinalUnittestInsert.sql"/>
+            <arg value="${resource.encoding}"/>
+        </java>
+
+        <java classname="${db.datafilter}"
+            classpath="${db.encrypt.classpath}"
+            fork="true"
+            failonerror="true"
+            maxmemory="128m">
+            <arg value="${filtered.sql.dir}/RawQatestSqlInsert.sql"/>
+            <arg value="${filtered.sql.dir}/FinalQatestInsert.sql"/>
+            <arg value="${resource.encoding}"/>
+        </java>
+
+        <java classname="${db.datafilter}"
+            classpath="${db.encrypt.classpath}"
+            fork="true"
+            failonerror="true"
+            maxmemory="128m">
+            <arg value="${filtered.sql.dir}/RawIntegrationSqlInsert.sql"/>
+            <arg value="${filtered.sql.dir}/FinalIntegrationInsert.sql"/>
+            <arg value="${resource.encoding}"/>
+        </java>
+
+     </target>
+
+    <!-- create grant permissions sql file -->
+    <target name="filter_table_perm_sql" depends="filter_sql" if="db.product">
+        <java classname="oracle.retail.stores.datafilters.CreateGrantPermissionsAndSynonymSQL"
+                classpath="${db.encrypt.classpath}"
+                fork="true"
+                failonerror="true"
+                maxmemory="128m">
+                <arg value="${filtered.sql.dir}/FilteredCreateSchema.sql"/>
+                <arg value="${filtered.sql.dir}/FilteredGrantTablePermissions.sql"/>
+                <arg value="${resource.encoding}"/>
+                <arg value="GRANT_PERMISSIONS"/>
+                <arg value="${db.user}"/>
+                <arg value="${db.owner.user}"/>
+                <arg value="${db.vendor}"/>
+        </java>
+    </target>
+    <target name="filter_seq_perm_sql" depends="filter_sql" if="db.product">
+        <java classname="oracle.retail.stores.datafilters.CreateGrantPermissionsAndSynonymSQL"
+                classpath="${db.encrypt.classpath}"
+                fork="true"
+                failonerror="true"
+                maxmemory="128m">
+                <arg value="${filtered.sql.dir}/FilteredCreateSchema.sql"/>
+                <arg value="${filtered.sql.dir}/FilteredGrantSequencePermissions.sql"/>
+                <arg value="${resource.encoding}"/>
+                <arg value="GRANT_SEQUENCE_PERMISSIONS"/>
+                <arg value="${db.user}"/>
+                <arg value="${db.owner.user}"/>
+                <arg value="${db.vendor}"/>
+        </java>
+    </target>
+    <target name="filter_table_3rdparty_perm_sql1" depends="filter_sql" if="db.product">
+        <java classname="oracle.retail.stores.datafilters.CreateGrantPermissionsAndSynonymSQL"
+                classpath="${db.encrypt.classpath}"
+                fork="true"
+                failonerror="true"
+                maxmemory="128m">
+                <arg value="${sql.dir.dist}/shared/${db.vendor}/${db.product}/quartz.sql"/>
+                <arg value="${filtered.sql.dir}/FilteredGrant3rdPartyTablePerm1.sql"/>
+                <arg value="${resource.encoding}"/>
+                <arg value="GRANT_PERMISSIONS"/>
+                <arg value="${db.user}"/>
+                <arg value="${db.owner.user}"/>
+                <arg value="${db.vendor}"/>
+        </java>
+    </target>
+
+    <target name="filter_table_3rdparty_perm_sql2" depends="filter_sql" if="db.product">
+        <java classname="oracle.retail.stores.datafilters.CreateGrantPermissionsAndSynonymSQL"
+                classpath="${db.encrypt.classpath}"
+                fork="true"
+                failonerror="true"
+                maxmemory="128m">
+                <arg value="${sql.dir.dist}/shared/${db.vendor}/${db.product}/access-via.sql"/>
+                <arg value="${filtered.sql.dir}/FilteredGrant3rdPartyTablePerm2.sql"/>
+                <arg value="${resource.encoding}"/>
+                <arg value="GRANT_PERMISSIONS"/>
+                <arg value="${db.user}"/>
+                <arg value="${db.owner.user}"/>
+                <arg value="${db.vendor}"/>
+        </java>
+    </target>
+
+    <target name="filter_view_perm_sql" depends="filter_sql" if="db.product">
+        <java classname="oracle.retail.stores.datafilters.CreateGrantPermissionsAndSynonymSQL"
+                classpath="${db.encrypt.classpath}"
+                fork="true"
+                failonerror="true"
+                maxmemory="128m">
+                <arg value="${filtered.sql.dir}/FilteredCreateViews.sql"/>
+                <arg value="${filtered.sql.dir}/FilteredGrantViewPermissions.sql"/>
+                <arg value="${resource.encoding}"/>
+                <arg value="GRANT_PERMISSIONS"/>
+                <arg value="${db.user}"/>
+                <arg value="${db.owner.user}"/>
+                <arg value="${db.vendor}"/>
+        </java>
+    </target>
+
+    <target name="filter_rm_proc_perm_sql" depends="filter_sql" if="db.product">
+        <java classname="oracle.retail.stores.datafilters.CreateGrantPermissionsAndSynonymSQL"
+                classpath="${db.encrypt.classpath}"
+                fork="true"
+                failonerror="true"
+                maxmemory="128m">
+                <arg value="${sql.dir.dist}/procedures/${db.vendor}/${db.product}/returns/CreateProcedureReturnsSummary.sql"/>
+                <arg value="${filtered.sql.dir}/FilteredGrantProcedurePermissions.sql"/>
+                <arg value="${resource.encoding}"/>
+                <arg value="GRANT_PROC_PERM"/>
+                <arg value="${db.user}"/>
+                <arg value="${db.owner.user}"/>
+                <arg value="${db.vendor}"/>
+        </java>
+    </target>
+
+    <!-- create synonym sql file -->
+    <target name="filter_table_synonyms_sql" depends="filter_sql" if="db.product">
+        <java classname="oracle.retail.stores.datafilters.CreateGrantPermissionsAndSynonymSQL"
+                classpath="${db.encrypt.classpath}"
+                fork="true"
+                failonerror="true"
+                maxmemory="128m">
+                <arg value="${filtered.sql.dir}/FilteredCreateSchema.sql"/>
+                <arg value="${filtered.sql.dir}/FilteredTableSynonyms.sql"/>
+                <arg value="${resource.encoding}"/>
+                <arg value="CREATE_SYNONYM"/>
+                <arg value="${db.user}"/>
+                <arg value="${db.owner.user}"/>
+                <arg value="${db.vendor}" />
+        </java>
+    </target>
+
+    <target name="filter_3rdparty_table_syn_sql1" depends="filter_sql" if="db.product">
+        <java classname="oracle.retail.stores.datafilters.CreateGrantPermissionsAndSynonymSQL"
+                classpath="${db.encrypt.classpath}"
+                fork="true"
+                failonerror="true"
+                maxmemory="128m">
+                <arg value="${sql.dir.dist}/shared/${db.vendor}/${db.product}/quartz.sql"/>
+                <arg value="${filtered.sql.dir}/Filtered3rdPartyTableSynonyms1.sql"/>
+                <arg value="${resource.encoding}"/>
+                <arg value="CREATE_SYNONYM"/>
+                <arg value="${db.user}"/>
+                <arg value="${db.owner.user}"/>
+                <arg value="${db.vendor}"/>
+        </java>
+    </target>
+
+    <target name="filter_3rdparty_table_syn_sql2" depends="filter_sql" if="db.product">
+        <java classname="oracle.retail.stores.datafilters.CreateGrantPermissionsAndSynonymSQL"
+                classpath="${db.encrypt.classpath}"
+                fork="true"
+                failonerror="true"
+                maxmemory="128m">
+                <arg value="${sql.dir.dist}/shared/${db.vendor}/${db.product}/access-via.sql"/>
+                <arg value="${filtered.sql.dir}/Filtered3rdPartyTableSynonyms2.sql"/>
+                <arg value="${resource.encoding}"/>
+                <arg value="CREATE_SYNONYM"/>
+                <arg value="${db.user}"/>
+                <arg value="${db.owner.user}"/>
+                <arg value="${db.vendor}"/>
+        </java>
+    </target>
+
+    <target name="filter_view_synonyms_sql" depends="filter_sql" if="db.product">
+        <java classname="oracle.retail.stores.datafilters.CreateGrantPermissionsAndSynonymSQL"
+                classpath="${db.encrypt.classpath}"
+                fork="true"
+                failonerror="true"
+                maxmemory="128m">
+                <arg value="${filtered.sql.dir}/FilteredCreateViews.sql"/>
+                <arg value="${filtered.sql.dir}/FilteredViewSynonyms.sql"/>
+                <arg value="${resource.encoding}"/>
+                <arg value="CREATE_SYNONYM"/>
+                <arg value="${db.user}"/>
+                <arg value="${db.owner.user}"/>
+                <arg value="${db.vendor}"/>
+        </java>
+    </target>
+
+    <target name="filter_rm_proc_syn_sql" depends="filter_sql" if="db.product">
+        <java classname="oracle.retail.stores.datafilters.CreateGrantPermissionsAndSynonymSQL"
+                classpath="${db.encrypt.classpath}"
+                fork="true"
+                failonerror="true"
+                maxmemory="128m">
+                <arg value="${sql.dir.dist}/procedures/${db.vendor}/${db.product}/returns/CreateProcedureReturnsSummary.sql"/>
+                <arg value="${filtered.sql.dir}/FilteredProcedureSynonyms.sql"/>
+                <arg value="${resource.encoding}"/>
+                <arg value="CREATE_PROC_SYN"/>
+                <arg value="${db.user}"/>
+                <arg value="${db.owner.user}"/>
+                <arg value="${db.vendor}"/>
+        </java>
+    </target>
+
+
+
+    <target name="load_parameters" if="db.loadparameters">
+        <ant antfile="parameter_load.xml" inheritrefs="true"/>
+    </target>
+
+    <!--
+         table drop/create/insert order is important when considering foreign keys
+
+         these variables defined the correct ordering for tables with foreign keys
+
+         it is not required to include tables which are not linked with foreign keys
+
+         note: drop statements are included in the create files, so drop order == create order
+    -->
+    <target name="init_ordered_tables">
+        <taskdef resource="net/sf/antcontrib/antcontrib.properties">
+            <classpath>
+                <pathelement location="${ant.contrib.location}"/>
+            </classpath>
+        </taskdef>
+
+        <!-- ====================================================== -->
+        <!-- intiailize properties for inclusive tax (VAT) handling -->
+        <!-- ====================================================== -->
+
+        <!--
+          when VAT, change the test stores' geo codes to use the VAT rules
+
+          VAT tax rules and non-VAT rules can coexist
+
+          note: this include/exclude logic is to workaround the fact that
+          vat did not create 2 new stores that were vat enabled
+
+          we are using our normal test stores for both vat and non-vat developemnt
+          and testing
+
+          in the real world, this logic can be removed since we do not need
+          to switch a store between vat and non-vat
+        -->
+
+        <property name="tax.inclusive.inserts.seed" value="
+            InsertTableZVatGeoCodeDev.sql,
+            InsertTableZVatDefaultTaxDev.sql
+            "/>
+		<property name="paypal.create.seed" value="
+            CreateTablePaypalTenderLineItem.sql"/>
+        <property name="tax.inclusive.inserts.test" value="
+            "/>
+        <property name="tax.additive.inserts.seed" value="
+            "/>
+        <property name="tax.additive.inserts.test" value="
+            "/>
+
+        <!-- the report data cannot coexist
+           the tax data can coexist (other than the geocode updates) -->
+        <if>
+            <istrue value="${tax.enableTaxInclusive}"/>
+            <then>
+                <echo message="tax inclusive is enabled"/>
+                <property name="tax.inserts.seed" value="${tax.inclusive.inserts.seed}"/>
+                <property name="tax.inserts.seed.exclude" value="${tax.additive.inserts.seed}"/>
+                <property name="tax.inserts.test" value="${tax.inclusive.inserts.test}"/>
+                <property name="tax.inserts.test.exclude" value="${tax.additive.inserts.test}"/>
+            </then>
+            <else>
+                <property name="tax.inserts.seed" value="${tax.additive.inserts.seed}"/>
+                <property name="tax.inserts.seed.exclude" value="${tax.inclusive.inserts.seed}"/>
+                <property name="tax.inserts.test" value="${tax.additive.inserts.test}"/>
+                <property name="tax.inserts.test.exclude" value="${tax.inclusive.inserts.test}"/>
+            </else>
+        </if>
+		<if>
+            <istrue value="${paypal.enablePaypal}"/>
+            <then>
+                <echo message="Paypal is enabled"/>
+                <property name="paypal.creates" value="${paypal.create.seed}"/>
+            </then>
+        </if>
+        <!-- ================================================ -->
+
+        <property name="ordered.creates" value="
+            CreateTableWorkWeek.sql,
+            CreateTableWorkstationTimeActivityHistory.sql,
+            CreateTableWorkstationTenderHistory.sql,
+            CreateTableWorkstationOpenCloseTransaction.sql,
+            CreateTableWorkstationHistory.sql,
+            CreateTableWorkstationDrawer.sql,
+            CreateTableWorkstation.sql,
+            CreateTableWorkGroupI18N.sql,
+            CreateTableWorkGroup.sql,
+            CreateTableWorkflowConfiguration.sql,
+            CreateTableUnknownItem.sql,
+            CreateTableUnitOfMeasureI18N.sql,
+            CreateTableUnitOfMeasure.sql,
+            CreateTableTravelersCheckTenderLineItem.sql,
+            CreateTableTransactionPriceDerivationRule.sql,
+            CreateTableTransaction.sql,
+            CreateTableTimeDatePriceDerivationRuleEligibility.sql,
+            CreateTableTillTenderHistory.sql,
+            CreateTableTillOpenCloseTransaction.sql,
+            CreateTableTillHistory.sql,
+            CreateTableTill.sql,
+            CreateTableTenderPickupTransaction.sql,
+            CreateTableTenderMediaLineItem.sql,
+            CreateTableTenderLoanTransaction.sql,
+            CreateTableTenderLineItem.sql,
+            CreateTableTenderChangeLineItem.sql,
+            CreateTableTemporaryPriceChangeItem.sql,
+            CreateTableTemporaryPriceChange.sql,
+            CreateTableTelephone.sql,
+            CreateTableTaxRateRule.sql,
+            CreateTableTaxGroupRule.sql,
+            CreateTableTaxType.sql,
+            CreateTableTaxLineItem.sql,
+            CreateTableTaxJurisdictionAuthLink.sql,
+            CreateTableTaxHistory.sql,
+            CreateTableTaxExemptionModifier.sql,
+            CreateTableShippingTaxAuthorityRule.sql,
+            CreateTableTaxAuthority.sql,
+            CreateTableTaxableGroup.sql,
+            CreateTableTaskReview.sql,
+            CreateTableTaskNotificationRecipient.sql,
+            CreateTableTaskHistory.sql,
+            CreateTableTaskDestinationStatus.sql,
+            CreateTableTask.sql,
+            CreateTableSupplyStandardOrderQuantity.sql,
+            CreateTableSupplyOrder.sql,
+            CreateTableSupplyItem.sql,
+            CreateTableSupplierItemCatalogBaseCostBreak.sql,
+            CreateTableSupplierItem.sql,
+            CreateTableSupplier.sql,
+            CreateTableStoreTypeVolume.sql,
+            CreateTableStoreTenderHistory.sql,
+            CreateTableStoreSupplyItem.sql,
+            CreateTableStoreSafeTenderHistory.sql,
+            CreateTableStoreSafeTender.sql,
+            CreateTableStoreSafe.sql,
+            CreateTableStoreRegionsI18N.sql,
+            CreateTableStoreRegions.sql,
+            CreateTableStoreOpenCloseTransaction.sql,
+            CreateTableStoreHistory.sql,
+            CreateTableStoreDistrictsI18N.sql,
+            CreateTableStoreDistricts.sql,
+            CreateTableStoreCreditTenderLineItem.sql,
+            CreateTableStoreCredit.sql,
+            CreateTableStoreCouponRuleEligibility.sql,
+            CreateTableStockItem.sql,
+            CreateTableShippingMethodI18N.sql,
+            CreateTableShippingMethod.sql,
+            CreateTableShippingCharge.sql,
+            CreateTableSendCheckTenderLineItem.sql,
+            CreateTableSchedule.sql,
+            CreateTableSaleReturnTaxModifier.sql,
+            CreateTableSaleReturnTaxLineItem.sql,
+            CreateTableSaleReturnShippingRecords.sql,
+            CreateTableSaleReturnLineItem.sql,
+            CreateTableRMPolicyActionTender.sql,
+            CreateTableRMRulePolicyAssociation.sql,
+            CreateTableRMRule.sql,
+            CreateTableRMPolicyRuleAction.sql,
+            CreateTableRMReturnTicketItemTenderList.sql,
+            CreateTableRMReturnTicketLineItem.sql,
+            CreateTableRMReturnTicket.sql,
+            CreateTableRMReturnResponseCode.sql,
+            CreateTableRMReceiptMessage.sql,
+            CreateTableRMPolicyStoreAssociations.sql,
+            CreateTableRMPolicyItemAssociations.sql,
+            CreateTableRMPolicy.sql,
+            CreateTableRMEmployeeException.sql,
+            CreateTableRMCustomerException.sql,
+            CreateTableRMKPIinstance.sql,
+            CreateTableRMKPI.sql,
+            CreateTableRMKPIInstanceParameter.sql,
+            CreateTableRMKPIParameter.sql,
+            CreateTableRMEmployeeScore.sql,
+            CreateTableRMCustomerToCustomerMapping.sql,
+            CreateTableRMCustomerServiceOverrides.sql,
+            CreateTableRMCustomerScore.sql,
+            CreateTableRMCustomerPenaltyBox.sql,
+            CreateTableRMCustomer.sql,
+            CreateTableRMSummary.sql,
+            CreateTableReturnTendersData.sql,
+            CreateTableRetailTransactionLineItem.sql,
+            CreateTableRetailTransaction.sql,
+            CreateTableRetailStorePosDepartment.sql,
+            CreateTableRetailStoreItem.sql,
+            CreateTableRetailStoreI18N.sql,
+            CreateTableRetailStoreGroup.sql,
+            CreateTableRetailStoreGroupLevel.sql,
+            CreateTableRetailStoreGroupFunction.sql,
+            CreateTableAssociatedRetailStoreStoreGroup.sql,
+            CreateTableAssociatedRetailStoreGroup.sql,
+            CreateTableRetailStore.sql,
+            CreateTableRetailPriceModifier.sql,
+            CreateTableResourceI18N.sql,
+            CreateTableResource.sql,
+            CreateTableReportRecipient.sql,
+            CreateTableReportingPeriod.sql,
+            CreateTableReportGroup.sql,
+            CreateTableReportCriteria.sql,
+            CreateTableReportConfigParameter.sql,
+            CreateTableReportConfig.sql,
+            CreateTableRelatedStore.sql,
+            CreateTableRelatedItemAssociation.sql,
+            CreateTableRedeemTransaction.sql,
+            CreateTablePurchaseOrderTenderLineItem.sql,
+            CreateTablePriceDerivationRuleType.sql,
+            CreateTablePriceDerivationRuleI18N.sql,
+            CreateTablePriceDerivationRule.sql,
+            CreateTablePostVoidTransaction.sql,
+            CreateTablePosNoSaleTransaction.sql,
+            CreateTablePosIdentity.sql,
+            CreateTablePosDepartmentI18N.sql,
+            CreateTablePosDepartmentHistory.sql,
+            CreateTablePosDepartment.sql,
+            CreateTablePlanoGram.sql,
+            CreateTablePermanentPriceChangeItem.sql,
+            CreateTablePermanentPriceChange.sql,
+            CreateTablePaymentOnAccountLineItem.sql,
+            CreateTableParty.sql,
+            CreateTableParameterValue.sql,
+            CreateTableParameterValidator.sql,
+            CreateTableParameterValidatorType.sql,
+            CreateTableParameterValidatorProperty.sql,
+            CreateTableParameterValidatorPropertyName.sql,
+            CreateTableParameter.sql,
+            CreateTableParameterType.sql,
+            CreateTableParameterSet.sql,
+            CreateTableParameterSetType.sql,
+            CreateTableParameterSetParameter.sql,
+            CreateTableParameterGroup.sql,
+            CreateTableParameterEditor.sql,
+            CreateTableOrderLineItemRetailPriceModifier.sql,
+            CreateTableOrderLineItem.sql,
+            CreateTableOrderI18N.sql,
+            CreateTableOrder.sql,
+            CreateTableOperator.sql,
+            CreateTableMoneyOrderTenderLineItem.sql,
+            CreateTableMixAndMatchPriceDerivationRule.sql,
+            CreateTableMixAndMatchPriceDerivationItem.sql,
+            CreateTableMerchandiseStructurePriceDerivationRuleEligibility.sql,
+            CreateTableMerchandiseStructureLevel.sql,
+            CreateTableMerchandiseHierarchyAssociation.sql,
+            CreateTableMerchandiseHierarchyLevel.sql,
+            CreateTableMerchandiseHierarchyItemGroup.sql,
+            CreateTableMerchandiseHierarchyGroup.sql,
+            CreateTableMerchandiseHierarchyFunction.sql,
+            CreateTableMerchandiseClassification.sql,
+            CreateTableManufacturerI18N.sql,
+            CreateTableManufacturer.sql,
+            CreateTableMaintenanceEvent.sql,
+            CreateTableLayaway.sql,
+            CreateTableLabelBatch.sql,
+            CreateTableLabelBatchTemplate.sql,
+            CreateTableLabelBatchItem.sql,
+            CreateTableJobEventMessages.sql,
+            CreateTableItemStyle.sql,
+            CreateTableItemSize.sql,
+            CreateTableItemPriceMaintenance.sql,
+            CreateTableItemPriceDerivationRuleEligibility.sql,
+            CreateTableItemPriceDerivation.sql,
+            CreateTableItemPOGAssociation.sql,
+            CreateTableItemMaintenanceEvent.sql,
+            CreateTableItemImage.sql,
+            CreateTableItemI18N.sql,
+            CreateTableItemDiscrepancyMonitor.sql,
+            CreateTableItemColor.sql,
+            CreateTableItemCollection.sql,
+            CreateTableItem.sql,
+            CreateTableIRSOrder.sql,
+            CreateTableIRSLayaway.sql,
+            CreateTableIRSCustomer.sql,
+            CreateTableInstantCredit.sql,
+            CreateTableGroupResourceAccessI18N.sql,
+            CreateTableGroupResourceAccess.sql,
+            CreateTableGiftRegisteredItem.sql,
+            CreateTableGiftCertificateTenderLineItem.sql,
+            CreateTableGiftCertificate.sql,
+            CreateTableGiftCardTenderLineItem.sql,
+            CreateTableGiftCard.sql,
+            CreateTableGeoTaxJursidiction.sql,
+            CreateTableGeoCode.sql,
+            CreateTableFundsReceiptTransaction.sql,
+            CreateTableFinancialAccountingTransaction.sql,
+            CreateTableFileSetItem.sql,
+            CreateTableFileSet.sql,
+            CreateTableFavoriteReport.sql,
+            CreateTableExecutedReport.sql,
+            CreateTableExchangeRate.sql,
+            CreateTableEvent.sql,
+            CreateTableCreditDebitCardTenderLineItem.sql,
+            CreateTableEmployeeTimeEntry.sql,
+            CreateTableEmployeeHierarchyAssociation.sql,
+            CreateTableEmployee.sql,
+            CreateTableEMessageI18N.sql,
+            CreateTableEMessage.sql,
+            CreateTableEmailAddress.sql,
+            CreateTableEjournal.sql,
+            CreateTableDiscountLineItem.sql,
+            CreateTableDepartmentPriceDerivationRuleEligibility.sql,
+            CreateTableCustomerGroupI18N.sql,
+            CreateTableCustomerGroup.sql,
+            CreateTableCustomerAffiliationPriceDerivationRuleEligibility.sql,
+            CreateTableCustomerAffiliation.sql,
+            CreateTableCustomer.sql,
+            CreateTableCurrency.sql,
+            CreateTableCouponTenderLineItem.sql,
+            CreateTableControlTransaction.sql,
+            CreateTableContact.sql,
+            CreateTableConfirmedEmployeeTimeEntry.sql,
+            CreateTableCommissionModifier.sql,
+            CreateTableCodeList.sql,
+            CreateTableCheckTenderLineItem.sql,
+            CreateTableCaptureCustomer.sql,
+            CreateTableCalendarReportingPeriodV4.sql,
+            CreateTableCalendarReportingTimePeriod.sql,
+            CreateTableCalendarPeriodAssociation.sql,
+            CreateTableCalendarPeriod.sql,
+            CreateTableCalendarLevelAssociation.sql,
+            CreateTableCalendarLevel.sql,
+            CreateTableCalendar.sql,
+            CreateTableBusinessDay.sql,
+            CreateTableBusinessCustomer.sql,
+            CreateTableAuditLog.sql,
+            CreateTableAssociateProductivity.sql,
+            CreateTableApplication.sql,
+            CreateTableAlterationLineItem.sql,
+            CreateTableStoreHierarchy.sql,
+            CreateTableBundleImportStatus.sql,
+            CreateTableFileImportStatus.sql,
+            CreateTableImportFileFailures.sql,
+            CreateTableDisplayMessageI18N.sql,
+            CreateTableItemMessageAssociation.sql,
+            CreateTableDisplayMessage.sql,
+			${paypal.creates}
+        "/>
+
+      <property name="ordered.inserts.core" value="
+            InsertTableApplication.sql,
+            InsertTableCalendar.sql,
+            InsertTableCalendarLevel.sql,
+            InsertTableCalendarLevelAssociation.sql,
+            InsertTableCalendarPeriod.sql,
+            InsertTableCalendarPeriodAssociation.sql,
+            InsertTableCalendarReportingTimePeriod.sql,
+            InsertTableGroupResourceAccessI18N.sql,
+            InsertTableGroupResourceAccessList.sql,
+            InsertTablePasswordPolicy.sql,
+            InsertTablePriceDerivationRuleType.sql,
+            InsertTableResource.sql,
+            InsertTableStoreSafe.sql,
+            InsertTableWorkflowConfiguration.sql
+        "/>
+
+       <property name="ordered.inserts.default" value="
+            InsertTableCodeList.sql,
+            InsertTableCurrency.sql,
+            InsertTableCurrencyDenomination.sql,
+            InsertTableGroupResourceAccess.sql,
+            InsertTableIDDIDataSet.sql,
+            InsertTableIDDIDataSetTables.sql,
+            InsertTablePasswordCriteria.sql,
+            InsertTablePasswordPolicyCriteria.sql,
+            InsertTableStoreSafeTender.sql,
+            InsertTableWorkGroup.sql,
+            InsertTableWorkstation.sql,
+            InsertTableWorkstationDrawer.sql,
+            InsertTableWorkWeek.sql
+        "/>
+
+        <property name="ordered.inserts.default.app.rm" value="
+            InsertTableRMKPI.sql,
+            InsertTableRMKPIinstance.sql,
+            InsertTableRMKPIParameter.sql,
+            InsertTableRMKPIInstanceParameter.sql,
+            InsertTableRMPolicy.sql,
+            InsertTableRMReceiptMessage.sql,
+            InsertTableRMReturnResponseCode.sql,
+            InsertTableRMRule.sql,
+            InsertTableRMRulePolicyAssociation.sql,
+            InsertTableRMPolicyRuleAction.sql,
+            InsertTableRMPolicyRuleActionTender.sql,
+            InsertTableReportConfigParameters.sql,
+            InsertTableReportConfig.sql
+        "/>
+
+      <property name="ordered.inserts.default.app.co" value="
+            InsertReportConfigCO.sql
+      "/>
+
+
+        <property name="ordered.inserts.customizable" value="
+            InsertTableAddress.sql,
+            InsertTableCodeList.sql,
+            InsertTableExchangeRate.sql,
+            InsertTableMerchandiseHierarchyFunction.sql,
+            InsertTableMerchandiseHierarchyGroup.sql,
+            InsertTableMerchandiseHierarchyLevel.sql,
+            InsertTableMerchandiseHierarchyAssociation.sql,
+            InsertTableParty.sql,
+            InsertTablePosDepartment.sql,
+            InsertTablePriceDerivationRule.sql,
+            InsertTableRetailStore.sql,
+            InsertTableRetailStoreGroupFunction.sql,
+            InsertTableRetailStoreGroupLevel.sql,
+            InsertTableRetailStoreGroup.sql,
+            InsertTableAssociatedRetailStoreGroup.sql,
+            InsertTableAssociatedRetailStoreStoreGroup.sql,
+            InsertTableRetailStorePosDepartment.sql,
+            InsertTableShippingCharge.sql,
+            InsertTableShippingMethod.sql,
+            InsertTableStoreDistricts.sql,
+            InsertTableStoreRegions.sql,
+            InsertTableUnitOfMeasure.sql,
+            InsertTableZTaxTables.sql,
+            InsertTableZVatTax.sql
+        "/>
+
+        <property name="ordered.inserts.sample" value="
+            InsertTableAddress.sql,
+            InsertTableCodeList.sql,
+            InsertTableConfirmedEmployeeTimeEntry.sql,
+            InsertTableContact.sql,
+            InsertTableCustomerAffiliationPriceDerivationRuleEligibility.sql,
+            InsertTableCustomerGroup.sql,
+            InsertTableDepartmentPriceDerivationRuleEligibility.sql,
+            InsertTableEmailAddress.sql,
+            InsertTableEMessage.sql,
+            InsertTableEMessageI18N.sql,
+            InsertTableEvent.sql,
+            InsertTableEventMaintenance.sql,
+            InsertTableItem.sql,
+            InsertTableItemCollection.sql,
+            InsertTableItemColor.sql,
+            InsertTableItemMaintenanceEvent.sql,
+            InsertTableItemPOGAssociation.sql,
+            InsertTableItemPriceDerivation.sql,
+            InsertTableItemPriceDerivationRuleEligibility.sql,
+            InsertTableItemPriceMaintenance.sql,
+            InsertTableItemSize.sql,
+            InsertTableItemStyle.sql,
+            InsertTableLabelBatch.sql,
+            InsertTableLabelBatchItem.sql,
+            InsertTableLabelBatchTemplate.sql,
+            InsertTableMaintenanceEvent.sql,
+            InsertTableManufacturer.sql,
+            InsertTableMerchandiseClassification.sql,
+            InsertTableMerchandiseHierarchyFunction.sql,
+            InsertTableMerchandiseHierarchyGroup.sql,
+            InsertTableMerchandiseHierarchyItemGroup.sql,
+            InsertTableMerchandiseHierarchyLevel.sql,
+            InsertTableMerchandiseStructureLevel.sql,
+            InsertTableMerchandiseHierarchyAssociation.sql,
+            InsertTableMerchandiseStructurePriceDerivationRuleEligibility.sql,
+            InsertTableMixAndMatchPriceDerivationItem.sql,
+            InsertTableMixAndMatchPriceDerivationRule.sql,
+            InsertTableParty.sql,
+            InsertTablePermanentPriceChange.sql,
+            InsertTablePermanentPriceChangeItem.sql,
+            InsertTablePlanoGram.sql,
+            InsertTablePosDepartment.sql,
+            InsertTablePosIdentity.sql,
+            InsertTablePriceDerivationRule.sql,
+            InsertTablePricingGroup.sql,
+            InsertTableRetailPriceModifier.sql,
+            InsertTableRetailStoreGroupLevel.sql,
+            InsertTableRetailStoreGroup.sql,
+            InsertTableAssociatedRetailStoreGroup.sql,
+            InsertTableRetailStoreItem.sql,
+            InsertTableRetailStorePosDepartment.sql,
+            InsertTableShippingMethod.sql,
+            InsertTableStockItem.sql,
+            InsertTableStoreCouponRuleEligibility.sql,
+            InsertTableStoreCredit.sql,
+            InsertTableStoreDistricts.sql,
+            InsertTableStoreRegions.sql,
+            InsertTableSupplier.sql,
+            InsertTableSupplierItem.sql,
+            InsertTableSupplierItemCatalogBaseCostBreak.sql,
+            InsertTableTelephone.sql,
+            InsertTableTemporaryPriceChange.sql,
+            InsertTableTemporaryPriceChangeItem.sql,
+            InsertTableTimeDatePriceDerivationRuleEligibility.sql,
+            InsertTableUnitOfMeasure.sql,
+            InsertTableWorkWeek.sql,
+            InsertTableZTaxTables.sql,
+            InsertTableZVatDefaultTaxDev.sql,
+            InsertTableZVatTaxPricing.sql,
+            InsertTableZZZDefaultTax.sql,
+            ${tax.inserts.seed}
+        "/>
+
+        <!-- exclude these sql files from concatenation -->
+          <property name="inserts.seed.exclude" value="
+             ${tax.inserts.seed.exclude}, InsertTableRetailStoreGroupAdhoc.sql
+        "/>
+
+
+      <property name="ordered.inserts.qatest" value="
+            InsertAdditionalTenderLineItems.sql,
+            InsertAdditionalTransactions.sql,
+            InsertItemFieldsTestData.sql,
+            InsertItemFieldsTestDataPricing.sql,
+            InsertTableAddress.sql,
+            InsertTableAuditLog.sql,
+            InsertTableBusinessCustomer.sql,
+            InsertTableBusinessDay.sql,
+            InsertTableCheckTenderLineItem.sql,
+            InsertTableCodeList.sql,
+            InsertTableControlTransaction.sql,
+            InsertTableCustomer.sql,
+            InsertTableCustomerAffiliation.sql,
+            InsertTableDiscountLineItem.sql,
+            InsertTableEMessage.sql,
+            InsertTableEmployee.sql,
+            InsertTableEmployeeHierarchyAssociation.sql,
+            InsertTableEmployeePasswordHistory.sql,
+            InsertTableEmployeeTimeEntry.sql,
+            InsertTableEvent.sql,
+            InsertTableEventMaintenance.sql,
+            InsertTableGeoCode.sql,
+            InsertTableGeoTaxJurisdiction.sql,
+            InsertTableGiftCertificate.sql,
+            InsertTableGiftRegisteredItem.sql,
+            InsertTableIDDIDataSet.sql,
+            InsertTableItemMaintenanceEvent.sql,
+            InsertTableItemPOGAssociation.sql,
+            InsertTableItemPriceMaintenance.sql,
+            InsertTableLayaway.sql,
+            InsertTableMaintenanceEvent.sql,
+            InsertTableOrder.sql,
+            InsertTableOrderLineItem.sql,
+            InsertTableOrderLineItemRetailPriceModifier.sql,
+            InsertTablePaymentOnAccountLineItem.sql,
+            InsertTablePosIdentity.sql,
+            InsertTablePostVoidTransaction.sql,
+            InsertTableRelatedItemAssociation.sql,
+            InsertTableRelatedItemAssociationPricing.sql,
+            InsertTableRelatedStore.sql,
+            InsertTableReportingPeriod.sql,
+            InsertTableRetailPriceModifier.sql,
+            InsertTableRetailStore.sql,
+            InsertTableAssociatedRetailStoreStoreGroup.sql,
+            InsertTableRetailStoreItem.sql,
+            InsertTableRetailStorePosDepartment.sql,
+            InsertTableRetailTransaction.sql,
+            InsertTableRetailTransactionLineItem.sql,
+            InsertTableSaleReturnLineItem.sql,
+            InsertTableSaleReturnTaxLineItem.sql,
+            InsertTableSaleReturnTaxModifier.sql,
+            InsertTableStoreHistory.sql,
+            InsertTableStoreSafe.sql,
+            InsertTableTask.sql,
+            InsertTableTaxAuthorityProvince.sql,
+            InsertTableTaxJurisdictionAuthorityLink.sql,
+            InsertTableTaxLineItem.sql,
+            InsertTableTenderChangeLineItem.sql,
+            InsertTableTenderLineItem.sql,
+            InsertTableTill.sql,
+            InsertTableTimeDatePriceDerivationRuleEligibility.sql,
+            InsertTableTransaction.sql,
+            InsertTableWorkstation.sql,
+            InsertTableWorkstationDrawer.sql,
+            InsertTableWorkstationHistory.sql,
+            InsertTableZVatGrpTax.sql,
+            InsertTableZVatGrpTaxPricing.sql,
+            InsertTableZVatTax.sql
+        "/>
+
+       <property name="ordered.inserts.unittest" value="
+            InsertAdditionalTenderLineItems.sql,
+            InsertAdditionalTransactions.sql,
+            InsertItemFieldsTestData.sql,
+            InsertItemFieldsTestDataPricing.sql,
+            InsertPermanentPriceChangeTest.sql,
+            InsertReportTestMisc.sql,
+            InsertReportTestOneTillReturn.sql,
+            InsertReportTestOneTillSale.sql,
+            InsertReportTestTwoTillSale.sql,
+            InsertTableAddress.sql,
+            InsertTableAuditLog.sql,
+            InsertTableBusinessCustomer.sql,
+            InsertTableBusinessDay.sql,
+            InsertTableCheckTenderLineItem.sql,
+            InsertTableCleanReceiptDevTest.sql,
+            InsertTableCodeList.sql,
+            InsertTableControlTransaction.sql,
+            InsertTableCustomer.sql,
+            InsertTableCustomerAffiliation.sql,
+            InsertTableDiscountLineItem.sql,
+            InsertTableEMessage.sql,
+            InsertTableEmployee.sql,
+            InsertTableEmployeeHierarchyAssociation.sql,
+            InsertTableEmployeePasswordHistory.sql,
+            InsertTableEmployeeTimeEntry.sql,
+            InsertTableEvent.sql,
+            InsertTableEventMaintenance.sql,
+            InsertTableGeoCode.sql,
+            InsertTableGeoTaxJurisdiction.sql,
+            InsertTableGiftCertificate.sql,
+            InsertTableGiftRegisteredItem.sql,
+            InsertTableIDDIDataSet.sql,
+            InsertTableItemMaintenanceEvent.sql,
+            InsertTableItemPOGAssociation.sql,
+            InsertTableItemPriceMaintenance.sql,
+            InsertTableItemTaxGroupTest.sql,
+            InsertTableLayaway.sql,
+            InsertTableMaintenanceEvent.sql,
+            InsertTableOrder.sql,
+            InsertTableOrderLineItem.sql,
+            InsertTableOrderLineItemRetailPriceModifier.sql,
+            InsertTablePaymentOnAccountLineItem.sql,
+            InsertTablePosIdentity.sql,
+            InsertTablePostVoidTransaction.sql,
+            InsertTableRelatedItemAssociation.sql,
+            InsertTableRelatedItemAssociationPricing.sql,
+            InsertTableRelatedStore.sql,
+            InsertTableReportingPeriod.sql,
+            InsertTableRetailPriceModifier.sql,
+            InsertTableRetailStore.sql,
+            InsertTableRetailStoreItem.sql,
+            InsertTableRetailStorePosDepartment.sql,
+            InsertTableAssociatedRetailStoreStoreGroup.sql,
+            InsertTableRetailTransaction.sql,
+            InsertTableRetailTransactionLineItem.sql,
+            InsertTableSaleReturnLineItem.sql,
+            InsertTableSaleReturnTaxLineItem.sql,
+            InsertTableSaleReturnTaxModifier.sql,
+            InsertTableStoreHistory.sql,
+            InsertTableStoreSafe.sql,
+            InsertTableTask.sql,
+            InsertTableTaxAuthorityProvince.sql,
+            InsertTableTaxJurisdictionAuthorityLink.sql,
+            InsertTableTaxLineItem.sql,
+            InsertTableTenderChangeLineItem.sql,
+            InsertTableTenderLineItem.sql,
+            InsertTableTill.sql,
+            InsertTableTimeDatePriceDerivationRuleEligibility.sql,
+            InsertTableTransaction.sql,
+            InsertTableWorkstation.sql,
+            InsertTableWorkstationDrawer.sql,
+            InsertTableWorkstationHistory.sql,
+            InsertTableZVatDevTest.sql,
+            InsertTableZVatGrpTax.sql,
+            InsertTableZVatGrpTaxPricing.sql,
+            InsertTableZVatTax.sql,
+            InsertTemporaryPriceChangeTest.sql
+        "/>
+
+        <property name="ordered.inserts.basetest" value="
+            InsertTableAddress.sql,
+            InsertTableCodeList.sql,
+            InsertTableConfirmedEmployeeTimeEntry.sql,
+            InsertTableContact.sql,
+            InsertTableCustomerAffiliationPriceDerivationRuleEligibility.sql,
+            InsertTableCustomerGroup.sql,
+            InsertTableDepartmentPriceDerivationRuleEligibility.sql,
+            InsertTableEmailAddress.sql,
+            InsertTableEMessage.sql,
+            InsertTableEMessageI18N.sql,
+            InsertTableEvent.sql,
+            InsertTableEventMaintenance.sql,
+            InsertTableItem.sql,
+            InsertTableItemCollection.sql,
+            InsertTableItemColor.sql,
+            InsertTableItemMaintenanceEvent.sql,
+            InsertTableItemPOGAssociation.sql,
+            InsertTableItemPriceDerivation.sql,
+            InsertTableItemPriceDerivationRuleEligibility.sql,
+            InsertTableItemPriceMaintenance.sql,
+            InsertTableItemSize.sql,
+            InsertTableItemStyle.sql,
+            InsertTableLabelBatch.sql,
+            InsertTableLabelBatchItem.sql,
+            InsertTableLabelBatchTemplate.sql,
+            InsertTableMaintenanceEvent.sql,
+            InsertTableManufacturer.sql,
+            InsertTableMerchandiseClassification.sql,
+            InsertTableMerchandiseHierarchyFunction.sql,
+            InsertTableMerchandiseHierarchyItemGroup.sql,
+            InsertTableMerchandiseHierarchyLevel.sql,
+            InsertTableMerchandiseHierarchyGroup.sql,
+            InsertTableMerchandiseStructureLevel.sql,
+            InsertTableMerchandiseHierarchyAssociation.sql,
+            InsertTableMerchandiseStructurePriceDerivationRuleEligibility.sql,
+            InsertTableMixAndMatchPriceDerivationItem.sql,
+            InsertTableMixAndMatchPriceDerivationRule.sql,
+            InsertTableParty.sql,
+            InsertTablePermanentPriceChange.sql,
+            InsertTablePermanentPriceChangeItem.sql,
+            InsertTablePlanoGram.sql,
+            InsertTablePosDepartment.sql,
+            InsertTablePosIdentity.sql,
+            InsertTablePriceDerivationRule.sql,
+            InsertTablePricingGroup.sql,
+            InsertTableRetailPriceModifier.sql,
+            InsertTableRetailStoreGroupLevel.sql,
+            InsertTableRetailStoreGroup.sql,
+            InsertTableAssociatedRetailStoreGroup.sql,
+            InsertTableRetailStoreItem.sql,
+            InsertTableRetailStorePosDepartment.sql,
+            InsertTableShippingMethod.sql,
+            InsertTableStockItem.sql,
+            InsertTableStoreCouponRuleEligibility.sql,
+            InsertTableStoreCredit.sql,
+            InsertTableStoreDistricts.sql,
+            InsertTableStoreRegions.sql,
+            InsertTableSupplier.sql,
+            InsertTableSupplierItem.sql,
+            InsertTableSupplierItemCatalogBaseCostBreak.sql,
+            InsertTableTelephone.sql,
+            InsertTableTemporaryPriceChange.sql,
+            InsertTableTemporaryPriceChangeItem.sql,
+            InsertTableTimeDatePriceDerivationRuleEligibility.sql,
+            InsertTableUnitOfMeasure.sql,
+            InsertTableZTaxTables.sql,
+            InsertTableZTestTaxRulesSimpleTax.sql,
+            InsertTableZTestTaxRulesSimpleTaxPricing.sql,
+            InsertTableZTestTaxRulesSimpleTaxSend.sql,
+            InsertTableZTestTaxRulesSimpleTaxSendPricing.sql,
+            InsertTableZTestTaxRulesTableTax.sql,
+            InsertTableZTestTaxRulesTableTaxPricing.sql,
+            InsertTableZTestTaxRulesThresholdTax.sql,
+            InsertTableZTestTaxRulesThresholdTaxPricing.sql,
+            InsertTableZTestTaxRulesZHoliday.sql,
+            InsertTableZVatDefaultTaxDev.sql,
+            InsertTableZVatTax.sql,
+            InsertTableZVatTaxPricing.sql,
+            InsertTableZZZDefaultTax.sql,
+            ${tax.inserts.test}
+         "/>
+
+       <!-- exclude these sql files from concatenation -->
+         <property name="inserts.test.exclude" value="
+            ${tax.inserts.test.exclude}
+         "/>
+
+         <property name="ordered.inserts.demo" value="
+             empty.sql
+         "/>
+
+    </target>
+
+    <target name="setup_ctr" depends="init_macros">
+        <property name="db.vendor" value="${ctr.db.vendor}"/>
+        <property name="db.product" value="${ctr.db.product}"/>
+        <property name="db.jdbc-driver" value="${ctr.db.jdbc-driver}"/>
+        <property name="db.jdbc-url" value="${ctr.db.jdbc-url}"/>
+        <property name="db.jdbc-path" value="${ctr.db.jdbc-path}"/>
+        <property name="db.jdbc-jar" value="${ctr.db.jdbc-jar}"/>
+        <property name="db.jdbc-jar2" value="${ctr.db.jdbc-jar2}"/>
+        <property name="db.owner.user" value="${ctr.db.user}"/>
+        <property name="db.user" value="${ctr.db.user}"/>
+        <property name="db.owner.password-encrypted" value="${ctr.db.password-encrypted}"/>
+        <property name="db.owner.password-property" value="${ctr.db.password-encrypted}"/>
+        <property name="encrypt.classpath" value="${db.encrypt.classpath}"/>
+        <property name="app.product" value="${db.app.product}"/>
+        <property name="db.password-encrypted" value="${ctr.db.password-encrypted}"/>
+        <property name="db.password-property" value="${ctr.db.password-encrypted}"/>
+        
+
+        <taskdef resource="net/sf/antcontrib/antcontrib.properties">
+            <classpath>
+                <pathelement location="${ant.contrib.location}"/>
+            </classpath>
+        </taskdef>
+        <!-- Decrypt DB owner password -->
+        <!-- Use CSF for POS -->
+        <if>
+            <equals arg1="${app.product}" arg2="pos"/>
+            <then>
+                <stringenc operation="retrieve" csfUserNameAlias="${db.owner.password-property}" outputproperty="db.owner.password"/>
+            </then>
+            <else>
+                <stringenc operation="decrypt" value="${db.owner.password-encrypted}" outputproperty="db.owner.password"/>
+            </else>
+        </if>
+        <!-- Decrypt DB user password -->
+        <!-- Use CSF for POS -->
+        <if>
+            <equals arg1="${app.product}" arg2="pos"/>
+            <then>
+                <stringenc operation="retrieve" csfUserNameAlias="${db.owner.password-property}" outputproperty="db.password"/>
+            </then>
+            <else>
+                <stringenc operation="decrypt" value="${db.owner.password-encrypted}" outputproperty="db.password"/>
+            </else>
+        </if>
+    </target>
+
+    <target name="mock_data">
+        <if>
+            <available file="${mockgensql.dir.dist}" />
+            <then>
+                <!-- Copy and replace the Insert SQL files that were mocked with specials chars. -->
+                <copy todir="${sql.dir.dist}" overwrite="true" verbose="false" encoding="${resource.encoding}">
+                    <fileset dir="${mockgensql.dir.dist}">
+                        <include name="**/*"/>
+                    </fileset>
+                </copy>
+            </then>
+        </if>
+        <if>
+            <available file="${gensql.dir.dist}" />
+            <then>
+                <!-- Copy over the following generated localized I8 data -->
+                <copy todir="${sql.dir.dist}" overwrite="true" verbose="false" encoding="${resource.encoding}">
+                    <fileset dir="${gensql.dir.dist}">
+                        <include name="sample/locales/**/*"/>
+                        <include name="basetest/locales/**/*"/>
+                        <include name="unittest/locales/**/*"/>
+                        <include name="qatest/locales/**/*"/>
+                    </fileset>
+                </copy>
+            </then>
+        </if>
+    </target>
+
+    <!-- Generate "translated" version of insert SQL files -->
+
+    <!--classpath="${db.encrypt.classpath}"-->
+    <target name="generate_localized_sql" depends="setup">
+        <if>
+            <length string="${gen.locales}" when="greater" length="0"/>
+            <then>
+                <!-- call class that will create mocked localized sql -->
+                <java classname="oracle.retail.stores.common.utility.SQLFilePadder"
+                    classpath="C:/Users/stephen/repos/jpa-lobber/src/test/resources/installer/ORPOS-13.4.1/product/shared/common/lib/oracle.stores.utility.jar"
+                    failonerror="true"
+                    fork="true">
+                    <arg value="${gen.locales}"/>
+                    <arg value="${mock.locales}"/>
+                    <arg value="${mock.string.1}"/>
+                    <arg value="${mock.string.2}"/>
+                    <arg value="${sql.dir.dist}"/>
+                </java>
+            </then>
+        </if>
+    </target>
+
+    <target name="create_db_upgrader" depends="init_macros,set_datafilter_props" if="db.product"
+        description="Creates the filtered upgrade sql scripts for the specified upgrade path">
+
+        <!-- Prompt the user for the starting and ending version  -->
+        <input message="Enter starting version of upgrade:" addproperty="upgrade_from_version"/>
+        <input message="Enter ending version of upgrade:" addproperty="upgrade_to_version"/>
+
+        <echo message="Starting version is: ${upgrade_from_version}"/>
+        <echo message="Ending version is: ${upgrade_to_version}"/>
+        <input message="Proceed (y/n)?" addproperty="proceed_with_upgrade"/>
+
+        <condition property="abort_upgrade">
+            <equals arg1="n" arg2="${proceed_with_upgrade}"/>
+        </condition>
+
+        <fail if="abort_upgrade">Aborted by user.</fail>
+
+        <property name="upgrade_directory"
+            value="${sql.dir.dist}/upgrade/${upgrade_from_version}_to_${upgrade_to_version}"/>
+        <echo message="upgrade directory is ${upgrade_directory}"/>
+
+        <property name="upgrade_filter_directory"
+            value="${sql.dir.filtered}/upgrade/${upgrade_from_version}_to_${upgrade_to_version}"/>
+
+        <if>
+            <available file="${upgrade_directory}" type="dir"/>
+            <then>
+                <echo message="Directory exists.  Proceeding..."/>
+            </then>
+            <else>
+                <fail>"Directory ${upgrade_directory} does not exist. Cannot proceed..."</fail>
+            </else>
+        </if>
+
+        <delete dir="${upgrade_filter_directory}" verbose="true"/>
+        <mkdir dir="${upgrade_filter_directory}"/>
+
+        <!-- Create: upgrade - concatenate all of the upgrade Create sql-->
+        <concat
+            destfile="${upgrade_filter_directory}/RawUpgradeCreate${upgrade_from_version}_to_${upgrade_to_version}.sql"
+            encoding="${resource.encoding}">
+            <fileset dir="${upgrade_directory}" includes="**/Create*.sql"/>
+        </concat>
+        <!-- guarantee output file exists -->
+        <touch
+            file="${upgrade_filter_directory}/RawUpgradeCreate${upgrade_from_version}_to_${upgrade_to_version}.sql"/>
+
+        <length
+            file="${upgrade_filter_directory}/RawUpgradeCreate${upgrade_from_version}_to_${upgrade_to_version}.sql"
+            property="upgrade_createfile_length"/>
+
+        <!-- Alter: upgrade - concatenate all of the upgrade Alter sql -->
+        <concat
+            destfile="${upgrade_filter_directory}/RawUpgradeAlter${upgrade_from_version}_to_${upgrade_to_version}.sql"
+            encoding="${resource.encoding}">
+            <fileset dir="${upgrade_directory}" includes="**/Alter*.sql"/>
+        </concat>
+        <!-- guarantee output file exists -->
+        <touch
+            file="${upgrade_filter_directory}/RawUpgradeAlter${upgrade_from_version}_to_${upgrade_to_version}.sql"/>
+
+        <length
+            file="${upgrade_filter_directory}/RawUpgradeAlter${upgrade_from_version}_to_${upgrade_to_version}.sql"
+            property="upgrade_alterfile_length"/>
+
+        <!-- filter RawUpgradeCreateXXX sql file -->
+        <if>
+            <not>
+                <equals arg1="${upgrade_createfile_length}" arg2="0"/>
+            </not>
+            <then>
+                <java classname="${db.datafilter}" classpath="${db.encrypt.classpath}" fork="true"
+                    failonerror="true" maxmemory="128m">
+                    <arg
+                        value="${upgrade_filter_directory}/RawUpgradeCreate${upgrade_from_version}_to_${upgrade_to_version}.sql"/>
+                    <arg
+                        value="${upgrade_filter_directory}/FinalUpgradeCreate${upgrade_from_version}_to_${upgrade_to_version}.sql"/>
+                    <arg value="${resource.encoding}"/>
+                </java>
+            </then>
+        </if>
+
+        <!-- filter RawUpgradeAlterXXX sql file -->
+        <if>
+            <not>
+                <equals arg1="${upgrade_alterfile_length}" arg2="0"/>
+            </not>
+            <then>
+                <java classname="${db.datafilter}" classpath="${db.encrypt.classpath}" fork="true"
+                    failonerror="true" maxmemory="128m">
+                    <arg
+                        value="${upgrade_filter_directory}/RawUpgradeAlter${upgrade_from_version}_to_${upgrade_to_version}.sql"/>
+                    <arg
+                        value="${upgrade_filter_directory}/FinalUpgradeAlter${upgrade_from_version}_to_${upgrade_to_version}.sql"/>
+                    <arg value="${resource.encoding}"/>
+                </java>
+            </then>
+        </if>
+
+        <!-- remove all upgrade Raw* sql files -->
+        <if>
+            <not>
+                <isset property="save.upgrade.raw.sql"/>
+            </not>
+            <then>
+                <delete verbose="true">
+                    <fileset dir="${upgrade_filter_directory}" includes="Raw*.sql"/>
+                </delete>
+            </then>
+        </if>
+
+    </target>
+
+</project>

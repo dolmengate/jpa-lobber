@@ -2,4 +2,8 @@
 /target
 *.iml
 /lib
+src/main/test/resources/installer/
+test-database-init.log
+test-database-init.txt
+lobber.log
 
