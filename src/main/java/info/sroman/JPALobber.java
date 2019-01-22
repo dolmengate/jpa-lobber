@@ -1,7 +1,7 @@
 package info.sroman;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 import org.reflections.Reflections;
 
 import javax.persistence.EntityManager;
@@ -11,9 +11,7 @@ import javax.persistence.Table;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.List;
-import java.util.Properties;
-import java.util.Set;
+import java.util.*;
 
 // todo add Spring? -- it has good integration with Hibernate for cool stuff like this
 // https://stackoverflow.com/questions/11257598/how-to-scan-packages-for-hibernate-entities-instead-of-using-hbm-xml
@@ -22,70 +20,68 @@ import java.util.Set;
 public class JPALobber
 {
 
-    private static Logger _logger = LogManager.getLogger();
+//    private static Logger _logger = LogManager.getLogger();
 
-    private static String BASE_PROPERTIES_PATH = "./base-hibernate.properties";
     private static String SOURCE_PROPERTIES_PATH = "./src-db.properties";
-    private static String DESTINATION_PROPERTIES_PATH = "./dest-db.properties";
-//    private static Properties BASE_PROPERTIES = new Properties();
     private static Properties SOURCE_PROPERTIES = new Properties();
-//    private static Properties DESTINATION_PROPERTIES;
+    private static boolean testMode = true;
 
-    private static EntityManagerFactory srcSessionFactory;
-    private static EntityManagerFactory destSessionFactory;
+    private static EntityManager srcEntityManager;
+    private static EntityManager destEntityManager;
+
     static {
         try {
-//            BASE_PROPERTIES.load(new FileInputStream(new File(BASE_PROPERTIES_PATH)));
-//            SOURCE_PROPERTIES  = overlayProperties(BASE_PROPERTIES_PATH, SOURCE_PROPERTIES_PATH);
             SOURCE_PROPERTIES.load(new FileInputStream(new File((SOURCE_PROPERTIES_PATH))));
-//            DESTINATION_PROPERTIES = overlayProperties(BASE_PROPERTIES_PATH, DESTINATION_PROPERTIES_PATH);
-            srcSessionFactory = configSourcePersistenceUnit();
-            destSessionFactory = configDestPersistenceUnit();
+            EntityManagerFactory srcSessionFactory = configSourcePersistenceUnit();
+            EntityManagerFactory destSessionFactory = configDestPersistenceUnit();
+            srcEntityManager = srcSessionFactory.createEntityManager();
+            destEntityManager = destSessionFactory.createEntityManager();
         } catch (IOException e) {
-            _logger.error(e);
+            e.printStackTrace();
         }
+
     }
 
     public static void main( String[] args )
     {
-        EntityManager srcEntityManager = srcSessionFactory.createEntityManager();
-        EntityManager destEntityManager = destSessionFactory.createEntityManager();
+        if (args.length > 0)
+            if (args[0].equals("copy"))
+                testMode = false;
 
         srcEntityManager.getTransaction().begin();
         destEntityManager.getTransaction().begin();
 
-        String[] tables = SOURCE_PROPERTIES.getProperty("lobber.tables").split(",");
+        Scanner in = new Scanner(System.in);
 
-        for (String table : tables) {
+        // todo add confirmation by stdin
+        for (String table : SOURCE_PROPERTIES.getProperty("lobber.tables").split(",")) {
             try {
                 Class<?> entityClazz = Class.forName("info.sroman.entity." + findEntityClassNameForTableName(table));
                 List srcRecords = selectAllFromTable(srcEntityManager, entityClazz);
                 List destRecords = selectAllFromTable(destEntityManager, entityClazz);
 
                 // todo this just pulls and prints the table contents - need to add pull from src persist to dest
+                printTableRecords(entityClazz.getSimpleName(), srcRecords, "source");
+                printTableRecords(entityClazz.getSimpleName(), destRecords, "destination");
 
-                _logger.info("------ DESTINATION CONTENTS FOR TABLE " + table + " ------");
-                for (Object rpt : destRecords) {
-                    _logger.info(rpt.toString());
+                if (!testMode) {
+                    System.out.println("Test mode not detected, copy the above records from the Source DB to Destination DB? (y/N)");
+                    System.out.println( in.next() );
+                    System.exit(0);
+                    for (Object r : srcRecords) {
+                        persistRecordToDestDB(r);
+                    }
                 }
-
-                _logger.info("------ SOURCE CONTENTS FOR TABLE " + table + " ------");
-                for (Object rpt : srcRecords) {
-                    _logger.info(rpt.toString());
-//                        destEntityManager.persist(rpt);
-//                    destEntityManager.getTransaction().commit();
-                }
-
-                // todo add confirmation by stdin -- add console window (ProcessBuilder??)
-
             } catch (ClassNotFoundException e) {
-                _logger.error("Error occurred while attempting to find class for table name " + table
-                        + ". Ensure you entered valid tables names in properties file", e);
+                System.err.println("Error occurred while attempting to find class for table name " + table
+                        + ". Ensure you entered valid tables names in properties file.");
+                System.err.println("This transaction will not be committed.");
                 srcEntityManager.getTransaction().rollback();
                 destEntityManager.getTransaction().rollback();
             }
         }
 
+        destEntityManager.getTransaction().commit();
         destEntityManager.close();
         srcEntityManager.close();
 
@@ -104,8 +100,19 @@ public class JPALobber
         return null;
     }
 
+    private static void printTableRecords(String tableName, List records, String targetOrSource) {
+        System.out.println("------ " + targetOrSource + " CONTENTS FOR TABLE " + tableName + " ------");
+        for (Object rpt : records) {
+            System.out.println(rpt.toString());
+        }
+    }
+
     private static <T> List<T> selectAllFromTable(EntityManager entityManager, Class<T> clazz) {
         return entityManager.createQuery("select x from " + clazz.getSimpleName() + " x", clazz).getResultList();
+    }
+
+    private static void persistRecordToDestDB(Object record) {
+        destEntityManager.persist(record);
     }
 
     private static EntityManagerFactory configSourcePersistenceUnit() {
