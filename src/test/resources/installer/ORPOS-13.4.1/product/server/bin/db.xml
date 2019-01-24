@@ -299,6 +299,7 @@
 
         <!-- Stephen: this macro altered to perform both CSF entry and db.properties replacement -->
         <!-- Also added string replacement in db-reports.properties -->
+        <!-- Also added replacement of db-reports.properties -->
         <macrodef name="encrypt-passwords">
             <attribute name="install-type"/>
             <sequential>
@@ -356,6 +357,9 @@
                         <replaceregexp file="db.properties"
                             match="inst.app.admin.password-encrypted\s*=.*"
                             replace="inst.app.admin.password-encrypted=${temp.app.admin.password-encrypted}"/>
+                        <replaceregexp file="db-reports.properties"
+                           match="inst.app.admin.password-encrypted\s*=.*"
+                           replace="inst.app.admin.password-encrypted=${temp.app.admin.password-encrypted}"/>
                     </then>
                     <else>
                         <echo>Skipping: Application administrator password</echo>
@@ -374,6 +378,9 @@
                         <replaceregexp file="db.properties"
                             match="db.password-encrypted\s*=.*"
                             replace="db.password-encrypted=${temp.db.datasource.password-encrypted}"/>
+                        <replaceregexp file="db-reports.properties"
+                           match="db.password-encrypted\s*=.*"
+                           replace="db.password-encrypted=${temp.db.datasource.password-encrypted}"/>
                     </then>
                     <else>
                         <echo>Skipping: DB datasource password</echo>
@@ -392,6 +399,13 @@
                         <replaceregexp file="db.properties"
                             match="db.owner.password-encrypted\s*=.*"
                             replace="db.owner.password-encrypted=${temp.db.owner.password-encrypted}"/>
+                        <replaceregexp file="db-reports.properties"
+                           match="owner.password-encrypted\s*=.*"
+                           replace="owner.password-encrypted=${temp.db.owner.password-encrypted}"/>
+                        <replaceregexp file="db-reports.properties"
+                           match="owner.password-encrypted=\s*=.*"
+                           replace="owner.password-encrypted=${temp.db.owner.password-encrypted}"/>
+
                     </then>
                     <else>
                         <echo>Skipping: DB owner password</echo>
@@ -411,6 +425,9 @@
                                 <replaceregexp file="db.properties"
                                     match="ctr.db.password-property\s*=.*"
                                     replace="ctr.db.password-property=${temp.db.scratchpad.password-property}"/>
+                                <replaceregexp file="db-reports.properties"
+                                   match="ctr.db.password-property\s*=.*"
+                                   replace="ctr.db.password-property=${temp.db.scratchpad.password-property}"/>
                             </then>
                             <else>
                                 <echo>Skipping: POS CTR scratchpad DB password</echo>
@@ -490,7 +507,7 @@
         <property name="db.createforeignkey" value="${inst.db.createforeignkey}"/>
 
         <!-- Stephen: commented out <fileset> because those .jars aren't there, added commons-logging jar
-        to Ant invocation in JPAHibernateTest -->
+        to Ant invocation in JPAHibernateTestSetup -->
         <path id="project.class.path">
             <pathelement location="."/>
             <pathelement location="${install.dir}/pos"/>

@@ -2,8 +2,11 @@
 /target
 *.iml
 /lib
-src/main/test/resources/installer/
+src/test/resources/installer/
+!src/test/resources/installer/ORPOS-13.4.1/product/server/bin/db.properties
+!src/test/resources/installer/ORPOS-13.4.1/product/server/bin/db-reports.properties
+!src/test/resources/installer/ORPOS-13.4.1/product/server/bin/orig-db.properties
+!src/test/resources/installer/ORPOS-13.4.1/product/server/bin/db.xml
 test-database-init.log
 test-database-init.txt
 lobber.log
-

@@ -5,7 +5,18 @@
 
     <persistence-unit name="test-src">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <!--<exclude-unlisted-classes>false</exclude-unlisted-classes>-->
+        <class>info.sroman.entity.XmlpRpt</class>
+        <class>info.sroman.entity.XmlpRptI8</class>
+        <class>info.sroman.entity.XmlpRptI8Id</class>
+        <class>info.sroman.entity.XmlpRptLyt</class>
+        <class>info.sroman.entity.XmlpRptLytI8</class>
+        <class>info.sroman.entity.XmlpRptLytI8Id</class>
+        <class>info.sroman.entity.XmlpRptDtTmpl</class>
+        <class>info.sroman.entity.XmlpRptCfgPrmt</class>
+        <class>info.sroman.entity.XmlpRptCfgPrmtId</class>
+        <class>info.sroman.entity.XmlpRptCfgPrmtI8</class>
+        <class>info.sroman.entity.XmlpRptCfgPrmtI8Id</class>
         <properties>
             <property name="hibernate.archive.autodetection" value="class" />
             <property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>
@@ -19,7 +30,18 @@
 
     <persistence-unit name="test-dest">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <!--<exclude-unlisted-classes>false</exclude-unlisted-classes>-->
+        <class>info.sroman.entity.XmlpRpt</class>
+        <class>info.sroman.entity.XmlpRptI8</class>
+        <class>info.sroman.entity.XmlpRptI8Id</class>
+        <class>info.sroman.entity.XmlpRptLyt</class>
+        <class>info.sroman.entity.XmlpRptLytI8</class>
+        <class>info.sroman.entity.XmlpRptLytI8Id</class>
+        <class>info.sroman.entity.XmlpRptDtTmpl</class>
+        <class>info.sroman.entity.XmlpRptCfgPrmt</class>
+        <class>info.sroman.entity.XmlpRptCfgPrmtId</class>
+        <class>info.sroman.entity.XmlpRptCfgPrmtI8</class>
+        <class>info.sroman.entity.XmlpRptCfgPrmtI8Id</class>
         <properties>
             <property name="hibernate.archive.autodetection" value="class" />
             <property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>

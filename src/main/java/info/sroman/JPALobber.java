@@ -22,52 +22,58 @@ public class JPALobber
 
 //    private static Logger _logger = LogManager.getLogger();
 
-    private static String SOURCE_PROPERTIES_PATH = "./src-db.properties";
-    private static Properties SOURCE_PROPERTIES = new Properties();
-    private static boolean testMode = true;
+    private final String SOURCE_PROPERTIES_PATH = "./src-db.properties";
+    private Properties sourceDbConfigsProperties = new Properties();
 
-    private static EntityManager srcEntityManager;
-    private static EntityManager destEntityManager;
+    private boolean recordTransferEnabledSetting = false;
+    private boolean confirmationEnabledSetting = true;
 
-    static {
-        try {
-            SOURCE_PROPERTIES.load(new FileInputStream(new File((SOURCE_PROPERTIES_PATH))));
-            EntityManagerFactory srcSessionFactory = configSourcePersistenceUnit();
-            EntityManagerFactory destSessionFactory = configDestPersistenceUnit();
-            srcEntityManager = srcSessionFactory.createEntityManager();
-            destEntityManager = destSessionFactory.createEntityManager();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private static EntityManagerFactory srcSessionFactory;
+    private static EntityManagerFactory destSessionFactory;
 
+    // these are reused in testing since EntityManagerFactorys are so resource intensive to create
+    private EntityManager srcEntityManager;
+    private EntityManager destEntityManager;
+
+    /**
+     * Constructor for normal runnable jar operation within Application.
+     */
+    JPALobber(String[] args) throws IOException {
+        configurePersistence("src-db", "dest-db");
+        configureCommandLineOpts(args);
     }
 
-    public static void main( String[] args )
-    {
-        if (args.length > 0)
-            if (args[0].equals("copy"))
-                testMode = false;
+    /**
+     * Constructor for testing only.
+     */
+    JPALobber(Properties testProperties, String[] args) throws IllegalArgumentException, IOException {
+        sourceDbConfigsProperties = testProperties;
+        configurePersistence("test-src", "test-dest");
+        configureCommandLineOpts(args);
+    }
+
+    public void lob() {
 
         srcEntityManager.getTransaction().begin();
         destEntityManager.getTransaction().begin();
 
-        Scanner in = new Scanner(System.in);
-
         // todo add confirmation by stdin
-        for (String table : SOURCE_PROPERTIES.getProperty("lobber.tables").split(",")) {
+        for (String table : sourceDbConfigsProperties.getProperty("lobber.tables").split(",")) {
             try {
                 Class<?> entityClazz = Class.forName("info.sroman.entity." + findEntityClassNameForTableName(table));
-                List srcRecords = selectAllFromTable(srcEntityManager, entityClazz);
-                List destRecords = selectAllFromTable(destEntityManager, entityClazz);
+                List srcRecords = selectAllForEntityClass(srcEntityManager, entityClazz);
+                List destRecords = selectAllForEntityClass(destEntityManager, entityClazz);
 
-                // todo this just pulls and prints the table contents - need to add pull from src persist to dest
-                printTableRecords(entityClazz.getSimpleName(), srcRecords, "source");
-                printTableRecords(entityClazz.getSimpleName(), destRecords, "destination");
+//                printTableRecords(entityClazz.getSimpleName(), srcRecords, "source");
+//                printTableRecords(entityClazz.getSimpleName(), destRecords, "destination");
 
-                if (!testMode) {
-                    System.out.println("Test mode not detected, copy the above records from the Source DB to Destination DB? (y/N)");
-                    System.out.println( in.next() );
-                    System.exit(0);
+                if (!recordTransferEnabledSetting) {
+                    if (confirmationEnabledSetting) {
+                        Scanner in = new Scanner(System.in);
+                        System.out.println("Test mode not detected, copy the above records from the Source DB to Destination DB? (y/N)");
+                        System.out.println( in.next() );
+                        System.exit(0);
+                    }
                     for (Object r : srcRecords) {
                         persistRecordToDestDB(r);
                     }
@@ -88,7 +94,7 @@ public class JPALobber
         System.exit(0);
     }
 
-    private static String findEntityClassNameForTableName(String tableName) {
+    public String findEntityClassNameForTableName(String tableName) {
         Reflections reflections = new Reflections("info.sroman.entity");
         Set<Class<?>> clazzes = reflections.getTypesAnnotatedWith(Table.class);
         for (Class<?> c : clazzes) {
@@ -100,26 +106,58 @@ public class JPALobber
         return null;
     }
 
-    private static void printTableRecords(String tableName, List records, String targetOrSource) {
-        System.out.println("------ " + targetOrSource + " CONTENTS FOR TABLE " + tableName + " ------");
+    public void printTableRecords(String tableName, List records, String sourceOrDest) {
+        System.out.println("------ " + sourceOrDest + " CONTENTS FOR TABLE " + tableName + " ------");
         for (Object rpt : records) {
             System.out.println(rpt.toString());
         }
     }
 
-    private static <T> List<T> selectAllFromTable(EntityManager entityManager, Class<T> clazz) {
+    public <T> List<T> selectAllForEntityClass(EntityManager entityManager, Class<T> clazz) {
         return entityManager.createQuery("select x from " + clazz.getSimpleName() + " x", clazz).getResultList();
     }
 
-    private static void persistRecordToDestDB(Object record) {
+    public void persistRecordToDestDB(Object record) {
         destEntityManager.persist(record);
     }
 
-    private static EntityManagerFactory configSourcePersistenceUnit() {
-        return Persistence.createEntityManagerFactory("src-db");
+    public void configureCommandLineOpts(String[] args) throws IllegalArgumentException {
+        if (args == null) throw new IllegalArgumentException("Command line arguments not supplied.");
+        if (args.length == 0) return;
+        for (String arg : args) {
+            switch(arg) {
+                case "--transfer":
+                    recordTransferEnabledSetting = true;
+                case "--no-confirm":
+                    confirmationEnabledSetting = false;
+            }
+        }
     }
 
-    private static EntityManagerFactory configDestPersistenceUnit() {
-        return Persistence.createEntityManagerFactory("dest-db");
+    // fixme this is being called twice on one construction somehow
+    private void configurePersistence(String srcPersistenceUnitName, String destPersistenceUnitName) throws IOException {
+        System.out.println("Configuring persistence for units: [" + srcPersistenceUnitName + ", " + destPersistenceUnitName + "]");
+        sourceDbConfigsProperties.load(new FileInputStream(new File((SOURCE_PROPERTIES_PATH))));
+        srcSessionFactory = Persistence.createEntityManagerFactory(srcPersistenceUnitName);
+        destSessionFactory = Persistence.createEntityManagerFactory(destPersistenceUnitName);
+        srcEntityManager = srcSessionFactory.createEntityManager();
+        destEntityManager = destSessionFactory.createEntityManager();
     }
+
+    boolean isRecordTransferEnabledSetting() {
+        return recordTransferEnabledSetting;
+    }
+
+    boolean isConfirmationEnabledSetting() {
+        return confirmationEnabledSetting;
+    }
+
+    public EntityManager getSrcEntityManager() {
+        return srcEntityManager;
+    }
+
+    public EntityManager getDestEntityManager() {
+        return destEntityManager;
+    }
+
 }
