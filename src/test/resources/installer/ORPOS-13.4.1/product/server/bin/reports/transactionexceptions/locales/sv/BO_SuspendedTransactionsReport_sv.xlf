@@ -1,0 +1,71 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<xliff version="1.0">
+   <file source-language="EN-US" target-language="sv-SE" datatype="XDO" original="orphan.xlf" product-version="orphan.xlf" product-name="">
+      <header/>
+      <body>
+         <trans-unit id="d8deaeb9">
+            <source>Template Table 1</source>
+            <target>Malltabell 1</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="9a7b44ce" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Start Date:</source>
+            <target>Startdatum:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ed49b037" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Run Date:</source>
+            <target>Körningsdatum:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3786ce79" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">End Date: </source>
+            <target xml:space="preserve">Slutdatum:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="844d02a3" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Cashier</source>
+            <target>Kassör</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="dab692c3" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Register</source>
+            <target>Kassaregister</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="27c6d5" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Till</source>
+            <target>Kassa</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>Belopp</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="97bbf249" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Reason Code</source>
+            <target>Orsakskod</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="8225bd" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Transaction ID</source>
+            <target>Transaktions-id</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="4a41e1d2" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source xml:space="preserve"> No Data Available</source>
+            <target xml:space="preserve"> Inga tillgängliga data</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="43609ea4" maxbytes="4000" maxwidth="45" size-unit="char" translate="yes">
+            <source xml:space="preserve"> Total Suspended Transactions:</source>
+            <target xml:space="preserve">Totalt antal uppehållna transaktioner:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+      </body>
+   </file>
+</xliff>

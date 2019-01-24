@@ -1,0 +1,80 @@
+<!--
+/* ===========================================================================
+* Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved.
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/transactionexceptions/BO_NoSalesTransactionsReport_DataTemplate.xml /main/17 2013/06/10 14:20:06 abondala Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    abondala  06/10/13 - replace hard coded transaction id format with a
+ *                         configuration
+ *    ohorne    08/31/12 - corrected case of version attr
+ *    acadar    03/10/10 - use business date in the where clause
+ *    npoola    03/02/10 - merged with the latest code
+ *    cgreene   03/01/10 - added substringLength so time can be included in
+ *                         date
+ *
+ * ===========================================================================
+ */
+-->
+
+<dataTemplate name="NoSalesTransactionReport" version="1.0">
+  <properties>
+    <property name="xml_tag_case" value="as_are" />
+  </properties>
+  <parameters>
+    <parameter name="runDateTime" dataType="character" />
+    <parameter name="startDate" dataType="character" defaultValue="2008-01-01"/>
+    <parameter name="endDate" dataType="character" defaultValue="2009-01-01"/>
+    <parameter name="registerId" dataType="character" defaultValue="All"/>
+    <parameter name="cashierId" dataType="character" defaultValue="All"/>
+    <parameter name="storeId" dataType="character" defaultValue="04241"/>
+    <parameter name="adhoc" dataType="character" defaultValue="false"/>
+    <parameter name="locale" dataType="character" defaultValue="en"/>
+    <parameter name="reportTitle" dataType="character"/>
+  </parameters>
+  <dataQuery>
+    <sqlStatement name="Q1">
+  <![CDATA[SELECT 
+	t.dc_dy_bsn "Date",
+	T.ID_OPR "Cashier",
+	T.ID_WS "Register",
+	'No Sale' "Type", 
+	(
+	CASE 
+	    WHEN NS.RC_SLS_NO = '-1' THEN '-'
+	    ELSE LU.DE_CD_ENT
+	END
+	) AS "ReasonCode", 
+	T.ID_STR_RT "StoreId",
+	T.AI_TRN "SequenceNumber"
+	FROM TR_TRN T 
+	JOIN TR_SLS_PS_NO NS ON T.ID_STR_RT = NS.ID_STR_RT AND T.ID_WS = NS.ID_WS AND T.DC_DY_BSN = NS.DC_DY_BSN AND T.AI_TRN = NS.AI_TRN
+	LEFT JOIN ID_LU_CD_I8 LU ON NS.RC_SLS_NO = LU.LU_CD_ENT 
+	AND LU.DE_CD_LST = 'NoSaleReasonCodes' 
+	AND LU.LCL = :locale
+	WHERE 
+	 (t.dc_dy_bsn BETWEEN :startDate and :endDate)
+	 AND ((:cashierId = 'All' OR :cashierId = 'None')  OR  T.ID_OPR = :cashierId)
+	 AND ((:registerId = 'All' OR :registerId = 'None')  OR  T.ID_WS = :registerId)
+	 AND T.ID_STR_RT = :storeId
+	 ORDER BY t.dc_dy_bsn DESC]]>
+    </sqlStatement>
+  </dataQuery>
+  
+  <dataStructure>
+     <group name="Q1" source="Q1">
+        <element name="Date" value="Date"/>
+        <element name="Cashier" value="Cashier"/>
+        <element name="Register" value="Register"/>
+        <element name="Type" value="Type"/>
+        <element name="ReasonCode" value="ReasonCode"/>
+        <element name="StoreId" value="StoreId"/>
+        <element name="SequenceNumber" value="SequenceNumber"/>
+        <element name="TransactionID" value="STOREID,REGISTER,SEQUENCENUMBER,DATE" function="TO_TRANSACTION_ID"/>
+     </group>
+  </dataStructure>  
+  
+</dataTemplate>

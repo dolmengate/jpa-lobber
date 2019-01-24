@@ -1,0 +1,81 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<xliff version="1.0">
+   <file source-language="EN" target-language="ru-RU" datatype="XDO" original="orphan.xlf" product-version="orphan.xlf" product-name="">
+      <header/>
+      <body>
+         <trans-unit id="d8deaeb9">
+            <source>Template Table 1</source>
+            <target>Таблица шаблона 1</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="b4ed5512" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">Start Date: </source>
+            <target xml:space="preserve">Дата начала: </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ed49b037" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Run Date:</source>
+            <target>Дата выполнения:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3786ce79" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">End Date: </source>
+            <target xml:space="preserve">Дата окончания: </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="aa3c26aa" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Store Name</source>
+            <target>Название магазина</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="85ea667" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>Number of Transactions</source>
+            <target>Число транзакций</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="8459ea9d" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Number of Units</source>
+            <target>Число единиц</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="511fef67" maxbytes="4000" maxwidth="44" size-unit="char" translate="yes">
+            <source>Average Units Per Transaction</source>
+            <target>Среднее число единиц на транзакцию</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="f8ca891b" maxbytes="4000" maxwidth="29" size-unit="char" translate="yes">
+            <source>Average Transaction</source>
+            <target>Средн. транз.</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="deb26cf0" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total Sales</source>
+            <target>Итого продаж</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ce302427" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total Returns</source>
+            <target>Итого возвратов</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="2f514070" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source>Sales Less Returns</source>
+            <target>Продажи минус возвраты</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="4d3eb24" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total</source>
+            <target>Итого</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b8059df2" maxbytes="4000" maxwidth="26" size-unit="char" translate="yes">
+            <source>No Data Available</source>
+            <target>Нет данных</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+      </body>
+   </file>
+</xliff>

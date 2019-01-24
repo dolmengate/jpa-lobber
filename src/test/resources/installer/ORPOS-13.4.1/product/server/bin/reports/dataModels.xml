@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+/* ===========================================================================
+* Copyright (c) 2009, 2011, Oracle and/or its affiliates. All rights reserved. 
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/dataModels.xml /rgbustores_13.4x_generic_branch/1 2011/05/06 14:15:23 mszekely Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    ohorne    04/12/10 - replaced data templates for cashier and register O/S
+ *                         reports with a single data template
+ *    sgu       03/11/10 - change flash sale adhoc report to use
+ *                         flashsalesdetail data template
+ *    ohorne    03/10/10 - flashsales no longer uses posDept
+ *    abondala  01/02/10 - Update Header date
+ *    ohorne    08/12/09 - created document
+ *
+ * ===========================================================================
+ */
+--><DataModels>
+    <!-- Sales -->
+    <DataModel name="FlashSales" type="DataTemplate" document="sales/BO_FlashSalesReport_DataTemplate_PreDefined.xml"/>
+    <DataModel name="MerchandizeFlashSales" type="DataTemplate" document="sales/BO_FlashSalesDetail_DataTemplate.xml"/>
+    <DataModel name="SalesSummaryByRegister" type="DataTemplate" document="sales/BO_SalesSummaryByRegister_DataTemplate.xml"/>
+    <DataModel name="HourlyProductivity" type="DataTemplate" document="sales/BO_HourlyProductivity_DataTemplate_PreDefined.xml"/>
+    <!-- Sales Adhoc -->
+    <DataModel name="FlashSalesAdhoc" type="DataTemplate" document="sales/BO_FlashSalesDetail_DataTemplate.xml"/>
+    <DataModel name="HourlyProductivityAdhoc" type="DataTemplate" document="sales/BO_HourlyProductivity_DataTemplate_Adhoc.xml"/>
+
+    <!-- Financial -->
+    <DataModel name="OverAndShortByCashier" type="DataTemplate" document="financial/BO_OverAndShortReport_DataTemplate.xml"/>
+    <DataModel name="OverAndShortByRegister" type="DataTemplate" document="financial/BO_OverAndShortReport_DataTemplate.xml"/>
+    <DataModel name="BankDepositSummary" type="DataTemplate" document="financial/BO_BankDepositSummaryReport_DataTemplate.xml"/>
+    <DataModel name="TillStatus" type="DataTemplate" document="financial/BO_TillStatusReport_DataTemplate.xml"/>
+
+    <!-- Transaction Exceptions -->
+    <DataModel name="TrnExp_SuspendedTransactions" type="DataTemplate" document="transactionexceptions/BO_SuspendedTransactionsReport_DataTemplate.xml"/>
+    <DataModel name="NoSalesTransactions" type="DataTemplate" document="transactionexceptions/BO_NoSalesTransactionsReport_DataTemplate.xml"/>
+    <DataModel name="CancelledAndPostVoidedTransactions" type="DataTemplate" document="transactionexceptions/BO_CancelledAndPostVoidedTransactionsReport_DataTemplate.xml"/>
+
+    <!-- StoreOps -->
+    <DataModel name="BankDepositDetail" type="DataTemplate" document="storeops/StoreOps_BankDepositReport_DataTemplate.xml"/>
+    <DataModel name="TillFloatSummary" type="DataTemplate" document="storeops/StoreOps_TillFloatSummary_DataTemplate.xml"/>
+    <DataModel name="TillFloatDetail" type="DataTemplate" document="storeops/StoreOps_TillFloatCountDetail_DataTemplate.xml"/>
+    <DataModel name="TillCountSummary" type="DataTemplate" document="storeops/StoreOps_TillCountSummary_DataTemplate.xml"/>
+    <DataModel name="TillCountDetail" type="DataTemplate" document="storeops/StoreOps_TillCountDetail_DataTemplate.xml"/>
+    <DataModel name="ArgSummary" type="DataTemplate" document="storeops/StoreOps_ArgSummary_DataTemplate.xml"/>
+    <DataModel name="SuspendedTransactions" type="DataTemplate" document="storeops/StoreOps_SuspendedTransactions_DataTemplate.xml"/>
+
+    <!-- Time maintenance -->
+    <DataModel name="SummaryEmployeeTime" type="DataTemplate" document="timemaintenance/TM_SummaryEmployeeTimeReport_DataTemplate.xml"/>
+    <DataModel name="DetailEmployeeTime" type="DataTemplate" document="timemaintenance/TM_DetailEmployeeTimeReport_DataTemplate.xml"/>
+    <DataModel name="EmployeeTime" type="DataTemplate" document="timemaintenance/TM_EmployeeTimeReport_DataTemplate.xml"/>
+</DataModels>

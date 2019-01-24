@@ -1,0 +1,133 @@
+<!--
+/* ===========================================================================
+* Copyright (c) 2009, 2013, Oracle and/or its affiliates. All rights reserved.
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/timemaintenance/TM_EmployeeTimeReport_DataTemplate.xml /main/13 2013/06/10 14:20:06 abondala Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    ohorne    08/31/12 - corrected case of version attr
+ *    mkutiana  10/04/11 - externalized the timeType codes
+ *    abondala  01/02/10 - Update Header date
+ *    abondala  12/16/09 - Added ADE Header
+ *
+ * ===========================================================================
+ */
+-->
+<dataTemplate name="DetailEmployeeTimeReport" version="1.0">
+	<properties>
+		<property name="xml_tag_case" value="as_are" />
+	</properties>
+	<parameters>
+  		<parameter name="runDateTime" dataType="character" />
+  		<parameter name="startDate" dataType="character"/>
+  		<parameter name="endDate" dataType="character"/>
+  		<parameter name="employeeID" dataType="character"/>
+  		<parameter name="storeId" dataType="character"/>
+  		<parameter name="reportTitle" dataType="character"/>
+  		<parameter name="locale" dataType="character"/>
+	</parameters>
+	<dataQuery>
+  		<sqlStatement name="Q1">
+   			<![CDATA[SELECT
+				PA_EM.ID_EM EmpID,
+				PA_EM.NM_EM EmployeeName,
+				case
+				when TS_EM_TM_IN is not null
+				then SUBSTR(TO_CHAR(TS_EM_TM_IN, 'YYYY-MM-DD HH24:MI:SS'), 1, 10)
+				else SUBSTR(TO_CHAR(TS_EM_TM_IN, 'YYYY-MM-DD HH24:MI:SS'), 1, 10)
+				end DateIn,
+                ID_LU_CD_I8.DE_CD_ENT TimeType,
+				TS_EM_TM_IN_STR TimeIn,
+        		TS_EM_TM_OUT_STR TimeOut,
+        		case when (ty_tm = '0'  AND (TS_EM_TM_IN_STR is null or TS_EM_TM_OUT_STR is null)) then 1 else 0 end MissingRegPunches,
+        		case when (ty_tm != '0'  AND (TS_EM_TM_IN_STR is null or TS_EM_TM_OUT_STR is null)) then 1 else 0 end MissingOtherPunches,
+				FL_MOD ModifiedFlag,
+        		case when (ty_tm != '0' AND (TS_EM_TM_IN_STR is null OR TS_EM_TM_OUT_STR is null) AND HRS_STR is null) then 0  else HRS_STR end regHours,
+        		case when ( ty_tm = '0'  AND(TS_EM_TM_IN_STR is null OR TS_EM_TM_OUT_STR is null) AND  OTHER_HRS_STR is null) then 0 else OTHER_HRS_STR end otherHours,
+				HRS_STR + OTHER_HRS_STR  totalHours
+				FROM CO_CONF_EM_TM_ENR, PA_EM, ID_LU_CD_I8
+				WHERE PA_EM.ID_EM = CO_CONF_EM_TM_ENR.ID_EM
+				AND PA_EM.ID_EM IN (SELECT ID_EM FROM PA_EM WHERE SC_EM='1' AND ID_EM IN (&employeeID))
+				AND FL_DEL = '0'
+				AND CO_CONF_EM_TM_ENR.ID_STR_RT = :storeId
+				AND ((SUBSTR(TO_CHAR(TS_EM_TM_IN, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) BETWEEN SUBSTR(:startDate,1,10) AND SUBSTR(:endDate,1,10)) OR (SUBSTR(TO_CHAR(TS_EM_TM_OUT, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) BETWEEN SUBSTR(:startDate,1,10) AND SUBSTR(:endDate,1,10)))
+                AND ID_LU_CD_I8.LCL = :locale 
+                AND ID_LU_CD_I8.DE_CD_LST = 'TimeTypeCodes'
+                AND CO_CONF_EM_TM_ENR.TY_TM = ID_LU_CD_I8.LU_CD_ENT
+				ORDER BY PA_EM.ID_EM, TS_EM_TM_IN
+			]]>
+  		</sqlStatement>
+		<sqlStatement name="Q2">
+	   		<![CDATA[SELECT
+				ID_STR_RT,
+                sum(case when ty_tm='1' then (case when OTHER_HRS_STR is null then 0 else OTHER_HRS_STR end) else 0 end) SICK_HRS,
+                sum(case when ty_tm='1' and (TS_EM_TM_IN_STR is null or TS_EM_TM_OUT_STR is null) then 1 else 0 end) MISSING_SICK_PUNCHES,
+                sum(case when ty_tm='2' then (case when OTHER_HRS_STR is null then 0 else OTHER_HRS_STR end) else 0 end) VACATION_HRS,
+                sum(case when ty_tm='2' and (TS_EM_TM_IN_STR is null or TS_EM_TM_OUT_STR is null) then 1 else 0 end) MISSING_VACATION_PUNCHES,
+                sum(case when ty_tm='3' then (case when OTHER_HRS_STR is null then 0 else OTHER_HRS_STR end) else 0 end) COMPDAY_HRS,
+                sum(case when ty_tm='3' and (TS_EM_TM_IN_STR is null or TS_EM_TM_OUT_STR is null) then 1 else 0 end) MISSING_COMPDAY_PUNCHES,
+                sum(case when ty_tm='4' then (case when OTHER_HRS_STR is null then 0 else OTHER_HRS_STR end) else 0 end) JURY_HRS,
+                sum(case when ty_tm='4' and (TS_EM_TM_IN_STR is null or TS_EM_TM_OUT_STR is null) then 1 else 0 end) MISSING_JURY_PUNCHES,
+                sum(case when ty_tm='5' then (case when OTHER_HRS_STR is null then 0 else OTHER_HRS_STR end) else 0 end) PERSONAL_HRS,
+                sum(case when ty_tm='5' and (TS_EM_TM_IN_STR is null or TS_EM_TM_OUT_STR is null) then 1 else 0 end) MISSING_PERSONAL_PUNCHES,
+                sum(case when ty_tm='6' then (case when OTHER_HRS_STR is null then 0 else OTHER_HRS_STR end) else 0 end) FUNERAL_HRS,
+                sum(case when ty_tm='6' and (TS_EM_TM_IN_STR is null or TS_EM_TM_OUT_STR is null) then 1 else 0 end) MISSING_FUNERAL_PUNCHES
+				FROM CO_CONF_EM_TM_ENR
+				WHERE FL_DEL = '0'
+				AND CO_CONF_EM_TM_ENR.ID_STR_RT = :storeId
+                AND ((SUBSTR(TO_CHAR(TS_EM_TM_IN, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) BETWEEN SUBSTR(:startDate,1,10) AND SUBSTR(:endDate,1,10)) OR (SUBSTR(TO_CHAR(TS_EM_TM_OUT, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) BETWEEN SUBSTR(:startDate,1,10) AND SUBSTR(:endDate,1,10)))
+				AND ID_EM IN (SELECT ID_EM FROM PA_EM WHERE SC_EM='1' AND ID_EM IN (&employeeID))
+				GROUP BY ID_STR_RT
+			]]>
+		</sqlStatement>
+  		<sqlStatement name="Q3">
+   			<![CDATA[SELECT id_str_rt stId, nm_loc stName FROM pa_str_rtl_i8 WHERE id_str_rt = :storeId AND lcl = :locale]]>
+   		</sqlStatement>
+ 	</dataQuery>
+ 	<dataStructure>
+ 		<group name="STORE_INFO" source="Q3">
+     		<element name="STORE_ID" value="stId"/>
+     		<element name="STORE_NAME" value="stName"/>
+		</group>
+ 		<group name="G_EMPLOYEE" source="Q1">
+	 		<element name="EMPLOYEE_ID" value="EmpID"/>
+			<element name="EMPLOYEE_NAME" value="EmployeeName"/>
+			<element name="TOT_MISSING_REG" value="MISSING_REG_TIME" function="SUM"/>
+			<element name="TOT_MISSING_OTHER" value="MISSING_OTHER_TIME" function="SUM"/>
+			<element name="EMP_REG_TOTAL" value="regHours" function="SUM"/>
+		  	<element name="EMP_OTHER_TOTAL" value="otherHours" function="SUM"/>
+		  	<element name="EMP_TOTAL" value="totalHours" function="SUM"/>
+     		<group name="G_TIME_IN" source="Q1">
+      			<element name="DATE_IN" value="DateIn"/>
+  				<group name="G_TIME_TYPE" source="Q1">
+        			<element name="TIME_TYPE" value="TimeType"/>
+			        <element name="TIME_IN" value="TimeIn"/>
+			        <element name="TIME_OUT" value="TimeOut"/>
+			        <element name="MISSING_REG_TIME" value="MissingRegPunches"/>
+			        <element name="MISSING_OTHER_TIME" value="MissingOtherPunches"/>
+			        <element name="MODIFIED_FLAG" value="ModifiedFlag"/>
+			        <element name="REG_HOURS" value="regHours"/>
+			        <element name="OTHER_HOURS" value="otherHours"/>
+			        <element name="TOTAL_HOURS" value="totalHours"/>
+  				</group>
+	     	</group>
+		</group>
+  		<group name="G_TOTALS" source="Q2">
+   			<element name="TOT_SICK_HRS" value="SICK_HRS"/>
+   			<element name="TOT_MISS_SICK" value="MISSING_SICK_PUNCHES"/>
+   			<element name="TOT_VACATION_HRS" value="VACATION_HRS"/>
+   			<element name="TOT_MISS_VAC" value="MISSING_VACATION_PUNCHES"/>
+   			<element name="TOT_COMPDAY_HRS" value="COMPDAY_HRS"/>
+   			<element name="TOT_MISS_COMPDAY" value="MISSING_COMPDAY_PUNCHES"/>
+   			<element name="TOT_JURY_HRS" value="JURY_HRS"/>
+   			<element name="TOT_MISS_JURY" value="MISSING_JURY_PUNCHES"/>
+   			<element name="TOT_PERSONAL_HRS" value="PERSONAL_HRS"/>
+   			<element name="TOT_MISS_PERSONAL" value="MISSING_PERSONAL_PUNCHES"/>
+   			<element name="TOT_FUNERAL_HRS" value="FUNERAL_HRS"/>
+   			<element name="TOT_MISS_FUNERAL" value="MISSING_FUNERAL_PUNCHES"/>
+  		</group>
+	</dataStructure>
+</dataTemplate>

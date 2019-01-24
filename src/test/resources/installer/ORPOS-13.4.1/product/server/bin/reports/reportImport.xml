@@ -1,0 +1,132 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!--
+/* ===========================================================================
+* Copyright (c) 2008, 2011, Oracle and/or its affiliates. All rights reserved. 
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/reportImport.xml /rgbustores_13.4x_generic_branch/1 2011/05/06 14:15:23 mszekely Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    ohorne    08/04/10 - installer now uncomments selected languages
+ *    ohorne    08/03/10 - enhanced for new languages
+ *    abondala  01/02/10 - Update Header date
+ *    ohorne    08/12/09 - added BO Report support for xliff
+ *    kulu      02/05/09 - Use forward slash as path delimiter
+ *    kulu      02/04/09 - Merge
+ *    kulu      02/04/09 - Separate report import xml files
+ *    kulu      02/02/09 - For review
+ *    sgu       02/02/09 - translate ru bundle
+ *    sgu       01/26/09 - translate report
+ *    sgu       01/26/09 - translate reports
+ *    sgu       01/20/09 - translate bundles
+ *    sgu       11/11/08 - check in xmlp report config for different locales
+ *    cgreene   10/27/08 - update header to Oracle ade
+ *
+ * ===========================================================================
+ */
+-->
+<!DOCTYPE ReportImport [
+   <!ENTITY dataModels SYSTEM "reports/dataModels.xml">
+   <!ENTITY layouts SYSTEM "reports/layouts.xml">
+   <!ENTITY reports SYSTEM "reports/reports.xml">
+   <!ENTITY uiparameters SYSTEM "reports/uiparameters.xml">
+   <!ENTITY reportImportI18N_de SYSTEM "reports/locales/de/reportImportI8.xml">
+   <!ENTITY reportImportI18N_el SYSTEM "reports/locales/el/reportImportI8.xml">
+   <!ENTITY reportImportI18N_en SYSTEM "reports/locales/en/reportImportI8.xml">
+   <!ENTITY reportImportI18N_es SYSTEM "reports/locales/es/reportImportI8.xml">
+   <!ENTITY reportImportI18N_fr SYSTEM "reports/locales/fr/reportImportI8.xml">
+   <!ENTITY reportImportI18N_hr SYSTEM "reports/locales/hr/reportImportI8.xml">
+   <!ENTITY reportImportI18N_hu SYSTEM "reports/locales/hu/reportImportI8.xml">
+   <!ENTITY reportImportI18N_it SYSTEM "reports/locales/it/reportImportI8.xml">
+   <!ENTITY reportImportI18N_ja SYSTEM "reports/locales/ja/reportImportI8.xml">
+   <!ENTITY reportImportI18N_ko SYSTEM "reports/locales/ko/reportImportI8.xml">
+   <!ENTITY reportImportI18N_nl SYSTEM "reports/locales/nl/reportImportI8.xml">
+   <!ENTITY reportImportI18N_pl SYSTEM "reports/locales/pl/reportImportI8.xml">
+   <!ENTITY reportImportI18N_pt SYSTEM "reports/locales/pt/reportImportI8.xml">
+   <!ENTITY reportImportI18N_ru SYSTEM "reports/locales/ru/reportImportI8.xml">
+   <!ENTITY reportImportI18N_sv SYSTEM "reports/locales/sv/reportImportI8.xml">
+   <!ENTITY reportImportI18N_tr SYSTEM "reports/locales/tr/reportImportI8.xml">
+   <!ENTITY reportImportI18N_zh SYSTEM "reports/locales/zh/reportImportI8.xml">
+   <!ENTITY reportImportI18N_zh_TW SYSTEM "reports/locales/zh_TW/reportImportI8.xml">
+   ]>
+<ReportImport>
+ &dataModels;
+ &layouts;
+ &reports;
+ &uiparameters;
+ 
+ <!-- de Begin
+ &reportImportI18N_de;
+ de End -->
+ 
+ <!-- el Begin
+ &reportImportI18N_el;
+ el End -->
+ 
+ <!-- en Begin -->
+ &reportImportI18N_en;
+<!-- en End -->
+ 
+ <!-- es Begin
+ &reportImportI18N_es;
+ es End -->
+ 
+ <!-- fr Begin
+ &reportImportI18N_fr;
+ fr End -->
+ 
+ <!-- hr Begin
+ &reportImportI18N_hr;
+ hr End -->
+ 
+ <!-- hu Begin
+ &reportImportI18N_hu;
+ hu End -->
+ 
+ <!-- it Begin
+ &reportImportI18N_it;
+ it End -->
+ 
+ <!-- ja Begin
+ &reportImportI18N_ja;
+ ja End -->
+ 
+ <!-- ko Begin
+ &reportImportI18N_ko;
+ ko End -->
+ 
+ <!-- nl Begin
+ &reportImportI18N_nl;
+ nl End -->
+ 
+ <!-- pl Begin
+ &reportImportI18N_pl;
+ pl End -->
+ 
+ <!-- pt Begin
+ &reportImportI18N_pt;
+ pt End -->
+ 
+ <!-- ru Begin
+ &reportImportI18N_ru;
+ ru End -->
+ 
+ <!-- sv Begin
+ &reportImportI18N_sv;
+ sv End -->
+ 
+ <!-- tr Begin
+ &reportImportI18N_tr;
+ tr End -->
+ 
+ <!-- zh Begin
+ &reportImportI18N_zh;
+ zh End -->
+ 
+ <!-- zh_TW Begin
+ &reportImportI18N_zh_TW;
+ zh_TW End -->
+ 
+</ReportImport>

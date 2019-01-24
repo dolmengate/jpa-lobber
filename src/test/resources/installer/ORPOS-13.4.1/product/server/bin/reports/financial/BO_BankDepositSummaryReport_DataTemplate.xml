@@ -1,0 +1,70 @@
+<!--
+/* ===========================================================================
+* Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved.
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/financial/BO_BankDepositSummaryReport_DataTemplate.xml /main/20 2013/05/03 09:50:06 subrdey Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    subrdey   05/02/13 - Removed CD_CNY_ISO, as its deleted from TR_TRN
+ *    rabhawsa  03/12/13 - creation time will have time and order by clause
+ *                         will have both date and time field.
+ *    subrdey   12/13/12 - Added new fields Bank Name and Bank Deposit Number
+ *    ohorne    08/31/12 - corrected case of version attr
+ *    abhinavs  05/16/12 - Bank Deposit
+ *    yiqzhao   09/27/11 - Fix date format issue for DB2
+ *    npoola    03/09/10 - Added the new field CurrencyCode to display the
+ *                         Alternate Currency code instead of Country code
+ *    abondala  01/02/10 - Update Header date
+ *    acadar    06/09/09 - unittest fixes
+ *    acadar    06/05/09 - changes for bank deposit report - save tender
+ *                         description even when for summary counts
+ *    ohorne    11/11/08 - Library upgrade: XMLP 5.6.2 to BIP 10.1.3.4
+ *    cgreene   10/27/08 - update header to Oracle ade
+ *
+ * ===========================================================================
+ */
+-->
+<dataTemplate name="bankDepositSummary" version="1.0">
+ <properties>
+   <property name="xml_tag_case" value="as_are" />
+ </properties>
+ <parameters>
+  <parameter name="runDateTime" dataType="character" />
+  <parameter name="reportTitle" dataType="character" defaultValue="Daily Bank Deposit Report"/>
+  <parameter name="adhoc" dataType="character" defaultValue="false"/>
+  <parameter name="startDate" dataType="character" defaultValue="1999-01-01"/>
+  <parameter name="endDate" dataType="character" defaultValue="2007-01-01"/>
+  <parameter name="storeId" dataType="character" defaultValue="04241"/>
+ </parameters>
+ <dataQuery>
+  <sqlStatement name="Q1">
+   <![CDATA[SELECT
+      to_char(tr.ts_trn_end,'HH:MI AM') CreationTime,
+      tr.ts_trn_end CreationDateTime,
+      tr.dc_dy_bsn CreationDate,
+      nm_em Cashier,      
+      mo_md_tnd_in DepositAmount,
+      ty_tnd tenderType,
+      nm_bk BankName,
+      nmb_bk_ds BankDepositNumber
+    FROM
+      co_cny cny, tr_trn tr
+        JOIN le_ltm_md_tnd tmli ON (tr.id_str_rt = tmli.id_str_rt AND
+          tr.id_ws = tmli.id_ws AND
+          tr.dc_dy_bsn = tmli.dc_dy_bsn AND
+          tr.ai_trn = tmli.ai_trn)
+        JOIN pa_em em ON (tr.id_em = em.id_em)
+    WHERE
+      tr.id_str_rt = :storeId
+      AND tr.ty_trn = '27'
+      AND tr.fl_trg_trn = '0'
+      AND tr.sc_trn = 2 
+      AND tmli.cd_cny_tnd = cny.lu_cny_issg_cy       
+      AND(tr.dc_dy_bsn BETWEEN SUBSTR(:startDate, 1,10) AND SUBSTR(:endDate,1,10))
+    ORDER BY CreationDateTime DESC]]>
+  </sqlStatement>
+ </dataQuery>
+</dataTemplate>

@@ -1,0 +1,91 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<xliff version="1.0">
+   <file source-language="EN" target-language="ja-JP" datatype="XDO" original="orphan.xlf" product-version="orphan.xlf" product-name="">
+      <header/>
+      <body>
+         <trans-unit id="d8deaeb9">
+            <source>Template Table 1</source>
+            <target>テンプレート表1</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="189488c3" maxbytes="4000" maxwidth="75" size-unit="char" translate="yes">
+            <source>Flash Sales Merchandise Hierarchy Drilldown Report</source>
+            <target>売上概要商品階層ドリルダウン・レポート</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b4ed5512" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">Start Date: </source>
+            <target xml:space="preserve">開始日: </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ed49b037" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Run Date:</source>
+            <target>実行日:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3786ce79" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">End Date: </source>
+            <target xml:space="preserve">終了日: </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="94390f99" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Store:</source>
+            <target>店舗:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="60cf61d8" maxbytes="4000" maxwidth="32" size-unit="char" translate="yes">
+            <source>Merchandise Hierarchy</source>
+            <target>商品階層</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="85ea667" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>Number of Transactions</source>
+            <target>トランザクション数</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="8459ea9d" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Number of Units</source>
+            <target>ユニット数</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="511fef67" maxbytes="4000" maxwidth="44" size-unit="char" translate="yes">
+            <source>Average Units Per Transaction</source>
+            <target>トランザクション当たりの平均ユニット</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="f8ca891b" maxbytes="4000" maxwidth="29" size-unit="char" translate="yes">
+            <source>Average Transaction</source>
+            <target>平均トランザクション</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="deb26cf0" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total Sales</source>
+            <target>売上合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ce302427" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total Returns</source>
+            <target>返品合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="2f514070" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source>Sales Less Returns</source>
+            <target>返品差引後の売上</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="4d3eb24" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b8059df2" maxbytes="4000" maxwidth="26" size-unit="char" translate="yes">
+            <source>No Data Available</source>
+            <target>データがありません</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+      </body>
+   </file>
+</xliff>

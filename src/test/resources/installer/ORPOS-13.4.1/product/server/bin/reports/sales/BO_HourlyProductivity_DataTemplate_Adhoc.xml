@@ -1,0 +1,207 @@
+<!--
+/* ===========================================================================
+* Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved. 
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/sales/BO_HourlyProductivity_DataTemplate_Adhoc.xml /main/18 2013/08/13 15:29:29 rgour Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    rgour     08/08/13 - Fixing the report issue , which was adding the total
+ *                         sale and total return as return is in -ve
+ *    abhinavs  12/31/12 - Code merge with sustaining team fix to display the
+ *                         hourly productivity adhoc report
+ *    abhinavs  10/01/12 - BI Upgrade from 10.1.3.4 to 11.1.1.6
+ *    ohorne    08/31/12 - corrected case of version attr
+ *    sgu       02/25/10 - fixed the time interval
+ *    abondala  01/02/10 - Update Header date
+ *    ohorne    06/16/09 - rewrote report to fix bugs and improve
+ *                         maintainability
+ *    ohorne    11/12/08 - Library upgrade: XMLP 5.6.2 to BIP 10.1.3.4
+ *    cgreene   10/27/08 - update header to Oracle ade
+ *
+ * ===========================================================================
+ */
+-->
+<dataTemplate name="HourlyProductivityReport" version="1.0">
+	<properties>
+		<property name="xml_tag_case" value="as_are"/>
+	</properties>
+	<parameters>
+		<parameter name="runDateTime" dataType="character"/>
+		<parameter name="storeId" dataType="character"/>
+		<parameter name="registerId" dataType="character" defaultValue="All"/>
+		<parameter name="startDate" dataType="character"/>
+		<parameter name="startTimeIndex" dataType="character" defaultValue="0"/>
+		<parameter name="endDate" dataType="character"/>
+		<parameter name="endTimeIndex" dataType="character" defaultValue="96"/>
+		<parameter name="employeeId" dataType="character" defaultValue="All"/>
+		<parameter name="timeIncrement" dataType="integer" defaultValue="4"/>
+		<parameter name="adhoc" dataType="character" defaultValue="true"/>
+		<parameter name="showTime" dataType="character" defaultValue="true"/>
+		<parameter name="startTimeStr" dataType="character" defaultValue="12:00 AM"/>
+		<parameter name="endTimeStr" dataType="character" defaultValue="11:59 PM"/>
+		<parameter name="reportTitle" dataType="character" defaultValue="Hourly Productivity"/>
+		<parameter name="locale" dataType="character"/>
+	</parameters>
+	<dataQuery>
+		<sqlStatement name="Q1"><![CDATA[SELECT id_str_rt, nm_loc FROM pa_str_rtl_i8 WHERE id_str_rt = :storeId AND lcl = :locale]]></sqlStatement>
+
+		<sqlStatement name="Q2"><![CDATA[SELECT id_em, nm_em FROM pa_em WHERE id_em = :employeeId]]></sqlStatement>
+
+        <sqlStatement name="Q3"><![CDATA[SELECT ai_prd_tm,
+                                              TO_CHAR( MAX(TO_DATE(TM_SRT_PRD_RP_TM, 'hh24:mi')), 'HH24:MI')    STime,
+                                              TO_CHAR( MAX(TO_DATE(TM_END_PRD_RP_TM, 'hh24:mi')), 'HH24:MI') ETime
+                                            FROM CA_PRD_RP_TM
+                                            WHERE ID_INCR_TM = :timeIncrement
+                                            GROUP BY ai_prd_tm
+                                            ORDER BY ai_prd_tm]]></sqlStatement>
+
+		<sqlStatement name="Q4"><![CDATA[SELECT id_prd_tm as TimeID, ai_prd_tm
+                     FROM CA_PRD_RP_TM
+                     WHERE ID_INCR_TM = :timeIncrement
+                     ORDER BY TimeID]]></sqlStatement>
+
+		<sqlStatement name="Q5_QTR"><![CDATA[SELECT MIN(ID_PRD_TM)                   AS TimeID,
+                      SUM(SY.QU_ACV_SLS_TRN)                                         AS NbrTrans,
+                      SUM(SY.QU_ACV_SLS_ITM)                                         AS NbrUnits,
+                      SUM(SY.MO_ACV_SLS_TOT)                                         AS SalesTot,
+                      ABS(SUM(SY.MO_ACV_RTN_TOT))                                        AS ReturnTot,
+                      SUM(SY.MO_ACV_SLS_TOT - ABS(SY.MO_ACV_RTN_TOT) )                    AS NetSales
+                    FROM LE_SMY_EM_WS_TMACV SY
+                    JOIN PA_STR_RTL_I8 S8
+                    ON SY.ID_STR_RT = S8.ID_STR_RT
+                    JOIN CA_PRD_RP_V4 C4
+                    ON SY.ID_PRD_RP = C4.ID_PRD_RP
+                    JOIN CA_CLD_PRD SCAL
+                    ON C4.ID_CLD_PRD_SRT = SCAL.ID_CLD_PRD
+                    AND C4.ID_CLD_LV     = SCAL.ID_CLD_LV
+                    JOIN CA_CLD_PRD ECAL
+                    ON C4.ID_CLD_PRD_END                                              = ECAL.ID_CLD_PRD
+                    AND C4.ID_CLD_LV                                                  = ECAL.ID_CLD_LV
+                    WHERE SY.ID_STR_RT                                                = :storeId
+                    AND S8.LCL                                                        = :locale
+                    AND SUBSTR(TO_CHAR(SCAL.TS_SRT, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) >= SUBSTR(:startDate, 1, 10)
+                    AND SUBSTR(TO_CHAR(SCAL.TS_END, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) <= SUBSTR(:endDate, 1, 10)
+                    AND ID_PRD_TM                                           		 >= :startTimeIndex
+                    AND ID_PRD_TM                                           		 <= :endTimeIndex
+                    AND 1                                                             = :timeIncrement
+                    AND ((case when cast(:employeeId as varchar(20)) != 'All' then cast(:employeeId as varchar(20))  else 'doNothing' end) = 'doNothing'
+                    OR  SY.id_em = (case when cast(:employeeId as varchar(20)) != 'All' then cast(:employeeId as varchar(20))  else 'doNothing' end))
+                    AND ((case when :registerId != 'All' then :registerId  else 'doNothing' end) = 'doNothing'
+                    OR  SY.id_ws = (case when :registerId != 'All' AND :registerId != 'None' then :registerId  else 'doNothing' end))
+                    GROUP BY (ROUND((ID_PRD_TM/4),0) + (MOD(ID_PRD_TM,4)*.25))
+                    ORDER BY TimeID]]></sqlStatement>
+
+		<sqlStatement name="Q5_HALF"><![CDATA[SELECT MIN(ID_PRD_TM)                  AS TimeID,
+                      SUM(SY.QU_ACV_SLS_TRN)                                         AS NbrTrans,
+                      SUM(SY.QU_ACV_SLS_ITM)                                         AS NbrUnits,
+                      SUM(SY.MO_ACV_SLS_TOT)                                         AS SalesTot,
+                      ABS(SUM(SY.MO_ACV_RTN_TOT) )                                      AS ReturnTot,
+                      SUM(SY.MO_ACV_SLS_TOT - ABS(SY.MO_ACV_RTN_TOT) )                    AS NetSales
+                    FROM LE_SMY_EM_WS_TMACV SY
+                    JOIN PA_STR_RTL_I8 S8
+                    ON SY.ID_STR_RT = S8.ID_STR_RT
+                    JOIN CA_PRD_RP_V4 C4
+                    ON SY.ID_PRD_RP = C4.ID_PRD_RP
+                    JOIN CA_CLD_PRD SCAL
+                    ON C4.ID_CLD_PRD_SRT = SCAL.ID_CLD_PRD
+                    AND C4.ID_CLD_LV     = SCAL.ID_CLD_LV
+                    JOIN CA_CLD_PRD ECAL
+                    ON C4.ID_CLD_PRD_END                                              = ECAL.ID_CLD_PRD
+                    AND C4.ID_CLD_LV                                                  = ECAL.ID_CLD_LV
+                    WHERE SY.ID_STR_RT                                                = :storeId
+                    AND S8.LCL                                                        = :locale
+                    AND SUBSTR(TO_CHAR(SCAL.TS_SRT, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) >= SUBSTR(:startDate, 1, 10)
+                    AND SUBSTR(TO_CHAR(SCAL.TS_END, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) <= SUBSTR(:endDate, 1, 10)
+                    AND ID_PRD_TM                                           		 >= :startTimeIndex
+                    AND ID_PRD_TM                                           		 <= :endTimeIndex
+                    AND 2                                                             = :timeIncrement
+                    AND ((case when cast(:employeeId as varchar(20)) != 'All' then cast(:employeeId as varchar(20))  else 'doNothing' end) = 'doNothing'
+                    OR  SY.id_em = (case when cast(:employeeId as varchar(20)) != 'All' then cast(:employeeId as varchar(20))  else 'doNothing' end))
+                    AND ((case when :registerId != 'All' then :registerId  else 'doNothing' end) = 'doNothing'
+                    OR  SY.id_ws = (case when :registerId != 'All' AND :registerId != 'None' then :registerId  else 'doNothing' end))
+                    GROUP BY (ROUND(ID_PRD_TM/4,0) + FLOOR((ID_PRD_TM/4)))
+                    ORDER BY TimeID]]></sqlStatement>
+
+		<sqlStatement name="Q5_WHOLE"><![CDATA[SELECT MIN(ID_PRD_TM)                 AS TimeID,
+                      SUM(SY.QU_ACV_SLS_TRN)                                         AS NbrTrans,
+                      SUM(SY.QU_ACV_SLS_ITM)                                         AS NbrUnits,
+                      SUM(SY.MO_ACV_SLS_TOT)                                         AS SalesTot,
+                      ABS(SUM(SY.MO_ACV_RTN_TOT))                                         AS ReturnTot,
+                      SUM(SY.MO_ACV_SLS_TOT - ABS(SY.MO_ACV_RTN_TOT))                     AS NetSales
+                    FROM LE_SMY_EM_WS_TMACV SY
+                    JOIN PA_STR_RTL_I8 S8
+                    ON SY.ID_STR_RT = S8.ID_STR_RT
+                    JOIN CA_PRD_RP_V4 C4
+                    ON SY.ID_PRD_RP = C4.ID_PRD_RP
+                    JOIN CA_CLD_PRD SCAL
+                    ON C4.ID_CLD_PRD_SRT = SCAL.ID_CLD_PRD
+                    AND C4.ID_CLD_LV     = SCAL.ID_CLD_LV
+                    JOIN CA_CLD_PRD ECAL
+                    ON C4.ID_CLD_PRD_END                                              = ECAL.ID_CLD_PRD
+                    AND C4.ID_CLD_LV                                                  = ECAL.ID_CLD_LV
+                    WHERE SY.ID_STR_RT                                                = :storeId
+                    AND S8.LCL                                                        = :locale
+                    AND SUBSTR(TO_CHAR(SCAL.TS_SRT, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) >= SUBSTR(:startDate, 1, 10)
+                    AND SUBSTR(TO_CHAR(SCAL.TS_END, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) <= SUBSTR(:endDate, 1, 10)
+                    AND ID_PRD_TM                                           		 >= :startTimeIndex
+                    AND ID_PRD_TM                                           		 <= :endTimeIndex
+                    AND 4                                                             = :timeIncrement
+                    AND ((case when cast(:employeeId as varchar(20)) != 'All' then cast(:employeeId as varchar(20))  else 'doNothing' end) = 'doNothing'
+                    OR  SY.id_em = (case when cast(:employeeId as varchar(20)) != 'All' then cast(:employeeId as varchar(20))  else 'doNothing' end))
+                    AND ((case when :registerId != 'All' then :registerId  else 'doNothing' end) = 'doNothing'
+                    OR  SY.id_ws = (case when :registerId != 'All' AND :registerId != 'None' then :registerId  else 'doNothing' end))
+                    GROUP BY (FLOOR(ID_PRD_TM/4))
+                    ORDER BY TimeID]]></sqlStatement>
+	</dataQuery>
+	<dataStructure>
+		<group name="STORE_INFO" source="Q1">
+			<element name="STRID" value="id_str_rt"/>
+			<element name="STRLOCATION" value="nm_loc"/>
+		</group>
+		<group name="EMPLOYEE_INFO" source="Q2">
+			<element name="EMPID" value="id_em"/>
+			<element name="EMPNAME" value="nm_em"/>
+		</group>
+		<group name="PERIOD_INFO" source="Q3">
+			<element name="INDEXID" value="ai_prd_tm"/>
+			<element name="STARTTIME" value="STime"/>
+			<element name="ENDTIME" value="ETime"/>
+		</group>
+		<group name="G_DATA" source="Q5_QTR">
+			<element name="TIMEBOUNDARYINDEX" value="TimeID"/>
+			<group name="PERIOD_INDEX" source="Q4">
+				<element name="INDEXID" value="ai_prd_tm"/>
+			</group>
+			<element name="NUMBEROFTRANSACTIONS" value="NbrTrans"/>
+			<element name="TOTALSALES" value="SalesTot"/>
+			<element name="NUMBEROFUNITS" value="NbrUnits"/>
+			<element name="TOTALRETURNS" value="ReturnTot"/>
+			<element name="SALESLESSRETURNS" value="NetSales"/>
+		</group>
+		<group name="G_DATA" source="Q5_HALF">
+			<element name="TIMEBOUNDARYINDEX" value="TimeID"/>
+			<group name="PERIOD_INDEX" source="Q4">
+				<element name="INDEXID" value="ai_prd_tm"/>
+			</group>
+			<element name="NUMBEROFTRANSACTIONS" value="NbrTrans"/>
+			<element name="TOTALSALES" value="SalesTot"/>
+			<element name="NUMBEROFUNITS" value="NbrUnits"/>
+			<element name="TOTALRETURNS" value="ReturnTot"/>
+			<element name="SALESLESSRETURNS" value="NetSales"/>
+		</group>
+		<group name="G_DATA" source="Q5_WHOLE">
+			<element name="TIMEBOUNDARYINDEX" value="TimeID"/>
+			<group name="PERIOD_INDEX" source="Q4">
+				<element name="INDEXID" value="ai_prd_tm"/>
+			</group>
+			<element name="NUMBEROFTRANSACTIONS" value="NbrTrans"/>
+			<element name="TOTALSALES" value="SalesTot"/>
+			<element name="NUMBEROFUNITS" value="NbrUnits"/>
+			<element name="TOTALRETURNS" value="ReturnTot"/>
+			<element name="SALESLESSRETURNS" value="NetSales"/>
+		</group>
+	</dataStructure>
+</dataTemplate>

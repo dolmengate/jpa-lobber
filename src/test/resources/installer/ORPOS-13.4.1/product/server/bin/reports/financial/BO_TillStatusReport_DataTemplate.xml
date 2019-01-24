@@ -1,0 +1,81 @@
+<!--
+/* ===========================================================================
+* Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved.
+ * ===========================================================================
+ * $Header:
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * ===========================================================================
+ */
+-->
+<dataTemplate name="TillStatusReport" version="1.0">
+ <properties>
+  <property name="xml_tag_case" value="as_are"/>
+ </properties>
+ <parameters>
+  <parameter name="runDateTime" dataType="character" defaultValue="2008-12-03"/>
+  <parameter name="startDate" dataType="character" defaultValue="2008-12-03"/>
+  <parameter name="endDate" dataType="character" defaultValue="10/10/2008"/>
+  <parameter name="registerId" dataType="character" defaultValue="All"/>
+  <parameter name="storeId" dataType="character" defaultValue="04241"/>
+  <parameter name="adhoc" dataType="character" defaultValue="false"/>
+  <parameter name="reportTitle" dataType="character"/>
+ </parameters>
+ <dataQuery>
+<sqlStatement name="Q1">
+   <![CDATA[ select TNDHST.ID_RPSTY_TND "TILL_ID",
+  TNDHST.TY_TND "TENDER_TYPE",
+  CNY.CD_CNY_ISO "CURRENCY",
+  TNDHST.ID_CNY_ICD "CURRENCY_ID",
+  (TNDHST.CP_TND_TOT + TNDHST.CP_MD_TND_LON - TNDHST.CP_MD_TND_PKP_TOT - TNDHST.CP_DS_TND_TOT - TNDHST.CP_RFD_TND_TOT + TNDHST.CP_MD_RCVF_IN_TOT - TNDHST.CP_MD_RCVF_OUT_TOT) "TOTAL",
+  CNY.FL_CNY_BASE "BASE_FLAG",
+  case TL.CD_ACT
+     when '-1' then '$transaction.tillstatus.reports.invalid$'
+     when '0' then '$transaction.tillstatus.reports.register$'
+     when '1' then '$transaction.tillstatus.reports.cashier$'
+  end "REG_ACCOUNTABILITY",
+  case TL.SC_TL
+     when -1 then '$transaction.tillstatus.reports.invalid$'
+     when 0 then '$transaction.centej.trandet.tilltransdet.tillstatus.Closed$'
+     when 1 then '$transaction.centej.trandet.tilltransdet.tillstatus.Open$'
+     when 2 then '$transaction.centej.trandet.tilltransdet.tillstatus.Reconciled$'
+     when 3 then '$transaction.centej.trandet.tilltransdet.tillstatus.Suspended$'
+  end "TILL_STATUS",
+  EM.NM_EM "CASHIER",
+  TL.ID_WS "REG_ID",
+  case WS.SC_TML_WS
+     when -1 then '$transaction.tillstatus.reports.invalid$'
+     when 0 then '$transaction.centej.trandet.tilltransdet.tillstatus.Closed$'
+     when 1 then '$transaction.centej.trandet.tilltransdet.tillstatus.Open$'
+     when 2 then '$transaction.centej.trandet.tilltransdet.tillstatus.Reconciled$'
+     when 3 then '$transaction.centej.trandet.tilltransdet.tillstatus.Suspended$'
+  end "REG_STATUS"
+from AS_WS WS
+join AS_TL TL
+    on TL.ID_WS = WS.ID_WS
+    and TL.ID_STR_RT = WS.ID_STR_RT
+    and TL.DC_DY_BSN = WS.DC_DY_BSN
+join LE_HST_TL TLHST
+    on TLHST.ID_STR_RT = TL.ID_STR_RT
+    and TLHST.ID_RPSTY_TND = TL.ID_RPSTY_TND
+    and TLHST.ID_WS = TL.ID_WS
+    and TLHST.DC_DY_BSN = TL.DC_DY_BSN
+join LE_HST_TL_TND TNDHST
+    on TNDHST.ID_STR_RT = TLHST.ID_STR_RT
+    and TNDHST.ID_RPSTY_TND = TLHST.ID_RPSTY_TND
+    and TNDHST.TS_TM_SRT = TLHST.TS_TM_SRT
+join CO_CNY CNY
+    on CNY.ID_CNY_ICD = TNDHST.ID_CNY_ICD
+join PA_EM EM
+    on EM.ID_EM = TL.ID_OPR_ON_SGN
+where TLHST.DC_DY_BSN = :startDate
+  and TNDHST.ID_STR_RT = :storeId
+  and TNDHST.TY_TND = 'CASH' ]]>
+  </sqlStatement>
+
+
+</dataQuery>
+
+</dataTemplate>

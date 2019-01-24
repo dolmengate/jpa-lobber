@@ -1,0 +1,189 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<xliff version="1.0">
+   <file source-language="EN" target-language="el-GR" datatype="XDO" original="orphan.xlf" product-version="orphan.xlf" product-name="">
+      <header/>
+      <body>
+         <trans-unit id="d8deaeba">
+            <source>Template Table 2</source>
+            <target>Πίνακας προτύπων 2</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="d8deaeb9">
+            <source>Template Table 1</source>
+            <target>Πίνακας προτύπων 1</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="9a7b44ce" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Start Date:</source>
+            <target>Ημερομηνία έναρξης:</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="d0a86c71" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">Start Time: </source>
+            <target xml:space="preserve">Ώρα έναρξης: </target>
+            <note>Text located: body/table/table/table header/table header</note>
+         </trans-unit>
+         <trans-unit id="5341e5d8" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">End Time: </source>
+            <target xml:space="preserve">Ώρα λήξης: </target>
+            <note>Text located: body/table/table/table header/table header</note>
+         </trans-unit>
+         <trans-unit id="94390f99" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Store:</source>
+            <target>Κατάστημα:</target>
+            <note>Text located: body/table/table/table header/table header</note>
+         </trans-unit>
+         <trans-unit id="7c1bc5d7" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Register:</source>
+            <target>Ταμειακή μηχανή:</target>
+            <note>Text located: body/table/table/table header/table header</note>
+         </trans-unit>
+         <trans-unit id="10181" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>All</source>
+            <target>Όλα</target>
+            <note>Text located: body/table/table/table header/table header</note>
+         </trans-unit>
+         <trans-unit id="14ac0f2c" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Employee:</source>
+            <target>Υπάλληλος:</target>
+            <note>Text located: body/table/table/table header/table header</note>
+         </trans-unit>
+         <trans-unit id="10181_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>All</source>
+            <target>Όλα</target>
+            <note>Text located: body/table/table/table header/table header</note>
+         </trans-unit>
+         <trans-unit id="1ee9a9de" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Time Increment:</source>
+            <target>Προσαύξηση χρόνου:</target>
+            <note>Text located: body/table/table/table header/table header</note>
+         </trans-unit>
+         <trans-unit id="1310f2c3" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>15 Minutes</source>
+            <target>15 λεπτά</target>
+            <note>Text located: body/table/table/table header/table header</note>
+         </trans-unit>
+         <trans-unit id="164da9fc" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>30 Minutes</source>
+            <target>30 λεπτά</target>
+            <note>Text located: body/table/table/table header/table header</note>
+         </trans-unit>
+         <trans-unit id="f329fd59" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>60 Minutes</source>
+            <target>60 λεπτά</target>
+            <note>Text located: body/table/table/table header/table header</note>
+         </trans-unit>
+         <trans-unit id="ed49b037" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Run Date:</source>
+            <target>Ημερομηνία εκτέλεσης:</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="7da98287" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>End Date:</source>
+            <target>Ημερομηνία λήξης:</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="27c6ed" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Time</source>
+            <target>Ώρα</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="ccf15e47" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>Number Of Transactions</source>
+            <target>Αριθμός συναλλαγών</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="f8ca891b" maxbytes="4000" maxwidth="29" size-unit="char" translate="yes">
+            <source>Average Transaction</source>
+            <target>Μέσος όρος συναλλαγών</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="88344ebd" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Number Of Units</source>
+            <target>Αριθμός μονάδων</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="511fef67" maxbytes="4000" maxwidth="44" size-unit="char" translate="yes">
+            <source>Average Units Per Transaction</source>
+            <target>Μέσος όρος μονάδων ανά συναλλαγή</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="deb26cf0" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total Sales</source>
+            <target>Σύνολο πωλήσεων</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="ce302427" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total Returns</source>
+            <target>Σύνολο επιστροφών</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="2f514070" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source>Sales Less Returns</source>
+            <target>Πωλήσεις μείον επιστροφές</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="597e3afe" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>Percent of Sales</source>
+            <target>Ποσοστό πωλήσεων</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="dfda9d6" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source xml:space="preserve">No Data Available[&amp;0] </source>
+            <target xml:space="preserve">Χωρίς διαθ. δεδομένα [&amp;0] </target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="27c6ed_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Time</source>
+            <target>Ώρα</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="ccf15e47_1" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>Number Of Transactions</source>
+            <target>Αριθμός συναλλαγών</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="f8ca891b_1" maxbytes="4000" maxwidth="29" size-unit="char" translate="yes">
+            <source>Average Transaction</source>
+            <target>Μέσος όρος συναλλαγών</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="88344ebd_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Number Of Units</source>
+            <target>Αριθμός μονάδων</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="511fef67_1" maxbytes="4000" maxwidth="44" size-unit="char" translate="yes">
+            <source>Average Units Per Transaction</source>
+            <target>Μέσος όρος μονάδων ανά συναλλαγή</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="deb26cf0_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total Sales</source>
+            <target>Σύνολο πωλήσεων</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="ce302427_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total Returns</source>
+            <target>Σύνολο επιστροφών</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="2f514070_1" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source>Sales Less Returns</source>
+            <target>Πωλήσεις μείον επιστροφές</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="597e3afe_1" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>Percent of Sales</source>
+            <target>Ποσοστό πωλήσεων</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+      </body>
+   </file>
+</xliff>

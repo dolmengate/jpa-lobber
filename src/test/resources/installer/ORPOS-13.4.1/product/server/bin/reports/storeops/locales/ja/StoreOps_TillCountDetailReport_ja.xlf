@@ -1,0 +1,706 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<xliff version="1.0">
+   <file source-language="EN" target-language="ja-JP" datatype="XDO" original="orphan.xlf" product-version="orphan.xlf" product-name="">
+      <header/>
+      <body>
+         <trans-unit id="d8deaeb9">
+            <source>Template Table 1</source>
+            <target>テンプレート表1</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="27c3989e" maxbytes="4000" maxwidth="41" size-unit="char" translate="yes">
+            <source>Reconcile Till Count Report</source>
+            <target>現金箱の一致確認カウント・レポート</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="83144655" maxbytes="4000" maxwidth="62" size-unit="char" translate="yes">
+            <source>Store [&amp;1:STORENUMBER]/Register #[&amp;2:_REGISTERNUMBER]</source>
+            <target>店舗[&amp;1:STORENUMBER]/レジスタ番号[&amp;2:_REGISTERNUMBER]</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL3N0b3JlTnVtYmVyIiB4ZG9mbzpmaWVs
+ZC1uYW1lPSJzdG9yZU51bWJlciIvPg==</prop>
+               <prop prop-type="e2">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL3JlZ2lzdGVyTnVtYmVyIiB4ZG9mbzpm
+aWVsZC1uYW1lPSJyZWdpc3Rlck51bWJlciIvPg==</prop>
+            </prop-group>
+            <note>Text located: body/table/table header, token &amp;1 ,&amp;2:storeNumber, registerNumber</note>
+         </trans-unit>
+         <trans-unit id="e33ec328" maxbytes="4000" maxwidth="40" size-unit="char" translate="yes">
+            <source>Cashier:[&amp;0] [&amp;1:USERNAME]</source>
+            <target>キャッシャ:[&amp;0] [&amp;1:USERNAME]</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL2Nhc2hpZXJOYW1lIiB4ZG9mbzpmaWVs
+ZC1uYW1lPSJjYXNoaWVyTmFtZSIvPg==</prop>
+            </prop-group>
+            <note>Text located: body/table/table header, token &amp;1:userName</note>
+         </trans-unit>
+         <trans-unit id="9c7cd2d3" maxbytes="4000" maxwidth="43" size-unit="char" translate="yes">
+            <source>Business Date:[&amp;0] [&amp;1:     ]</source>
+            <target>営業日:[&amp;0] [&amp;1:     ]</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YXJpYWJsZSB4ZG9mbzpjdHg9IjE3IiB4ZG9mbzpjdHgyPSJ3cmFwcGVy
+IiBuYW1lPSJmdjMiPjx4c2w6dmFsdWUtb2Ygc2VsZWN0PSIuLy9zdGFydGluZ0Rh
+dGUiIHhkb2ZvOmZpZWxkLW5hbWU9InN0YXJ0aW5nRGF0ZSIvPjwveHNsOnZhcmlh
+YmxlPjx4c2w6dmFsdWUtb2Ygc2VsZWN0PSJ4ZG94c2x0Om1zX2Zvcm1hdF9kYXRl
+KCRfWERPWFNMVENUWCwgc3RyaW5nKCRmdjMpLCAnTU0vZGQveXl5eScpIi8+</prop>
+            </prop-group>
+            <note>Text located: body/table/table header, token &amp;1:     </note>
+         </trans-unit>
+         <trans-unit id="c1a99f0b" maxbytes="4000" maxwidth="38" size-unit="char" translate="yes">
+            <source>Till ID:[&amp;0] [&amp;1:TILLID]</source>
+            <target>現金箱ID:[&amp;0] [&amp;1:TILLID]</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL3RpbGxJRCIgeGRvZm86ZmllbGQtbmFt
+ZT0idGlsbElEIi8+</prop>
+            </prop-group>
+            <note>Text located: body/table/table header, token &amp;1:tillID</note>
+         </trans-unit>
+         <trans-unit id="b935e805" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="7f5559e2" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Cash Count</source>
+            <target>現金のカウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="6d8718bb" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">Denomination </source>
+            <target xml:space="preserve">通貨単位 </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="df3857b4" maxbytes="4000" maxwidth="32" size-unit="char" translate="yes">
+            <source>Deposited Check Count</source>
+            <target>預金小切手のカウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_2" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_2" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_2" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="377f1bb7" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Check Count</source>
+            <target>小切手のカウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_3" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_3" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_3" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="db09ee2f" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>E-Check Count</source>
+            <target>電子小切手のカウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_4" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_4" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_4" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="4a60ae52" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>ECheck Count</source>
+            <target>電子小切手のカウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_5" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_5" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_5" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="6b389528" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Credit Count</source>
+            <target>クレジットのカウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_6" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="28b061" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Visa</source>
+            <target>Visa</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="fd3ef4b2" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>MasterCard</source>
+            <target>MasterCard</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ee314b70" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>American Express</source>
+            <target>American Express</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="1422dc09" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Discover</source>
+            <target>Discover</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="7a04b85d" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Diners</source>
+            <target>Diners</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="e9e66850" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>House Card</source>
+            <target>ハウス・カード</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="11e29" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>JCB</source>
+            <target>JCB</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_6" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_6" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="16386c95" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Coupon Count</source>
+            <target>クーポンのカウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_7" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_7" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_7" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="c6fa9636" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>Gift Certificate Count</source>
+            <target>商品券のカウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_8" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_8" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_8" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="c6fa9636_1" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>Gift Certificate Count</source>
+            <target>商品券のカウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_9" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_9" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_9" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="971d0ef6" maxbytes="4000" maxwidth="44" size-unit="char" translate="yes">
+            <source>Gift Certificate  Count (MXN)</source>
+            <target>商品券のカウント(MXN)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_10" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_10" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_10" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="c6fa9636_2" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>Gift Certificate Count</source>
+            <target>商品券のカウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="254f41c" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>(GBP)</source>
+            <target>(GBP)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_11" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_11" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_11" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="c6fa9636_3" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>Gift Certificate Count</source>
+            <target>商品券のカウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="25452ef" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>(EUR)</source>
+            <target>(EUR)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_12" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_12" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_12" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="c6fa9636_4" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>Gift Certificate Count</source>
+            <target>商品券のカウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="25686de" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>(JPY)</source>
+            <target>(JPY)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_13" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_13" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_13" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="89cd421a" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>Mall Certificate Count</source>
+            <target>モール券のカウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_14" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_14" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_14" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="f4f748cf" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Gift Card Count</source>
+            <target>ギフト・カードのカウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_15" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_15" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_15" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="16872329" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>Traveler's Check</source>
+            <target>旅行者用小切手</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_16" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_16" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_16" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="16872329_1" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>Traveler's Check</source>
+            <target>旅行者用小切手</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_17" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_17" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_17" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="7e19509b" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Debit Count</source>
+            <target>デビットのカウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_18" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_18" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_18" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="72535e27" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source>Store Credit Count</source>
+            <target>店舗クレジットのカウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_19" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_19" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_19" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="72535e27_1" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source>Store Credit Count</source>
+            <target>店舗クレジットのカウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_20" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_20" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_20" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="72535e27_2" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source>Store Credit Count</source>
+            <target>店舗クレジットのカウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="25800ae" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>(MXN)</source>
+            <target>(MXN)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_21" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_21" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_21" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="72535e27_3" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source>Store Credit Count</source>
+            <target>店舗クレジットのカウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="254f41c_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>(GBP)</source>
+            <target>(GBP)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_22" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_22" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_22" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="72535e27_4" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source>Store Credit Count</source>
+            <target>店舗クレジットのカウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="25452ef_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>(EUR)</source>
+            <target>(EUR)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_23" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_23" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_23" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="72535e27_5" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source>Store Credit Count</source>
+            <target>店舗クレジットのカウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="25686de_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>(JPY)</source>
+            <target>(JPY)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_24" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_24" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_24" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="bce5dcfe" maxbytes="4000" maxwidth="30" size-unit="char" translate="yes">
+            <source>Purchase Order Count</source>
+            <target>発注のカウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_25" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_25" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b935e805_25" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>通貨単位</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="e7215dfd" maxbytes="4000" maxwidth="26" size-unit="char" translate="yes">
+            <source>Money Order Count</source>
+            <target>送金為替のカウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_26" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_26" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf_27" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="bd9d549b" maxbytes="4000" maxwidth="30" size-unit="char" translate="yes">
+            <source>Totals ([&amp;1:IF])</source>
+            <target>合計([&amp;1:IF])</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL2FsdEN1cnJlbmN5IiB4ZG9mbzpmaWVs
+ZC1uYW1lPSJhbHRDdXJyZW5jeSIvPg==</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:if, altCurrency</note>
+         </trans-unit>
+         <trans-unit id="c402d3da" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals (CAD)</source>
+            <target>合計(CAD)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="c407b71d" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals (MXN)</source>
+            <target>合計(MXN)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="c404aa8b" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals (GBP)</source>
+            <target>合計(GBP)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="c404095e" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals (EUR)</source>
+            <target>合計(EUR)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="c4063d4d" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals (JPY)</source>
+            <target>合計(JPY)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+      </body>
+   </file>
+</xliff>

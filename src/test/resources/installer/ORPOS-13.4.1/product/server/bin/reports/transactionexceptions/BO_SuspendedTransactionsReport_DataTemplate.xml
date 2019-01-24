@@ -1,0 +1,84 @@
+<!--
+/* ===========================================================================
+* Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved.
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/transactionexceptions/BO_SuspendedTransactionsReport_DataTemplate.xml /main/15 2013/06/10 14:20:06 abondala Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    abondala 06/10/13 - replace hard coded transaction id format with a
+ *                        configuration
+ *    ohorne   08/31/12 - corrected case of version attr
+ *    djenning 03/15/10 - fixing both suspended transaction reports
+ *    abhayg   03/04/10 - Fixed Sorting issue
+ *    mchellap 01/11/10 - Fixed Transaction ID lenght
+ *    mchellap 01/08/10 - BUG 9263632: Fixed reports issue
+ *    abondala 01/02/10 - Update Header date
+ *    npoola   12/10/09 - added the ADE header
+ *    npoola   12/10/09 - Added the Till and Amount fields
+ * ===========================================================================
+ */
+-->
+<dataTemplate name="SuspendedTransactionReport" version="1.0">
+ <properties>
+  <property name="xml_tag_case" value="as_are" />
+ </properties>
+ <parameters>
+  <parameter name="runDateTime" dataType="character" />
+  <parameter name="startDate" dataType="character"/>
+  <parameter name="endDate" dataType="character"/>
+  <parameter name="businessDate" dataType="character"/>
+  <parameter name="registerId" dataType="character" defaultValue="All"/>
+  <parameter name="storeId" dataType="character"/>
+  <parameter name="adhoc" dataType="character" defaultValue="false"/>
+  <parameter name="locale" dataType="character" defaultValue="en"/>
+  <parameter name="reportTitle" dataType="character"/>
+ </parameters>
+ <dataQuery>
+  <sqlStatement name="Q1">
+   <![CDATA[ SELECT trn.dc_dy_bsn "Date", 
+                    trn.id_opr "Cashier",
+                    trn.id_ws "Register",
+                    (CASE retailTransaction.rc_rsn_spn
+                        WHEN '-1' THEN '-'
+                        ELSE codeList.de_cd_ent
+                    END) "ReasonCode",
+                    trn.id_str_rt "StoreId",
+                    trn.ai_trn "SequenceNumber",
+                    trn.id_rpsty_tnd    "TILL",
+                   (retailTransaction.mo_nt_tot - retailTransaction.mo_tax_tot) "AMOUNT"
+              FROM
+                   tr_trn trn,
+                   tr_rtl retailTransaction
+	               LEFT OUTER JOIN id_lu_cd_i8 codeList
+	               ON   (retailTransaction.rc_rsn_spn = codeList.lu_cd_ent and lcl=:locale)
+              WHERE
+	               trn.dc_dy_bsn = retailTransaction.dc_dy_bsn
+	               AND trn.ai_trn = retailTransaction.ai_trn
+	               AND trn.id_ws = retailTransaction.id_ws
+	               AND trn.id_str_rt = retailTransaction.id_str_rt
+	               AND trn.id_str_rt = :storeId
+	               AND trn.dc_dy_bsn = :businessDate
+	               AND sc_trn = 4
+	               AND fl_trg_trn = '0'
+	         ORDER BY trn.id_ws DESC, trn.id_rpsty_tnd DESC, trn.id_opr DESC, trn.ts_trn_end DESC]]>
+  </sqlStatement>
+ </dataQuery>
+ 
+ <dataStructure>
+     <group name="Q1" source="Q1">
+        <element name="Date" value="Date"/>
+        <element name="Cashier" value="Cashier"/>
+        <element name="Register" value="Register"/>
+        <element name="ReasonCode" value="ReasonCode"/>
+        <element name="StoreId" value="StoreId"/>
+        <element name="SequenceNumber" value="SequenceNumber"/>
+        <element name="TILL" value="TILL"/>
+        <element name="AMOUNT" value="AMOUNT"/>
+        <element name="TransactionID" value="STOREID,REGISTER,SEQUENCENUMBER,DATE" function="TO_TRANSACTION_ID"/>
+     </group>
+ </dataStructure>  
+   
+</dataTemplate>

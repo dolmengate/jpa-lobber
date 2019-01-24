@@ -1,0 +1,65 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<xliff version="1.0">
+   <file source-language="EN" target-language="el-GR" datatype="XDO" original="orphan.xlf" product-version="orphan.xlf" product-name="">
+      <header/>
+      <body>
+         <trans-unit id="d8deaeb9">
+            <source>Template Table 1</source>
+            <target>Πίνακας προτύπων 1</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="1a1ffc7a" maxbytes="4000" maxwidth="44" size-unit="char" translate="yes">
+            <source>Suspended Transactions Report</source>
+            <target>Αναφορά αναβληθεισών συναλλαγών</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="14f73bc6" maxbytes="4000" maxwidth="39" size-unit="char" translate="yes">
+            <source>Store:[&amp;0] [&amp;1:STOREID]</source>
+            <target>Κατάστημα: [&amp;0] [&amp;1:STOREID]</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL3N0b3JlSWQiIHhkb2ZvOmZpZWxkLW5h
+bWU9InN0b3JlSWQiLz4=</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:storeId</note>
+         </trans-unit>
+         <trans-unit id="6828d7b4" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">Business Date:[&amp;0] </source>
+            <target xml:space="preserve">Εργάσιμη ημ/νία:[&amp;0] </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="4a56c741" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Transaction #</source>
+            <target>Αρ. συναλλαγής</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="dab692c3" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Register</source>
+            <target>Ταμειακή μηχανή</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="27c6d5" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Till</source>
+            <target>Συρτάρι ταμείου</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="844d02a3" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Cashier</source>
+            <target>Ταμίας</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="97bbf249" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Reason Code</source>
+            <target>Κωδικός αιτιολογίας</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="4d3eb24" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total</source>
+            <target>Σύνολο</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+      </body>
+   </file>
+</xliff>

@@ -1,0 +1,82 @@
+<!--
+/* ===========================================================================
+* Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved. 
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/sales/BO_HourlyProductivity_DataTemplate_PreDefined.xml /main/14 2013/08/13 15:29:31 rgour Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    rgour     08/08/13 - Fixing the report issue , which was adding the total
+ *                         sale and total return as return is in -ve
+ *    ohorne    08/31/12 - corrected case of version attr
+ *    abondala  01/02/10 - Update Header date
+ *    ohorne    11/11/08 - Library upgrade: XMLP 5.6.2 to BIP 10.1.3.4
+ *    cgreene   10/27/08 - update header to Oracle ade
+ *
+ * ===========================================================================
+ */
+-->
+<dataTemplate name="HourlyProductivityReportPredefined" version="1.0">
+ <properties>
+  <property name="xml_tag_case" value="as_are" /> 
+ </properties>
+ <parameters>
+  <parameter name="runDateTime" dataType="character" />
+  <parameter name="storeId" dataType="character"/>
+  <parameter name="startDate" dataType="date"/>
+  <parameter name="endDate" dataType="date"/>
+  <parameter name="timeIncrement" dataType="number" defaultValue="1"/>
+  <parameter name="adhoc" dataType="character" defaultValue="false"/>
+  <parameter name="reportTitle" dataType="character"/>
+  <parameter name="locale" dataType="character"/>
+ </parameters>
+ <dataQuery>
+  <sqlStatement name="Q2">
+   <![CDATA[ SELECT
+      min(ewps.id_str_rt) StoreID,
+      min(st_i8.nm_loc) StoreLocation,
+      floor(id_prd_tm / 4) TimeBoundaryIndex,
+      min(concat(concat(
+          case when floor(ewps.id_prd_tm / 4) < 10 then
+            concat('0', cast(floor(ewps.id_prd_tm / 4) as char(1)))
+          else
+            cast(floor(ewps.id_prd_tm / 4) as char(2))
+          end,
+          ':'), '00'))
+        StartTime, 
+      min(concat(concat(
+          case when floor(ewps.id_prd_tm / 4) < 10 then
+            concat('0', cast(floor(ewps.id_prd_tm / 4) as char(1)))
+          else
+            cast(floor(ewps.id_prd_tm / 4) as char(2))
+          end,
+          ':'), '59'))
+        EndTime,
+      sum(qu_ws_acv_sls_trn) NumberOfTransactions,
+      sum(mo_ws_acv_sls_tot) TotalSales,
+      (case when sum(qu_ws_acv_sls_trn) = 0 then 0 else cast(sum(mo_ws_acv_sls_tot) as float) / sum(qu_ws_acv_sls_trn) end) AverageTransaction,
+      sum(qu_ws_acv_sls_itm) NumberOfUnits,
+      (case when sum(qu_ws_acv_sls_trn) = 0 then 0 else cast(sum(qu_ws_acv_sls_itm) as float) / sum(qu_ws_acv_sls_trn) end) AverageUnitsPerTransaction,
+      ABS(sum(mo_ws_acv_rtn_tot)) TotalReturns,
+      sum(mo_ws_acv_sls_tot) - ABS(sum(mo_ws_acv_rtn_tot)) SalesLessReturns,
+      min(scal.ts_srt) StartDateTime
+      FROM le_smy_ws_tmacv ewps 
+      	JOIN pa_str_rtl st ON (ewps.id_str_rt = st.id_str_rt)
+      	JOIN pa_str_rtl_i8 st_i8 ON (ewps.id_str_rt = st_i8.id_str_rt) AND (st_i8.lcl = :locale),
+      ca_prd_rp_v4 rpv4
+        JOIN ca_cld_prd scal ON (rpv4.id_cld_prd_srt = scal.id_cld_prd) AND rpv4.id_cld_lv = scal.id_cld_lv
+        JOIN ca_cld_prd ecal ON (rpv4.id_cld_prd_end = ecal.id_cld_prd) AND rpv4.id_cld_lv = ecal.id_cld_lv
+   WHERE ewps.id_str_rt = :storeId
+   AND ewps.id_prd_rp = rpv4.id_prd_rp
+
+	AND SUBSTR(TO_CHAR(scal.ts_srt, 'YYYY-MM-DD HH24:MI:SS'), 1, 10)  >= SUBSTR(:startDate, 1, 10)
+	AND SUBSTR(TO_CHAR(scal.ts_end, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) <= SUBSTR(:endDate, 1, 10)   
+   
+   GROUP BY floor(id_prd_tm / 4)
+   ORDER BY floor(id_prd_tm / 4)
+]]>
+  </sqlStatement>
+ </dataQuery>
+</dataTemplate>

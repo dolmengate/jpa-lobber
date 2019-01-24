@@ -1,0 +1,21 @@
+<dataTemplate name="tillFloatSummaryReport" version="1.0">
+	<properties>
+		<property name="xml_tag_case" value="as_are" />
+	</properties>
+    <parameters>
+        <parameter name="runDateTime" dataType="character" />
+        <parameter name="startingDate" dataType="character" defaultValue="10/12/2006"/>
+        <parameter name="storeNumber" dataType="character"/>
+        <parameter name="registerNumber" dataType="character"/>
+        <parameter name="tillID" dataType="character"/>
+        <parameter name="cashierName" dataType="character"/>
+        <parameter name="totals" dataType="character" defaultValue="0.00"/>
+        <parameter name="totAmt" dataType="character" defaultValue="0.00"/>
+        <parameter name="totCnt" dataType="number" defaultValue="0"/>
+    </parameters>
+    <dataQuery>
+        <sqlStatement name="Q1">
+            <![CDATA[SELECT ID FROM report_config WHERE id=0]]>
+        </sqlStatement>
+    </dataQuery>
+</dataTemplate>

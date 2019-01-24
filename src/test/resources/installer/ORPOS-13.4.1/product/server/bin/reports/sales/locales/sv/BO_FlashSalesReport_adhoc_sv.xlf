@@ -1,0 +1,147 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<xliff version="1.0">
+   <file source-language="EN" target-language="sv-SE" datatype="XDO" original="orphan.xlf" product-version="orphan.xlf" product-name="">
+      <header/>
+      <body>
+         <trans-unit id="d8deaeb9">
+            <source>Template Table 1</source>
+            <target>Malltabell 1</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="d8deaeba">
+            <source>Template Table 2</source>
+            <target>Malltabell 2</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="d8deaebb">
+            <source>Template Table 3</source>
+            <target>Malltabell 3</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="b4ed5512" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">Start Date: </source>
+            <target xml:space="preserve">Startdatum:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ed49b037" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Run Date:</source>
+            <target>Körningsdatum:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3786ce79" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">End Date: </source>
+            <target xml:space="preserve">Slutdatum:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="94390f99" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Store:</source>
+            <target>Butik:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b91cd962" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>Merchandise Hierarchy:</source>
+            <target>Varuhierarki:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="60cf61d8" maxbytes="4000" maxwidth="32" size-unit="char" translate="yes">
+            <source>Merchandise Hierarchy</source>
+            <target>Varuhierarki</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="85ea667" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>Number of Transactions</source>
+            <target>Antal transaktioner</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="8459ea9d" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Number of Units</source>
+            <target>Antal enheter</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="511fef67" maxbytes="4000" maxwidth="44" size-unit="char" translate="yes">
+            <source>Average Units Per Transaction</source>
+            <target>Genomsnittligt antal enheter per transaktion</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="f8ca891b" maxbytes="4000" maxwidth="29" size-unit="char" translate="yes">
+            <source>Average Transaction</source>
+            <target>Genomsnitt, transaktion</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="deb26cf0" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total Sales</source>
+            <target>Summa försäljning</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ce302427" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total Returns</source>
+            <target>Summa returer</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="2f514070" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source>Sales Less Returns</source>
+            <target>Försäljning minus returer</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b8059df2" maxbytes="4000" maxwidth="26" size-unit="char" translate="yes">
+            <source>No Data Available</source>
+            <target>Inga tillgängliga data</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="60cf61d8_1" maxbytes="4000" maxwidth="32" size-unit="char" translate="yes">
+            <source>Merchandise Hierarchy</source>
+            <target>Varuhierarki</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="85ea667_1" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>Number of Transactions</source>
+            <target>Antal transaktioner</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="8459ea9d_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Number of Units</source>
+            <target>Antal enheter</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="511fef67_1" maxbytes="4000" maxwidth="44" size-unit="char" translate="yes">
+            <source>Average Units Per Transaction</source>
+            <target>Genomsnittligt antal enheter per transaktion</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="f8ca891b_1" maxbytes="4000" maxwidth="29" size-unit="char" translate="yes">
+            <source>Average Transaction</source>
+            <target>Genomsnitt, transaktion</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="deb26cf0_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total Sales</source>
+            <target>Summa försäljning</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ce302427_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total Returns</source>
+            <target>Summa returer</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="2f514070_1" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source>Sales Less Returns</source>
+            <target>Försäljning minus returer</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="4d3eb24" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total</source>
+            <target>Summa</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+      </body>
+   </file>
+</xliff>

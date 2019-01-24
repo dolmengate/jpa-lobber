@@ -1,0 +1,87 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<xliff version="1.0">
+   <file source-language="EN" target-language="hr-HR" datatype="XDO" original="orphan.xlf" product-version="orphan.xlf" product-name="">
+      <header/>
+      <body>
+         <trans-unit id="d8deaeb9">
+            <source>Template Table 1</source>
+            <target>Tablica predloška 1</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="d8deaeba">
+            <source>Template Table 2</source>
+            <target>Tablica predloška 2</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="d8deaebb">
+            <source>Template Table 3</source>
+            <target>Tablica predloška 3</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="3dc5ac9a" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">Start Date:[&amp;0] </source>
+            <target xml:space="preserve">Datum početka:[&amp;0] </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b0333ab1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">Run Date:[&amp;0] </source>
+            <target xml:space="preserve">Datum pokretanja:[&amp;0] </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="7da98287" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>End Date:</source>
+            <target>Datum završetka:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="9f3e884f" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Creation Date</source>
+            <target>Datum stvaranja</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="9f45eb6e" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Creation Time</source>
+            <target>Vrijeme stvaranja</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="844d02a3" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Cashier</source>
+            <target>Blagajnik</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="6d5cbc6e" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">Deposit Amount[&amp;0] </source>
+            <target xml:space="preserve">Iznos pologa[&amp;0] </target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="3cfd144" xml:space="preserve">
+            <source>Bank </source>
+            <target>Banka </target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="cd19d74b">
+            <source>Deposit Number</source>
+            <target>Broj pologa</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="fdfa588e" maxbytes="4000" maxwidth="29" size-unit="char" translate="yes">
+            <source xml:space="preserve"> No Data Available </source>
+            <target xml:space="preserve"> Nema dostupnih podataka </target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="ebe47cd6" maxbytes="4000" maxwidth="30" size-unit="char" translate="yes">
+            <source>Total Deposit Amount</source>
+            <target>Ukupni iznos pologa</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+      </body>
+   </file>
+</xliff>

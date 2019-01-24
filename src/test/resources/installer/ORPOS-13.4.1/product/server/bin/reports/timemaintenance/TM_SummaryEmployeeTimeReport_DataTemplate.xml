@@ -1,0 +1,197 @@
+<!--
+/* ===========================================================================
+* Copyright (c) 2009, 2013, Oracle and/or its affiliates. All rights reserved.
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/timemaintenance/TM_SummaryEmployeeTimeReport_DataTemplate.xml /main/13 2013/06/10 14:20:06 abondala Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    abondala  01/02/10 - Update Header date
+ *    abondala  12/16/09 - Added ADE Header
+ *
+ * ===========================================================================
+ */
+-->
+<dataTemplate name="SummaryEmployeeTimeReport">
+	<properties>
+		<property name="xml_tag_case" value="as_are" />
+	</properties>
+	<parameters>
+  		<parameter name="runDateTime" dataType="character"/>
+  		<parameter name="startDate" dataType="character"/>
+  		<parameter name="endDate" dataType="character"/>
+  		<parameter name="employeeID" dataType="character"/>
+  		<parameter name="storeId" dataType="character"/>
+  		<parameter name="reportTitle" dataType="character"/>
+  		<parameter name="locale" dataType="character"/>
+	</parameters>
+ 	<dataQuery>
+  		<sqlStatement name="Q1">
+   			<![CDATA[SELECT
+				PA_EM.ID_EM EmpID,
+				PA_EM.NM_EM EmployeeName,
+
+				(case when MissingSickPunches is NULL then 0 else MissingSickPunches end) MissingSickPunches,
+				(case when SICK_HRS is NULL  then 0 else SICK_HRS end) SICK_HRS ,
+
+				(case when MissingVacationPunches is NULL then 0 else MissingVacationPunches end) MissingVacationPunches,
+				(case when VACATION_HRS is NULL  then 0 else VACATION_HRS end) VACATION_HRS ,
+
+				(case when MissingCompPunches is NULL then 0 else MissingCompPunches end) MissingCompPunches,
+				(case when COMPDAY_HRS is NULL  then 0 else COMPDAY_HRS end) COMPDAY_HRS ,
+
+				(case when MissingPersonalPunches is NULL then 0 else MissingPersonalPunches end) MissingPersonalPunches,
+				(case when PERSONAL_HRS is NULL  then 0 else PERSONAL_HRS end) PERSONAL_HRS ,
+
+				(case when MissingJuryPunches is NULL then 0 else MissingJuryPunches end) MissingJuryPunches,
+				(case when JURY_HRS is NULL  then 0 else JURY_HRS end) JURY_HRS ,
+
+				(case when MissingFuneralPunches is NULL then 0 else MissingFuneralPunches end) MissingFuneralPunches,
+				(case when FUNERAL_HRS is NULL  then 0 else FUNERAL_HRS end) FUNERAL_HRS ,
+
+				(case when MissingRegPunches is NULL then 0 else MissingRegPunches end) MissingRegPunches,
+				(case when REG_HRS is NULL  then 0 else REG_HRS end) REG_HRS ,
+
+				(case when MissingNonRegPunches is NULL then 0 else MissingNonRegPunches end) MissingNonRegPunches,
+				(case when NON_REG_HRS is NULL  then 0 else NON_REG_HRS end) NON_REG_HRS,
+
+                		(case when MissingRegPunches is NULL then 0 else MissingRegPunches end) + (case when MissingNonRegPunches is NULL then 0 else MissingNonRegPunches end) MissingTotalPunches,
+                		(case when REG_HRS is NULL  then 0 else REG_HRS end) + (case when NON_REG_HRS is NULL  then 0 else NON_REG_HRS end) REG_AND_NON_REG
+				FROM PA_EM
+				LEFT JOIN
+					(SELECT ID_EM, sum(HRS_STR) REG_HRS,
+					sum(case when (ty_tm='0' and (TS_EM_TM_IN_STR is null or TS_EM_TM_OUT_STR is null)) then 1 else 0 end) MissingRegPunches
+					FROM CO_CONF_EM_TM_ENR
+					WHERE FL_DEL = '0'
+					AND TY_TM = '0'
+					AND ID_STR_RT = :storeId
+					AND ((SUBSTR(TO_CHAR(TS_EM_TM_IN, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) BETWEEN SUBSTR(:startDate,1,10)  AND SUBSTR(:endDate,1,10)) OR (SUBSTR(TO_CHAR(TS_EM_TM_OUT, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) BETWEEN SUBSTR(:startDate,1,10)  AND SUBSTR(:endDate,1,10)))
+					GROUP BY ID_EM) REG ON PA_EM.ID_EM = REG.ID_EM
+				LEFT JOIN
+					(SELECT ID_EM, sum(OTHER_HRS_STR) NON_REG_HRS,
+					sum(case when (ty_tm!='0' and (TS_EM_TM_IN_STR is null or TS_EM_TM_OUT_STR is null)) then 1 else 0 end) MissingNonRegPunches
+					FROM CO_CONF_EM_TM_ENR
+					WHERE FL_DEL = '0'
+					AND TY_TM != '0'
+					AND ID_STR_RT = :storeId
+					AND ((SUBSTR(TO_CHAR(TS_EM_TM_IN, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) BETWEEN SUBSTR(:startDate,1,10)  AND SUBSTR(:endDate,1,10)) OR (SUBSTR(TO_CHAR(TS_EM_TM_OUT, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) BETWEEN SUBSTR(:startDate,1,10)  AND SUBSTR(:endDate,1,10)))
+					GROUP BY ID_EM) NON_REG ON PA_EM.ID_EM = NON_REG.ID_EM
+				LEFT JOIN
+					(SELECT ID_EM, sum(OTHER_HRS_STR) SICK_HRS,
+					sum(case when (ty_tm='1' and (TS_EM_TM_IN_STR is null or TS_EM_TM_OUT_STR is null)) then 1 else 0 end) MissingSickPunches
+					FROM CO_CONF_EM_TM_ENR
+					WHERE FL_DEL = '0'
+					AND TY_TM = '1'
+					AND ID_STR_RT = :storeId
+					AND ((SUBSTR(TO_CHAR(TS_EM_TM_IN, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) BETWEEN SUBSTR(:startDate,1,10)  AND SUBSTR(:endDate,1,10)) OR (SUBSTR(TO_CHAR(TS_EM_TM_OUT, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) BETWEEN SUBSTR(:startDate,1,10)  AND SUBSTR(:endDate,1,10)))
+					GROUP BY ID_EM) SICK ON PA_EM.ID_EM = SICK.ID_EM
+				LEFT JOIN
+					(SELECT ID_EM, sum(OTHER_HRS_STR) VACATION_HRS,
+					sum(case when (ty_tm='2' and (TS_EM_TM_IN_STR is null or TS_EM_TM_OUT_STR is null)) then 1 else 0 end) MissingVacationPunches
+					FROM CO_CONF_EM_TM_ENR
+					WHERE FL_DEL = '0'
+					AND TY_TM = '2'
+					AND ID_STR_RT = :storeId
+					AND ((SUBSTR(TO_CHAR(TS_EM_TM_IN, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) BETWEEN SUBSTR(:startDate,1,10)  AND SUBSTR(:endDate,1,10)) OR (SUBSTR(TO_CHAR(TS_EM_TM_OUT, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) BETWEEN SUBSTR(:startDate,1,10)  AND SUBSTR(:endDate,1,10)))
+					GROUP BY ID_EM) VACATION ON PA_EM.ID_EM = VACATION.ID_EM
+				LEFT JOIN
+					(SELECT ID_EM, sum(OTHER_HRS_STR) COMPDAY_HRS,
+					sum(case when (ty_tm='3' and (TS_EM_TM_IN_STR is null or TS_EM_TM_OUT_STR is null)) then 1 else 0 end) MissingCompPunches
+					FROM CO_CONF_EM_TM_ENR
+					WHERE FL_DEL = '0'
+					AND TY_TM = '3'
+					AND ID_STR_RT = :storeId
+					AND ((SUBSTR(TO_CHAR(TS_EM_TM_IN, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) BETWEEN SUBSTR(:startDate,1,10)  AND SUBSTR(:endDate,1,10)) OR (SUBSTR(TO_CHAR(TS_EM_TM_OUT, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) BETWEEN SUBSTR(:startDate,1,10)  AND SUBSTR(:endDate,1,10)))
+					GROUP BY ID_EM) COMPDAY ON PA_EM.ID_EM = COMPDAY.ID_EM
+				LEFT JOIN
+					(SELECT ID_EM, sum(OTHER_HRS_STR) JURY_HRS,
+					sum(case when (ty_tm='4' and (TS_EM_TM_IN_STR is null or TS_EM_TM_OUT_STR is null)) then 1 else 0 end) MissingJuryPunches
+					FROM CO_CONF_EM_TM_ENR
+					WHERE FL_DEL = '0'
+					AND TY_TM = '4'
+					AND ID_STR_RT = :storeId
+					AND ((SUBSTR(TO_CHAR(TS_EM_TM_IN, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) BETWEEN SUBSTR(:startDate,1,10)  AND SUBSTR(:endDate,1,10)) OR (SUBSTR(TO_CHAR(TS_EM_TM_OUT, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) BETWEEN SUBSTR(:startDate,1,10)  AND SUBSTR(:endDate,1,10)))
+					GROUP BY ID_EM) JURY ON PA_EM.ID_EM = JURY.ID_EM
+				LEFT JOIN
+					(SELECT ID_EM, sum(OTHER_HRS_STR) PERSONAL_HRS,
+					sum(case when (ty_tm='5' and (TS_EM_TM_IN_STR is null or TS_EM_TM_OUT_STR is null)) then 1 else 0 end) MissingPersonalPunches
+					FROM CO_CONF_EM_TM_ENR
+					WHERE FL_DEL = '0'
+					AND TY_TM = '5'
+					AND ID_STR_RT = :storeId
+					AND ((SUBSTR(TO_CHAR(TS_EM_TM_IN, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) BETWEEN SUBSTR(:startDate,1,10)  AND SUBSTR(:endDate,1,10)) OR (SUBSTR(TO_CHAR(TS_EM_TM_OUT, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) BETWEEN SUBSTR(:startDate,1,10)  AND SUBSTR(:endDate,1,10)))
+					GROUP BY ID_EM) PERSONAL ON PA_EM.ID_EM = PERSONAL.ID_EM
+				LEFT JOIN
+					(SELECT ID_EM, sum(OTHER_HRS_STR) FUNERAL_HRS,
+					sum(case when (ty_tm='6' and (TS_EM_TM_IN_STR is null or TS_EM_TM_OUT_STR is null)) then 1 else 0 end) MissingFuneralPunches
+					FROM CO_CONF_EM_TM_ENR
+					WHERE FL_DEL = '0'
+					AND TY_TM = '6'
+					AND ID_STR_RT = :storeId
+					AND ((SUBSTR(TO_CHAR(TS_EM_TM_IN, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) BETWEEN SUBSTR(:startDate,1,10)  AND SUBSTR(:endDate,1,10)) OR (SUBSTR(TO_CHAR(TS_EM_TM_OUT, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) BETWEEN SUBSTR(:startDate,1,10)  AND SUBSTR(:endDate,1,10)))
+					GROUP BY ID_EM) FUNERAL ON PA_EM.ID_EM = FUNERAL.ID_EM
+				WHERE PA_EM.ID_EM IN (SELECT ID_EM FROM PA_EM WHERE SC_EM = '1')
+
+			    	AND ((case when cast(:employeeID as varchar(20)) != 'All' AND cast(:employeeID as varchar(20)) != 'None' then cast(:employeeID as varchar(20))  else 'doNothing' end) = 'doNothing'
+			        OR  PA_EM.ID_EM = (case when cast(:employeeID as varchar(20)) != 'All' AND cast(:employeeID as varchar(20)) != 'None' then cast(:employeeID as varchar(20)) else 'doNothing' end))
+
+				AND ((NON_REG_HRS is not null OR REG_HRS is not null)
+					OR (MissingNonRegPunches > 0 OR MissingRegPunches > 0))
+			]]>
+  		</sqlStatement>
+  		<sqlStatement name="Q2">
+   			<![CDATA[SELECT id_str_rt stId, nm_loc stName FROM pa_str_rtl_i8 WHERE id_str_rt = :storeId AND lcl = :locale]]>
+  		</sqlStatement>
+	</dataQuery>
+	<dataStructure>
+		<group name="STORE_INFO" source="Q2">
+     		<element name="STORE_ID" value="stId"/>
+     		<element name="STORE_NAME" value="stName"/>
+		</group>
+    	<group name="STORE" source="Q1">
+			<element name="TOT_MISSING_SICK" value="MissingSickPunches" function="SUM"/>
+			<element name="TOT_MISSING_VACATION" value="MissingVacationPunches" function="SUM"/>
+			<element name="TOT_MISSING_COMP" value="MissingCompPunches" function="SUM"/>
+			<element name="TOT_MISSING_PERSONAL" value="MissingPersonalPunches" function="SUM"/>
+			<element name="TOT_MISSING_JURY" value="MissingJuryPunches" function="SUM"/>
+			<element name="TOT_MISSING_FUNERAL" value="MissingFuneralPunches" function="SUM"/>
+			<element name="TOT_MISSING_REG" value="MissingRegPunches" function="SUM"/>
+			<element name="TOT_MISSING_NONREG" value="MissingNonRegPunches" function="SUM"/>
+			<element name="TOT_MISSING" value="MissingTotalPunches" function="SUM"/>
+
+			<element name="TOT_SICK_HRS" value="SICK_HRS" function="SUM"/>
+		  	<element name="TOT_VACATION_HRS" value="VACATION_HRS" function="SUM"/>
+		  	<element name="TOT_COMPDAY_HRS" value="COMPDAY_HRS" function="SUM"/>
+			<element name="TOT_PERSONAL_HRS" value="PERSONAL_HRS" function="SUM"/>
+		  	<element name="TOT_JURY_HRS" value="JURY_HRS" function="SUM"/>
+		  	<element name="TOT_FUNERAL_HRS" value="FUNERAL_HRS" function="SUM"/>
+			<element name="TOT_REG_HRS" value="REG_HRS" function="SUM"/>
+		  	<element name="TOT_NON_REG_HRS" value="NON_REG_HRS" function="SUM"/>
+		  	<element name="TOT_REG_AND_NON_REG" value="REG_AND_NON_REG" function="SUM"/>
+		  	<group name="G_EMPLOYEE" source="Q1">
+     			<element name="EMPLOYEE_ID" value="EmpID"/>
+     			<element name="EMPLOYEE_NAME" value="EmployeeName"/>
+				<element name="MISSING_SICK" value="MissingSickPunches"/>
+				<element name="MISSING_VACATION" value="MissingVacationPunches"/>
+				<element name="MISSING_COMP" value="MissingCompPunches"/>
+				<element name="MISSING_PERSONAL" value="MissingPersonalPunches"/>
+				<element name="MISSING_JURY" value="MissingJuryPunches"/>
+				<element name="MISSING_FUNERAL" value="MissingFuneralPunches"/>
+				<element name="MISSING_REG" value="MissingRegPunches"/>
+				<element name="MISSING_NONREG" value="MissingNonRegPunches"/>
+				<element name="MISSING" value="MissingTotalPunches"/>
+				<element name="SICK_HRS" value="SICK_HRS"/>
+			  	<element name="VACATION_HRS" value="VACATION_HRS"/>
+			  	<element name="COMPDAY_HRS" value="COMPDAY_HRS"/>
+				<element name="PERSONAL_HRS" value="PERSONAL_HRS"/>
+			  	<element name="JURY_HRS" value="JURY_HRS"/>
+			  	<element name="FUNERAL_HRS" value="FUNERAL_HRS"/>
+				<element name="REG_HRS" value="REG_HRS"/>
+			  	<element name="NON_REG_HRS" value="NON_REG_HRS"/>
+			  	<element name="REG_AND_NON_REG" value="REG_AND_NON_REG"/>
+     		</group>
+  		</group>
+  	</dataStructure>
+</dataTemplate>

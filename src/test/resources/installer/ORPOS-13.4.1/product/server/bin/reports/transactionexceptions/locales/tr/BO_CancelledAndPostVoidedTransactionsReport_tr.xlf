@@ -1,0 +1,126 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<xliff version="1.0">
+   <file source-language="EN-US" target-language="tr-TR" datatype="XDO" original="orphan.xlf" product-version="orphan.xlf" product-name="">
+      <header/>
+      <body>
+         <trans-unit id="d8deaeb9">
+            <source>Template Table 1</source>
+            <target>Şablon Tablosu 1</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="9a7b44ce" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Start Date:</source>
+            <target>Başlangıç Tarihi:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ed49b037" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Run Date:</source>
+            <target>Çalıştırma Tarihi</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3786ce79" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">End Date: </source>
+            <target xml:space="preserve">Bitiş Tarihi: </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="9a7b44ce_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Start Date:</source>
+            <target>Başlangıç Tarihi:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="9b60458f" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Start Time:</source>
+            <target>Başlangıç Saati:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ed49b037_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Run Date:</source>
+            <target>Çalıştırma Tarihi</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3786ce79_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">End Date: </source>
+            <target xml:space="preserve">Bitiş Tarihi: </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="7e8e8348" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>End Time:</source>
+            <target>Bitiş Saati:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="94390f99" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Store:</source>
+            <target>Mağaza:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="7c1bc5d7" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Register:</source>
+            <target>Kasa:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="55351f7" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Cashier:</source>
+            <target>Kasiyer:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="2063ce" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Date</source>
+            <target>Tarih</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="844d02a3" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Cashier</source>
+            <target>Kasiyer</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="dab692c3" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Register</source>
+            <target>Kasa</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="28035a" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Type</source>
+            <target>Tip</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="97bbf249" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Reason Code</source>
+            <target>Neden Kodu</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="8225bd" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Transaction ID</source>
+            <target>İşlem No</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="eb4fa114" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Post Void</source>
+            <target>Sonradan Geçersiz Kılma</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="10cc1e9a" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">  Cancel</source>
+            <target xml:space="preserve">  İptal</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="1c2dabdd" maxbytes="4000" maxwidth="74" size-unit="char" translate="yes">
+            <source xml:space="preserve">Total Cancels:</source>
+            <target xml:space="preserve">Toplam İptal Sayısı:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="7dd8bb3f" maxbytes="4000" maxwidth="26" size-unit="char" translate="yes">
+            <source>Total Post Voids:</source>
+            <target>Tplm Snrdn Gçrsz Klm Sys:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="4a41e1d2" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source xml:space="preserve"> No Data Available</source>
+            <target xml:space="preserve"> Kullanılabilir Veri Yok</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+      </body>
+   </file>
+</xliff>

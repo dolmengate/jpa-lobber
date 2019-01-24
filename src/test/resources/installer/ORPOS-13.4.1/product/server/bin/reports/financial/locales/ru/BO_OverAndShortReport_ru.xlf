@@ -1,0 +1,101 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<!--
+/* ===========================================================================
+* Copyright (c) 2010, 2013, Oracle and/or its affiliates. All rights reserved.
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/financial/locales/ru/BO_OverAndShortReport_ru.xlf /main/3 2013/10/23 18:34:36 msarangi Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    abhinavs  10/05/12 - BI Publisher upgrade from 10.1.3.4 to 11.1.1.6
+ *    ohorne    04/12/10 - replaced data templates for cashier and register O/S
+ *                         reports with a single data/layout template
+ *
+ * ===========================================================================
+ */
+-->
+<xliff version="1.0">
+   <file source-language="EN" target-language="ru-RU" datatype="XDO" original="orphan.xlf" product-version="orphan.xlf" product-name="">
+      <header/>
+      <body>
+         <trans-unit id="d8deaeba">
+            <source>Template Table 2</source>
+            <target>Таблица шаблона 2</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="d8deaeb9">
+            <source>Template Table 1</source>
+            <target>Таблица шаблона 1</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="2889ec7a" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">Start Date:[&amp;0] </source>
+            <target xml:space="preserve">Дата начала:[&amp;0] </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ed49b037" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Run Date:</source>
+            <target>Дата выполнения:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="7da98287" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>End Date:</source>
+            <target>Дата окончания:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="94390f99" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Store:</source>
+            <target>Магазин:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="55351f7" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Cashier:</source>
+            <target>Кассир:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="284d0022" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Register ID:</source>
+            <target>Ид. кассы</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="2063ce" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Date</source>
+            <target>Дата</target>
+            <note>Text located: body/table/table/table header</note>
+         </trans-unit>
+         <trans-unit id="844d02a3" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Cashier</source>
+            <target>Кассир</target>
+            <note>Text located: body/table/table/table header</note>
+         </trans-unit>
+         <trans-unit id="dab692c3" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Register</source>
+            <target>Кассовый аппарат</target>
+            <note>Text located: body/table/table/table header</note>
+         </trans-unit>
+         <trans-unit id="ec9f53da" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">Tender Type </source>
+            <target xml:space="preserve">Тип платежа </target>
+            <note>Text located: body/table/table/table header</note>
+         </trans-unit>
+         <trans-unit id="c1cc5df7" maxbytes="4000" maxwidth="26" size-unit="char" translate="yes">
+            <source>Over/Short Amount</source>
+            <target>Сумма избытка/недостачи</target>
+            <note>Text located: body/table/table/table header</note>
+         </trans-unit>
+         <trans-unit id="b8059df2" maxbytes="4000" maxwidth="26" size-unit="char" translate="yes">
+            <source>No Data Available</source>
+            <target>Нет данных</target>
+            <note>Text located: body/table/table</note>
+         </trans-unit>
+      </body>
+   </file>
+</xliff>

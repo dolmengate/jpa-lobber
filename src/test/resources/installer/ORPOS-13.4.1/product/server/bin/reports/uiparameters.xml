@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  /* ===========================================================================
+* Copyright (c) 2009, 2011, Oracle and/or its affiliates. All rights reserved. 
+  * ===========================================================================
+  * $Header: rgbustores/applications/backoffice/reports/uiparameters.xml /rgbustores_13.4x_generic_branch/2 2011/07/19 19:03:58 hyin Exp $
+  * ===========================================================================
+  * NOTES
+  * <other useful comments, qualifications, etc.>
+  * 07/19/2011: Parameter name and value validation has been added to 
+                ReportParameterTag.java to comply with Fortify scan 
+				result. Please check it before adding new name, values 
+				that contain special characters or pattern that is out 
+				of ordinary.
+  *
+  * MODIFIED    (MM/DD/YY)
+  * hyin   07/19/11 - add comments for Fortify
+  * cgreen 05/26/10 - convert to oracle packaging
+  * ohorne 04/12/10 - added accountability param for Over And Short Reports
+  * npoola 03/18/10 - Added the UIParameters for the FlashSales and
+  *                   BankDeposit reports
+  * sgu    03/11/10 - check in after merge with Owen's txn
+  * ohorne 03/10/10 - flashsales no longer uses posDept
+  * sgu    03/11/10 - rework the flash sale adhoc report
+  * npoola 02/23/10 - changed the showTime flag to false
+  * abonda 01/02/10 - Update Header date
+  * npoola 12/24/09 - For the suspended transactions, reporting
+  *                   periods must be hidden
+  * npoola 12/11/09 - added the
+  *                   CancelledAndPostVoidedTransactionsReport
+  *                   parameter to filter the year in the report
+  *                   period
+  * ohorne 08/12/09 - created document
+  ===========================================================================
+  */
+	-->
+<UIParameters>
+	<Parameters reportRef="FlashSalesReport">
+		<Parameter name="hideAdhoc" defaultValue="false"
+			displayName="" parameterType="Boolean" viewable="0" required="0"
+			section="0" />
+	</Parameters>
+	<Parameters reportRef="BankDepositSummaryReport">
+		<Parameter name="hideReportPeriods" defaultValue="false"
+			displayName="" parameterType="Boolean" viewable="0" required="0"
+			section="0" />
+	</Parameters>
+	<Parameters reportRef="FlashSalesReportAdhoc">
+		<Parameter name="storeId" defaultValue="00102"
+			displayName="Store"
+			parameterType="oracle.retail.stores.commerceservices.report.configuration.NonEditableTextEditor"
+			viewable="1" required="0" section="1" />
+		<Parameter name="merchandiseHierarchyId" defaultValue="ALl"
+			displayName="Merchandise Hierarchy"
+			parameterType="oracle.retail.stores.webmodules.report.ui.editors.SingleMerchandiseHierarchyEditor"
+			viewable="1" required="0" section="1" />
+	</Parameters>
+	<Parameters reportRef="MerchandiseDrillDownReport">
+		<Parameter name="hideAdhoc" defaultValue="true" displayName=""
+			parameterType="Boolean" viewable="0" required="0" section="0" />
+		<Parameter name="hideReportPeriods" defaultValue="true"
+			displayName="" parameterType="Boolean" viewable="0" required="0"
+			section="0" />
+		<Parameter name="departmentId" defaultValue="All"
+			displayName="Department"
+			parameterType="oracle.retail.stores.webmodules.report.ui.editors.SingleDepartmentEditor"
+			viewable="0" required="0" section="0" />
+	</Parameters>
+	<Parameters reportRef="OverAndShortByCashierReportAdhoc">
+		<Parameter name="storeId" defaultValue="00102"
+			displayName="Store"
+			parameterType="oracle.retail.stores.commerceservices.report.configuration.NonEditableTextEditor"
+			viewable="1" required="0" section="1" />
+		<Parameter name="cashierId" defaultValue="00102"
+			displayName="Cashier"
+			parameterType="oracle.retail.stores.webmodules.employee.ui.report.SingleOperatorEditor"
+			viewable="1" required="0" section="1" />
+    <Parameter name="accountability" defaultValue="EMPLOYEE_NAME" displayName=""
+      parameterType="String" viewable="0" required="0" section="0" />
+	</Parameters>
+	<Parameters reportRef="OverAndShortByCashierReport">
+    <Parameter name="cashierId" defaultValue="All" displayName=""
+      parameterType="String" viewable="0" required="0" section="0" />
+    <Parameter name="accountability" defaultValue="EMPLOYEE_NAME" displayName=""
+      parameterType="String" viewable="0" required="0" section="0" />
+	</Parameters>
+	<Parameters reportRef="OverAndShortByRegisterReportAdhoc">
+		<Parameter name="storeId" defaultValue="00102"
+			displayName="Store"
+			parameterType="oracle.retail.stores.commerceservices.report.configuration.NonEditableTextEditor"
+			viewable="1" required="0" section="1" />
+		<Parameter name="registerId" defaultValue="All" displayName="Register"
+			parameterType="oracle.retail.stores.webmodules.storeops.ui.report.SingleWorkstationEditor"
+			viewable="1" required="0" section="1" />
+    <Parameter name="accountability" defaultValue="REGISTER_ID" displayName=""
+      parameterType="String" viewable="0" required="0" section="0" />
+	</Parameters>
+	<Parameters reportRef="OverAndShortByRegisterReport">
+		<Parameter name="registerId" defaultValue="All" displayName=""
+			parameterType="String" viewable="0" required="0" section="0" />
+    <Parameter name="accountability" defaultValue="REGISTER_ID" displayName=""
+      parameterType="String" viewable="0" required="0" section="0" />
+	</Parameters>
+	<Parameters reportRef="SalesSummaryByRegisterReport">
+		<Parameter name="registerId" defaultValue="All" displayName=""
+			parameterType="String" viewable="0" required="0" section="0" />
+	</Parameters>
+	<Parameters reportRef="SalesSummaryByRegisterReportAdhoc">
+		<Parameter name="storeId" defaultValue="00102"
+			displayName="Store"
+			parameterType="oracle.retail.stores.commerceservices.report.configuration.NonEditableTextEditor"
+			viewable="1" required="0" section="1" />
+		<Parameter name="registerId" defaultValue="All" displayName="Register"
+			parameterType="oracle.retail.stores.webmodules.storeops.ui.report.SingleWithAllNoneWorkstationEditor"
+			viewable="1" required="0" section="1" />
+	</Parameters>
+	<Parameters reportRef="HourlyProductivityReport">
+		<Parameter name="hideYearlyReportingPeriod" defaultValue="true"
+			displayName="" parameterType="Boolean" viewable="0" required="0"
+			section="0" />
+	</Parameters>
+	<Parameters reportRef="HourlyProductivityReportAdhoc">
+		<Parameter name="storeId" defaultValue="00102"
+			displayName="Store"
+			parameterType="oracle.retail.stores.commerceservices.report.configuration.NonEditableTextEditor"
+			viewable="1" required="0" section="1" />
+		<Parameter name="registerId" defaultValue="All" displayName="Register"
+			parameterType="oracle.retail.stores.webmodules.storeops.ui.report.SingleWorkstationEditor"
+			viewable="1" required="0" section="1" />
+		<Parameter name="employeeId" defaultValue="All" displayName="Cashier"
+			parameterType="oracle.retail.stores.webmodules.employee.ui.report.SingleOperatorEditor"
+			viewable="1" required="0" section="1" />
+		<Parameter name="timeIncrement" defaultValue="4"
+			displayName="Time Increment"
+			parameterType="oracle.retail.stores.webmodules.report.ui.editors.TimeIncrementsEditor"
+			viewable="1" required="0" section="1" />
+		<Parameter name="hideYearlyReportingPeriod" defaultValue="true"
+			displayName="" parameterType="Boolean" viewable="0" required="0"
+			section="0" />
+		<Parameter name="showTime" defaultValue="true" displayName=""
+			parameterType="Boolean" viewable="0" required="0" section="0" />
+		<Parameter name="startTimeStr" defaultValue="12:00 AM"
+			displayName="" parameterType="String" viewable="0" required="0"
+			section="0" />
+		<Parameter name="endTimeStr" defaultValue="11:59 PM"
+			displayName="" parameterType="String" viewable="0" required="0"
+			section="0" />
+	</Parameters>
+	<Parameters reportRef="EmployeeTimeSummaryReport">
+		<Parameter name="employeeID" defaultValue="" displayName="EmployeeID"
+			parameterType="oracle.retail.stores.commerceservices.report.configuration.TextEditor"
+			viewable="0" required="0" section="0" />
+	</Parameters>
+	<Parameters reportRef="EmployeeTimeDetailReport">
+		<Parameter name="employeeID" defaultValue="" displayName="EmployeeID"
+			parameterType="oracle.retail.stores.commerceservices.report.configuration.TextEditor"
+			viewable="0" required="0" section="0" />
+	</Parameters>
+	<Parameters reportRef="EmployeeTimeMaintenanceReport">
+		<Parameter name="employeeID" defaultValue="" displayName="EmployeeID"
+			parameterType="oracle.retail.stores.webmodules.storeops.ui.report.EmployeeListSubmitEditor"
+			viewable="0" required="0" section="0" />
+	</Parameters>
+
+	<!-- Sharath - Changes Start -->
+	<Parameters reportRef="TillStatusReport">
+		<Parameter name="hideAdhoc" defaultValue="true" displayName=""
+			parameterType="Boolean" viewable="0" required="0" section="0" />
+		<Parameter name="hideReportPeriods" defaultValue="true"
+			displayName="" parameterType="Boolean" viewable="0" required="0"
+			section="0" />
+	</Parameters>
+	<Parameters reportRef="NoSalesTransactionsReport">
+		<Parameter name="hideYearlyReportingPeriod" defaultValue="true"
+			displayName="" parameterType="Boolean" viewable="0" required="0"
+			section="0" />
+		<Parameter name="hideAdhoc" defaultValue="false"
+			displayName="" parameterType="Boolean" viewable="0" required="0"
+			section="0" />
+	</Parameters>
+	<Parameters reportRef="CancelledAndPostVoidedTransactionsReport">
+		<Parameter name="hideYearlyReportingPeriod" defaultValue="true"
+			displayName="" parameterType="Boolean" viewable="0" required="0"
+			section="0" />
+		<Parameter name="hideAdhoc" defaultValue="false"
+			displayName="" parameterType="Boolean" viewable="0" required="0"
+			section="0" />
+	</Parameters>
+	<Parameters reportRef="SuspendedTransactionsReport">
+		<Parameter name="hideAdhoc" defaultValue="true" displayName=""
+			parameterType="Boolean" viewable="0" required="0" section="0" />
+		<Parameter name="hideReportPeriods" defaultValue="true"
+			displayName="" parameterType="Boolean" viewable="0" required="0"
+			section="0" />
+	</Parameters>
+	<Parameters reportRef="CancelledAndPostVoidedTransactionsReportAdhoc">
+		<Parameter name="hideYearlyReportingPeriod" defaultValue="true"
+			displayName="" parameterType="Boolean" viewable="0" required="0"
+			section="0" />
+		<Parameter name="showTime" defaultValue="false" displayName=""
+			parameterType="Boolean" viewable="0" required="0" section="0" />
+		<Parameter name="storeId" defaultValue="04241" displayName="Store"
+			parameterType="oracle.retail.stores.commerceservices.report.configuration.NonEditableTextEditor"
+			viewable="1" required="0" section="1" />
+		<Parameter name="registerId" defaultValue="All" displayName="Register"
+			parameterType="oracle.retail.stores.webmodules.storeops.ui.report.SingleWorkstationEditor"
+			viewable="1" required="0" section="1" />
+		<Parameter name="cashierId" defaultValue="04241"
+			displayName="Cashier"
+			parameterType="oracle.retail.stores.webmodules.employee.ui.report.SingleOperatorEditor"
+			viewable="1" required="0" section="1" />
+	</Parameters>
+	<Parameters reportRef="NoSalesTransactionsReportAdhoc">
+		<Parameter name="hideYearlyReportingPeriod" defaultValue="true"
+			displayName="" parameterType="Boolean" viewable="0" required="0"
+			section="0" />
+		<Parameter name="showTime" defaultValue="true" displayName=""
+			parameterType="Boolean" viewable="0" required="0" section="0" />
+		<Parameter name="storeId" defaultValue="04241" displayName="Store"
+			parameterType="oracle.retail.stores.commerceservices.report.configuration.NonEditableTextEditor"
+			viewable="1" required="0" section="1" />
+		<Parameter name="registerId" defaultValue="All" displayName="Register"
+			parameterType="oracle.retail.stores.webmodules.storeops.ui.report.SingleWorkstationEditor"
+			viewable="1" required="0" section="1" />
+		<Parameter name="cashierId" defaultValue="04241"
+			displayName="Cashier"
+			parameterType="oracle.retail.stores.webmodules.employee.ui.report.SingleOperatorEditor"
+			viewable="1" required="0" section="1" />
+	</Parameters>
+	<!-- Sharath - Changes End -->
+</UIParameters>

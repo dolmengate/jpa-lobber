@@ -1,0 +1,126 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<xliff version="1.0">
+   <file source-language="EN-US" target-language="ja-JP" datatype="XDO" original="orphan.xlf" product-version="orphan.xlf" product-name="">
+      <header/>
+      <body>
+         <trans-unit id="d8deaeb9">
+            <source>Template Table 1</source>
+            <target>テンプレート表1</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="9a7b44ce" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Start Date:</source>
+            <target>開始日:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ed49b037" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Run Date:</source>
+            <target>実行日:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3786ce79" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">End Date: </source>
+            <target xml:space="preserve">終了日: </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="9a7b44ce_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Start Date:</source>
+            <target>開始日:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="9b60458f" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Start Time:</source>
+            <target>開始時間:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ed49b037_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Run Date:</source>
+            <target>実行日:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3786ce79_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">End Date: </source>
+            <target xml:space="preserve">終了日: </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="7e8e8348" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>End Time:</source>
+            <target>終了時間:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="94390f99" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Store:</source>
+            <target>店舗:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="7c1bc5d7" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Register:</source>
+            <target>レジスタ:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="55351f7" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Cashier:</source>
+            <target>キャッシャ:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="2063ce" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Date</source>
+            <target>日付</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="844d02a3" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Cashier</source>
+            <target>キャッシャ</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="dab692c3" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Register</source>
+            <target>レジスタ</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="28035a" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Type</source>
+            <target>タイプ</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="97bbf249" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Reason Code</source>
+            <target>事由コード</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="8225bd" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Transaction ID</source>
+            <target>トランザクションID</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="eb4fa114" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Post Void</source>
+            <target>無効後</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="10cc1e9a" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">  Cancel</source>
+            <target xml:space="preserve">  取消</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="1c2dabdd" maxbytes="4000" maxwidth="74" size-unit="char" translate="yes">
+            <source xml:space="preserve">Total Cancels:</source>
+            <target xml:space="preserve">取消合計:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="7dd8bb3f" maxbytes="4000" maxwidth="26" size-unit="char" translate="yes">
+            <source>Total Post Voids:</source>
+            <target>無効後合計:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="4a41e1d2" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source xml:space="preserve"> No Data Available</source>
+            <target xml:space="preserve"> データがありません</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+      </body>
+   </file>
+</xliff>

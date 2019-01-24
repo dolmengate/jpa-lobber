@@ -187,11 +187,6 @@
        </classpath>
     </taskdef>
 
-    <!--<target name="echo_classpath">-->
-        <!--<echo>****CLASSPATH FOR TARGET create_sample_db IS: ****</echo>-->
-        <!--<echo> ${toString:project.class.path} </echo>-->
-    <!--</target>-->
-
     <target name="show_props">
         <echo message="------------------ Using Properties -------------------------------"/>
         <echo message="db.vendor=${db.vendor}"/>
@@ -302,6 +297,8 @@
             </sequential>
         </macrodef>
 
+        <!-- Stephen: this macro altered to perform both CSF entry and db.properties replacement -->
+        <!-- Also added string replacement in db-reports.properties -->
         <macrodef name="encrypt-passwords">
             <attribute name="install-type"/>
             <sequential>
@@ -353,21 +350,12 @@
                         <validate-admin-password password="${temp.app.admin.password}"/>
                         <echo>Encrypting: application administrator password</echo>
                         <!-- If this is a POS install, use CSF -->
-                        <if>
-                            <equals arg1="@{install-type}" arg2="pos" casesensitive="false"/>
-                            <then>
-                                <encrypt password="${temp.app.admin.password}" property="temp.app.admin.password-encrypted"/>
-                                <replaceregexp file="db.properties"
-                                               match="inst.app.admin.password-encrypted\s*=.*"
-                                               replace="inst.app.admin.password-encrypted=${temp.app.admin.password-encrypted}"/>
-                            </then>
-                            <else>
-                                <encrypt password="${temp.app.admin.password}" property="temp.app.admin.password-encrypted"/>
-                                <replaceregexp file="db.properties"
-                                    match="inst.app.admin.password-encrypted\s*=.*"
-                                    replace="inst.app.admin.password-encrypted=${temp.app.admin.password-encrypted}"/>
-                            </else>
-                        </if>
+                        <!-- Save the password to csf wallet, using adminUser as user alias name for this password -->
+                        <saveCredential userNameAlias="adminUser" userName="adminUser" password="${temp.app.admin.password}" property="temp.app.admin.password-property"/>
+                        <encrypt password="${temp.app.admin.password}" property="temp.app.admin.password-encrypted"/>
+                        <replaceregexp file="db.properties"
+                            match="inst.app.admin.password-encrypted\s*=.*"
+                            replace="inst.app.admin.password-encrypted=${temp.app.admin.password-encrypted}"/>
                     </then>
                     <else>
                         <echo>Skipping: Application administrator password</echo>
@@ -380,21 +368,12 @@
                     <then>
                         <echo>Encrypting: DB datasource password</echo>
                         <!-- If this is a POS install, use CSF -->
-                        <if>
-                            <equals arg1="@{install-type}" arg2="pos" casesensitive="false"/>
-                            <then>
-                                <encrypt password="${temp.db.datasource.password}" property="temp.db.datasource.password-encrypted"/>
-                                <replaceregexp file="db.properties"
-                                               match="db.password-encrypted\s*=.*"
-                                               replace="db.password-encrypted=${temp.db.datasource.password-encrypted}"/>
-                            </then>
-                            <else>
-                                <encrypt password="${temp.db.datasource.password}" property="temp.db.datasource.password-encrypted"/>
-                                <replaceregexp file="db.properties"
-                                    match="db.password-encrypted\s*=.*"
-                                    replace="db.password-encrypted=${temp.db.datasource.password-encrypted}"/>
-                            </else>
-                        </if>
+                        <!-- Save the password to csf wallet, using dataSourceUser as user alias name for this password -->
+                        <saveCredential userNameAlias="dataSourceUser" userName="dataSourceUser" password="${temp.db.datasource.password}" property="temp.db.datasource.password-property"/>
+                        <encrypt password="${temp.db.datasource.password}" property="temp.db.datasource.password-encrypted"/>
+                        <replaceregexp file="db.properties"
+                            match="db.password-encrypted\s*=.*"
+                            replace="db.password-encrypted=${temp.db.datasource.password-encrypted}"/>
                     </then>
                     <else>
                         <echo>Skipping: DB datasource password</echo>
@@ -407,21 +386,12 @@
                     <then>
                         <echo>Encrypting: DB owner password</echo>
                         <!-- If this is a POS install, use CSF -->
-                        <if>
-                            <equals arg1="@{install-type}" arg2="pos" casesensitive="false"/>
-                            <then>
-                                <encrypt password="${temp.db.owner.password}" property="temp.db.owner.password-encrypted"/>
-                                <replaceregexp file="db.properties"
-                                               match="db.owner.password-encrypted\s*=.*"
-                                               replace="db.owner.password-encrypted=${temp.db.owner.password-encrypted}"/>
-                            </then>
-                            <else>
-                                <encrypt password="${temp.db.owner.password}" property="temp.db.owner.password-encrypted"/>
-                                <replaceregexp file="db.properties"
-                                    match="db.owner.password-encrypted\s*=.*"
-                                    replace="db.owner.password-encrypted=${temp.db.owner.password-encrypted}"/>
-                            </else>
-                        </if>
+                        <!-- Save the password to csf wallet, using schemaUser as user alias name for this password -->
+                        <saveCredential userNameAlias="schemaUser" userName="schemaUser" password="${temp.db.owner.password}" property="temp.db.owner.password-property"/>
+                        <encrypt password="${temp.db.owner.password}" property="temp.db.owner.password-encrypted"/>
+                        <replaceregexp file="db.properties"
+                            match="db.owner.password-encrypted\s*=.*"
+                            replace="db.owner.password-encrypted=${temp.db.owner.password-encrypted}"/>
                     </then>
                     <else>
                         <echo>Skipping: DB owner password</echo>
@@ -519,6 +489,8 @@
         <property name="db.autocommit" value="${gen.db.autocommit}"/>
         <property name="db.createforeignkey" value="${inst.db.createforeignkey}"/>
 
+        <!-- Stephen: commented out <fileset> because those .jars aren't there, added commons-logging jar
+        to Ant invocation in JPAHibernateTest -->
         <path id="project.class.path">
             <pathelement location="."/>
             <pathelement location="${install.dir}/pos"/>
@@ -535,13 +507,6 @@
             <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
             <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
             <pathelement location="${jboss.j2ee.jar}"/>
-            <!--<pathelement location="C:/Users/stephen/repos/jpa-lobber/src/test/resources/installer/ORPOS-13.4.1/ant-ext/" />-->
-            <!--<pathelement location="C:/Users/stephen/repos/jpa-lobber/src/test/resources/installer/ORPOS-13.4.1/product/shared/lib/" />-->
-            <!--<pathelement location="C:/Users/stephen/repos/jpa-lobber/src/test/resources/installer/ORPOS-13.4.1/product/shared/common/lib/" />-->
-            <!--<pathelement location="C:/Users/stephen/repos/jpa-lobber/src/test/resources/installer/ORPOS-13.4.1/product/shared/common/lib/oracle.stores.secure.utility.jar" />-->
-            <!--<pathelement location="C:/Users/stephen/repos/jpa-lobber/src/test/resources/installer/ORPOS-13.4.1/product/server/common/lib/" />-->
-            <!--<pathelement location="C:/Users/stephen/repos/jpa-lobber/src/test/resources/installer/ORPOS-13.4.1/product/server/common/lib/ext/" />-->
-            <!--<pathelement location="C:/Users/stephen/repos/jpa-lobber/src/test/resources/installer/ORPOS-13.4.1/product/server/common/db/lib/" />-->
             <!--<fileset dir="${install.dir}/common/common/build">-->
             <!--<include name="**/org.springframework.*-3.0.5.RELEASE.jar"/>-->
             <!--<include name="**/com.springsource.org.aopalliance-1.0.0.jar"/>-->
@@ -640,6 +605,8 @@
           <os family="windows"/>
         </not>
       </condition>
+
+         <!-- fixme Stephen: replace hardcoded password -->
         <java classname="oracle.retail.stores.commerceservices.DBSetup"
             fork="true"
             failonerror="true"
@@ -800,6 +767,7 @@
     </target>
 
     <!-- Create the schema -->
+    <!-- fixme Stephen: remove hardcoded password -->
     <target name="create_360_schema" depends="create_filter_sql" if="db.product">
         <sql
             autocommit="${db.autocommit}"
@@ -838,6 +806,7 @@
             </else>
         </if>
 
+        <!-- fixme Stephen: remove hardcoded password -->
         <sql
              autocommit="${db.autocommit}"
              onerror="continue"
@@ -900,6 +869,7 @@
     </target>
 
 
+    <!-- fixme Stephen: remove hardcoded password -->
     <target name="load_purge_procedures" depends="setup" if="db.product">
         <sql
             autocommit="${db.autocommit}"
@@ -936,6 +906,7 @@
     </target>
 
     <!-- Create foreign keys -->
+    <!-- fixme Stephen: remove hardcoded password -->
     <target name="create_foreign_key" depends="create_360_schema" if="db.buildforeignkey">
          <sql
              autocommit="${db.autocommit}"
@@ -953,6 +924,7 @@
     </target>
 
     <!-- Create views -->
+    <!-- fixme Stephen: remove hardcoded password -->
     <target name="create_view" depends="create_360_schema" if="db.createview">
         <sql
             autocommit="${db.autocommit}"
@@ -970,6 +942,7 @@
     </target>
 
     <!-- grant table, view permissions -->
+    <!-- fixme Stephen: remove hardcoded password -->
     <target name="grant_table_view_perm" if="db.product">
        <sql
             autocommit="${db.autocommit}"
@@ -991,6 +964,7 @@
     </target>
 
      <!-- grant procedure permissions -->
+    <!-- fixme Stephen: remove hardcoded password -->
     <target name="grant_proc_perm" if="db.product">
        <sql
             autocommit="${db.autocommit}"
@@ -1009,6 +983,7 @@
 
 
     <!-- create table, view synonyms -->
+    <!-- fixme Stephen: replace hardcoded password -->
    <target name="create_table_view_synonym" if="db.product">
         <sql
             autocommit="${db.autocommit}"
@@ -1029,6 +1004,7 @@
     </target>
 
     <!-- create procedure synonyms -->
+    <!-- fixme Stephen: replace hardcoded password -->
     <target name="create_proc_syn" if="db.product">
         <sql
             autocommit="${db.autocommit}"
@@ -1053,6 +1029,7 @@
     <target name="exec_proc_permissions" depends="filter_rm_proc_perm_sql, filter_rm_proc_syn_sql, grant_proc_perm, create_proc_syn" if="db.createprocedure"/>
 
     <!-- creates stored procedures used by returns management -->
+    <!-- fixme Stephen: remove hardcoded password -->
     <target name="create_returns_procedures" depends="setup" if="db.product">
         <sql
             autocommit="${db.autocommit}"
@@ -1076,6 +1053,7 @@
     </target>
 
     <!-- Insert the core data -->
+    <!-- fixme Stephen: remove hardcoded password -->
     <target name="insert_core" depends="create_360_schema" if="db.product">
         <sql
             autocommit="${db.autocommit}"
@@ -1094,6 +1072,7 @@
     </target>
 
     <!-- Insert the default data -->
+    <!-- fixme Stephen: remove hardcoded password -->
     <target name="insert_default" depends="create_360_schema" if="db.product">
         <sql
             autocommit="${db.autocommit}"
@@ -1112,6 +1091,7 @@
     </target>
 
     <!-- Insert the customizable data -->
+    <!-- fixme Stephen: remove hardcoded password -->
     <target name="insert_customizable" depends="create_360_schema" if="db.product">
         <sql
             autocommit="${db.autocommit}"
@@ -1130,6 +1110,7 @@
     </target>
 
     <!-- Insert the sample data -->
+    <!-- fixme Stephen: remove hardcoded password -->
     <target name="insert_sample" depends="create_360_schema" if="db.product">
  
         <sql
@@ -1147,20 +1128,22 @@
             </classpath>
         </sql>        
         <!-- Load scan sheet sample images as blobs -->
-        <java classname="oracle.retail.stores.common.utility.ScanSheetImageLoader" 
-              classpath="${db.encrypt.classpath}"        
-              failonerror="true"
-              fork="true">
-            <arg value="db.properties"/>                   
-            <arg value="${sql.dir.dist}/sample/images/"/>
-            <classpath>
-                <pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>
-                <pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>
-            </classpath>
-        </java>
+        <!-- fixme Stephen: commented out scansheets due to missing resources -->
+        <!--<java classname="oracle.retail.stores.common.utility.ScanSheetImageLoader"-->
+              <!--classpath="${db.encrypt.classpath}"        -->
+              <!--failonerror="true"-->
+              <!--fork="true">-->
+            <!--<arg value="db-reports.properties"/>-->
+            <!--<arg value="${sql.dir.dist}/sample/images/"/>-->
+            <!--<classpath>-->
+                <!--<pathelement location="${db.jdbc-path}/${db.jdbc-jar}"/>-->
+                <!--<pathelement location="${db.jdbc-path}/${db.jdbc-jar2}"/>-->
+            <!--</classpath>-->
+        <!--</java>-->
     </target>
 
     <!-- Insert the basetest data -->
+    <!-- fixme Stephen: remove hardcoded password -->
     <target name="insert_basetest" depends="create_360_schema" if="db.product">
         <sql
             autocommit="${db.autocommit}"
@@ -1179,6 +1162,7 @@
     </target>
 
     <!-- Insert the unittest data -->
+    <!-- fixme Stephen: remove hardcoded password -->
     <target name="insert_unittest" depends="create_360_schema" if="db.product">
         <sql
             autocommit="${db.autocommit}"
@@ -1197,6 +1181,7 @@
     </target>
 
     <!-- Insert the qatest data -->
+    <!-- fixme Stephen: remove hardcoded password -->
     <target name="insert_qatest" depends="create_360_schema" if="db.product">
         <sql
             autocommit="${db.autocommit}"
@@ -1216,6 +1201,7 @@
 
 
     <!-- Insert the integration data -->
+    <!-- fixme Stephen: remove hardcoded password -->
     <target name="insert_integration" if="db.product">
         <sql
             autocommit="${db.autocommit}"
@@ -1233,6 +1219,7 @@
     </target>
 
     <!-- create third party tables -->
+    <!-- fixme Stephen: replace hardcoded password -->
     <target name="load_3rdparty" if="db.product" description="Loads up Quartz SQL">
         <sql
             autocommit="${db.autocommit}"
@@ -1259,7 +1246,10 @@
             </classpath>
         </taskdef>
     <if>
-        <equals arg1="${app.product}" arg2="backoffice"/>
+
+        <!-- Stephen: arg2 altered from backoffice to pos to get the installer to insert Reports files without
+         changing app.product in db.properties -->
+        <equals arg1="${app.product}" arg2="pos"/>
         <then>
 
             <!-- update report dataModel import according to vat flag -->
@@ -1380,7 +1370,9 @@
                         maxmemory="128m">
 
                    <arg value="reports/reportImport.xml"/>  <!-- path to reportImport.xml -->
-                   <arg value="db.properties"/>         <!-- path to db.properties -->
+                    <!-- Stephen: altered to get around bug in oracle.retail.stores.blob.utility.BlobLoaderUtil.getConnection
+                        Incorrectly tries to get CSF credential from hashed password instead of alias -->
+                   <arg value="db-reports.properties"/>         <!-- path to db.properties -->
                    <arg value="reports"/>         <!-- path to report templates -->
                    <classpath>
                      <path refid="xmlp.class.path"/>
@@ -2873,7 +2865,7 @@
             <then>
                 <!-- call class that will create mocked localized sql -->
                 <java classname="oracle.retail.stores.common.utility.SQLFilePadder"
-                    classpath="C:/Users/stephen/repos/jpa-lobber/src/test/resources/installer/ORPOS-13.4.1/product/shared/common/lib/oracle.stores.utility.jar"
+                    classpath="${db.encrypt.classpath}"
                     failonerror="true"
                     fork="true">
                     <arg value="${gen.locales}"/>

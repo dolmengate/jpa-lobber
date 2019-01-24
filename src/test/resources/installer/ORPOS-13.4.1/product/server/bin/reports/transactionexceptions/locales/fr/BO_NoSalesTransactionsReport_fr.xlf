@@ -1,0 +1,111 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<xliff version="1.0">
+   <file source-language="EN-US" target-language="fr-FR" datatype="XDO" original="orphan.xlf" product-version="orphan.xlf" product-name="">
+      <header/>
+      <body>
+         <trans-unit id="d8deaeb9">
+            <source>Template Table 1</source>
+            <target>Table des modèles 1</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="9a7b44ce" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Start Date:</source>
+            <target>Date de début :</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ed49b037" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Run Date:</source>
+            <target>Date d'exécution :</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3786ce79" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">End Date: </source>
+            <target xml:space="preserve">Date de fin : </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="9a7b44ce_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Start Date:</source>
+            <target>Date de début :</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="9b60458f" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Start Time:</source>
+            <target>Heure de début :</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ed49b037_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Run Date:</source>
+            <target>Date d'exécution :</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3786ce79_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">End Date: </source>
+            <target xml:space="preserve">Date de fin : </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="7e8e8348" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>End Time:</source>
+            <target>Heure de fin :</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="94390f99" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Store:</source>
+            <target>Magasin :</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="7c1bc5d7" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Register:</source>
+            <target>Caisse :</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="55351f7" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Cashier:</source>
+            <target>Caissier :</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="2063ce" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Date</source>
+            <target>Date</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="844d02a3" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Cashier</source>
+            <target>Caissier</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="dab692c3" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Register</source>
+            <target>Caisse</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="28035a" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Type</source>
+            <target>Type</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="97bbf249" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Reason Code</source>
+            <target>Code de motif</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="8225bd" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Transaction ID</source>
+            <target>ID transaction</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="29f0e5f1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total No Sales:</source>
+            <target>Total sans ventes :</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="4a41e1d2" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source xml:space="preserve"> No Data Available</source>
+            <target xml:space="preserve"> Aucune donnée disponible</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+      </body>
+   </file>
+</xliff>

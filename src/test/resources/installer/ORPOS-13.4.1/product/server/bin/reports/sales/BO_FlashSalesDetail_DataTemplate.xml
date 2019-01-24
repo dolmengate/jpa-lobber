@@ -1,0 +1,138 @@
+<!--
+/* ===========================================================================
+* Copyright (c) 2010, 2013, Oracle and/or its affiliates. All rights reserved. 
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/sales/BO_FlashSalesDetail_DataTemplate.xml /main/4 2013/08/13 15:29:25 rgour Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    rgour     08/08/13 - Fixing the report issue , which was adding the total
+ *                         sale and total return as return is in -ve
+ *    sgu       03/12/10 - trunk the startDate and endDate
+ *    ohorne    03/10/10 - flashsales no longer uses posDept
+ *
+ * ===========================================================================
+ */
+-->
+<dataTemplate name="FlashSalesDetail">
+ <properties>
+  <property name="xml_tag_case" value="as_are" />
+ </properties>
+ <parameters>
+  <parameter name="runDateTime" dataType="character"/>
+  <parameter name="storeId" dataType="character"/>
+  <parameter name="startDate" dataType="character"/>
+  <parameter name="endDate" dataType="character"/>
+  <parameter name="adhoc" dataType="character" defaultValue="false"/>
+  <parameter name="reportTitle" dataType="character"/>
+  <parameter name="merchandiseHierarchyId" dataType="character" defaultValue="All"/>
+  <parameter name="locale" dataType="character"/>
+ </parameters>
+
+ <dataQuery>
+   <sqlStatement name="Q1">
+   <![CDATA[SELECT
+  SUM(QU_MRH_SLS_TRN) NumberOfTrans,
+  SUM(QU_MRH_SLS_ITM) NumberOfUnits,
+  SUM(MO_MRH_SLS_TOT) TotalSales,
+  ABS(SUM(MO_MRH_RTN_TOT)) TotalReturns,
+  (
+  CASE
+    WHEN SUM(QU_MRH_SLS_TRN) > 0 THEN CAST(SUM(QU_MRH_SLS_ITM) AS FLOAT) / SUM(QU_MRH_SLS_TRN)
+    ELSE 0
+    END
+  ) AverageUnitPerTransaction,
+  (
+  CASE
+    WHEN SUM(QU_MRH_SLS_TRN) > 0 THEN CAST(SUM(MO_MRH_SLS_TOT) AS FLOAT) / SUM(QU_MRH_SLS_TRN)
+    ELSE 0
+    END
+  ) AverageTransaction,
+  SUM(MO_MRH_SLS_TOT - ABS(MO_MRH_RTN_TOT)) SalesLessReturns
+FROM LE_SMY_MRH_SLS MS
+JOIN CA_PRD_RP_V4 C4 ON MS.ID_PRD_RP = C4.ID_PRD_RP
+JOIN CA_CLD_PRD C ON C4.ID_CLD = C.ID_CLD AND C4.ID_CLD_LV = C.ID_CLD_LV AND C4.ID_CLD_PRD_SRT = C.ID_CLD_PRD
+LEFT JOIN CO_MRHRC_GP_I8 M8 ON MS.ID_MRHRC_GP = M8.ID_MRHRC_GP AND M8.LCL = :locale
+LEFT JOIN PA_STR_RTL_I8 S8 ON MS.ID_STR_RT = S8.ID_STR_RT AND S8.LCL = :locale
+WHERE substr(TO_CHAR(C.TS_SRT, 'YYYY-MM-DD HH24:MI:SS'),1,10) >= substr(:startDate,1,10)
+AND substr(TO_CHAR(C.TS_END, 'YYYY-MM-DD HH24:MI:SS'),1,10) <= substr(:endDate,1,10)
+AND (:merchandiseHierarchyId = 'All' OR  MS.ID_MRHRC_GP = :merchandiseHierarchyId)
+AND MS.ID_STR_RT = :storeId
+GROUP BY MS.ID_STR_RT
+ORDER BY SalesLessReturns DESC
+   ]]>
+  </sqlStatement>
+  <sqlStatement name="Q2">
+   <![CDATA[SELECT
+  MS.ID_MRHRC_GP MerchandiseId,
+  MIN(M8.NM_MRHRC_GP) MerchandiseName,
+  SUM(QU_MRH_SLS_TRN) NumberOfTrans,
+  SUM(QU_MRH_SLS_ITM) NumberOfUnits,
+  SUM(MO_MRH_SLS_TOT) TotalSales,
+  ABS(SUM(MO_MRH_RTN_TOT)) TotalReturns,
+  (
+  CASE
+    WHEN SUM(QU_MRH_SLS_TRN) > 0 THEN CAST(SUM(QU_MRH_SLS_ITM) AS FLOAT) / SUM(QU_MRH_SLS_TRN)
+    ELSE 0
+    END
+  ) AverageUnitPerTransaction,
+  (
+  CASE
+    WHEN SUM(QU_MRH_SLS_TRN) > 0 THEN CAST(SUM(MO_MRH_SLS_TOT) AS FLOAT) / SUM(QU_MRH_SLS_TRN)
+    ELSE 0
+    END
+  ) AverageTransaction,
+  SUM(MO_MRH_SLS_TOT - ABS(MO_MRH_RTN_TOT)) SalesLessReturns
+FROM LE_SMY_MRH_SLS MS
+JOIN CA_PRD_RP_V4 C4 ON MS.ID_PRD_RP = C4.ID_PRD_RP
+JOIN CA_CLD_PRD C ON C4.ID_CLD = C.ID_CLD AND C4.ID_CLD_LV = C.ID_CLD_LV AND C4.ID_CLD_PRD_SRT = C.ID_CLD_PRD
+LEFT JOIN CO_MRHRC_GP_I8 M8 ON MS.ID_MRHRC_GP = M8.ID_MRHRC_GP AND M8.LCL = :locale
+LEFT JOIN PA_STR_RTL_I8 S8 ON MS.ID_STR_RT = S8.ID_STR_RT AND S8.LCL = :locale
+WHERE substr(TO_CHAR(C.TS_SRT, 'YYYY-MM-DD HH24:MI:SS'),1,10) >= substr(:startDate,1,10)
+AND substr(TO_CHAR(C.TS_END, 'YYYY-MM-DD HH24:MI:SS'),1,10) <= substr(:endDate,1,10)
+AND (:merchandiseHierarchyId = 'All' OR  MS.ID_MRHRC_GP = :merchandiseHierarchyId)
+AND MS.ID_STR_RT = :storeId
+GROUP BY MS.ID_STR_RT, MS.ID_MRHRC_GP
+ORDER BY SalesLessReturns DESC
+   ]]>
+  </sqlStatement>
+  <sqlStatement name="Q3">
+   	<![CDATA[SELECT id_str_rt stId, nm_loc stName FROM pa_str_rtl_i8 WHERE id_str_rt = :storeId AND lcl = :locale]]>
+  </sqlStatement>
+  <sqlStatement name="Q4">
+   <![CDATA[SELECT id_mrhrc_gp mhId, nm_mrhrc_gp mhName FROM co_mrhrc_gp_i8 WHERE id_mrhrc_gp = :merchandiseHierarchyId AND lcl = :locale]]>
+  </sqlStatement>
+ </dataQuery>
+ <dataStructure>
+  <group name="G_TOTALS" source="Q1">
+	<element name="TOTAL_NUMBEROFTRANSACTIONS" value="NumberOfTrans"/>
+	<element name="TOTAL_NUMBEROFUNITS" value="NumberOfUnits"/>
+	<element name="TOTAL_AVERAGEUNITPERTRANSACTION" value="AverageUnitPerTransaction"/>
+	<element name="TOTAL_AVERAGETRANSACTION" value="AverageTransaction"/>
+	<element name="TOTAL_TOTALSALES" value="TotalSales"/>
+	<element name="TOTAL_TOTALRETURNS" value="TotalReturns"/>
+	<element name="TOTAL_SALESLESSRETURN" value="SalesLessReturns"/>
+</group>
+ <group name="G_HIERARCHY_TOTALS" source="Q2">
+	<element name="MERCH_ID" value="MerchandiseId"/>
+	<element name="MERCH_NAME" value="MerchandiseName"/>
+	<element name="NUMBEROFTRANSACTIONS" value="NumberOfTrans"/>
+	<element name="NUMBEROFUNITS" value="NumberOfUnits"/>
+	<element name="AVERAGEUNITPERTRANSACTION" value="AverageUnitPerTransaction"/>
+	<element name="AVERAGETRANSACTION" value="AverageTransaction"/>
+	<element name="TOTALSALES" value="TotalSales"/>
+	<element name="TOTALRETURNS" value="TotalReturns"/>
+	<element name="SALESLESSRETURN" value="SalesLessReturns"/>
+</group>
+<group name="G_STORE_INFO" source="Q3">
+    <element name="STORE_ID" value="stId"/>
+    <element name="STORE_NAME" value="stName"/>
+</group>
+<group name="G_MERCH_INFO" source="Q4">
+	<element name="MERCH_HIERARCHY_ID" value="mhId"/>
+	<element name="MERCH_HIERARCHY_NAME" value="mhName"/>
+</group>
+ </dataStructure>
+</dataTemplate>

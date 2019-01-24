@@ -1,0 +1,81 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<xliff version="1.0">
+   <file source-language="EN" target-language="ko-KR" datatype="XDO" original="orphan.xlf" product-version="orphan.xlf" product-name="">
+      <header/>
+      <body>
+         <trans-unit id="d8deaeb9">
+            <source>Template Table 1</source>
+            <target>템플릿 테이블 1</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="b4ed5512" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">Start Date: </source>
+            <target xml:space="preserve">시작 일자: </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ed49b037" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Run Date:</source>
+            <target>실행 일자:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3786ce79" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">End Date: </source>
+            <target xml:space="preserve">종료 일자: </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="aa3c26aa" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Store Name</source>
+            <target>점포 이름</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="85ea667" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>Number of Transactions</source>
+            <target>트랜잭션 수</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="8459ea9d" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Number of Units</source>
+            <target>단위 수</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="511fef67" maxbytes="4000" maxwidth="44" size-unit="char" translate="yes">
+            <source>Average Units Per Transaction</source>
+            <target>트랜잭션당 평균 단위 수</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="f8ca891b" maxbytes="4000" maxwidth="29" size-unit="char" translate="yes">
+            <source>Average Transaction</source>
+            <target>평균 트랜잭션</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="deb26cf0" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total Sales</source>
+            <target>총 판매</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ce302427" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total Returns</source>
+            <target>총 반품</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="2f514070" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source>Sales Less Returns</source>
+            <target>반품을 뺀 판매</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="4d3eb24" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total</source>
+            <target>합계</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b8059df2" maxbytes="4000" maxwidth="26" size-unit="char" translate="yes">
+            <source>No Data Available</source>
+            <target>사용 가능한 데이터 없음</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+      </body>
+   </file>
+</xliff>

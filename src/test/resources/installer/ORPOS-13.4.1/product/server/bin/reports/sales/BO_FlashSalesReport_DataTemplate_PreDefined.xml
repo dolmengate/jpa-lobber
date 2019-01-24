@@ -1,0 +1,102 @@
+<!--
+/* ===========================================================================
+* Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved. 
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/sales/BO_FlashSalesReport_DataTemplate_PreDefined.xml /main/14 2013/08/13 15:29:27 rgour Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    rgour     08/08/13 - Fixing the report issue , which was adding the total
+ *                         sale and total return as return is in -ve
+ *    ohorne    08/31/12 - corrected case of version attr
+ *    abondala  01/02/10 - Update Header date
+ *    ohorne    11/11/08 - Library upgrade: XMLP 5.6.2 to BIP 10.1.3.4
+ *    cgreene   10/27/08 - update header to Oracle ade
+ *
+ * ===========================================================================
+ */
+-->
+<dataTemplate name="FlashSalesReportPreDefined" version="1.0">
+	<properties>
+		<property name="xml_tag_case" value="as_are" /> 
+	</properties>
+	<parameters>
+  		<parameter name="runDateTime" dataType="character" />
+  		<parameter name="storeId" dataType="character" />
+  		<parameter name="startDate" dataType="character" />
+  		<parameter name="endDate" dataType="character" />
+  		<parameter name="adhoc" dataType="character" defaultValue="false"/>
+  		<parameter name="reportTitle" dataType="character" />
+  		<parameter name="locale" dataType="character"/>
+	</parameters>
+
+ 	<dataQuery>
+  		<sqlStatement name="Q1">
+   			<![CDATA[SELECT
+      			le_smy_flsh_sls.id_str_rt STORE_ID,
+				pa_str_rtl_i8.nm_loc storeName,
+				sum(qu_sls_trn) NumberOfTransactions,
+				sum(qu_sls_itm) NumberOfUnits,
+				(case when sum(qu_sls_trn)> 0 then  cast(sum(qu_sls_itm) as float) / sum(qu_sls_trn) else 0  end) AverageUnitsPerTransaction,
+				(case when sum(qu_sls_trn) > 0 then  cast(sum(mo_sls_tot) as float) / sum(qu_sls_trn) else 0  end) AverageTransaction,
+				sum(mo_sls_tot) TotalSales,
+				ABS(sum(mo_rtn_tot)) TotalReturns,
+				sum(mo_sls_tot) - ABS(sum(mo_rtn_tot)) SalesLessReturns
+				FROM le_smy_flsh_sls, pa_str_rtl, pa_str_rtl_i8, ca_prd_rp_v4
+					JOIN ca_cld_prd scal ON (ca_prd_rp_v4.id_cld_prd_srt = scal.id_cld_prd)  AND (ca_prd_rp_v4.id_cld_lv = scal.id_cld_lv)
+					JOIN ca_cld_prd ecal ON (ca_prd_rp_v4.id_cld_prd_end = ecal.id_cld_prd) AND (ca_prd_rp_v4.id_cld_lv = ecal.id_cld_lv)
+				WHERE pa_str_rtl.id_str_rt = pa_str_rtl_i8.id_str_rt
+				AND pa_str_rtl_i8.lcl = :locale
+				AND le_smy_flsh_sls.id_prd_rp = ca_prd_rp_v4.id_prd_rp
+				AND le_smy_flsh_sls.id_str_rt = pa_str_rtl.id_str_rt
+				AND le_smy_flsh_sls.id_str_rt = :storeId
+	AND substr(TO_CHAR(scal.ts_srt, 'YYYY-MM-DD HH24:MI:SS'),1,10) >= substr(:startDate,1,10)
+	AND substr(TO_CHAR(scal.ts_end, 'YYYY-MM-DD HH24:MI:SS'),1,10) <= substr(:endDate,1,10)
+				GROUP BY le_smy_flsh_sls.id_str_rt, pa_str_rtl_i8.nm_loc
+				ORDER BY SalesLessReturns DESC
+			]]>
+		</sqlStatement>
+		<sqlStatement name="Q2">
+   			<![CDATA[SELECT
+				sum(qu_sls_trn) TotNumberOfTransactions,
+				sum(qu_sls_itm) TotNumberOfUnits,
+				(case when sum(qu_sls_trn)> 0 then  cast(sum(qu_sls_itm) as float) / sum(qu_sls_trn) else 0  end) TotAveUnitsPerTransaction,
+				(case when sum(qu_sls_trn) > 0 then  cast(sum(mo_sls_tot) as float) / sum(qu_sls_trn) else 0  end) TotAveTransaction,
+				sum(mo_sls_tot) TotTotalSales,
+				ABS(sum(mo_rtn_tot)) TotTotalReturns,
+				sum(mo_sls_tot) - ABS(sum(mo_rtn_tot)) TotSalesLessReturns
+				FROM le_smy_flsh_sls, ca_prd_rp_v4
+					JOIN ca_cld_prd scal ON (ca_prd_rp_v4.id_cld_prd_srt = scal.id_cld_prd)  AND (ca_prd_rp_v4.id_cld_lv = scal.id_cld_lv)
+					JOIN ca_cld_prd ecal ON (ca_prd_rp_v4.id_cld_prd_end = ecal.id_cld_prd) AND (ca_prd_rp_v4.id_cld_lv = ecal.id_cld_lv)
+				WHERE le_smy_flsh_sls.id_prd_rp = ca_prd_rp_v4.id_prd_rp
+	AND substr(TO_CHAR(scal.ts_srt, 'YYYY-MM-DD HH24:MI:SS'),1,10) >= substr(:startDate,1,10)
+	AND substr(TO_CHAR(scal.ts_end, 'YYYY-MM-DD HH24:MI:SS'),1,10) <= substr(:endDate,1,10)
+				ORDER BY TotSalesLessReturns DESC
+			]]>
+		</sqlStatement>
+	</dataQuery>
+	<dataStructure>
+		<group name="G_STORE_DATA" source="Q1">
+			<element name="STORE_ID" value="STORE_ID"/>
+			<element name="STORENAME" value="storeName"/>
+			<element name="NUMBEROFTRANSACTIONS" value="NumberOfTransactions"/>
+		  	<element name="NUMBEROFUNITS" value="NumberOfUnits"/>
+   			<element name="AVERAGEUNITSPERTRANSACTION" value="AverageUnitsPerTransaction"/>
+		  	<element name="AVERAGETRANSACTION" value="AverageTransaction"/>
+			<element name="TOTALSALES" value="TotalSales"/>
+   			<element name="TOTALRETURNS" value="TotalReturns"/>
+   			<element name="SALESLESSRETURNS" value="SalesLessReturns"/>
+  		</group>
+  		<group name="G_TOTAL_DATA" source="Q2">
+			<element name="TOTNUMBEROFTRANSACTIONS" value="TotNumberOfTransactions"/>
+		  	<element name="TOTNUMBEROFUNITS" value="TotNumberOfUnits"/>
+			<element name="TOTTOTALSALES" value="TotTotalSales"/>
+   			<element name="TOTTOTALRETURNS" value="TotTotalReturns"/>
+		  	<element name="TOTAVETRANSACTION" value="TotAveTransaction"/>
+   			<element name="TOTAVEUNITSPERTRANSACTION" value="TotAveUnitsPerTransaction"/>
+   			<element name="TOTSALESLESSRETURNS" value="TotSalesLessReturns"/>
+  		</group>
+	</dataStructure>
+</dataTemplate>

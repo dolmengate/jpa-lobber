@@ -1,0 +1,707 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<xliff version="1.0">
+   <file source-language="EN" target-language="zh-CN" datatype="XDO" original="orphan.xlf" product-version="orphan.xlf" product-name="">
+      <header/>
+      <body>
+         <trans-unit id="d8deaeb9">
+            <source>Template Table 1</source>
+            <target>模板表 1</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="494d7add" maxbytes="4000" maxwidth="45" size-unit="char" translate="yes" xml:space="preserve">
+            <source>        [&amp;1:SUMMARY_REPORT] Report</source>
+            <target>        [&amp;1:SUMMARY_REPORT] 报表</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL3htbHBSZXBvcnRUaXRsZSIgeGRvZm86
+ZmllbGQtbmFtZT0ieG1scFJlcG9ydFRpdGxlIi8+</prop>
+            </prop-group>
+            <note>Text located: body/table/table header, token &amp;1:Summary Report</note>
+         </trans-unit>
+         <trans-unit id="5cd2e123" maxbytes="4000" maxwidth="90" size-unit="char" translate="yes" xml:space="preserve">
+            <source>         [&amp;0]Store [&amp;1:STORENUMBER]/Register #[&amp;2:_REGISTERNUMBER] </source>
+            <target>         [&amp;0] 门店 [&amp;1:STORENUMBER] / 收银机编号 [&amp;2:_REGISTERNUMBER] </target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL3N0b3JlTnVtYmVyIiB4ZG9mbzpmaWVs
+ZC1uYW1lPSJzdG9yZU51bWJlciIvPg==</prop>
+               <prop prop-type="e2">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL3JlZ2lzdGVyTnVtYmVyIiB4ZG9mbzpm
+aWVsZC1uYW1lPSJyZWdpc3Rlck51bWJlciIvPg==</prop>
+            </prop-group>
+            <note>Text located: body/table/table header, token &amp;1 ,&amp;2:storeNumber, registerNumber</note>
+         </trans-unit>
+         <trans-unit id="e33ec328" maxbytes="4000" maxwidth="46" size-unit="char" translate="yes">
+            <source>Cashier:[&amp;0] [&amp;1:USERNAME]</source>
+            <target>收银员：[&amp;0] [&amp;1:USERNAME]</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL3VzZXJOYW1lIiB4ZG9mbzpmaWVsZC1u
+YW1lPSJ1c2VyTmFtZSIvPg==</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:userName</note>
+         </trans-unit>
+         <trans-unit id="9c7cd2d3" maxbytes="4000" maxwidth="43" size-unit="char" translate="yes">
+            <source>Business Date:[&amp;0] [&amp;1:     ]</source>
+            <target>营业日：[&amp;0] [&amp;1:     ]</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YXJpYWJsZSB4ZG9mbzpjdHg9IjE3IiB4ZG9mbzpjdHgyPSJ3cmFwcGVy
+IiBuYW1lPSJmdjMiPjx4c2w6dmFsdWUtb2Ygc2VsZWN0PSIuLy9zdGFydGluZ0Rh
+dGUiIHhkb2ZvOmZpZWxkLW5hbWU9InN0YXJ0aW5nRGF0ZSIvPjwveHNsOnZhcmlh
+YmxlPjx4c2w6dmFsdWUtb2Ygc2VsZWN0PSJ4ZG94c2x0Om1zX2Zvcm1hdF9kYXRl
+KCRfWERPWFNMVENUWCwgc3RyaW5nKCRmdjMpLCAnTU0vZGQveXl5eScpIi8+</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:     </note>
+         </trans-unit>
+         <trans-unit id="eac0179c" maxbytes="4000" maxwidth="46" size-unit="char" translate="yes" xml:space="preserve">
+            <source>Till Summary for #: [&amp;1:TILLID] </source>
+            <target>编号为 [&amp;1:TILLID] 的钱箱摘要 </target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL3RpbGxJRCIgeGRvZm86ZmllbGQtbmFt
+ZT0idGlsbElEIi8+</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:tillID</note>
+         </trans-unit>
+         <trans-unit id="f041ac6e" maxbytes="4000" maxwidth="60" size-unit="char" translate="yes" xml:space="preserve">
+            <source>Register Summary for #: [&amp;1:REGISTERNUMBER] </source>
+            <target>编号为 [&amp;1:REGISTERNUMBER] 的收银机摘要 </target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL3JlZ2lzdGVyTnVtYmVyIiB4ZG9mbzpm
+aWVsZC1uYW1lPSJyZWdpc3Rlck51bWJlciIvPg==</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:registerNumber</note>
+         </trans-unit>
+         <trans-unit id="2c809e62" maxbytes="4000" maxwidth="51" size-unit="char" translate="yes" xml:space="preserve">
+            <source>Store Summary for #:[&amp;1:STORENUMBER] </source>
+            <target>编号为 [&amp;1:STORENUMBER] 的门店摘要 </target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL3N0b3JlTnVtYmVyIiB4ZG9mbzpmaWVs
+ZC1uYW1lPSJzdG9yZU51bWJlciIvPg==</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:storeNumber</note>
+         </trans-unit>
+         <trans-unit id="d0167ba3" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Open Safe</source>
+            <target>开业时的保险箱金额</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="6285c458" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Closing Safe</source>
+            <target>结业时的保险箱金额</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="99888381" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Over/Short</source>
+            <target>余缺</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3206e906" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Open Float</source>
+            <target>打开时的浮动金</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ed80b6f1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Closing Float</source>
+            <target>关闭时的浮动金</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="99888381_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Over/Short</source>
+            <target>余缺</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="63a865a" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Tender Summary</source>
+            <target>支付方式摘要</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="945" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>In</source>
+            <target>收款</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="1372e" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Out</source>
+            <target>付款</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="1317d" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Net</source>
+            <target>净额</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="9c4fedce" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Counted</source>
+            <target>已计数</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="99888381_2" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Over/Short</source>
+            <target>余缺</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="1fef53" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Cash</source>
+            <target>现金</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="2f806980" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>e-Check</source>
+            <target>电子支票</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ce4232a5" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Deposited Check</source>
+            <target>存入支票</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="6da3700d" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Mail Bank Check</source>
+            <target>邮政银行支票</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="28b061" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Visa</source>
+            <target>Visa</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="fd3ef4b2" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>MasterCard</source>
+            <target>MasterCard</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="1eb5df" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>AMEX</source>
+            <target>AMEX</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="1422dc09" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Discover</source>
+            <target>Discover</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="7a04b85d" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Diners</source>
+            <target>Diners</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="11e29" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>JCB</source>
+            <target>JCB</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="e9e66850" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>House Card</source>
+            <target>自有信用卡</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3eda4cc" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Debit</source>
+            <target>借记卡</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95e6d400" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Gift Card</source>
+            <target>礼品卡</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="4a2dfaa7" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>Gift Certificate</source>
+            <target>礼券</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="8d31733f" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>Travelers Checks</source>
+            <target>旅行支票</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="a4ba6ba5" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>Non-Store Coupon</source>
+            <target>非门店优惠券</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="f9f3cb58" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Store Credit</source>
+            <target>门店信用卡</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="9f2a6f13" maxbytes="4000" maxwidth="32" size-unit="char" translate="yes">
+            <source>Mall Gift Certificate</source>
+            <target>商场礼券</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95c0d035" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>PO Tender</source>
+            <target>采购订单支付方式</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="a1dbe3ae" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Money Order</source>
+            <target>汇票</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3c046297" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>Cash ([&amp;1:IF])</source>
+            <target>现金 ([&amp;1:IF])</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL2FsdEN1cnJlbmN5IiB4ZG9mbzpmaWVs
+ZC1uYW1lPSJhbHRDdXJyZW5jeSIvPg==</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:if, altCurrency</note>
+         </trans-unit>
+         <trans-unit id="8912db62" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>Check ([&amp;1:IF])</source>
+            <target>支票 ([&amp;1:IF])</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL2FsdEN1cnJlbmN5IiB4ZG9mbzpmaWVs
+ZC1uYW1lPSJhbHRDdXJyZW5jeSIvPg==</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:if, altCurrency</note>
+         </trans-unit>
+         <trans-unit id="929b8bca" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>e-Check ([&amp;1:IF])</source>
+            <target>电子支票 ([&amp;1:IF])</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL2FsdEN1cnJlbmN5IiB4ZG9mbzpmaWVs
+ZC1uYW1lPSJhbHRDdXJyZW5jeSIvPg==</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:if, altCurrency</note>
+         </trans-unit>
+         <trans-unit id="ea7d311e" maxbytes="4000" maxwidth="30" size-unit="char" translate="yes">
+            <source>Gift Certificates ([&amp;1:IF])</source>
+            <target>礼券 ([&amp;1:IF])</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL2FsdEN1cnJlbmN5IiB4ZG9mbzpmaWVs
+ZC1uYW1lPSJhbHRDdXJyZW5jeSIvPg==</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:if, altCurrency</note>
+         </trans-unit>
+         <trans-unit id="4485a01b" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Store Credits</source>
+            <target>门店信用卡</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3b94ce3a" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>Trav. Checks ([&amp;1:IF])</source>
+            <target>旅行支票 ([&amp;1:IF])</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL2FsdEN1cnJlbmN5IiB4ZG9mbzpmaWVs
+ZC1uYW1lPSJhbHRDdXJyZW5jeSIvPg==</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:if, altCurrency</note>
+         </trans-unit>
+         <trans-unit id="e9378409" maxbytes="4000" maxwidth="36" size-unit="char" translate="yes" xml:space="preserve">
+            <source>Gift Certificates (CAD) </source>
+            <target>礼券 (CAD) </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="fe645630" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source>Store Credits(CAD)</source>
+            <target>门店信用卡 (CAD)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="e9cf0926" maxbytes="4000" maxwidth="36" size-unit="char" translate="yes" xml:space="preserve">
+            <source>Gift Certificates (MXN) </source>
+            <target>礼券 (MXN) </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="fe693973" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source>Store Credits(MXN)</source>
+            <target>门店信用卡 (MXN)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ff45b1a8" maxbytes="4000" maxwidth="35" size-unit="char" translate="yes">
+            <source>Gift Certificates (GBP)</source>
+            <target>礼券 (GBP)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="fe662ce1" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source>Store Credits(GBP)</source>
+            <target>门店信用卡 (GBP)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ff45107b" maxbytes="4000" maxwidth="35" size-unit="char" translate="yes">
+            <source>Gift Certificates (EUR)</source>
+            <target>礼券 (EUR)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="fe658bb4" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source>Store Credits(EUR)</source>
+            <target>门店信用卡 (EUR)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ff47446a" maxbytes="4000" maxwidth="35" size-unit="char" translate="yes">
+            <source>Gift Certificates (JPY)</source>
+            <target>礼券 (JPY)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="fe67bfa3" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source>Store Credits(JPY)</source>
+            <target>门店信用卡 (JPY)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>总计</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="bd9d549b" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals ([&amp;1:IF])</source>
+            <target>总计 ([&amp;1:IF])</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL2FsdEN1cnJlbmN5IiB4ZG9mbzpmaWVs
+ZC1uYW1lPSJhbHRDdXJyZW5jeSIvPg==</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:if, altCurrency</note>
+         </trans-unit>
+         <trans-unit id="c402d3da" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals (CAD)</source>
+            <target>总计 (CAD)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="c407b71d" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals (MXN)</source>
+            <target>总计 (MXN)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="c404aa8b" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals (GBP)</source>
+            <target>总计 (GBP)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="c404095e" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals (EUR)</source>
+            <target>总计 (EUR)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="c4063d4d" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals (JPY)</source>
+            <target>总计 (JPY)</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="d15fb824" maxbytes="4000" maxwidth="29" size-unit="char" translate="yes">
+            <source>Transaction Summary</source>
+            <target>交易摘要</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金额</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3c23f4e0" maxbytes="4000" maxwidth="35" size-unit="char" translate="yes">
+            <source>Net Transaction Taxable</source>
+            <target>应税交易净额</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="f179d840" maxbytes="4000" maxwidth="41" size-unit="char" translate="yes">
+            <source>Net Transaction Non-Taxable</source>
+            <target>不应税交易净额</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="7260d657" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Sales Tax</source>
+            <target>销售税</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="98492e47" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Till Pickup</source>
+            <target>钱箱收取</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="5f382923" maxbytes="4000" maxwidth="42" size-unit="char" translate="yes">
+            <source>Till Pickup ([&amp;1:ALTCURRENCY])</source>
+            <target>钱箱收取 ([&amp;1:ALTCURRENCY])</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL2FsdEN1cnJlbmN5IiB4ZG9mbzpmaWVs
+ZC1uYW1lPSJhbHRDdXJyZW5jeSIvPg==</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:altCurrency</note>
+         </trans-unit>
+         <trans-unit id="4d235f7b" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Till Loan</source>
+            <target>钱箱贷款</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="97e15388" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Till Pay In</source>
+            <target>钱箱收款</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="6449354b" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Till Pay Out</source>
+            <target>钱箱付款</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="6b96bdb3" maxbytes="4000" maxwidth="32" size-unit="char" translate="yes">
+            <source>House Account Payment</source>
+            <target>自有信用账户付款</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="77a7ded2" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Layaway New</source>
+            <target>新预约订货</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="7bdd700a" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Layaway Pickup</source>
+            <target>预约订货提货</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="f3607e38" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Layaway Payment</source>
+            <target>预约订货付款</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="672eeb39" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Layaway Delete</source>
+            <target>预约订货删除</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="1af3dec7" maxbytes="4000" maxwidth="26" size-unit="char" translate="yes">
+            <source>Orders</source>
+            <target>订单</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="7bf91c72" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>Special Order Complete</source>
+            <target>特殊订单完成</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="6e7193f3" maxbytes="4000" maxwidth="30" size-unit="char" translate="yes">
+            <source>Special Order Cancel</source>
+            <target>特殊订单取消</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="fb21328" maxbytes="4000" maxwidth="32" size-unit="char" translate="yes">
+            <source>Special Order Partial</source>
+            <target>特殊订单部分</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="d9eee6ed" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Bill Payment</source>
+            <target>账单付款</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="41ac509d" maxbytes="4000" maxwidth="48" size-unit="char" translate="yes">
+            <source>House Account Enrollment Summary</source>
+            <target>自有信用账户登记摘要</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3e460ef" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Count</source>
+            <target>计数</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="4a7fcad7" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Approved</source>
+            <target>已批准</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="25b8604e" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Declined</source>
+            <target>已拒绝</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b57269c1" maxbytes="4000" maxwidth="29" size-unit="char" translate="yes">
+            <source>Statistical Summary</source>
+            <target>统计摘要</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金额</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="c5ddc318" maxbytes="4000" maxwidth="26" size-unit="char" translate="yes">
+            <source>Gift Cards Issued</source>
+            <target>已发行礼品卡</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="7b847525" maxbytes="4000" maxwidth="29" size-unit="char" translate="yes">
+            <source>Gift Cards Reloaded</source>
+            <target>已重新载入礼品卡</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="bb8bfb66" maxbytes="4000" maxwidth="26" size-unit="char" translate="yes">
+            <source>Gift Cards Credit</source>
+            <target>礼品卡/信用卡</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="6d52b868" maxbytes="4000" maxwidth="29" size-unit="char" translate="yes">
+            <source>Gift Cards Redeemed</source>
+            <target>已兑换礼品卡</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="46fd07dc" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source>Gift Certs. Issued</source>
+            <target>已发行礼券</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="23b3dc2c" maxbytes="4000" maxwidth="30" size-unit="char" translate="yes">
+            <source>Gift Certs. Redeemed</source>
+            <target>已兑换礼券</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="5c89e270" maxbytes="4000" maxwidth="30" size-unit="char" translate="yes">
+            <source>Store Credits Issued</source>
+            <target>已发行门店信用卡</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="97461c0" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>Store Credits Redeemed</source>
+            <target>已兑换门店信用卡</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="8369edd4" maxbytes="4000" maxwidth="29" size-unit="char" translate="yes">
+            <source>Item Employee Disc.</source>
+            <target>商品级别员工折扣</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="5e9e5a01" maxbytes="4000" maxwidth="32" size-unit="char" translate="yes">
+            <source>Trans. Employee Disc.</source>
+            <target>交易级别员工折扣</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="d3517483" maxbytes="4000" maxwidth="30" size-unit="char" translate="yes">
+            <source>Transaction Discount</source>
+            <target>交易折扣</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="de0c33ae" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Item Discount</source>
+            <target>商品折扣</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="dc7bbb5c" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Item Markdown</source>
+            <target>商品减价</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="4f61c9b2" maxbytes="4000" maxwidth="32" size-unit="char" translate="yes">
+            <source>Post Void Transaction</source>
+            <target>过账作废交易</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ac282483" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Non-Merchandise</source>
+            <target>非商品</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="e6704d4c" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>Line Item Delete</source>
+            <target>行商品删除</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="77a7c0b8" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Layaway Fee</source>
+            <target>预约订货费用</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="12f445ff" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source>Layaway Delete Fee</source>
+            <target>预约订货删除费用</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="8075a025" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Restocking Fee</source>
+            <target>重新存货费用</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="cf182d77" maxbytes="4000" maxwidth="39" size-unit="char" translate="yes">
+            <source>Restocking Fee Non Taxable</source>
+            <target>不应税商品的重新存货费用</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3ac0fbcd" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>Shipping Charges</source>
+            <target>发运费用</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="e60cdd55" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Count Summary</source>
+            <target>计数摘要</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3e460ef_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Count</source>
+            <target>计数</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="8ecc3d0" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Price Overrides</source>
+            <target>价格覆盖</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="9443600f" maxbytes="4000" maxwidth="26" size-unit="char" translate="yes">
+            <source>Price Adjustments</source>
+            <target>价格调整</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="8d5de475" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>Cancelled Trans.</source>
+            <target>已取消交易</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="d1c9c9ed" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>No Sales</source>
+            <target>无销售额</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="7ea481df" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Post Voids</source>
+            <target>过账作废</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="db9767f1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Tax Summary</source>
+            <target>税务摘要</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_2" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金额</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="efd6831" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Sales Taxable</source>
+            <target>应税销售额</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="a283dbec" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>Sales Nontaxable</source>
+            <target>不应税销售额</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="6766c325" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes" xml:space="preserve">
+            <source>Total Sales Tax </source>
+            <target>销售税总额 </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="2d2d190b" maxbytes="4000" maxwidth="29" size-unit="char" translate="yes" xml:space="preserve">
+            <source>Total Shipping Tax </source>
+            <target>发运税总额 </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="6766c325_1" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes" xml:space="preserve">
+            <source>Total Sales Tax </source>
+            <target>销售税总额 </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="2d2d190b_1" maxbytes="4000" maxwidth="29" size-unit="char" translate="yes" xml:space="preserve">
+            <source>Total Shipping Tax </source>
+            <target>发运税总额 </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="6766c325_2" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes" xml:space="preserve">
+            <source>Total Sales Tax </source>
+            <target>销售税总额 </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="2d2d190b_2" maxbytes="4000" maxwidth="29" size-unit="char" translate="yes" xml:space="preserve">
+            <source>Total Shipping Tax </source>
+            <target>发运税总额 </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+      </body>
+   </file>
+</xliff>

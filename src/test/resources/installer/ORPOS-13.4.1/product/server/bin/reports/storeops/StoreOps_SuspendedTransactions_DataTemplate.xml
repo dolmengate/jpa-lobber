@@ -1,0 +1,87 @@
+<!--
+/* ===========================================================================
+* Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved.
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/storeops/StoreOps_SuspendedTransactions_DataTemplate.xml /main/19 2013/09/27 17:27:47 ohorne Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    ohorne    09/27/13 - using function to format transctionID because format
+ *                         is now configurable
+ *    rgour     01/31/13 - putting complete transaction number in suspended
+ *                         transaction reports
+ *    ohorne    08/31/12 - corrected case of version attr
+ *    abondala  09/28/10 - added business date on the reports to be consistent
+ *    djenning  03/03/10 - suspended transaction reports fix
+ *    acadar    03/01/10 - left join for reason code table
+ *    abondala  01/02/10 - Update Header date
+ *    ohorne    11/11/08 - Library upgrade: XMLP 5.6.2 to BIP 10.1.3.4
+ *    atirkey   11/07/08 - bug#7411523
+ *    cgreene   10/27/08 - update header to Oracle ade
+ *
+ * ===========================================================================
+ */
+-->
+<dataTemplate name="SuspendedTransactionsReport" version="1.0">
+ <properties>
+  <property name="xml_tag_case" value="as_are" /> 
+ </properties>
+ <parameters>
+  <parameter name="runDateTime" dataType="character" />
+  <parameter name="storeId" dataType="character" defaultValue="04241"/>
+  <parameter name="businessDate" dataType="character" defaultValue="1999-09-23"/>
+  <parameter name="locale" dataType="character"/>
+ </parameters>
+ <dataQuery>
+  <sqlStatement name="Q1">
+   <![CDATA[SELECT
+	trn.id_str_rt   StoreID,
+	trn.dc_dy_bsn   BusinessDayDate,
+	trn.ai_trn  SequenceNumber,
+	trn.id_ws   Register,
+	trn.id_rpsty_tnd    Till,
+	trn.id_opr  Cashier,
+	(CASE retailTransaction.rc_rsn_spn
+          WHEN '-1' THEN '-' 
+          ELSE codeList.de_cd_ent
+     END) ReasonCode,
+	(retailTransaction.mo_nt_tot - taxLineItem.mo_tx)   Amount
+	FROM
+	tr_trn trn,
+	tr_rtl retailTransaction 
+	LEFT OUTER JOIN id_lu_cd_i8 codeList
+	    ON   (                    
+               (retailTransaction.rc_rsn_spn = codeList.lu_cd_ent) and codeList.lcl=:locale),
+	tr_ltm_tx taxLineItem
+	WHERE
+	trn.dc_dy_bsn = retailTransaction.dc_dy_bsn
+	AND trn.ai_trn = retailTransaction.ai_trn
+	AND trn.id_ws = retailTransaction.id_ws
+	AND trn.id_str_rt = retailTransaction.id_str_rt
+	AND trn.dc_dy_bsn = taxLineItem.dc_dy_bsn
+	AND trn.ai_trn = taxLineItem.ai_trn
+	AND trn.id_ws = taxLineItem.id_ws
+	AND trn.id_str_rt = taxLineItem.id_str_rt
+	AND trn.id_str_rt = :storeId
+	AND trn.dc_dy_bsn = :businessDate
+	AND sc_trn = 4
+	AND fl_trg_trn = '0'
+	ORDER BY trn.id_ws, trn.ts_trn_end DESC]]>
+  </sqlStatement>
+ </dataQuery>
+ <dataStructure>
+     <group name="G1" source="Q1">
+        <element name="STOREID" value="StoreId"/>
+        <element name="REGISTER" value="Register"/>
+        <element name="TILL" value="Till"/>
+        <element name="SEQUENCENUMBER" value="SequenceNumber"/>
+        <element name="BUSINESSDAYDATE" value="BusinessDayDate"/>
+        <element name="CASHIER" value="Cashier"/>
+        <element name="REASONCODE" value="ReasonCode"/>
+        <element name="AMOUNT" value="Amount"/>
+        <element name="TRANSACTIONID" value="StoreID,Register,SequenceNumber,BusinessDayDate" function="TO_TRANSACTION_ID"/>
+     </group>
+ </dataStructure>
+</dataTemplate>

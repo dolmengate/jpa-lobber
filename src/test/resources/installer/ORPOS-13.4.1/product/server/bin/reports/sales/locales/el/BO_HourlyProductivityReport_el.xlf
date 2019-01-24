@@ -1,0 +1,251 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<xliff version="1.0">
+   <file source-language="EN" target-language="el-GR" datatype="XDO" original="orphan.xlf" product-version="orphan.xlf" product-name="">
+      <header/>
+      <body>
+         <trans-unit id="d8deaeb9">
+            <source>Template Table 1</source>
+            <target>Πίνακας προτύπων 1</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="9a7b44ce" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Start Date:</source>
+            <target>Ημερομηνία έναρξης:</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="ed49b037" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Run Date:</source>
+            <target>Ημερομηνία εκτέλεσης:</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="7da98287" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>End Date:</source>
+            <target>Ημερομηνία λήξης:</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="27c6ed" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Time</source>
+            <target>Ώρα</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="ccf15e47" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>Number Of Transactions</source>
+            <target>Αριθμός συναλλαγών</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="f8ca891b" maxbytes="4000" maxwidth="29" size-unit="char" translate="yes">
+            <source>Average Transaction</source>
+            <target>Μέσος όρος συναλλαγών</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="88344ebd" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Number Of Units</source>
+            <target>Αριθμός μονάδων</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="751949c3" maxbytes="4000" maxwidth="44" size-unit="char" translate="yes">
+            <source>Average </source>
+            <target>Μέσος όρος </target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="d284714a" maxbytes="4000" maxwidth="44" size-unit="char" translate="yes">
+            <source>Units Per Transaction</source>
+            <target>Μονάδες ανά συναλλαγή</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="deb26cf0" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total Sales</source>
+            <target>Σύνολο πωλήσεων</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="ce302427" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total Returns</source>
+            <target>Σύνολο επιστροφών</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="2f514070" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source>Sales Less Returns</source>
+            <target>Πωλήσεις μείον επιστροφές</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="597e3afe" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>Percent of Sales</source>
+            <target>Ποσοστό πωλήσεων</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="dfda9d6" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source xml:space="preserve">No Data Available[&amp;0] </source>
+            <target xml:space="preserve">Χωρίς διαθ. δεδομένα [&amp;0] </target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="27c6ed_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Time</source>
+            <target>Ώρα</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="ccf15e47_1" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>Number Of Transactions</source>
+            <target>Αριθμός συναλλαγών</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="f8ca891b_1" maxbytes="4000" maxwidth="29" size-unit="char" translate="yes">
+            <source>Average Transaction</source>
+            <target>Μέσος όρος συναλλαγών</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="88344ebd_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Number Of Units</source>
+            <target>Αριθμός μονάδων</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="511fef67_1" maxbytes="4000" maxwidth="44" size-unit="char" translate="yes">
+            <source>Average Units Per Transaction</source>
+            <target>Μέσος όρος μονάδων ανά συναλλαγή</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="deb26cf0_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total Sales</source>
+            <target>Σύνολο πωλήσεων</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="ce302427_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total Returns</source>
+            <target>Σύνολο επιστροφών</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="2f514070_1" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source>Sales Less Returns</source>
+            <target>Πωλήσεις μείον επιστροφές</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="597e3afe_1" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>Percent of Sales</source>
+            <target>Ποσοστό πωλήσεων</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="c302bfa9" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>12:00 - 12:59 AM</source>
+            <target>12:00 - 12:59 AM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="eace0f69" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>01:00 - 01:59 AM</source>
+            <target>01:00 - 01:59 AM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="798fb4eb" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>02:00 - 02:59 AM</source>
+            <target>02:00 - 02:59 AM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="8515a6d" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>03:00 - 03:59 AM</source>
+            <target>03:00 - 03:59 AM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="9712ffef" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>04:00 - 04:59 AM</source>
+            <target>04:00 - 04:59 AM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="25d4a571" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>05:00 - 05:59 AM</source>
+            <target>05:00 - 05:59 AM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="b4964af3" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>06:00 - 06:59 AM</source>
+            <target>06:00 - 06:59 AM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="4357f075" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>07:00 - 07:59 AM</source>
+            <target>07:00 - 07:59 AM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="d21995f7" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>08:00 - 08:59 AM</source>
+            <target>08:00 - 08:59 AM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="60db3b79" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>09:00 - 09:59 AM</source>
+            <target>09:00 - 09:59 AM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="a57f74a5" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>10:00 - 10:59 AM</source>
+            <target>10:00 - 10:59 AM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="34411a27" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>11:00 - 11:59 AM</source>
+            <target>11:00 - 11:59 AM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="c302c17a" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>12:00 - 12:59 PM</source>
+            <target>12:00 - 12:59 PM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="eace113a" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>01:00 - 01:59 PM</source>
+            <target>01:00 - 01:59 PM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="798fb6bc" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>02:00 - 02:59 PM</source>
+            <target>02:00 - 02:59 PM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="8515c3e" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>03:00 - 03:59 PM</source>
+            <target>03:00 - 03:59 PM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="971301c0" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>04:00 - 04:59 PM</source>
+            <target>04:00 - 04:59 PM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="25d4a742" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>05:00 - 05:59 PM</source>
+            <target>05:00 - 05:59 PM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="b4964cc4" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>06:00 - 06:59 PM</source>
+            <target>06:00 - 06:59 PM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="4357f246" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>07:00 - 07:59 PM</source>
+            <target>07:00 - 07:59 PM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="d21997c8" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>08:00 - 08:59 PM</source>
+            <target>08:00 - 08:59 PM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="60db3d4a" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>09:00 - 09:59 PM</source>
+            <target>09:00 - 09:59 PM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="a57f7676" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>10:00 - 10:59 PM</source>
+            <target>10:00 - 10:59 PM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+         <trans-unit id="34411bf8" maxbytes="4000" maxwidth="24" size-unit="char" translate="yes">
+            <source>11:00 - 11:59 PM</source>
+            <target>11:00 - 11:59 PM</target>
+            <note>Text located: body/table/table header</note>
+         </trans-unit>
+      </body>
+   </file>
+</xliff>

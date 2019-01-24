@@ -1,0 +1,81 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<xliff version="1.0">
+   <file source-language="EN" target-language="hr-HR" datatype="XDO" original="orphan.xlf" product-version="orphan.xlf" product-name="">
+      <header/>
+      <body>
+         <trans-unit id="d8deaeb9">
+            <source>Template Table 1</source>
+            <target>Tablica predloška 1</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="b4ed5512" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">Start Date: </source>
+            <target xml:space="preserve">Datum početka:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ed49b037" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Run Date:</source>
+            <target>Datum pokretanja:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3786ce79" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">End Date: </source>
+            <target xml:space="preserve">Datum završetka:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="aa3c26aa" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Store Name</source>
+            <target>Naziv prodavaonice</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="85ea667" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>Number of Transactions</source>
+            <target>Broj transakcija</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="8459ea9d" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Number of Units</source>
+            <target>Broj jedinica</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="511fef67" maxbytes="4000" maxwidth="44" size-unit="char" translate="yes">
+            <source>Average Units Per Transaction</source>
+            <target>Prosječno jedinica po transakciji</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="f8ca891b" maxbytes="4000" maxwidth="29" size-unit="char" translate="yes">
+            <source>Average Transaction</source>
+            <target>Prosječna transakcija</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="deb26cf0" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total Sales</source>
+            <target>Ukupno prodaja</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ce302427" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total Returns</source>
+            <target>Ukupno povrata</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="2f514070" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source>Sales Less Returns</source>
+            <target>Prodaja umanjena za povrate</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="4d3eb24" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total</source>
+            <target>Ukupno</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b8059df2" maxbytes="4000" maxwidth="26" size-unit="char" translate="yes">
+            <source>No Data Available</source>
+            <target>Nema dostupnih podataka</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+      </body>
+   </file>
+</xliff>

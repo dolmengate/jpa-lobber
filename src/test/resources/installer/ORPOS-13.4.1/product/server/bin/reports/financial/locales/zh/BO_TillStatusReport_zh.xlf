@@ -1,0 +1,71 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<xliff version="1.0">
+   <file source-language="EN-US" target-language="zh-CN" datatype="XDO" original="orphan.xlf" product-version="orphan.xlf" product-name="">
+      <header/>
+      <body>
+         <trans-unit id="d8deaeb9">
+            <source>Template Table 1</source>
+            <target>模板表 1</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="9a7b44ce" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Start Date:</source>
+            <target>开始日期：</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="ed49b037" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Run Date:</source>
+            <target>运行日期：</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3786ce79" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">End Date: </source>
+            <target xml:space="preserve">结束日期： </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="14dbce46" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Till ID</source>
+            <target>钱箱 ID</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="9e01f3bd" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Till Status</source>
+            <target>钱箱状态</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="7eee7423" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Till Amount</source>
+            <target>钱箱金额</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="e4415398" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Register ID</source>
+            <target>收银机 ID</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="89a0800f" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Register Status</source>
+            <target>收银机状态</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="24e7117a" maxbytes="4000" maxwidth="35" size-unit="char" translate="yes">
+            <source>Register Accountability</source>
+            <target>收银机责任</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="5535230" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Cashiers</source>
+            <target>收银员</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="4a41e1d2" maxbytes="4000" maxwidth="27" size-unit="char" translate="yes">
+            <source xml:space="preserve"> No Data Available</source>
+            <target xml:space="preserve"> 没有数据可用</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+      </body>
+   </file>
+</xliff>

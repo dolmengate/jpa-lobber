@@ -1,0 +1,125 @@
+<!--
+/* ===========================================================================
+* Copyright (c) 2008, 2011, Oracle and/or its affiliates. All rights reserved. 
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/storeops/StoreOps_TillCountSummary_DataTemplate.xml /rgbustores_13.4x_generic_branch/1 2011/05/06 14:15:23 mszekely Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    abondala  09/28/10 - added business date on the reports to be consistent
+ *    abondala  01/02/10 - Update Header date
+ *    miparek   11/17/08 - Forward port 7330439 REPORTS-RECONCILE TILL COUNT
+ *    ohorne    11/11/08 - Library upgrade: XMLP 5.6.2 to BIP 10.1.3.4
+ *    cgreene   10/27/08 - update header to Oracle ade
+ *
+ * ===========================================================================
+ */
+-->
+<dataTemplate name="tillCountSummaryReport" version="1.0">
+	<properties>
+		<property name="xml_tag_case" value="as_are" />
+	</properties>
+    <parameters>
+        <parameter name="runDateTime" dataType="character" />
+        <parameter name="startingDate" dataType="character" defaultValue="10/12/2006"/>
+        <parameter name="storeNumber" dataType="character"/>
+        <parameter name="tillID" dataType="character"/>
+        <parameter name="cashierName" dataType="character"/>
+        <parameter name="registerNumber" dataType="character"/>
+        <parameter name="altCashAmt" dataType="number" defaultValue="0"/>
+        <parameter name="altCashCnt" dataType="number" defaultValue="0"/>
+        <parameter name="altCurrency" dataType="character"/>
+        <parameter name="altTckAmt" dataType="number" defaultValue="0"/>
+        <parameter name="altTckCnt" dataType="number" defaultValue="0"/>
+        <parameter name="altTotals" dataType="number" defaultValue="0"/>
+        <parameter name="amexAmt" dataType="number" defaultValue="0"/>
+        <parameter name="amexCnt" dataType="number" defaultValue="0"/>
+        <parameter name="ckAmt" dataType="number" defaultValue="0"/>
+        <parameter name="ckCnt" dataType="number" defaultValue="0"/>
+        <parameter name="coupAmt" dataType="number" defaultValue="0"/>
+        <parameter name="coupCnt" dataType="number" defaultValue="0"/>
+        <parameter name="creditTotAmt" dataType="number" defaultValue="0"/>
+        <parameter name="creditTotCnt" dataType="number" defaultValue="0"/>
+        <parameter name="debitAmt" dataType="number" defaultValue="0"/>
+        <parameter name="debitCnt" dataType="number" defaultValue="0"/>
+        <parameter name="dinersAmt" dataType="number" defaultValue="0"/>
+        <parameter name="dinersCnt" dataType="number" defaultValue="0"/>
+        <parameter name="discoverAmt" dataType="number" defaultValue="0"/>
+        <parameter name="discoverCnt" dataType="number" defaultValue="0"/>
+        <parameter name="eCheckAmt" dataType="number" defaultValue="0"/>
+        <parameter name="eCheckCnt" dataType="number" defaultValue="0"/>
+        <parameter name="gCardAmt" dataType="number" defaultValue="0"/>
+        <parameter name="gCardCnt" dataType="number" defaultValue="0"/>
+        <parameter name="gCertAmt" dataType="number" defaultValue="0"/>
+        <parameter name="gCertCnt" dataType="number" defaultValue="0"/>
+        <parameter name="hcAmt" dataType="number" defaultValue="0"/>
+        <parameter name="jcbCnt" dataType="number" defaultValue="0"/>
+		<parameter name="jcbAmt" dataType="number" defaultValue="0"/>
+        <parameter name="hcCnt" dataType="number" defaultValue="0"/>
+        <parameter name="mallCertAmt" dataType="number" defaultValue="0"/>
+        <parameter name="mallCertCnt" dataType="number" defaultValue="0"/>
+        <parameter name="mcAmt" dataType="number" defaultValue="0"/>
+        <parameter name="mcCnt" dataType="number" defaultValue="0"/>
+        <parameter name="moAmt" dataType="number" defaultValue="0"/>
+        <parameter name="moCnt" dataType="number" defaultValue="0"/>
+        <parameter name="poAmt" dataType="number" defaultValue="0"/>
+        <parameter name="poCnt" dataType="number" defaultValue="0"/>
+        <parameter name="scAmt" dataType="number" defaultValue="0"/>
+        <parameter name="scCnt" dataType="number" defaultValue="0"/>
+		<parameter name="altScAmt" dataType="number" defaultValue="0"/>
+        <parameter name="altScCnt" dataType="number" defaultValue="0"/>
+        <parameter name="tckAmt" dataType="number" defaultValue="0"/>
+        <parameter name="tckCnt" dataType="number" defaultValue="0"/>
+        <parameter name="totals" dataType="number" defaultValue="0"/>
+        <parameter name="totAmt" dataType="number" defaultValue="0"/>
+        <parameter name="totCnt" dataType="number" defaultValue="0"/>
+        <parameter name="visaAmt" dataType="number" defaultValue="0"/>
+        <parameter name="visaCnt" dataType="number" defaultValue="0"/>
+        <parameter name="zaltCheckAmt" dataType="number" defaultValue="0"/>
+        <parameter name="zaltCheckCnt" dataType="number" defaultValue="0"/>
+		<parameter name="zaltCertAmt" dataType="number" defaultValue="0"/>
+        <parameter name="zaltCertCnt" dataType="number" defaultValue="0"/>
+
+        <parameter name="mxCertAmt" dataType="character" defaultValue="0.00"/>
+        <parameter name="mxCertCnt" dataType="number" defaultValue="0"/>
+        <parameter name="jpCertAmt" dataType="character" defaultValue="0.00"/>
+        <parameter name="jpCertCnt" dataType="number" defaultValue="0"/>
+        <parameter name="euCertAmt" dataType="character" defaultValue="0.00"/>
+        <parameter name="euCertCnt" dataType="number" defaultValue="0"/>
+        <parameter name="gbCertAmt" dataType="character" defaultValue="0.00"/>
+        <parameter name="gbCertCnt" dataType="number" defaultValue="0"/>
+        <parameter name="mxScAmt" dataType="number" defaultValue="0"/>
+        <parameter name="mxScCnt" dataType="number" defaultValue="0"/>
+        <parameter name="jpScAmt" dataType="number" defaultValue="0"/>
+        <parameter name="jpScCnt" dataType="number" defaultValue="0"/>
+        <parameter name="gbScAmt" dataType="number" defaultValue="0"/>
+        <parameter name="gbScCnt" dataType="number" defaultValue="0"/>
+        <parameter name="euScAmt" dataType="number" defaultValue="0"/>
+        <parameter name="euScCnt" dataType="number" defaultValue="0"/>
+        <parameter name="alteCheckAmt" dataType="number" defaultValue="0"/>
+        <parameter name="alteCheckCnt" dataType="number" defaultValue="0"/>
+
+        <!-- Alternate currency totals -->
+        <parameter name="altTotalUnformatted" dataType="number" defaultValue="0.00"/>
+        <parameter name="altTotal" dataType="character" defaultValue="0.00"/>
+
+        <parameter name="caTotalUnformatted" dataType="number" defaultValue="0.00"/>
+        <parameter name="caTotal" dataType="character" defaultValue="0.00"/>
+        <parameter name="mxTotalUnformatted" dataType="number" defaultValue="0.00"/>
+        <parameter name="mxTotal" dataType="character" defaultValue="0.00"/>
+        <parameter name="jpTotalUnformatted" dataType="number" defaultValue="0.00"/>
+        <parameter name="jpTotal" dataType="character" defaultValue="0.00"/>
+        <parameter name="euTotalUnformatted" dataType="number" defaultValue="0.00"/>
+        <parameter name="euTotal" dataType="character" defaultValue="0.00"/>
+        <parameter name="gbTotalUnformatted" dataType="number" defaultValue="0.00"/>
+        <parameter name="gbTotal" dataType="character" defaultValue="0.00"/>
+
+    </parameters>
+    <dataQuery>
+        <sqlStatement name="Q1">
+            <![CDATA[SELECT ID FROM report_config WHERE id=0]]>
+        </sqlStatement>
+    </dataQuery>
+</dataTemplate>

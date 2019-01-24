@@ -1,0 +1,80 @@
+<!--
+/* ===========================================================================
+* Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved. 
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/sales/BO_SalesSummaryByRegister_DataTemplate.xml /main/14 2013/08/13 15:29:32 rgour Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    rgour     08/08/13 - Fixing the report issue , which was adding the total
+ *                         sale and total return as return is in -ve
+ *    ohorne    08/31/12 - corrected case of version attr
+ *    abondala  01/02/10 - Update Header date
+ *    ohorne    06/05/09 - Fix for db2 issue: SQLCODE -302 host var too big for
+ *                         its corresponding use
+ *    ohorne    11/11/08 - Library upgrade: XMLP 5.6.2 to BIP 10.1.3.4
+ *    cgreene   10/27/08 - update header to Oracle ade
+ *
+ * ===========================================================================
+ */
+-->
+<dataTemplate name="SalesSummaryByRegisterReport" version="1.0">
+    <properties>
+        <property name="xml_tag_case" value="as_are" /> 
+    </properties>
+    <parameters>
+        <parameter name="runDateTime" dataType="character" />
+        <parameter name="adhoc" dataType="character" defaultValue="false"/>
+        <parameter name="storeId" dataType="character"/>
+        <parameter name="registerId" dataType="character" defaultValue="All"/>
+        <parameter name="startDate" dataType="character"/>
+        <parameter name="endDate" dataType="character"/>
+        <parameter name="reportTitle" dataType="character"/>
+        <parameter name="locale" dataType="character"/>
+    </parameters>
+    <dataQuery>
+        <sqlStatement name="Q1">
+            <![CDATA[SELECT
+                id_ws CurrentRegisterID,
+                sum(qu_ws_sls_trn) NumberOfTransactions,
+                sum(mo_ws_sls_tot) TotalSales,
+                (case when sum(qu_ws_sls_trn) = 0 then 0 else cast(sum(mo_ws_sls_tot) as float) / sum(qu_ws_sls_trn) end) AverageTransaction,
+                sum(qu_ws_sls_itm) NumberOfUnits,
+                (case when sum(qu_ws_sls_trn) = 0 then 0 else cast(sum(qu_ws_sls_itm) as float) / sum(qu_ws_sls_trn) end) AverageUnitsPerTransaction,
+                ABS(sum(mo_ws_rtn_tot)) TotalReturns,
+                sum(mo_ws_sls_tot) - ABS(sum(mo_ws_rtn_tot)) SalesLessReturns
+                FROM le_smy_ws_sls ws, ca_prd_rp_v4 rpv4
+                JOIN ca_cld_prd scal ON (rpv4.id_cld_prd_srt = scal.id_cld_prd) AND rpv4.id_cld_lv = scal.id_cld_lv
+                JOIN ca_cld_prd ecal ON (rpv4.id_cld_prd_end = ecal.id_cld_prd) AND rpv4.id_cld_lv = ecal.id_cld_lv
+                WHERE ws.id_prd_rp = rpv4.id_prd_rp
+                AND ((case when substr(:registerId,1,4) != 'All' AND substr(:registerId,1,4) != 'None' then substr(:registerId,1,4) else 'doNothing' end) = 'doNothing'
+                    OR  ws.id_ws = (case when substr(:registerId,1,4) != 'All' AND substr(:registerId,1,4) != 'None' then substr(:registerId,1,4) else 'doNothing' end))
+                AND ws.id_str_rt = :storeId
+                    AND SUBSTR(TO_CHAR(scal.ts_srt, 'YYYY-MM-DD HH24:MI:SS'), 1, 10)  >= SUBSTR(:startDate, 1, 10)
+                    AND SUBSTR(TO_CHAR(scal.ts_end, 'YYYY-MM-DD HH24:MI:SS'), 1, 10) <= SUBSTR(:endDate, 1, 10)
+                GROUP BY id_ws
+                ORDER BY SalesLessReturns DESC, CurrentRegisterID]]>
+        </sqlStatement>
+          <sqlStatement name="Q2">
+            <![CDATA[SELECT id_str_rt stId, nm_loc stName FROM pa_str_rtl_i8 WHERE id_str_rt = :storeId AND lcl = :locale]]>
+          </sqlStatement>
+    </dataQuery>
+    <dataStructure>
+        <group name="G_STORE_INFO" source="Q2">
+                <element name="STORE_ID" value="stId"/>
+                <element name="STORE_NAME" value="stName"/>
+        </group>
+        <group name="G_DATA" source="Q1">
+            <element name="CURRENTREGISTERID" value="CurrentRegisterID"/>
+            <element name="NUMBEROFTRANSACTIONS" value="NumberOfTransactions"/>
+            <element name="TOTALSALES" value="TotalSales"/>
+            <element name="AVERAGETRANSACTION" value="AverageTransaction"/>
+            <element name="NUMBEROFUNITS" value="NumberOfUnits"/>
+            <element name="AVERAGEUNITSPERTRANSACTION" value="AverageUnitsPerTransaction"/>
+            <element name="TOTALRETURNS" value="TotalReturns"/>
+            <element name="SALESLESSRETURNS" value="SalesLessReturns"/>
+        </group>
+    </dataStructure>
+</dataTemplate>

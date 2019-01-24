@@ -1,0 +1,106 @@
+<!--
+/* ===========================================================================
+* Copyright (c) 2008, 2012, Oracle and/or its affiliates. All rights reserved. 
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/financial/BO_OverAndShortReport_DataTemplate.xml /main/4 2012/09/13 18:34:17 ohorne Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    ohorne    08/31/12 - corrected case of version attr
+ *    rsnayak   09/29/11 - Over and Short rport fix bug#885
+ *    ohorne    10/13/10 - casting cashierId to varchar for db2
+ *    ohorne    04/14/10 - replaced data templates for cashier and register O/S
+ *                         reports with a single data template
+ *
+ * ===========================================================================
+ */
+-->
+<dataTemplate name="OverShortReport" version="1.0">
+  <properties>
+    <property name="xml_tag_case" value="as_are" />
+  </properties>
+  <parameters>
+    <parameter name="runDateTime" dataType="character" />
+    <parameter name="startDate" dataType="character"/>
+    <parameter name="endDate" dataType="character"/>
+    <parameter name="storeId" dataType="character"/>
+    <parameter name="accountability" dataType="character"/>
+    <parameter name="registerId" dataType="character" defaultValue="All"/>
+    <parameter name="cashierId" dataType="character" defaultValue="All"/>
+    <parameter name="adhoc" dataType="character" defaultValue="false"/>
+    <parameter name="reportTitle" dataType="character"/>
+    <parameter name="locale" dataType="character"/>
+    <parameter name="tillReconcileCount" dataType="character"/>
+  </parameters>
+ 	<dataQuery>
+    <sqlStatement name="Q1">
+      <![CDATA[SELECT 
+        TOC1.DC_DY_BSN AS businessDate,
+        WOC.ID_WS_RCRD AS registerId, 
+        E.NM_EM employeeName, 
+        CASE 
+          WHEN LT.DE_CD_ENT IS NULL THEN TTH.TY_TND
+          ELSE LT.DE_CD_ENT
+          END tenderType,
+        CASE 
+          WHEN LST.DE_CD_ENT IS NULL THEN TTH.TY_SB_TND
+          ELSE LST.DE_CD_ENT
+          END tenderSubType, 
+        CASE
+          WHEN CY.FL_CNY_BASE = '1' THEN NULL
+          ELSE CY.CD_CNY_ISO
+          END ISOCurrencyCode, 
+        LU.CD_ENT_SRT tenderSortOrder,
+        CP_TND_OVR_TOT overAmount,
+        CP_TND_SHRT_TOT shortAmount, 
+        (CP_TND_OVR_TOT - CP_TND_SHRT_TOT) overShortAmount
+        FROM LE_HST_TL_TND TTH
+        JOIN TR_TL_OPN_CL TOC1 ON TTH.ID_STR_RT = TOC1.ID_STR_RT 
+          AND TTH.ID_RPSTY_TND = TOC1.ID_RPSTY_TND 
+          AND TTH.TS_TM_SRT = TOC1.TS_TM_TRN
+          AND TOC1.SC_TL = '1'
+        JOIN TR_TL_OPN_CL TOC2 ON TOC2.ID_STR_RT = TOC1.ID_STR_RT 
+          AND TOC2.ID_WS_RCRD = TOC1.ID_WS_RCRD 
+          AND TOC2.DC_DY_BSN = TOC1.DC_DY_BSN 
+          AND TOC2.ID_RPSTY_TND = TOC1.ID_RPSTY_TND
+          AND TOC2.SC_TL = '2'
+        JOIN TR_WS_OPN_CL WOC ON WOC.ID_STR_RT = TOC2.ID_STR_RT 
+          AND WOC.ID_WS_RCRD = TOC2.ID_WS_RCRD
+          AND WOC.DC_DY_BSN = TOC2.DC_DY_BSN
+          AND WOC.TY_TRN = '9'
+          AND (WOC.SC_TML_WS = '0' OR WOC.SC_TML_WS = '2')
+        LEFT JOIN ID_LU_CD LU ON TTH.TY_TND = LU.LU_CD_ENT AND LU.DE_CD_LST = 'TenderTypeCodes'
+        LEFT JOIN ID_LU_CD_I8 LT ON LU.LU_CD_ENT = LT.LU_CD_ENT AND LT.DE_CD_LST = 'TenderTypeCodes' AND LT.LCL = :locale
+        LEFT JOIN ID_LU_CD_I8 LST ON TTH.TY_SB_TND = LST.LU_CD_ENT AND LST.DE_CD_LST = 'TenderSubTypeCodes' AND LST.LCL = :locale
+        LEFT JOIN CO_CNY CY ON TTH.ID_CNY_ICD = CY.ID_CNY_ICD
+        LEFT JOIN PA_EM E ON E.ID_EM = TOC1.ID_OPR
+        WHERE (CP_TND_OVR_TOT - CP_TND_SHRT_TOT) <> 0
+        AND TTH.ID_STR_RT = :storeId
+        AND ((:registerId = 'All' OR :registerId = 'None') OR WOC.ID_WS_RCRD = :registerId)
+        AND ((cast(:cashierId as varchar(10)) = 'All' OR cast(:cashierId as varchar(10)) = 'None') OR E.ID_EM = cast(:cashierId as varchar(10)))
+        AND (TOC1.DC_DY_BSN BETWEEN SUBSTR(:startDate, 1,10) AND SUBSTR(:endDate,1,10))
+        AND ('Detail' = :tillReconcileCount)]]>
+    </sqlStatement>
+   	<sqlStatement name="Q2">
+      <![CDATA[SELECT id_str_rt stId, nm_loc stName FROM pa_str_rtl_i8 WHERE id_str_rt = :storeId AND lcl = :locale]]>
+    </sqlStatement>
+  </dataQuery>  
+  <dataStructure>
+    <group name="G_TILL_TENDER_HISTORY" source="Q1">
+      <element name="BUSINESS_DATE" value="businessDate"/>
+      <element name="REGISTER_ID" value="registerId"/>
+      <element name="EMPLOYEE_NAME" value="EmployeeName"/>
+      <element name="CURRENCY_ISO_CODE" value="ISOCurrencyCode"/>
+      <element name="TENDER_SUB_TYPE_CODE" value="tenderSubType"/>
+      <element name="TENDER_TYPE_CODE" value="tenderType"/>
+      <element name="TENDER_SORT_ORDER" value="tenderSortOrder"/>
+      <element name="OVER_SHORT_AMOUNT" value="overShortAmount"/>
+    </group>
+    <group name="G_STORE_INFO" source="Q2">
+      <element name="STORE_ID" value="stId"/>
+      <element name="STORE_NAME" value="stName"/>
+    </group>
+  </dataStructure>
+</dataTemplate>

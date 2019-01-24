@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/* ===========================================================================
+* Copyright (c) 2009, 2011, Oracle and/or its affiliates. All rights reserved. 
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/reports.xml /rgbustores_13.4x_generic_branch/1 2011/05/06 14:15:23 mszekely Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY) 
+ *    ohorne    04/09/10 - replaced data templates for cashier and register O/S
+ *                         reports with a single data/layout template
+ *    ohorne    03/10/10 - flashsales no longer uses posDept
+ *    abondala  01/02/10 - Update Header date
+ *    npoola    12/24/09 - added the CancelledAndVoidTransactionReports to
+ *                         parameters and reports
+ *    sswamygo  10/01/09 - Adding New Roles for New Reports
+ *    ohorne    08/14/09 - created file
+ *
+ * ===========================================================================
+ */
+-->
+<Reports>
+     <!-- Sales -->
+    <Report name="FlashSalesReport" displayName="Flash Sales" category="Sales" dataModelRef="FlashSales" layoutRef="FlashSales" defaultDataSource="jdbc/quarrysb" role="sales_flash_sales"/>
+    <Report name="MerchandiseDrillDownReport" displayName="Merchandise Hierarchy Drilldown" category="Detail" dataModelRef="MerchandizeFlashSales" layoutRef="MerchandizeFlashSales" defaultDataSource="jdbc/quarrysb" role="reports"/>
+    <Report name="SalesSummaryByRegisterReport" displayName="Sales Summary by Register" category="Sales" dataModelRef="SalesSummaryByRegister" layoutRef="SalesSummaryByRegister" defaultDataSource="jdbc/quarrysb" role="sales_summary_by_register"/>
+    <Report name="HourlyProductivityReport" displayName="Hourly Productivity" category="Sales" dataModelRef="HourlyProductivity" layoutRef="HourlyProductivity" defaultDataSource="jdbc/quarrysb" role="sales_hourly_productivity"/>
+
+    <!-- Sales Adhoc-->
+    <Report name="FlashSalesReportAdhoc" displayName="Flash Sales" category="Detail" dataModelRef="FlashSalesAdhoc" layoutRef="FlashSalesAdhoc" defaultDataSource="jdbc/quarrysb" role="sales_flash_sales"/>
+    <Report name="SalesSummaryByRegisterReportAdhoc" displayName="Sales Summary by Register" category="Detail" dataModelRef="SalesSummaryByRegister" layoutRef="SalesSummaryByRegister" defaultDataSource="jdbc/quarrysb" role="sales_summary_by_register"/>
+    <Report name="HourlyProductivityReportAdhoc" displayName="Hourly Productivity" category="Detail" dataModelRef="HourlyProductivityAdhoc" layoutRef="HourlyProductivityAdhoc" defaultDataSource="jdbc/quarrysb" role="sales_hourly_productivity"/>
+
+    <!-- Financial -->
+    <Report name="OverAndShortByCashierReport" displayName="Over and Short by Cashier" category="Financial" dataModelRef="OverAndShortByCashier" layoutRef="OverAndShortByCashier" defaultDataSource="jdbc/quarrysb" role="financial_over_and_short_by_cashier"/>
+    <Report name="OverAndShortByRegisterReport" displayName="Over and Short by Register" category="Financial" dataModelRef="OverAndShortByRegister" layoutRef="OverAndShortByRegister" defaultDataSource="jdbc/quarrysb" role="financial_over_and_short_by_register"/>
+    <Report name="BankDepositSummaryReport" displayName="Bank Deposit" category="Financial" dataModelRef="BankDepositSummary" layoutRef="BankDepositSummary" defaultDataSource="jdbc/quarrysb" role="financial_bank_deposit"/>
+    <Report name="TillStatusReport" displayName="Till Status" category="Financial" dataModelRef="TillStatus" layoutRef="TillStatus" defaultDataSource="jdbc/quarrysb" role="financial_till_status"/>
+
+    <!-- Financial -Adhoc -->
+    <Report name="OverAndShortByCashierReportAdhoc" displayName="Over and Short by Cashier" category="Detail" dataModelRef="OverAndShortByCashier" layoutRef="OverAndShortByCashier" defaultDataSource="jdbc/quarrysb" role="financial_over_and_short_by_cashier"/>
+    <Report name="OverAndShortByRegisterReportAdhoc" displayName="Over and Short by Register" category="Detail" dataModelRef="OverAndShortByRegister" layoutRef="OverAndShortByRegister" defaultDataSource="jdbc/quarrysb" role="financial_over_and_short_by_register"/>
+    <Report name="BankDepositSummaryReportAdhoc" displayName="Bank Deposit" category="Detail" dataModelRef="BankDepositSummary" layoutRef="BankDepositSummary" defaultDataSource="jdbc/quarrysb" role="financial_bank_deposit"/>	
+
+    <!-- Exceptions -->
+    <Report name="SuspendedTransactionsReport" displayName="Suspended" category="Exceptions" dataModelRef="TrnExp_SuspendedTransactions" layoutRef="TrnExp_SuspendedTransactions" defaultDataSource="jdbc/quarrysb" role="transaction_exceptions_suspended"/>
+    <Report name="CancelledAndPostVoidedTransactionsReport" displayName="Cancelled and Post Voided" category="Exceptions" dataModelRef="CancelledAndPostVoidedTransactions" layoutRef="CancelledAndPostVoidedTransactions" defaultDataSource="jdbc/quarrysb" role="transaction_exceptions_cancelled_post_voided"/>
+    <Report name="NoSalesTransactionsReport" displayName="No Sales" category="Exceptions" dataModelRef="NoSalesTransactions" layoutRef="NoSalesTransactions" defaultDataSource="jdbc/quarrysb" role="transaction_exceptions_no_sales"/>
+
+    <!-- Exceptions -Adhoc -->
+    <Report name="SuspendedTransactionsReportAdhoc" displayName="Suspended" category="Detail" dataModelRef="TrnExp_SuspendedTransactions" layoutRef="TrnExp_SuspendedTransactions" defaultDataSource="jdbc/quarrysb" role="transaction_exceptions_suspended"/>
+    <Report name="CancelledAndPostVoidedTransactionsReportAdhoc" displayName="Cancelled and Post Voided" category="Detail" dataModelRef="CancelledAndPostVoidedTransactions" layoutRef="CancelledAndPostVoidedTransactions" defaultDataSource="jdbc/quarrysb" role="transaction_exceptions_cancelled_post_voided"/>
+    <Report name="NoSalesTransactionsReportAdhoc" displayName="No Sales" category="Detail" dataModelRef="NoSalesTransactions" layoutRef="NoSalesTransactions" defaultDataSource="jdbc/quarrysb" role="transaction_exceptions_no_sales"/>
+
+    <!-- StoreOps -->
+    <Report name="TillFloatSummaryReport" displayName="Reconcile Till Float Count" category="Detail" dataModelRef="TillFloatSummary" layoutRef="TillFloatSummary" defaultDataSource="jdbc/quarrysb" role="reports"/>
+    <Report name="TillFloatDetailReport" displayName="Reconcile Till Float Count" category="Detail" dataModelRef="TillFloatDetail" layoutRef="TillFloatDetail" defaultDataSource="jdbc/quarrysb" role="reports"/>
+    <Report name="TillCountSummaryReport" displayName="Reconcile Till Count" category="Detail" dataModelRef="TillCountSummary" layoutRef="TillCountSummary" defaultDataSource="jdbc/quarrysb" role="reports"/>
+    <Report name="TillCountDetailReport" displayName="Reconcile Till Count" category="Detail" dataModelRef="TillCountDetail" layoutRef="TillCountDetail" defaultDataSource="jdbc/quarrysb" role="reports"/>
+    <Report name="SummaryReport" displayName="Summary" category="Detail" dataModelRef="ArgSummary" layoutRef="ArgSummary" defaultDataSource="jdbc/quarrysb" role="reports"/>
+    <Report name="TillReconcileSummaryReport" displayName="Till Summary" category="Detail" dataModelRef="ArgSummary" layoutRef="ArgSummary" defaultDataSource="jdbc/quarrysb" role="reports"/>
+    <Report name="RegisterSummaryReport" displayName="Register Summary" category="Detail" dataModelRef="ArgSummary" layoutRef="ArgSummary" defaultDataSource="jdbc/quarrysb" role="reports"/>
+    <Report name="StoreSummaryReport" displayName="Store Summary" category="Detail" dataModelRef="ArgSummary" layoutRef="ArgSummary" defaultDataSource="jdbc/quarrysb" role="reports"/>
+    <Report name="SuspendedTransactionReport" displayName="Suspended Transactions" category="Detail" dataModelRef="SuspendedTransactions" layoutRef="SuspendedTransactions" defaultDataSource="jdbc/quarrysb" role="reports"/>
+    <Report name="BankDepositDetailReport" displayName="Bank Deposit" category="Detail" dataModelRef="BankDepositDetail" layoutRef="BankDepositDetail" defaultDataSource="jdbc/quarrysb" role="financial_bank_deposit"/>
+
+    <!-- Time maintenance -->
+    <Report name="EmployeeTimeSummaryReport" displayName="Summary Employee Time" category="Detail" dataModelRef="SummaryEmployeeTime" layoutRef="SummaryEmployeeTime" defaultDataSource="jdbc/quarrysb" role="reports"/>
+    <Report name="EmployeeTimeDetailReport" displayName="Detail Employee Time" category="Detail" dataModelRef="DetailEmployeeTime" layoutRef="DetailEmployeeTime" defaultDataSource="jdbc/quarrysb" role="reports"/>
+    <Report name="EmployeeTimeMaintenanceReport" displayName="Employee Time Maintenance" category="Detail" dataModelRef="EmployeeTime" layoutRef="DetailEmployeeTime" defaultDataSource="jdbc/quarrysb" role="reports"/>
+</Reports>

@@ -1,0 +1,175 @@
+<!--
+/* ===========================================================================
+* Copyright (c) 2009, 2010, Oracle and/or its affiliates. All rights reserved. 
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/mock/locales/reportImportI8.xml.template /main/7 2010/04/16 11:40:12 ohorne Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    ohorne    04/12/10 - added accountability param for Over And Short
+ *                         Reports
+ *    npoola    03/23/10 - Added the Parameters for FlashReport and
+ *                         BankDepositSummary to the reportI8 xml files
+ *    sgu       03/15/10 - remove department drill down from mock report
+ *                         configuration xml
+ *    sgu       03/11/10 - rework the flash sale adhoc report
+ *    sgu       02/22/10 - add report title mock
+ *    sgu       02/22/10 - add mock report configuration entries for newly
+ *                         added reports
+ *    kulu      02/09/09 - Fix JUnit test and add comments
+ *
+ * ===========================================================================
+ */
+-->
+
+<ReportImportI18N locale="@lang@">
+  <Reports>
+     <!-- Sales -->
+    <Report name="FlashSalesReport" displayName="哦ãç in_@lang@ Flash Sales 簡単£" category="哦ãç in_@lang@ Sales 簡単£"/>
+    <Report name="MerchandiseDrillDownReport" displayName="哦ãç in_@lang@ Merchandise Hierarchy Drilldown 簡単£" category="哦ãç in_@lang@ Detail 簡単£"/>
+    <Report name="SalesSummaryByRegisterReport" displayName="哦ãç in_@lang@ Sales Summary by Register 簡単£" category="哦ãç in_@lang@ Sales 簡単£"/>
+    <Report name="HourlyProductivityReport" displayName="哦ãç in_@lang@ Hourly Productivity 簡単£" category="哦ãç in_@lang@ Sales 簡単£"/>
+
+    <!-- Sales Adhoc-->
+    <Report name="FlashSalesReportAdhoc" displayName="哦ãç in_@lang@ Flash Sales 簡単£" category="哦ãç in_@lang@ Detail 簡単£"/>
+    <Report name="SalesSummaryByRegisterReportAdhoc" displayName="哦ãç in_@lang@ Sales Summary by Register 簡単£" category="哦ãç in_@lang@ Detail 簡単£"/>
+    <Report name="HourlyProductivityReportAdhoc" displayName="哦ãç in_@lang@ Hourly Productivity 簡単£" category="哦ãç in_@lang@ Detail 簡単£"/>
+
+    <!-- Financial -->
+    <Report name="OverAndShortByCashierReport" displayName="哦ãç in_@lang@ Over and Short by Cashier 簡単£" category="哦ãç in_@lang@ Financial 簡単£"/>
+    <Report name="OverAndShortByRegisterReport" displayName="哦ãç in_@lang@ Over and Short by Register 簡単£" category="哦ãç in_@lang@ Financial 簡単£"/>
+    <Report name="BankDepositSummaryReport" displayName="哦ãç in_@lang@ Bank Deposit 簡単£" category="哦ãç in_@lang@ Financial 簡単£"/>
+	<Report name="TillStatusReport" displayName="哦ãç in_@lang@ Till Status 簡単£" category="哦ãç in_@lang@ Financial 簡単£"/>
+
+    <!-- Financial -Adhoc -->
+    <Report name="OverAndShortByCashierReportAdhoc" displayName="哦ãç in_@lang@ Over and Short by Cashier 簡単£" category="哦ãç in_@lang@ Detail 簡単£"/>
+    <Report name="OverAndShortByRegisterReportAdhoc" displayName="哦ãç in_@lang@ Over and Short by Register 簡単£" category="哦ãç in_@lang@ Detail 簡単£"/>
+    <Report name="BankDepositSummaryReportAdhoc" displayName="哦ãç in_@lang@ Bank Deposit 簡単£" category="哦ãç in_@lang@ Detail 簡単£"/>
+
+	<!-- Exceptions -->
+	<Report name="SuspendedTransactionsReport" displayName="哦ãç in_@lang@ Suspended 簡単£" category="哦ãç in_@lang@ Exceptions 簡単£"/>
+	<Report name="CancelledAndPostVoidedTransactionsReport" displayName="哦ãç in_@lang@ Cancelled and Post Voided 簡単£" category="哦ãç in_@lang@ Exceptions 簡単£"/>
+	<Report name="NoSalesTransactionsReport" displayName="哦ãç in_@lang@ No Sales 簡単£" category="哦ãç in_@lang@ Exceptions 簡単£"/>
+
+	<!-- Exceptions -Adhoc -->
+	<Report name="SuspendedTransactionsReportAdhoc" displayName="哦ãç in_@lang@ Suspended 簡単£" category="哦ãç in_@lang@ Detail 簡単£"/>
+	<Report name="CancelledAndPostVoidedTransactionsReportAdhoc" displayName="哦ãç in_@lang@ Cancelled and Post Voided 簡単£" category="哦ãç in_@lang@ Detail 簡単£"/>
+	<Report name="NoSalesTransactionsReportAdhoc" displayName="哦ãç in_@lang@ No Sales 簡単£" category="哦ãç in_@lang@ Detail 簡単£"/>
+
+    <!-- StoreOps -->
+    <Report name="TillFloatSummaryReport" displayName="哦ãç in_@lang@ Reconcile Till Float Count 簡単£" category="哦ãç in_@lang@ Detail 簡単£"/>
+    <Report name="TillFloatDetailReport" displayName="哦ãç in_@lang@ Reconcile Till Float Count 簡単£" category="哦ãç in_@lang@ Detail 簡単£"/>
+    <Report name="TillCountSummaryReport" displayName="哦ãç in_@lang@ Reconcile Till Count 簡単£" category="哦ãç in_@lang@ Detail 簡単£"/>
+    <Report name="TillCountDetailReport" displayName="哦ãç in_@lang@ Reconcile Till Count 簡単£" category="哦ãç in_@lang@ Detail 簡単£"/>
+    <Report name="SummaryReport" displayName="哦ãç in_@lang@ Summary 簡単£" category="哦ãç in_@lang@ Detail 簡単£"/>
+    <Report name="TillReconcileSummaryReport" displayName="哦ãç in_@lang@ Till Summary 簡単£" category="哦ãç in_@lang@ Detail 簡単£"/>
+    <Report name="RegisterSummaryReport" displayName="哦ãç in_@lang@ Register Summary 簡単£" category="哦ãç in_@lang@ Detail 簡単£"/>
+    <Report name="StoreSummaryReport" displayName="哦ãç in_@lang@ Store Summary 簡単£" category="哦ãç in_@lang@ Detail 簡単£"/>
+    <Report name="SuspendedTransactionReport" displayName="哦ãç in_@lang@ Suspended Transactions 簡単£" category="哦ãç in_@lang@ Detail 簡単£"/>
+    <Report name="BankDepositDetailReport" displayName="哦ãç in_@lang@ Bank Deposit 簡単£" category="哦ãç in_@lang@ Detail 簡単£"/>
+
+    <!-- Time maintenance -->
+    <Report name="EmployeeTimeSummaryReport" displayName="哦ãç in_@lang@ Summary Employee Time 簡単£" category="哦ãç in_@lang@ Detail 簡単£"/>
+    <Report name="EmployeeTimeDetailReport" displayName="哦ãç in_@lang@ Detail Employee Time 簡単£" category="哦ãç in_@lang@ Detail 簡単£"/>
+    <Report name="EmployeeTimeMaintenanceReport" displayName="哦ãç in_@lang@ Employee Time Maintenance 簡単£" category="哦ãç in_@lang@ Detail 簡単£"/>
+ </Reports>
+
+ <UIParameters>
+   <Parameters reportRef="FlashSalesReport">
+      <Parameter name="hideAdhoc" displayName="" />
+   </Parameters>
+   <Parameters reportRef="BankDepositSummaryReport">
+      <Parameter name="hideReportPeriods" displayName="" />
+   </Parameters>  
+   <Parameters reportRef="FlashSalesReportAdhoc">
+      <Parameter name="storeId" displayName="哦ãç in_@lang@ Store 簡単£" />
+      <Parameter name="merchandiseHierarchyId" displayName="哦ãç in_@lang@ Merchandise Hierarchy 簡単£" />
+   </Parameters>
+   <Parameters reportRef="MerchandiseDrillDownReport">
+      <Parameter name="hideAdhoc" displayName="哦ãç in_@lang@ 簡単£" />
+      <Parameter name="hideReportPeriods" displayName="哦ãç in_@lang@ 簡単£" />
+      <Parameter name="departmentId" displayName="哦ãç in_@lang@ Department 簡単£" />
+   </Parameters>
+   <Parameters reportRef="OverAndShortByCashierReportAdhoc">
+      <Parameter name="storeId" displayName="哦ãç in_@lang@ Store 簡単£" />
+      <Parameter name="cashierId" displayName="哦ãç in_@lang@ Cashier 簡単£" />
+      <Parameter name="accountability" displayName="" />
+   </Parameters>
+   <Parameters reportRef="OverAndShortByCashierReport">
+      <Parameter name="cashierId" displayName="哦ãç in_@lang@ 簡単£" />
+      <Parameter name="accountability" displayName="" />
+   </Parameters>
+   <Parameters reportRef="OverAndShortByRegisterReportAdhoc">
+      <Parameter name="storeId" displayName="哦ãç in_@lang@ Store 簡単£" />
+      <Parameter name="registerId" displayName="哦ãç in_@lang@ Register 簡単£" />
+      <Parameter name="accountability" displayName="" />
+   </Parameters>
+   <Parameters reportRef="OverAndShortByRegisterReport">
+      <Parameter name="registerId" displayName="哦ãç in_@lang@ 簡単£" />
+      <Parameter name="accountability" displayName="" />
+   </Parameters>
+   <Parameters reportRef="SalesSummaryByRegisterReport">
+      <Parameter name="registerId" displayName="哦ãç in_@lang@ 簡単£" />
+   </Parameters>
+   <Parameters reportRef="SalesSummaryByRegisterReportAdhoc">
+      <Parameter name="storeId" displayName="哦ãç in_@lang@ Store 簡単£" />
+      <Parameter name="registerId" displayName="哦ãç in_@lang@ Register 簡単£" />
+   </Parameters>
+   <Parameters reportRef="HourlyProductivityReport">
+      <Parameter name="hideYearlyReportingPeriod" displayName="哦ãç in_@lang@ 簡単£" />
+   </Parameters>
+   <Parameters reportRef="HourlyProductivityReportAdhoc">
+      <Parameter name="storeId" displayName="哦ãç in_@lang@ Store 簡単£" />
+      <Parameter name="registerId" displayName="哦ãç in_@lang@ Register 簡単£" />
+      <Parameter name="employeeId" displayName="哦ãç in_@lang@ Cashier 簡単£" />
+      <Parameter name="timeIncrement" displayName="哦ãç in_@lang@ Time Increment 簡単£" />
+      <Parameter name="hideYearlyReportingPeriod" displayName="哦ãç in_@lang@ 簡単£" />
+      <Parameter name="showTime" displayName="哦ãç in_@lang@ 簡単£" />
+      <Parameter name="startTimeStr" displayName="哦ãç in_@lang@ 簡単£" />
+      <Parameter name="endTimeStr" displayName="哦ãç in_@lang@ 簡単£" />
+   </Parameters>
+   <Parameters reportRef="EmployeeTimeSummaryReport">
+      <Parameter name="employeeID" displayName="哦ãç in_@lang@ EmployeeID 簡単£" />
+   </Parameters>
+   <Parameters reportRef="EmployeeTimeDetailReport">
+      <Parameter name="employeeID" displayName="哦ãç in_@lang@ EmployeeID 簡単£" />
+   </Parameters>
+   <Parameters reportRef="EmployeeTimeMaintenanceReport">
+      <Parameter name="employeeID" displayName="哦ãç in_@lang@ EmployeeID 簡単£" />
+   </Parameters>
+      <!-- New Report - Changes Start -->
+	 <Parameters reportRef="TillStatusReport">
+	      <Parameter name="hideAdhoc" defaultValue="true" displayName="哦ãç in_@lang@ 簡単£" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	      <Parameter name="hideReportPeriods" defaultValue="true" displayName="哦ãç in_@lang@ 簡単£" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	  </Parameters>
+	  <Parameters reportRef="NoSalesTransactionsReport">
+	      <Parameter name="hideYearlyReportingPeriod" defaultValue="true" displayName="哦ãç in_@lang@ 簡単£" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	      <Parameter name="hideAdhoc" defaultValue="false" displayName="哦ãç in_@lang@ 簡単£" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	  </Parameters>
+	  <Parameters reportRef="SuspendedTransactionsReport">
+	      <Parameter name="hideAdhoc" defaultValue="true" displayName="哦ãç in_@lang@ 簡単£" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	      <Parameter name="hideReportPeriods" defaultValue="true" displayName="哦ãç in_@lang@ 簡単£" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	  </Parameters>
+	  <Parameters reportRef="CancelledAndPostVoidedTransactionsReport">
+	      <Parameter name="hideYearlyReportingPeriod" defaultValue="true" displayName="哦ãç in_@lang@ 簡単£" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	      <Parameter name="hideAdhoc" defaultValue="false" displayName="哦ãç in_@lang@ 簡単£" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	  </Parameters>
+	  <Parameters reportRef="CancelledAndPostVoidedTransactionsReportAdhoc">
+	      <Parameter name="hideYearlyReportingPeriod" defaultValue="true" displayName="哦ãç in_@lang@ 簡単£" parameterType="Boolean" viewable="0" required="0" section="0"/>
+  		  <Parameter name="showTime" defaultValue="true" displayName="哦ãç in_@lang@ 簡単£" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	      <Parameter name="storeId" defaultValue="04241" displayName="哦ãç in_@lang@ Store 簡単£" parameterType="com._360commerce.commerceservices.report.configuration.NonEditableTextEditor" viewable="1" required="0" section="1"/>
+	      <Parameter name="registerId" defaultValue="All" displayName="哦ãç in_@lang@ Register 簡単£" parameterType="com._360commerce.webmodules.storeops.ui.report.SingleWorkstationEditor" viewable="1" required="0" section="1"/>
+	      <Parameter name="cashierId" defaultValue="04241" displayName="哦ãç in_@lang@ Cashier 簡単£" parameterType="com._360commerce.webmodules.employee.ui.report.SingleOperatorEditor" viewable="1" required="0" section="1"/>
+	   </Parameters>
+	   <Parameters reportRef="NoSalesTransactionsReportAdhoc">
+	   	  <Parameter name="hideYearlyReportingPeriod" defaultValue="true" displayName="哦ãç in_@lang@ 簡単£" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	      <Parameter name="showTime" defaultValue="true" displayName="哦ãç in_@lang@ 簡単£" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	      <Parameter name="storeId" defaultValue="04241" displayName="哦ãç in_@lang@ Store 簡単£" parameterType="com._360commerce.commerceservices.report.configuration.NonEditableTextEditor" viewable="1" required="0" section="1"/>
+	      <Parameter name="registerId" defaultValue="All" displayName="哦ãç in_@lang@ Register 簡単£" parameterType="com._360commerce.webmodules.storeops.ui.report.SingleWorkstationEditor" viewable="1" required="0" section="1"/>
+	      <Parameter name="cashierId" defaultValue="04241" displayName="哦ãç in_@lang@ Cashier 簡単£" parameterType="com._360commerce.webmodules.employee.ui.report.SingleOperatorEditor" viewable="1" required="0" section="1"/>
+	   </Parameters>
+  <!-- New Report - Changes End -->
+ </UIParameters>
+</ReportImportI18N>

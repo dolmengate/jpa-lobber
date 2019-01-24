@@ -1,0 +1,82 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<xliff version="1.0">
+   <file source-language="EN" target-language="pl-PL" datatype="XDO" original="orphan.xlf" product-version="orphan.xlf" product-name="">
+      <header/>
+      <body>
+         <trans-unit id="d8deaeb9">
+            <source>Template Table 1</source>
+            <target>Tabela szablonów 1</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="798bd942" maxbytes="4000" maxwidth="50" size-unit="char" translate="yes">
+            <source>Reconcile Till Float Count Report</source>
+            <target>Raport zlicz. drobnych przy rozlicz. szufl. kas.</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="e32e9ac9" maxbytes="4000" maxwidth="65" size-unit="char" translate="yes">
+            <source>Store [&amp;1:STORENUMBER]/ Register # [&amp;2:_REGISTERNUMBER]</source>
+            <target>Sklep [&amp;1:STORENUMBER]/kasa nr [&amp;2:_REGISTERNUMBER]</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL3N0b3JlTnVtYmVyIiB4ZG9mbzpmaWVs
+ZC1uYW1lPSJzdG9yZU51bWJlciIvPg==</prop>
+               <prop prop-type="e2">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL3JlZ2lzdGVyTnVtYmVyIiB4ZG9mbzpm
+aWVsZC1uYW1lPSJyZWdpc3Rlck51bWJlciIvPg==</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1 ,&amp;2:storeNumber, registerNumber</note>
+         </trans-unit>
+         <trans-unit id="e33ec328" maxbytes="4000" maxwidth="40" size-unit="char" translate="yes">
+            <source>Cashier:[&amp;0] [&amp;1:USERNAME]</source>
+            <target>Kasjer:[&amp;0] [&amp;1:USERNAME]</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL2Nhc2hpZXJOYW1lIiB4ZG9mbzpmaWVs
+ZC1uYW1lPSJjYXNoaWVyTmFtZSIvPg==</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:userName</note>
+         </trans-unit>
+         <trans-unit id="6003c50b" maxbytes="4000" maxwidth="44" size-unit="char" translate="yes">
+            <source>Business Date[&amp;0]:  [&amp;1:     ]</source>
+            <target>Dzień roboczy[&amp;0]:  [&amp;1:     ]</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YXJpYWJsZSB4ZG9mbzpjdHg9IjE3IiB4ZG9mbzpjdHgyPSJ3cmFwcGVy
+IiBuYW1lPSJmdjMiPjx4c2w6dmFsdWUtb2Ygc2VsZWN0PSIuLy9zdGFydGluZ0Rh
+dGUiIHhkb2ZvOmZpZWxkLW5hbWU9InN0YXJ0aW5nRGF0ZSIvPjwveHNsOnZhcmlh
+YmxlPjx4c2w6dmFsdWUtb2Ygc2VsZWN0PSJ4ZG94c2x0Om1zX2Zvcm1hdF9kYXRl
+KCRfWERPWFNMVENUWCwgc3RyaW5nKCRmdjMpLCAnTU0vZGQveXl5eScpIi8+</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:     </note>
+         </trans-unit>
+         <trans-unit id="c1a99f0b" maxbytes="4000" maxwidth="38" size-unit="char" translate="yes">
+            <source>Till ID:[&amp;0] [&amp;1:TILLID]</source>
+            <target>ID szuflady kasowej:[&amp;0] [&amp;1:TILLID]</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL3RpbGxJRCIgeGRvZm86ZmllbGQtbmFt
+ZT0idGlsbElEIi8+</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:tillID</note>
+         </trans-unit>
+         <trans-unit id="b935e805" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Denomination</source>
+            <target>Wartość nominalna</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>Kwota</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="95a979cf" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Totals</source>
+            <target>Łącznie</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="4d3eb24" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total</source>
+            <target>Łącznie</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+      </body>
+   </file>
+</xliff>

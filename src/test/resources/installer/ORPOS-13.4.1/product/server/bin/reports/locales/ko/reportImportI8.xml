@@ -1,0 +1,176 @@
+<!--
+/* ===========================================================================
+* Copyright (c) 2009, 2013, Oracle and/or its affiliates. All rights reserved.
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/locales/ko/reportImportI8.xml /main/19 2013/11/06 01:47:01 msarangi Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    ohorne    10/24/13 - corrected locale values
+ *    npoola    06/01/10 - repackaged to oracle.retail.stores
+ *    ohorne    04/14/10 - added accountability param for Over And Short
+ *                         Reports
+ *    npoola    03/23/10 - Added the Parameters for FlashReport and
+ *                         BankDepositSummary to the reportI8 xml files
+ *    sgu       03/11/10 - check in after merge with Owen's txn
+ *    ohorne    03/10/10 - flashsales no longer uses posDept
+ *    sgu       03/11/10 - rework the flash sale adhoc report
+ *    abondala  01/02/10 - Update Header date
+ *    npoola    12/24/09 - added the CancelledAndVoidTransactionReports to
+ *                         parameters and reports
+ *    kulu      02/09/09 - Fix JUnit test and add comments
+ *
+ * ===========================================================================
+ */
+-->
+<ReportImportI18N locale="ko">
+  <Reports>
+    <!-- Sales -->
+    <Report name="FlashSalesReport" displayName="플래시 세일" category="판매"/>
+    <Report name="MerchandiseDrillDownReport" displayName="상품 분류체계 드릴다운" category="상세내역"/>
+    <Report name="SalesSummaryByRegisterReport" displayName="레지스터별 판매 요약" category="판매"/>
+    <Report name="HourlyProductivityReport" displayName="시간별 생산성" category="판매"/>
+
+    <!-- Sales Adhoc-->
+    <Report name="FlashSalesReportAdhoc" displayName="플래시 세일" category="상세내역"/>
+    <Report name="SalesSummaryByRegisterReportAdhoc" displayName="레지스터별 판매 요약" category="상세내역"/>
+    <Report name="HourlyProductivityReportAdhoc" displayName="시간별 생산성" category="상세내역"/>
+
+    <!-- Financial -->
+    <Report name="OverAndShortByCashierReport" displayName="계산원별 초과 및 부족" category="재무"/>
+    <Report name="OverAndShortByRegisterReport" displayName="레지스터별 초과 및 부족" category="재무"/>
+    <Report name="BankDepositSummaryReport" displayName="은행 예금" category="재무"/>
+	<Report name="TillStatusReport" displayName="현금보관함 상태" category="재무"/>
+
+    <!-- Financial -Adhoc -->
+    <Report name="OverAndShortByCashierReportAdhoc" displayName="계산원별 초과 및 부족" category="상세내역"/>
+    <Report name="OverAndShortByRegisterReportAdhoc" displayName="레지스터별 초과 및 부족" category="상세내역"/>
+    <Report name="BankDepositSummaryReportAdhoc" displayName="은행 예금" category="상세내역"/>
+
+	<!-- Exceptions -->
+	<Report name="SuspendedTransactionsReport" displayName="보류" category="예외"/>
+	<Report name="CancelledAndPostVoidedTransactionsReport" displayName="취소 및 사후 무효화" category="예외"/>
+	<Report name="NoSalesTransactionsReport" displayName="판매 없음" category="예외"/>
+
+	<!-- Exceptions -Adhoc -->
+	<Report name="SuspendedTransactionsReportAdhoc" displayName="보류" category="상세내역"/>
+	<Report name="CancelledAndPostVoidedTransactionsReportAdhoc" displayName="취소 및 사후 무효화" category="상세내역"/>
+	<Report name="NoSalesTransactionsReportAdhoc" displayName="판매 없음" category="상세내역"/>
+
+    <!-- StoreOps -->
+    <Report name="TillFloatSummaryReport" displayName="현금보관함 여유 금액 조사 조정" category="상세내역"/>
+    <Report name="TillFloatDetailReport" displayName="현금보관함 여유 금액 조사 조정" category="상세내역"/>
+    <Report name="TillCountSummaryReport" displayName="현금보관함 조사 조정" category="상세내역"/>
+    <Report name="TillCountDetailReport" displayName="현금보관함 조사 조정" category="상세내역"/>
+    <Report name="SummaryReport" displayName="요약" category="상세내역"/>
+    <Report name="TillReconcileSummaryReport" displayName="현금보관함 요약" category="상세내역"/>
+    <Report name="RegisterSummaryReport" displayName="레지스터 요약" category="상세내역"/>
+    <Report name="StoreSummaryReport" displayName="점포 요약" category="상세내역"/>
+    <Report name="SuspendedTransactionReport" displayName="보류된 트랜잭션" category="상세내역"/>
+    <Report name="BankDepositDetailReport" displayName="은행 예금" category="상세내역"/>
+
+    <!-- Time maintenance -->
+    <Report name="EmployeeTimeSummaryReport" displayName="요약 직원 시간" category="상세내역"/>
+    <Report name="EmployeeTimeDetailReport" displayName="상세 직원 시간" category="상세내역"/>
+    <Report name="EmployeeTimeMaintenanceReport" displayName="직원 시간 관리" category="상세내역"/>
+ </Reports>
+
+ <UIParameters>
+ 	<Parameters reportRef="FlashSalesReport">
+      <Parameter name="hideAdhoc" displayName=""/>
+	</Parameters>
+	<Parameters reportRef="BankDepositSummaryReport">
+      <Parameter name="hideReportPeriods" displayName=""/>
+	</Parameters>
+   <Parameters reportRef="FlashSalesReportAdhoc">
+      <Parameter name="storeId" displayName="점포"/>
+      <Parameter name="merchandiseHierarchyId" displayName="상품 분류체계"/>
+   </Parameters>
+   <Parameters reportRef="MerchandiseDrillDownReport">
+      <Parameter name="hideAdhoc" displayName=""/>
+      <Parameter name="hideReportPeriods" displayName=""/>
+      <Parameter name="departmentId" displayName="매장"/>
+   </Parameters>
+   <Parameters reportRef="OverAndShortByCashierReportAdhoc">
+      <Parameter name="storeId" displayName="점포"/>
+      <Parameter name="cashierId" displayName="계산원"/>
+      <Parameter name="accountability" displayName=""/>
+   </Parameters>
+   <Parameters reportRef="OverAndShortByCashierReport">
+      <Parameter name="cashierId" displayName=""/>
+      <Parameter name="accountability" displayName=""/>
+   </Parameters>
+   <Parameters reportRef="OverAndShortByRegisterReportAdhoc">
+      <Parameter name="storeId" displayName="점포"/>
+      <Parameter name="registerId" displayName="레지스터"/>
+      <Parameter name="accountability" displayName=""/>
+   </Parameters>
+   <Parameters reportRef="OverAndShortByRegisterReport">
+      <Parameter name="registerId" displayName=""/>
+      <Parameter name="accountability" displayName=""/>
+   </Parameters>
+   <Parameters reportRef="SalesSummaryByRegisterReport">
+      <Parameter name="registerId" displayName=""/>
+   </Parameters>
+   <Parameters reportRef="SalesSummaryByRegisterReportAdhoc">
+      <Parameter name="storeId" displayName="점포"/>
+      <Parameter name="registerId" displayName="레지스터"/>
+   </Parameters>
+   <Parameters reportRef="HourlyProductivityReport">
+      <Parameter name="hideYearlyReportingPeriod" displayName=""/>
+   </Parameters>
+   <Parameters reportRef="HourlyProductivityReportAdhoc">
+      <Parameter name="storeId" displayName="점포"/>
+      <Parameter name="registerId" displayName="레지스터"/>
+      <Parameter name="employeeId" displayName="계산원"/>
+      <Parameter name="timeIncrement" displayName="시간 증분"/>
+      <Parameter name="hideYearlyReportingPeriod" displayName=""/>
+      <Parameter name="showTime" displayName=""/>
+      <Parameter name="startTimeStr" displayName=""/>
+      <Parameter name="endTimeStr" displayName=""/>
+   </Parameters>
+   <Parameters reportRef="EmployeeTimeSummaryReport">
+      <Parameter name="employeeID" displayName="직원 ID"/>
+   </Parameters>
+   <Parameters reportRef="EmployeeTimeDetailReport">
+      <Parameter name="employeeID" displayName="직원 ID"/>
+   </Parameters>
+   <Parameters reportRef="EmployeeTimeMaintenanceReport">
+      <Parameter name="employeeID" displayName="직원 ID"/>
+   </Parameters>
+   <!-- Sharath - Changes Start -->
+	 <Parameters reportRef="TillStatusReport">
+	      <Parameter name="hideAdhoc" defaultValue="true" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	      <Parameter name="hideReportPeriods" defaultValue="true" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	  </Parameters>
+	  <Parameters reportRef="NoSalesTransactionsReport">
+	      <Parameter name="hideYearlyReportingPeriod" defaultValue="true" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	      <Parameter name="hideAdhoc" defaultValue="false" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	  </Parameters>
+	  <Parameters reportRef="SuspendedTransactionsReport">
+	      <Parameter name="hideAdhoc" defaultValue="true" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	      <Parameter name="hideReportPeriods" defaultValue="true" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	  </Parameters>
+	  <Parameters reportRef="CancelledAndPostVoidedTransactionsReport">
+	      <Parameter name="hideYearlyReportingPeriod" defaultValue="true" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	      <Parameter name="hideAdhoc" defaultValue="false" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	  </Parameters>
+	  <Parameters reportRef="CancelledAndPostVoidedTransactionsReportAdhoc">
+	      <Parameter name="hideYearlyReportingPeriod" defaultValue="true" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+  		  <Parameter name="showTime" defaultValue="true" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	      <Parameter name="storeId" defaultValue="04241" displayName="점포" parameterType="oracle.retail.stores.commerceservices.report.configuration.NonEditableTextEditor" viewable="1" required="0" section="1"/>
+	      <Parameter name="registerId" defaultValue="All" displayName="레지스터" parameterType="oracle.retail.stores.webmodules.storeops.ui.report.SingleWorkstationEditor" viewable="1" required="0" section="1"/>
+	      <Parameter name="cashierId" defaultValue="04241" displayName="계산원" parameterType="oracle.retail.stores.webmodules.employee.ui.report.SingleOperatorEditor" viewable="1" required="0" section="1"/>
+	   </Parameters>
+	   <Parameters reportRef="NoSalesTransactionsReportAdhoc">
+	   	  <Parameter name="hideYearlyReportingPeriod" defaultValue="true" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	      <Parameter name="showTime" defaultValue="true" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	      <Parameter name="storeId" defaultValue="04241" displayName="점포" parameterType="oracle.retail.stores.commerceservices.report.configuration.NonEditableTextEditor" viewable="1" required="0" section="1"/>
+	      <Parameter name="registerId" defaultValue="All" displayName="레지스터" parameterType="oracle.retail.stores.webmodules.storeops.ui.report.SingleWorkstationEditor" viewable="1" required="0" section="1"/>
+	      <Parameter name="cashierId" defaultValue="04241" displayName="계산원" parameterType="oracle.retail.stores.webmodules.employee.ui.report.SingleOperatorEditor" viewable="1" required="0" section="1"/>
+	   </Parameters>
+  <!-- Sharath - Changes End -->
+ </UIParameters>
+</ReportImportI18N>

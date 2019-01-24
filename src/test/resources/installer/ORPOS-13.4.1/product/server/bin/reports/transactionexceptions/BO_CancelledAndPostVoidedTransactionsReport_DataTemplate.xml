@@ -1,0 +1,101 @@
+<!--
+/* ===========================================================================
+* Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved.
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/transactionexceptions/BO_CancelledAndPostVoidedTransactionsReport_DataTemplate.xml /main/17 2013/06/10 14:20:06 abondala Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    abondala  06/10/13 - replace hard coded transaction id format with a
+ *                         configuration
+ *    ohorne    08/31/12 - corrected case of version attr
+ *    acadar    03/10/10 - use business date in the where clause
+ *    cgreene   03/01/10 - added substringLength so time can be included in
+ *                         date
+ *
+ * ===========================================================================
+ */
+-->
+<dataTemplate name="CancelledAndPostVoidedTransactionsReport" version="1.0">
+  <properties>
+    <property name="xml_tag_case" value="as_are" />
+  </properties>
+  <parameters>
+    <parameter name="runDateTime" dataType="character" />
+    <parameter name="startDate" dataType="character" defaultValue="2008-01-01"/>
+    <parameter name="endDate" dataType="character" defaultValue="2009-01-01"/>    
+    <parameter name="registerId" dataType="character" defaultValue="All"/>
+    <parameter name="cashierId" dataType="character" defaultValue="All"/>
+    <parameter name="storeId" dataType="character" defaultValue="04241"/>
+    <parameter name="adhoc" dataType="character" defaultValue="false"/>
+    <parameter name="locale" dataType="character" defaultValue="en"/>
+    <parameter name="reportTitle" dataType="character"/>
+  </parameters>
+  <dataQuery>
+    <sqlStatement name="Q1">
+<![CDATA[SELECT
+      "Date",
+      "Cashier",
+      "Register",
+      "Type",
+      "ReasonCode",
+      "StoreId",
+      "SequenceNumber"
+FROM
+(
+SELECT a.dc_dy_bsn  "Date",
+       a.id_opr "Cashier",
+       a.id_ws "Register",
+       'Post Void' "Type",
+       c.de_cd_ent "ReasonCode",
+       a.id_str_rt "StoreId",
+       a.ai_trn "SequenceNumber"
+FROM  tr_trn a,
+      tr_vd_pst b,
+      id_lu_cd_i8 c
+WHERE
+ ((:cashierId = 'All' OR :cashierId = 'None')  OR  a.id_opr = :cashierId)
+ AND (a.dc_dy_bsn BETWEEN :startDate and :endDate)
+ AND ((:registerId = 'All' OR :registerId = 'None')  OR  a.id_ws = :registerId)
+ AND c.lcl = :locale
+ AND c.lu_cd_ent = b.RC_TR_VD_PST
+ AND c.de_cd_lst = 'PostVoidReasonCodes'
+ AND a.ty_trn = '3'
+ AND a.id_str_rt = :storeId
+ AND a.ai_trn = b.ai_trn
+ union
+SELECT a.dc_dy_bsn  "Date",
+       a.id_opr "Cashier",
+       a.id_ws "Register",
+      'Cancel' "Type",
+      '-' "ReasonCode",
+       a.id_str_rt "StoreId",
+       a.ai_trn "SequenceNumber"
+FROM tr_trn a
+ WHERE
+ (a.dc_dy_bsn BETWEEN :startDate and :endDate)
+ AND ((:cashierId = 'All' OR :cashierId = 'None')  OR  a.id_opr = :cashierId)
+ AND ((:registerId = 'All' OR :registerId = 'None')  OR  a.id_ws = :registerId)
+ AND a.sc_trn = '3'
+ AND a.id_str_rt = :storeId
+ ORDER BY "Date" desc
+ )]]>
+    </sqlStatement>
+  </dataQuery>
+  
+  <dataStructure>
+     <group name="Q1" source="Q1">
+        <element name="Date" value="Date"/>
+        <element name="Cashier" value="Cashier"/>
+        <element name="Register" value="Register"/>
+        <element name="Type" value="Type"/>
+        <element name="ReasonCode" value="ReasonCode"/>
+        <element name="StoreId" value="StoreId"/>
+        <element name="SequenceNumber" value="SequenceNumber"/>
+        <element name="TransactionID" value="STOREID,REGISTER,SEQUENCENUMBER,DATE" function="TO_TRANSACTION_ID"/>
+     </group>
+  </dataStructure>  
+  
+</dataTemplate>

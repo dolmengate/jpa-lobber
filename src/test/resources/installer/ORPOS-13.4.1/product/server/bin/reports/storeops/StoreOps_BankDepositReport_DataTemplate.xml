@@ -1,0 +1,53 @@
+<!--
+/* ===========================================================================
+* Copyright (c) 2008, 2012, Oracle and/or its affiliates. All rights reserved. 
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/storeops/StoreOps_BankDepositReport_DataTemplate.xml /main/12 2012/12/14 12:30:41 subrdey Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    subrdey   12/13/12 - Added new parameters Bank Name and Bank Deposit
+ *                         Number
+ *    abondala  09/28/10 - added business date on the reports to be consistent
+ *    abondala  01/02/10 - Update Header date
+ *    ohorne    11/11/08 - Library upgrade: XMLP 5.6.2 to BIP 10.1.3.4
+ *    cgreene   10/27/08 - update header to Oracle ade
+ *
+ * ===========================================================================
+ */
+-->
+<dataTemplate name="StoreBankDepositeReport" version="1.0">
+	<properties>
+		<property name="xml_tag_case" value="as_are" /> 
+	</properties>
+    <parameters>
+        <parameter name="runDateTime" dataType="character" />
+        <parameter name="startingDate" dataType="character" defaultValue="10/12/2006"/>
+        <parameter name="storeNumber" dataType="character" />
+        <parameter name="userName" dataType="character"/>
+        <parameter name="bankName" dataType="character"/>
+        <parameter name="bankDepositNumber" dataType="character"/>
+        <parameter name="cashAmt" dataType="number" />
+        <parameter name="ckCnt" dataType="number" />
+        <parameter name="ckAmt" dataType="number" />
+        <parameter name="tckCnt" dataType="number" />
+        <parameter name="tckAmt" dataType="number" />
+        <parameter name="mnyOrderAmt" dataType="number" />
+        <parameter name="mnyOrderCnt" dataType="number" />
+        <parameter name="altCashAmt" dataType="number" />
+        <parameter name="altCkCnt" dataType="number" />
+        <parameter name="altCkAmt" dataType="number" />
+        <parameter name="altTCkCnt" dataType="number" />
+        <parameter name="altTCkAmt" dataType="number" />
+        <parameter name="altTotals" dataType="number"/>
+        <parameter name="totals" dataType="number"/>
+        <parameter name="alternateCountry" dataType="character"/>
+       </parameters>
+    <dataQuery>
+        <sqlStatement name="Q1">
+            <![CDATA[SELECT ID FROM report_config WHERE id=0]]>
+        </sqlStatement>
+    </dataQuery>
+</dataTemplate>

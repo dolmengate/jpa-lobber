@@ -1,0 +1,162 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<xliff version="1.0">
+   <file source-language="EN" target-language="ja-JP" datatype="XDO" original="orphan.xlf" product-version="orphan.xlf" product-name="">
+      <header/>
+      <body>
+         <trans-unit id="d8deaeb9">
+            <source>Template Table 1</source>
+            <target>テンプレート表1</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="8ca3859b" maxbytes="4000" maxwidth="38" size-unit="char" translate="yes">
+            <source>Store Bank Deposit Report</source>
+            <target>店舗銀行預金レポート</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="14f73bc6" maxbytes="4000" maxwidth="43" size-unit="char" translate="yes">
+            <source>Store:[&amp;0] [&amp;1:STORENUMBER]</source>
+            <target>店舗:[&amp;0] [&amp;1:STORENUMBER]</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL3N0b3JlTnVtYmVyIiB4ZG9mbzpmaWVs
+ZC1uYW1lPSJzdG9yZU51bWJlciIvPg==</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:storeNumber</note>
+         </trans-unit>
+         <trans-unit id="e33ec328" maxbytes="4000" maxwidth="40" size-unit="char" translate="yes">
+            <source>Cashier:[&amp;0] [&amp;1:USERNAME]</source>
+            <target>キャッシャ:[&amp;0] [&amp;1:USERNAME]</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL3VzZXJOYW1lIiB4ZG9mbzpmaWVsZC1u
+YW1lPSJ1c2VyTmFtZSIvPg==</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:userName</note>
+         </trans-unit>
+         <trans-unit id="6003c50b" maxbytes="4000" maxwidth="44" size-unit="char" translate="yes">
+            <source>Business Date[&amp;0]:  [&amp;1:     ]</source>
+            <target>営業日[&amp;0]:  [&amp;1:     ]</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YXJpYWJsZSB4ZG9mbzpjdHg9IjE3IiB4ZG9mbzpjdHgyPSJ3cmFwcGVy
+IiBuYW1lPSJmdjMiPjx4c2w6dmFsdWUtb2Ygc2VsZWN0PSIuLy9zdGFydGluZ0Rh
+dGUiIHhkb2ZvOmZpZWxkLW5hbWU9InN0YXJ0aW5nRGF0ZSIvPjwveHNsOnZhcmlh
+YmxlPjx4c2w6dmFsdWUtb2Ygc2VsZWN0PSJ4ZG94c2x0Om1zX2Zvcm1hdF9kYXRl
+KCRfWERPWFNMVENUWCwgc3RyaW5nKCRmdjMpLCAnTU0vZGQveXl5eScpIi8+</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:     </note>
+         </trans-unit>
+         <trans-unit id="8044e417" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Cash Total</source>
+            <target>現金合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="386ea5ec" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Check Total</source>
+            <target>小切手合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3e460ef" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Count</source>
+            <target>カウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3af5f6d" maxbytes="4000" maxwidth="33" size-unit="char" translate="yes">
+            <source>Traveler's Check Total</source>
+            <target>旅行者用小切手合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3e460ef_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Count</source>
+            <target>カウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="e810e832" maxbytes="4000" maxwidth="26" size-unit="char" translate="yes">
+            <source>Money Order Total</source>
+            <target>送金為替合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="3e460ef_2" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Count</source>
+            <target>カウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_2" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="8d2dcf88" maxbytes="4000" maxwidth="55" size-unit="char" translate="yes">
+            <source>[&amp;1:ALTERNATE_COUNTRY] Cash [&amp;0]Total</source>
+            <target>[&amp;1:ALTERNATE_COUNTRY]現金[&amp;0]合計</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL2FsdGVybmF0ZUNvdW50cnkiIHhkb2Zv
+OmZpZWxkLW5hbWU9ImFsdGVybmF0ZUNvdW50cnkiLz4=</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:Alternate Country</note>
+         </trans-unit>
+         <trans-unit id="cad14eeb" maxbytes="4000" maxwidth="55" size-unit="char" translate="yes">
+            <source>[&amp;1:ALTERNATE_COUNTRY] Check [&amp;0]Total</source>
+            <target>[&amp;1:ALTERNATE_COUNTRY]小切手[&amp;0]合計</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL2FsdGVybmF0ZUNvdW50cnkiIHhkb2Zv
+OmZpZWxkLW5hbWU9ImFsdGVybmF0ZUNvdW50cnkiLz4=</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:Alternate Country</note>
+         </trans-unit>
+         <trans-unit id="3e460ef_3" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Count</source>
+            <target>カウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_3" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="9627fb0e" maxbytes="4000" maxwidth="67" size-unit="char" translate="yes">
+            <source>[&amp;1:ALTERNATE_COUNTRY] [&amp;0]Traveler's Check Total</source>
+            <target>[&amp;1:ALTERNATE_COUNTRY] [&amp;0]旅行者用小切手合計</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL2FsdGVybmF0ZUNvdW50cnkiIHhkb2Zv
+OmZpZWxkLW5hbWU9ImFsdGVybmF0ZUNvdW50cnkiLz4=</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:Alternate Country</note>
+         </trans-unit>
+         <trans-unit id="3e460ef_4" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Count</source>
+            <target>カウント</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="751f3c78_4" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Amount</source>
+            <target>金額</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="e95dd182" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total Deposit</source>
+            <target>保証金合計</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="6a8d0b11" maxbytes="4000" maxwidth="53" size-unit="char" translate="yes">
+            <source>Total [&amp;0][&amp;1:ALTERNATE_COUNTRY] [&amp;0]Deposit</source>
+            <target>合計[&amp;0][&amp;1:ALTERNATE_COUNTRY] [&amp;0]保証金</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL2FsdGVybmF0ZUNvdW50cnkiIHhkb2Zv
+OmZpZWxkLW5hbWU9ImFsdGVybmF0ZUNvdW50cnkiLz4=</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1:Alternate Country</note>
+         </trans-unit>
+      </body>
+   </file>
+</xliff>

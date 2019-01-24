@@ -1,0 +1,1628 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+/* ===========================================================================
+* Copyright (c) 2009, 2012, Oracle and/or its affiliates. All rights reserved. 
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/layouts.xml /main/11 2012/10/09 12:16:23 abhinavs Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    abhinavs  10/09/12 - BI Publisher upgrade from 10.1.3.4 to 11.1.1.6
+ *    mkutiana  10/04/11 - Typo causing localization error
+ *    ohorne    09/15/10 - mapped xlf files
+ *    ohorne    04/12/10 - replaced data templates for cashier and register O/S
+ *                         reports with a single data/layout template
+ *    ohorne    03/10/10 - flashsales no longer uses posDept
+ *    abondala  01/02/10 - Update Header date
+ *    ohorne    08/12/09 - created document
+ *
+ * ===========================================================================
+ */
+--><Layouts>
+  <!-- Sales -->
+  <Layout name="FlashSales" type="RTF" document="sales/BO_FlashSalesReport.rtf" html="true" pdf="true" rtf="true" excel="true" xml="true">
+
+     <!-- de Begin
+     <LocaleDocument locale="de" type="XLF" document="sales/locales/de/BO_FlashSalesReport_de.xlf"/>
+     de End -->
+     
+     <!-- el Begin
+     <LocaleDocument locale="el" type="XLF" document="sales/locales/el/BO_FlashSalesReport_el.xlf"/>
+     el End -->
+     
+     <!-- en Begin -->
+     <LocaleDocument locale="en" type="XLF" document="sales/locales/en/BO_FlashSalesReport_en.xlf"/>
+<!-- en End -->
+     
+     <!-- es Begin
+     <LocaleDocument locale="es" type="XLF" document="sales/locales/es/BO_FlashSalesReport_es.xlf"/>
+     es End -->
+     
+     <!-- fr Begin
+     <LocaleDocument locale="fr" type="XLF" document="sales/locales/fr/BO_FlashSalesReport_fr.xlf"/>
+     fr End -->
+     
+     <!-- hr Begin
+     <LocaleDocument locale="hr" type="XLF" document="sales/locales/hr/BO_FlashSalesReport_hr.xlf"/>
+     hr End -->
+     
+     <!-- hu Begin
+     <LocaleDocument locale="hu" type="XLF" document="sales/locales/hu/BO_FlashSalesReport_hu.xlf"/>
+     hu End -->
+     
+     <!-- it Begin
+     <LocaleDocument locale="it" type="XLF" document="sales/locales/it/BO_FlashSalesReport_it.xlf"/>
+     it End -->
+     
+     <!-- ja Begin
+     <LocaleDocument locale="ja" type="XLF" document="sales/locales/ja/BO_FlashSalesReport_ja.xlf"/>
+     ja End -->
+     
+     <!-- ko Begin
+     <LocaleDocument locale="ko" type="XLF" document="sales/locales/ko/BO_FlashSalesReport_ko.xlf"/>
+     ko End -->
+     
+     <!-- nl Begin
+     <LocaleDocument locale="nl" type="XLF" document="sales/locales/nl/BO_FlashSalesReport_nl.xlf"/>
+     nl End -->
+     
+     <!-- pl Begin
+     <LocaleDocument locale="pl" type="XLF" document="sales/locales/pl/BO_FlashSalesReport_pl.xlf"/>
+     pl End -->
+     
+     <!-- pt Begin
+     <LocaleDocument locale="pt" type="XLF" document="sales/locales/pt/BO_FlashSalesReport_pt.xlf"/>
+     pt End -->
+     
+     <!-- ru Begin
+     <LocaleDocument locale="ru" type="XLF" document="sales/locales/ru/BO_FlashSalesReport_ru.xlf"/>
+     ru End -->
+     
+     <!-- sv Begin
+     <LocaleDocument locale="sv" type="XLF" document="sales/locales/sv/BO_FlashSalesReport_sv.xlf"/>
+     sv End -->
+     
+     <!-- tr Begin
+     <LocaleDocument locale="tr" type="XLF" document="sales/locales/tr/BO_FlashSalesReport_tr.xlf"/>
+     tr End -->
+     
+     <!-- zh Begin
+     <LocaleDocument locale="zh" type="XLF" document="sales/locales/zh/BO_FlashSalesReport_zh.xlf"/>
+     zh End -->
+     
+     <!-- zh_TW Begin
+     <LocaleDocument locale="zh_TW" type="XLF" document="sales/locales/zh_TW/BO_FlashSalesReport_zh_TW.xlf"/>
+     zh_TW End -->
+
+  </Layout>
+
+  <Layout name="MerchandizeFlashSales" type="RTF" document="sales/BO_MerchandizeHierarchyDrillDownReport.rtf" html="true" pdf="true" rtf="true" excel="true" xml="true">
+
+     <!-- de Begin
+     <LocaleDocument locale="de" type="XLF" document="sales/locales/de/BO_MerchandizeHierarchyDrillDownReport_de.xlf"/>
+     de End -->
+     
+     <!-- el Begin
+     <LocaleDocument locale="el" type="XLF" document="sales/locales/el/BO_MerchandizeHierarchyDrillDownReport_el.xlf"/>
+     el End -->
+     
+     <!-- en Begin -->
+     <LocaleDocument locale="en" type="XLF" document="sales/locales/en/BO_MerchandizeHierarchyDrillDownReport_en.xlf"/>
+<!-- en End -->
+     
+     <!-- es Begin
+     <LocaleDocument locale="es" type="XLF" document="sales/locales/es/BO_MerchandizeHierarchyDrillDownReport_es.xlf"/>
+     es End -->
+     
+     <!-- fr Begin
+     <LocaleDocument locale="fr" type="XLF" document="sales/locales/fr/BO_MerchandizeHierarchyDrillDownReport_fr.xlf"/>
+     fr End -->
+     
+     <!-- hr Begin
+     <LocaleDocument locale="hr" type="XLF" document="sales/locales/hr/BO_MerchandizeHierarchyDrillDownReport_hr.xlf"/>
+     hr End -->
+     
+     <!-- hu Begin
+     <LocaleDocument locale="hu" type="XLF" document="sales/locales/hu/BO_MerchandizeHierarchyDrillDownReport_hu.xlf"/>
+     hu End -->
+     
+     <!-- it Begin
+     <LocaleDocument locale="it" type="XLF" document="sales/locales/it/BO_MerchandizeHierarchyDrillDownReport_it.xlf"/>
+     it End -->
+     
+     <!-- ja Begin
+     <LocaleDocument locale="ja" type="XLF" document="sales/locales/ja/BO_MerchandizeHierarchyDrillDownReport_ja.xlf"/>
+     ja End -->
+     
+     <!-- ko Begin
+     <LocaleDocument locale="ko" type="XLF" document="sales/locales/ko/BO_MerchandizeHierarchyDrillDownReport_ko.xlf"/>
+     ko End -->
+     
+     <!-- nl Begin
+     <LocaleDocument locale="nl" type="XLF" document="sales/locales/nl/BO_MerchandizeHierarchyDrillDownReport_nl.xlf"/>
+     nl End -->
+     
+     <!-- pl Begin
+     <LocaleDocument locale="pl" type="XLF" document="sales/locales/pl/BO_MerchandizeHierarchyDrillDownReport_pl.xlf"/>
+     pl End -->
+     
+     <!-- pt Begin
+     <LocaleDocument locale="pt" type="XLF" document="sales/locales/pt/BO_MerchandizeHierarchyDrillDownReport_pt.xlf"/>
+     pt End -->
+     
+     <!-- ru Begin
+     <LocaleDocument locale="ru" type="XLF" document="sales/locales/ru/BO_MerchandizeHierarchyDrillDownReport_ru.xlf"/>
+     ru End -->
+     
+     <!-- sv Begin
+     <LocaleDocument locale="sv" type="XLF" document="sales/locales/sv/BO_MerchandizeHierarchyDrillDownReport_sv.xlf"/>
+     sv End -->
+     
+     <!-- tr Begin
+     <LocaleDocument locale="tr" type="XLF" document="sales/locales/tr/BO_MerchandizeHierarchyDrillDownReport_tr.xlf"/>
+     tr End -->
+     
+     <!-- zh Begin
+     <LocaleDocument locale="zh" type="XLF" document="sales/locales/zh/BO_MerchandizeHierarchyDrillDownReport_zh.xlf"/>
+     zh End -->
+     
+     <!-- zh_TW Begin
+     <LocaleDocument locale="zh_TW" type="XLF" document="sales/locales/zh_TW/BO_MerchandizeHierarchyDrillDownReport_zh_TW.xlf"/>
+     zh_TW End -->
+
+  </Layout>
+
+  <Layout name="SalesSummaryByRegister" type="RTF" document="sales/BO_SalesSummaryByRegister.rtf" html="true" pdf="true" rtf="true" excel="true" xml="true">
+
+     <!-- de Begin
+     <LocaleDocument locale="de" type="XLF" document="sales/locales/de/BO_SalesSummaryByRegister_de.xlf"/>
+     de End -->
+     
+     <!-- el Begin
+     <LocaleDocument locale="el" type="XLF" document="sales/locales/el/BO_SalesSummaryByRegister_el.xlf"/>
+     el End -->
+     
+     <!-- en Begin -->
+     <LocaleDocument locale="en" type="XLF" document="sales/locales/en/BO_SalesSummaryByRegister_en.xlf"/>
+<!-- en End -->
+     
+     <!-- es Begin
+     <LocaleDocument locale="es" type="XLF" document="sales/locales/es/BO_SalesSummaryByRegister_es.xlf"/>
+     es End -->
+     
+     <!-- fr Begin
+     <LocaleDocument locale="fr" type="XLF" document="sales/locales/fr/BO_SalesSummaryByRegister_fr.xlf"/>
+     fr End -->
+     
+     <!-- hr Begin
+     <LocaleDocument locale="hr" type="XLF" document="sales/locales/hr/BO_SalesSummaryByRegister_hr.xlf"/>
+     hr End -->
+     
+     <!-- hu Begin
+     <LocaleDocument locale="hu" type="XLF" document="sales/locales/hu/BO_SalesSummaryByRegister_hu.xlf"/>
+     hu End -->
+     
+     <!-- it Begin
+     <LocaleDocument locale="it" type="XLF" document="sales/locales/it/BO_SalesSummaryByRegister_it.xlf"/>
+     it End -->
+     
+     <!-- ja Begin
+     <LocaleDocument locale="ja" type="XLF" document="sales/locales/ja/BO_SalesSummaryByRegister_ja.xlf"/>
+     ja End -->
+     
+     <!-- ko Begin
+     <LocaleDocument locale="ko" type="XLF" document="sales/locales/ko/BO_SalesSummaryByRegister_ko.xlf"/>
+     ko End -->
+     
+     <!-- nl Begin
+     <LocaleDocument locale="nl" type="XLF" document="sales/locales/nl/BO_SalesSummaryByRegister_nl.xlf"/>
+     nl End -->
+     
+     <!-- pl Begin
+     <LocaleDocument locale="pl" type="XLF" document="sales/locales/pl/BO_SalesSummaryByRegister_pl.xlf"/>
+     pl End -->
+     
+     <!-- pt Begin
+     <LocaleDocument locale="pt" type="XLF" document="sales/locales/pt/BO_SalesSummaryByRegister_pt.xlf"/>
+     pt End -->
+     
+     <!-- ru Begin
+     <LocaleDocument locale="ru" type="XLF" document="sales/locales/ru/BO_SalesSummaryByRegister_ru.xlf"/>
+     ru End -->
+     
+     <!-- sv Begin
+     <LocaleDocument locale="sv" type="XLF" document="sales/locales/sv/BO_SalesSummaryByRegister_sv.xlf"/>
+     sv End -->
+     
+     <!-- tr Begin
+     <LocaleDocument locale="tr" type="XLF" document="sales/locales/tr/BO_SalesSummaryByRegister_tr.xlf"/>
+     tr End -->
+     
+     <!-- zh Begin
+     <LocaleDocument locale="zh" type="XLF" document="sales/locales/zh/BO_SalesSummaryByRegister_zh.xlf"/>
+     zh End -->
+     
+     <!-- zh_TW Begin
+     <LocaleDocument locale="zh_TW" type="XLF" document="sales/locales/zh_TW/BO_SalesSummaryByRegister_zh_TW.xlf"/>
+     zh_TW End -->
+    
+  </Layout>
+
+  <Layout name="HourlyProductivity" type="RTF" document="sales/BO_HourlyProductivityReport.rtf" html="true" pdf="true" rtf="true" excel="true" xml="true">
+
+    <!-- de Begin
+     <LocaleDocument locale="de" type="XLF" document="sales/locales/de/BO_HourlyProductivityReport_de.xlf"/>
+     de End -->
+     
+     <!-- el Begin
+     <LocaleDocument locale="el" type="XLF" document="sales/locales/el/BO_HourlyProductivityReport_el.xlf"/>
+     el End -->
+     
+     <!-- en Begin -->
+     <LocaleDocument locale="en" type="XLF" document="sales/locales/en/BO_HourlyProductivityReport_en.xlf"/>
+<!-- en End -->
+     
+     <!-- es Begin
+     <LocaleDocument locale="es" type="XLF" document="sales/locales/es/BO_HourlyProductivityReport_es.xlf"/>
+     es End -->
+     
+     <!-- fr Begin
+     <LocaleDocument locale="fr" type="XLF" document="sales/locales/fr/BO_HourlyProductivityReport_fr.xlf"/>
+     fr End -->
+     
+     <!-- hr Begin
+     <LocaleDocument locale="hr" type="XLF" document="sales/locales/hr/BO_HourlyProductivityReport_hr.xlf"/>
+     hr End -->
+     
+     <!-- hu Begin
+     <LocaleDocument locale="hu" type="XLF" document="sales/locales/hu/BO_HourlyProductivityReport_hu.xlf"/>
+     hu End -->
+     
+     <!-- it Begin
+     <LocaleDocument locale="it" type="XLF" document="sales/locales/it/BO_HourlyProductivityReport_it.xlf"/>
+     it End -->
+     
+     <!-- ja Begin
+     <LocaleDocument locale="ja" type="XLF" document="sales/locales/ja/BO_HourlyProductivityReport_ja.xlf"/>
+     ja End -->
+     
+     <!-- ko Begin
+     <LocaleDocument locale="ko" type="XLF" document="sales/locales/ko/BO_HourlyProductivityReport_ko.xlf"/>
+     ko End -->
+     
+     <!-- nl Begin
+     <LocaleDocument locale="nl" type="XLF" document="sales/locales/nl/BO_HourlyProductivityReport_nl.xlf"/>
+     nl End -->
+     
+     <!-- pl Begin
+     <LocaleDocument locale="pl" type="XLF" document="sales/locales/pl/BO_HourlyProductivityReport_pl.xlf"/>
+     pl End -->
+     
+     <!-- pt Begin
+     <LocaleDocument locale="pt" type="XLF" document="sales/locales/pt/BO_HourlyProductivityReport_pt.xlf"/>
+     pt End -->
+     
+     <!-- ru Begin
+     <LocaleDocument locale="ru" type="XLF" document="sales/locales/ru/BO_HourlyProductivityReport_ru.xlf"/>
+     ru End -->
+     
+     <!-- sv Begin
+     <LocaleDocument locale="sv" type="XLF" document="sales/locales/sv/BO_HourlyProductivityReport_sv.xlf"/>
+     sv End -->
+     
+     <!-- tr Begin
+     <LocaleDocument locale="tr" type="XLF" document="sales/locales/tr/BO_HourlyProductivityReport_tr.xlf"/>
+     tr End -->
+     
+     <!-- zh Begin
+     <LocaleDocument locale="zh" type="XLF" document="sales/locales/zh/BO_HourlyProductivityReport_zh.xlf"/>
+     zh End -->
+     
+     <!-- zh_TW Begin
+     <LocaleDocument locale="zh_TW" type="XLF" document="sales/locales/zh_TW/BO_HourlyProductivityReport_zh_TW.xlf"/>
+     zh_TW End -->
+    
+  </Layout>
+
+  <!-- Sales Adhoc -->
+  <Layout name="FlashSalesAdhoc" type="RTF" document="sales/BO_FlashSalesReport_adhoc.rtf" html="true" pdf="true" rtf="true" excel="true" xml="true">
+
+     <!-- de Begin
+     <LocaleDocument locale="de" type="XLF" document="sales/locales/de/BO_FlashSalesReport_adhoc_de.xlf"/>
+     de End -->
+     
+     <!-- el Begin
+     <LocaleDocument locale="el" type="XLF" document="sales/locales/el/BO_FlashSalesReport_adhoc_el.xlf"/>
+     el End -->
+     
+     <!-- en Begin -->
+     <LocaleDocument locale="en" type="XLF" document="sales/locales/en/BO_FlashSalesReport_adhoc_en.xlf"/>
+<!-- en End -->
+     
+     <!-- es Begin
+     <LocaleDocument locale="es" type="XLF" document="sales/locales/es/BO_FlashSalesReport_adhoc_es.xlf"/>
+     es End -->
+     
+     <!-- fr Begin
+     <LocaleDocument locale="fr" type="XLF" document="sales/locales/fr/BO_FlashSalesReport_adhoc_fr.xlf"/>
+     fr End -->
+     
+     <!-- hr Begin
+     <LocaleDocument locale="hr" type="XLF" document="sales/locales/hr/BO_FlashSalesReport_adhoc_hr.xlf"/>
+     hr End -->
+     
+     <!-- hu Begin
+     <LocaleDocument locale="hu" type="XLF" document="sales/locales/hu/BO_FlashSalesReport_adhoc_hu.xlf"/>
+     hu End -->
+     
+     <!-- it Begin
+     <LocaleDocument locale="it" type="XLF" document="sales/locales/it/BO_FlashSalesReport_adhoc_it.xlf"/>
+     it End -->
+     
+     <!-- ja Begin
+     <LocaleDocument locale="ja" type="XLF" document="sales/locales/ja/BO_FlashSalesReport_adhoc_ja.xlf"/>
+     ja End -->
+     
+     <!-- ko Begin
+     <LocaleDocument locale="ko" type="XLF" document="sales/locales/ko/BO_FlashSalesReport_adhoc_ko.xlf"/>
+     ko End -->
+     
+     <!-- nl Begin
+     <LocaleDocument locale="nl" type="XLF" document="sales/locales/nl/BO_FlashSalesReport_adhoc_nl.xlf"/>
+     nl End -->
+     
+     <!-- pl Begin
+     <LocaleDocument locale="pl" type="XLF" document="sales/locales/pl/BO_FlashSalesReport_adhoc_pl.xlf"/>
+     pl End -->
+     
+     <!-- pt Begin
+     <LocaleDocument locale="pt" type="XLF" document="sales/locales/pt/BO_FlashSalesReport_adhoc_pt.xlf"/>
+     pt End -->
+     
+     <!-- ru Begin
+     <LocaleDocument locale="ru" type="XLF" document="sales/locales/ru/BO_FlashSalesReport_adhoc_ru.xlf"/>
+     ru End -->
+     
+     <!-- sv Begin
+     <LocaleDocument locale="sv" type="XLF" document="sales/locales/sv/BO_FlashSalesReport_adhoc_sv.xlf"/>
+     sv End -->
+     
+     <!-- tr Begin
+     <LocaleDocument locale="tr" type="XLF" document="sales/locales/tr/BO_FlashSalesReport_adhoc_tr.xlf"/>
+     tr End -->
+     
+     <!-- zh Begin
+     <LocaleDocument locale="zh" type="XLF" document="sales/locales/zh/BO_FlashSalesReport_adhoc_zh.xlf"/>
+     zh End -->
+     
+     <!-- zh_TW Begin
+     <LocaleDocument locale="zh_TW" type="XLF" document="sales/locales/zh_TW/BO_FlashSalesReport_adhoc_zh_TW.xlf"/>
+     zh_TW End -->
+
+  </Layout>
+
+  <Layout name="HourlyProductivityAdhoc" type="RTF" document="sales/BO_HourlyProductivityReport_adhoc.rtf" html="true" pdf="true" rtf="true" excel="true" xml="true">
+    
+     <!-- de Begin
+     <LocaleDocument locale="de" type="XLF" document="sales/locales/de/BO_HourlyProductivityReport_adhoc_de.xlf"/>
+     de End -->
+     
+     <!-- el Begin
+     <LocaleDocument locale="el" type="XLF" document="sales/locales/el/BO_HourlyProductivityReport_adhoc_el.xlf"/>
+     el End -->
+     
+     <!-- en Begin -->
+     <LocaleDocument locale="en" type="XLF" document="sales/locales/en/BO_HourlyProductivityReport_adhoc_en.xlf"/>
+<!-- en End -->
+     
+     <!-- es Begin
+     <LocaleDocument locale="es" type="XLF" document="sales/locales/es/BO_HourlyProductivityReport_adhoc_es.xlf"/>
+     es End -->
+     
+     <!-- fr Begin
+     <LocaleDocument locale="fr" type="XLF" document="sales/locales/fr/BO_HourlyProductivityReport_adhoc_fr.xlf"/>
+     fr End -->
+     
+     <!-- hr Begin
+     <LocaleDocument locale="hr" type="XLF" document="sales/locales/hr/BO_HourlyProductivityReport_adhoc_hr.xlf"/>
+     hr End -->
+     
+     <!-- hu Begin
+     <LocaleDocument locale="hu" type="XLF" document="sales/locales/hu/BO_HourlyProductivityReport_adhoc_hu.xlf"/>
+     hu End -->
+     
+     <!-- it Begin
+     <LocaleDocument locale="it" type="XLF" document="sales/locales/it/BO_HourlyProductivityReport_adhoc_it.xlf"/>
+     it End -->
+     
+     <!-- ja Begin
+     <LocaleDocument locale="ja" type="XLF" document="sales/locales/ja/BO_HourlyProductivityReport_adhoc_ja.xlf"/>
+     ja End -->
+     
+     <!-- ko Begin
+     <LocaleDocument locale="ko" type="XLF" document="sales/locales/ko/BO_HourlyProductivityReport_adhoc_ko.xlf"/>
+     ko End -->
+     
+     <!-- nl Begin
+     <LocaleDocument locale="nl" type="XLF" document="sales/locales/nl/BO_HourlyProductivityReport_adhoc_nl.xlf"/>
+     nl End -->
+     
+     <!-- pl Begin
+     <LocaleDocument locale="pl" type="XLF" document="sales/locales/pl/BO_HourlyProductivityReport_adhoc_pl.xlf"/>
+     pl End -->
+     
+     <!-- pt Begin
+     <LocaleDocument locale="pt" type="XLF" document="sales/locales/pt/BO_HourlyProductivityReport_adhoc_pt.xlf"/>
+     pt End -->
+     
+     <!-- ru Begin
+     <LocaleDocument locale="ru" type="XLF" document="sales/locales/ru/BO_HourlyProductivityReport_adhoc_ru.xlf"/>
+     ru End -->
+     
+     <!-- sv Begin
+     <LocaleDocument locale="sv" type="XLF" document="sales/locales/sv/BO_HourlyProductivityReport_adhoc_sv.xlf"/>
+     sv End -->
+     
+     <!-- tr Begin
+     <LocaleDocument locale="tr" type="XLF" document="sales/locales/tr/BO_HourlyProductivityReport_adhoc_tr.xlf"/>
+     tr End -->
+     
+     <!-- zh Begin
+     <LocaleDocument locale="zh" type="XLF" document="sales/locales/zh/BO_HourlyProductivityReport_adhoc_zh.xlf"/>
+     zh End -->
+     
+     <!-- zh_TW Begin
+     <LocaleDocument locale="zh_TW" type="XLF" document="sales/locales/zh_TW/BO_HourlyProductivityReport_adhoc_zh_TW.xlf"/>
+     zh_TW End -->
+    
+  </Layout>
+
+  <!-- Financial -->
+  <Layout name="OverAndShortByCashier" type="RTF" document="financial/BO_OverAndShortReport.rtf" html="true" pdf="true" rtf="true" excel="true" xml="true">
+
+     <!-- de Begin
+     <LocaleDocument locale="de" type="XLF" document="financial/locales/de/BO_OverAndShortReport_de.xlf"/>
+     de End -->
+     
+     <!-- el Begin
+     <LocaleDocument locale="el" type="XLF" document="financial/locales/el/BO_OverAndShortReport_el.xlf"/>
+     el End -->
+     
+     <!-- en Begin -->
+     <LocaleDocument locale="en" type="XLF" document="financial/locales/en/BO_OverAndShortReport_en.xlf"/>
+<!-- en End -->
+     
+     <!-- es Begin
+     <LocaleDocument locale="es" type="XLF" document="financial/locales/es/BO_OverAndShortReport_es.xlf"/>
+     es End -->
+     
+     <!-- fr Begin
+     <LocaleDocument locale="fr" type="XLF" document="financial/locales/fr/BO_OverAndShortReport_fr.xlf"/>
+     fr End -->
+     
+     <!-- hr Begin
+     <LocaleDocument locale="hr" type="XLF" document="financial/locales/hr/BO_OverAndShortReport_hr.xlf"/>
+     hr End -->
+     
+     <!-- hu Begin
+     <LocaleDocument locale="hu" type="XLF" document="financial/locales/hu/BO_OverAndShortReport_hu.xlf"/>
+     hu End -->
+     
+     <!-- it Begin
+     <LocaleDocument locale="it" type="XLF" document="financial/locales/it/BO_OverAndShortReport_it.xlf"/>
+     it End -->
+     
+     <!-- ja Begin
+     <LocaleDocument locale="ja" type="XLF" document="financial/locales/ja/BO_OverAndShortReport_ja.xlf"/>
+     ja End -->
+     
+     <!-- ko Begin
+     <LocaleDocument locale="ko" type="XLF" document="financial/locales/ko/BO_OverAndShortReport_ko.xlf"/>
+     ko End -->
+     
+     <!-- nl Begin
+     <LocaleDocument locale="nl" type="XLF" document="financial/locales/nl/BO_OverAndShortReport_nl.xlf"/>
+     nl End -->
+     
+     <!-- pl Begin
+     <LocaleDocument locale="pl" type="XLF" document="financial/locales/pl/BO_OverAndShortReport_pl.xlf"/>
+     pl End -->
+     
+     <!-- pt Begin
+     <LocaleDocument locale="pt" type="XLF" document="financial/locales/pt/BO_OverAndShortReport_pt.xlf"/>
+     pt End -->
+     
+     <!-- ru Begin
+     <LocaleDocument locale="ru" type="XLF" document="financial/locales/ru/BO_OverAndShortReport_ru.xlf"/>
+     ru End -->
+     
+     <!-- sv Begin
+     <LocaleDocument locale="sv" type="XLF" document="financial/locales/sv/BO_OverAndShortReport_sv.xlf"/>
+     sv End -->
+     
+     <!-- tr Begin
+     <LocaleDocument locale="tr" type="XLF" document="financial/locales/tr/BO_OverAndShortReport_tr.xlf"/>
+     tr End -->
+     
+     <!-- zh Begin
+     <LocaleDocument locale="zh" type="XLF" document="financial/locales/zh/BO_OverAndShortReport_zh.xlf"/>
+     zh End -->
+     
+     <!-- zh_TW Begin
+     <LocaleDocument locale="zh_TW" type="XLF" document="financial/locales/zh_TW/BO_OverAndShortReport_zh_TW.xlf"/>
+     zh_TW End -->
+
+  </Layout>
+
+  <Layout name="OverAndShortByRegister" type="RTF" document="financial/BO_OverAndShortReport.rtf" html="true" pdf="true" rtf="true" excel="true" xml="true">
+
+     <!-- de Begin
+     <LocaleDocument locale="de" type="XLF" document="financial/locales/de/BO_OverAndShortReport_de.xlf"/>
+     de End -->
+     
+     <!-- el Begin
+     <LocaleDocument locale="el" type="XLF" document="financial/locales/el/BO_OverAndShortReport_el.xlf"/>
+     el End -->
+     
+     <!-- en Begin -->
+     <LocaleDocument locale="en" type="XLF" document="financial/locales/en/BO_OverAndShortReport_en.xlf"/>
+<!-- en End -->
+     
+     <!-- es Begin
+     <LocaleDocument locale="es" type="XLF" document="financial/locales/es/BO_OverAndShortReport_es.xlf"/>
+     es End -->
+     
+     <!-- fr Begin
+     <LocaleDocument locale="fr" type="XLF" document="financial/locales/fr/BO_OverAndShortReport_fr.xlf"/>
+     fr End -->
+     
+     <!-- hr Begin
+     <LocaleDocument locale="hr" type="XLF" document="financial/locales/hr/BO_OverAndShortReport_hr.xlf"/>
+     hr End -->
+     
+     <!-- hu Begin
+     <LocaleDocument locale="hu" type="XLF" document="financial/locales/hu/BO_OverAndShortReport_hu.xlf"/>
+     hu End -->
+     
+     <!-- it Begin
+     <LocaleDocument locale="it" type="XLF" document="financial/locales/it/BO_OverAndShortReport_it.xlf"/>
+     it End -->
+     
+     <!-- ja Begin
+     <LocaleDocument locale="ja" type="XLF" document="financial/locales/ja/BO_OverAndShortReport_ja.xlf"/>
+     ja End -->
+     
+     <!-- ko Begin
+     <LocaleDocument locale="ko" type="XLF" document="financial/locales/ko/BO_OverAndShortReport_ko.xlf"/>
+     ko End -->
+     
+     <!-- nl Begin
+     <LocaleDocument locale="nl" type="XLF" document="financial/locales/nl/BO_OverAndShortReport_nl.xlf"/>
+     nl End -->
+     
+     <!-- pl Begin
+     <LocaleDocument locale="pl" type="XLF" document="financial/locales/pl/BO_OverAndShortReport_pl.xlf"/>
+     pl End -->
+     
+     <!-- pt Begin
+     <LocaleDocument locale="pt" type="XLF" document="financial/locales/pt/BO_OverAndShortReport_pt.xlf"/>
+     pt End -->
+     
+     <!-- ru Begin
+     <LocaleDocument locale="ru" type="XLF" document="financial/locales/ru/BO_OverAndShortReport_ru.xlf"/>
+     ru End -->
+     
+     <!-- sv Begin
+     <LocaleDocument locale="sv" type="XLF" document="financial/locales/sv/BO_OverAndShortReport_sv.xlf"/>
+     sv End -->
+     
+     <!-- tr Begin
+     <LocaleDocument locale="tr" type="XLF" document="financial/locales/tr/BO_OverAndShortReport_tr.xlf"/>
+     tr End -->
+     
+     <!-- zh Begin
+     <LocaleDocument locale="zh" type="XLF" document="financial/locales/zh/BO_OverAndShortReport_zh.xlf"/>
+     zh End -->
+     
+     <!-- zh_TW Begin
+     <LocaleDocument locale="zh_TW" type="XLF" document="financial/locales/zh_TW/BO_OverAndShortReport_zh_TW.xlf"/>
+     zh_TW End -->
+
+  </Layout>
+
+  <Layout name="BankDepositSummary" type="RTF" document="financial/BO_BankDepositSummaryReport.rtf" html="true" pdf="true" rtf="true" excel="true" xml="true">
+
+     <!-- de Begin
+     <LocaleDocument locale="de" type="XLF" document="financial/locales/de/BO_BankDepositSummaryReport_de.xlf"/>
+     de End -->
+     
+     <!-- el Begin
+     <LocaleDocument locale="el" type="XLF" document="financial/locales/el/BO_BankDepositSummaryReport_el.xlf"/>
+     el End -->
+     
+     <!-- en Begin -->
+     <LocaleDocument locale="en" type="XLF" document="financial/locales/en/BO_BankDepositSummaryReport_en.xlf"/>
+<!-- en End -->
+     
+     <!-- es Begin
+     <LocaleDocument locale="es" type="XLF" document="financial/locales/es/BO_BankDepositSummaryReport_es.xlf"/>
+     es End -->
+     
+     <!-- fr Begin
+     <LocaleDocument locale="fr" type="XLF" document="financial/locales/fr/BO_BankDepositSummaryReport_fr.xlf"/>
+     fr End -->
+     
+     <!-- hr Begin
+     <LocaleDocument locale="hr" type="XLF" document="financial/locales/hr/BO_BankDepositSummaryReport_hr.xlf"/>
+     hr End -->
+     
+     <!-- hu Begin
+     <LocaleDocument locale="hu" type="XLF" document="financial/locales/hu/BO_BankDepositSummaryReport_hu.xlf"/>
+     hu End -->
+     
+     <!-- it Begin
+     <LocaleDocument locale="it" type="XLF" document="financial/locales/it/BO_BankDepositSummaryReport_it.xlf"/>
+     it End -->
+     
+     <!-- ja Begin
+     <LocaleDocument locale="ja" type="XLF" document="financial/locales/ja/BO_BankDepositSummaryReport_ja.xlf"/>
+     ja End -->
+     
+     <!-- ko Begin
+     <LocaleDocument locale="ko" type="XLF" document="financial/locales/ko/BO_BankDepositSummaryReport_ko.xlf"/>
+     ko End -->
+     
+     <!-- nl Begin
+     <LocaleDocument locale="nl" type="XLF" document="financial/locales/nl/BO_BankDepositSummaryReport_nl.xlf"/>
+     nl End -->
+     
+     <!-- pl Begin
+     <LocaleDocument locale="pl" type="XLF" document="financial/locales/pl/BO_BankDepositSummaryReport_pl.xlf"/>
+     pl End -->
+     
+     <!-- pt Begin
+     <LocaleDocument locale="pt" type="XLF" document="financial/locales/pt/BO_BankDepositSummaryReport_pt.xlf"/>
+     pt End -->
+     
+     <!-- ru Begin
+     <LocaleDocument locale="ru" type="XLF" document="financial/locales/ru/BO_BankDepositSummaryReport_ru.xlf"/>
+     ru End -->
+     
+     <!-- sv Begin
+     <LocaleDocument locale="sv" type="XLF" document="financial/locales/sv/BO_BankDepositSummaryReport_sv.xlf"/>
+     sv End -->
+     
+     <!-- tr Begin
+     <LocaleDocument locale="tr" type="XLF" document="financial/locales/tr/BO_BankDepositSummaryReport_tr.xlf"/>
+     tr End -->
+     
+     <!-- zh Begin
+     <LocaleDocument locale="zh" type="XLF" document="financial/locales/zh/BO_BankDepositSummaryReport_zh.xlf"/>
+     zh End -->
+     
+     <!-- zh_TW Begin
+     <LocaleDocument locale="zh_TW" type="XLF" document="financial/locales/zh_TW/BO_BankDepositSummaryReport_zh_TW.xlf"/>
+     zh_TW End -->
+
+  </Layout>
+
+  <Layout name="TillStatus" type="RTF" document="financial/BO_TillStatusReport.rtf" html="true" pdf="true" rtf="true" excel="true" xml="true">
+
+     <!-- de Begin
+     <LocaleDocument locale="de" type="XLF" document="financial/locales/de/BO_TillStatusReport_de.xlf"/>
+     de End -->
+     
+     <!-- el Begin
+     <LocaleDocument locale="el" type="XLF" document="financial/locales/el/BO_TillStatusReport_el.xlf"/>
+     el End -->
+     
+     <!-- en Begin -->
+     <LocaleDocument locale="en" type="XLF" document="financial/locales/en/BO_TillStatusReport_en.xlf"/>
+<!-- en End -->
+     
+     <!-- es Begin
+     <LocaleDocument locale="es" type="XLF" document="financial/locales/es/BO_TillStatusReport_es.xlf"/>
+     es End -->
+     
+     <!-- fr Begin
+     <LocaleDocument locale="fr" type="XLF" document="financial/locales/fr/BO_TillStatusReport_fr.xlf"/>
+     fr End -->
+     
+     <!-- hr Begin
+     <LocaleDocument locale="hr" type="XLF" document="financial/locales/hr/BO_TillStatusReport_hr.xlf"/>
+     hr End -->
+     
+     <!-- hu Begin
+     <LocaleDocument locale="hu" type="XLF" document="financial/locales/hu/BO_TillStatusReport_hu.xlf"/>
+     hu End -->
+     
+     <!-- it Begin
+     <LocaleDocument locale="it" type="XLF" document="financial/locales/it/BO_TillStatusReport_it.xlf"/>
+     it End -->
+     
+     <!-- ja Begin
+     <LocaleDocument locale="ja" type="XLF" document="financial/locales/ja/BO_TillStatusReport_ja.xlf"/>
+     ja End -->
+     
+     <!-- ko Begin
+     <LocaleDocument locale="ko" type="XLF" document="financial/locales/ko/BO_TillStatusReport_ko.xlf"/>
+     ko End -->
+     
+     <!-- nl Begin
+     <LocaleDocument locale="nl" type="XLF" document="financial/locales/nl/BO_TillStatusReport_nl.xlf"/>
+     nl End -->
+     
+     <!-- pl Begin
+     <LocaleDocument locale="pl" type="XLF" document="financial/locales/pl/BO_TillStatusReport_pl.xlf"/>
+     pl End -->
+     
+     <!-- pt Begin
+     <LocaleDocument locale="pt" type="XLF" document="financial/locales/pt/BO_TillStatusReport_pt.xlf"/>
+     pt End -->
+     
+     <!-- ru Begin
+     <LocaleDocument locale="ru" type="XLF" document="financial/locales/ru/BO_TillStatusReport_ru.xlf"/>
+     ru End -->
+     
+     <!-- sv Begin
+     <LocaleDocument locale="sv" type="XLF" document="financial/locales/sv/BO_TillStatusReport_sv.xlf"/>
+     sv End -->
+     
+     <!-- tr Begin
+     <LocaleDocument locale="tr" type="XLF" document="financial/locales/tr/BO_TillStatusReport_tr.xlf"/>
+     tr End -->
+     
+     <!-- zh Begin
+     <LocaleDocument locale="zh" type="XLF" document="financial/locales/zh/BO_TillStatusReport_zh.xlf"/>
+     zh End -->
+     
+     <!-- zh_TW Begin
+     <LocaleDocument locale="zh_TW" type="XLF" document="financial/locales/zh_TW/BO_TillStatusReport_zh_TW.xlf"/>
+     zh_TW End -->
+
+  </Layout>
+
+  <!-- Transaction Exceptions-->
+  <Layout name="TrnExp_SuspendedTransactions" type="RTF" document="transactionexceptions/BO_SuspendedTransactionsReport.rtf" html="true" pdf="true" rtf="true" excel="true" xml="true">
+
+     <!-- de Begin
+     <LocaleDocument locale="de" type="XLF" document="transactionexceptions/locales/de/BO_SuspendedTransactionsReport_de.xlf"/>
+     de End -->
+     
+     <!-- el Begin
+     <LocaleDocument locale="el" type="XLF" document="transactionexceptions/locales/el/BO_SuspendedTransactionsReport_el.xlf"/>
+     el End -->
+     
+     <!-- en Begin -->
+     <LocaleDocument locale="en" type="XLF" document="transactionexceptions/locales/en/BO_SuspendedTransactionsReport_en.xlf"/>
+<!-- en End -->
+     
+     <!-- es Begin
+     <LocaleDocument locale="es" type="XLF" document="transactionexceptions/locales/es/BO_SuspendedTransactionsReport_es.xlf"/>
+     es End -->
+     
+     <!-- fr Begin
+     <LocaleDocument locale="fr" type="XLF" document="transactionexceptions/locales/fr/BO_SuspendedTransactionsReport_fr.xlf"/>
+     fr End -->
+     
+     <!-- hr Begin
+     <LocaleDocument locale="hr" type="XLF" document="transactionexceptions/locales/hr/BO_SuspendedTransactionsReport_hr.xlf"/>
+     hr End -->
+     
+     <!-- hu Begin
+     <LocaleDocument locale="hu" type="XLF" document="transactionexceptions/locales/hu/BO_SuspendedTransactionsReport_hu.xlf"/>
+     hu End -->
+     
+     <!-- it Begin
+     <LocaleDocument locale="it" type="XLF" document="transactionexceptions/locales/it/BO_SuspendedTransactionsReport_it.xlf"/>
+     it End -->
+     
+     <!-- ja Begin
+     <LocaleDocument locale="ja" type="XLF" document="transactionexceptions/locales/ja/BO_SuspendedTransactionsReport_ja.xlf"/>
+     ja End -->
+     
+     <!-- ko Begin
+     <LocaleDocument locale="ko" type="XLF" document="transactionexceptions/locales/ko/BO_SuspendedTransactionsReport_ko.xlf"/>
+     ko End -->
+     
+     <!-- nl Begin
+     <LocaleDocument locale="nl" type="XLF" document="transactionexceptions/locales/nl/BO_SuspendedTransactionsReport_nl.xlf"/>
+     nl End -->
+     
+     <!-- pl Begin
+     <LocaleDocument locale="pl" type="XLF" document="transactionexceptions/locales/pl/BO_SuspendedTransactionsReport_pl.xlf"/>
+     pl End -->
+     
+     <!-- pt Begin
+     <LocaleDocument locale="pt" type="XLF" document="transactionexceptions/locales/pt/BO_SuspendedTransactionsReport_pt.xlf"/>
+     pt End -->
+     
+     <!-- ru Begin
+     <LocaleDocument locale="ru" type="XLF" document="transactionexceptions/locales/ru/BO_SuspendedTransactionsReport_ru.xlf"/>
+     ru End -->
+     
+     <!-- sv Begin
+     <LocaleDocument locale="sv" type="XLF" document="transactionexceptions/locales/sv/BO_SuspendedTransactionsReport_sv.xlf"/>
+     sv End -->
+     
+     <!-- tr Begin
+     <LocaleDocument locale="tr" type="XLF" document="transactionexceptions/locales/tr/BO_SuspendedTransactionsReport_tr.xlf"/>
+     tr End -->
+     
+     <!-- zh Begin
+     <LocaleDocument locale="zh" type="XLF" document="transactionexceptions/locales/zh/BO_SuspendedTransactionsReport_zh.xlf"/>
+     zh End -->
+     
+     <!-- zh_TW Begin
+     <LocaleDocument locale="zh_TW" type="XLF" document="transactionexceptions/locales/zh_TW/BO_SuspendedTransactionsReport_zh_TW.xlf"/>
+     zh_TW End -->
+
+  </Layout>
+
+  <Layout name="NoSalesTransactions" type="RTF" document="transactionexceptions/BO_NoSalesTransactionsReport.rtf" html="true" pdf="true" rtf="true" excel="true" xml="true">
+
+     <!-- de Begin
+     <LocaleDocument locale="de" type="XLF" document="transactionexceptions/locales/de/BO_NoSalesTransactionsReport_de.xlf"/>
+     de End -->
+     
+     <!-- el Begin
+     <LocaleDocument locale="el" type="XLF" document="transactionexceptions/locales/el/BO_NoSalesTransactionsReport_el.xlf"/>
+     el End -->
+     
+     <!-- en Begin -->
+     <LocaleDocument locale="en" type="XLF" document="transactionexceptions/locales/en/BO_NoSalesTransactionsReport_en.xlf"/>
+<!-- en End -->
+     
+     <!-- es Begin
+     <LocaleDocument locale="es" type="XLF" document="transactionexceptions/locales/es/BO_NoSalesTransactionsReport_es.xlf"/>
+     es End -->
+     
+     <!-- fr Begin
+     <LocaleDocument locale="fr" type="XLF" document="transactionexceptions/locales/fr/BO_NoSalesTransactionsReport_fr.xlf"/>
+     fr End -->
+     
+     <!-- hr Begin
+     <LocaleDocument locale="hr" type="XLF" document="transactionexceptions/locales/hr/BO_NoSalesTransactionsReport_hr.xlf"/>
+     hr End -->
+     
+     <!-- hu Begin
+     <LocaleDocument locale="hu" type="XLF" document="transactionexceptions/locales/hu/BO_NoSalesTransactionsReport_hu.xlf"/>
+     hu End -->
+     
+     <!-- it Begin
+     <LocaleDocument locale="it" type="XLF" document="transactionexceptions/locales/it/BO_NoSalesTransactionsReport_it.xlf"/>
+     it End -->
+     
+     <!-- ja Begin
+     <LocaleDocument locale="ja" type="XLF" document="transactionexceptions/locales/ja/BO_NoSalesTransactionsReport_ja.xlf"/>
+     ja End -->
+     
+     <!-- ko Begin
+     <LocaleDocument locale="ko" type="XLF" document="transactionexceptions/locales/ko/BO_NoSalesTransactionsReport_ko.xlf"/>
+     ko End -->
+     
+     <!-- nl Begin
+     <LocaleDocument locale="nl" type="XLF" document="transactionexceptions/locales/nl/BO_NoSalesTransactionsReport_nl.xlf"/>
+     nl End -->
+     
+     <!-- pl Begin
+     <LocaleDocument locale="pl" type="XLF" document="transactionexceptions/locales/pl/BO_NoSalesTransactionsReport_pl.xlf"/>
+     pl End -->
+     
+     <!-- pt Begin
+     <LocaleDocument locale="pt" type="XLF" document="transactionexceptions/locales/pt/BO_NoSalesTransactionsReport_pt.xlf"/>
+     pt End -->
+     
+     <!-- ru Begin
+     <LocaleDocument locale="ru" type="XLF" document="transactionexceptions/locales/ru/BO_NoSalesTransactionsReport_ru.xlf"/>
+     ru End -->
+     
+     <!-- sv Begin
+     <LocaleDocument locale="sv" type="XLF" document="transactionexceptions/locales/sv/BO_NoSalesTransactionsReport_sv.xlf"/>
+     sv End -->
+     
+     <!-- tr Begin
+     <LocaleDocument locale="tr" type="XLF" document="transactionexceptions/locales/tr/BO_NoSalesTransactionsReport_tr.xlf"/>
+     tr End -->
+     
+     <!-- zh Begin
+     <LocaleDocument locale="zh" type="XLF" document="transactionexceptions/locales/zh/BO_NoSalesTransactionsReport_zh.xlf"/>
+     zh End -->
+     
+     <!-- zh_TW Begin
+     <LocaleDocument locale="zh_TW" type="XLF" document="transactionexceptions/locales/zh_TW/BO_NoSalesTransactionsReport_zh_TW.xlf"/>
+     zh_TW End -->
+
+  </Layout>
+
+  <Layout name="CancelledAndPostVoidedTransactions" type="RTF" document="transactionexceptions/BO_CancelledAndPostVoidedTransactionsReport.rtf" html="true" pdf="true" rtf="true" excel="true" xml="true">
+  	
+     <!-- de Begin
+     <LocaleDocument locale="de" type="XLF" document="transactionexceptions/locales/de/BO_CancelledAndPostVoidedTransactionsReport_de.xlf"/>
+     de End -->
+     
+     <!-- el Begin
+     <LocaleDocument locale="el" type="XLF" document="transactionexceptions/locales/el/BO_CancelledAndPostVoidedTransactionsReport_el.xlf"/>
+     el End -->
+     
+     <!-- en Begin -->
+     <LocaleDocument locale="en" type="XLF" document="transactionexceptions/locales/en/BO_CancelledAndPostVoidedTransactionsReport_en.xlf"/>
+<!-- en End -->
+     
+     <!-- es Begin
+     <LocaleDocument locale="es" type="XLF" document="transactionexceptions/locales/es/BO_CancelledAndPostVoidedTransactionsReport_es.xlf"/>
+     es End -->
+     
+     <!-- fr Begin
+     <LocaleDocument locale="fr" type="XLF" document="transactionexceptions/locales/fr/BO_CancelledAndPostVoidedTransactionsReport_fr.xlf"/>
+     fr End -->
+     
+     <!-- hr Begin
+     <LocaleDocument locale="hr" type="XLF" document="transactionexceptions/locales/hr/BO_CancelledAndPostVoidedTransactionsReport_hr.xlf"/>
+     hr End -->
+     
+     <!-- hu Begin
+     <LocaleDocument locale="hu" type="XLF" document="transactionexceptions/locales/hu/BO_CancelledAndPostVoidedTransactionsReport_hu.xlf"/>
+     hu End -->
+     
+     <!-- it Begin
+     <LocaleDocument locale="it" type="XLF" document="transactionexceptions/locales/it/BO_CancelledAndPostVoidedTransactionsReport_it.xlf"/>
+     it End -->
+     
+     <!-- ja Begin
+     <LocaleDocument locale="ja" type="XLF" document="transactionexceptions/locales/ja/BO_CancelledAndPostVoidedTransactionsReport_ja.xlf"/>
+     ja End -->
+     
+     <!-- ko Begin
+     <LocaleDocument locale="ko" type="XLF" document="transactionexceptions/locales/ko/BO_CancelledAndPostVoidedTransactionsReport_ko.xlf"/>
+     ko End -->
+     
+     <!-- nl Begin
+     <LocaleDocument locale="nl" type="XLF" document="transactionexceptions/locales/nl/BO_CancelledAndPostVoidedTransactionsReport_nl.xlf"/>
+     nl End -->
+     
+     <!-- pl Begin
+     <LocaleDocument locale="pl" type="XLF" document="transactionexceptions/locales/pl/BO_CancelledAndPostVoidedTransactionsReport_pl.xlf"/>
+     pl End -->
+     
+     <!-- pt Begin
+     <LocaleDocument locale="pt" type="XLF" document="transactionexceptions/locales/pt/BO_CancelledAndPostVoidedTransactionsReport_pt.xlf"/>
+     pt End -->
+     
+     <!-- ru Begin
+     <LocaleDocument locale="ru" type="XLF" document="transactionexceptions/locales/ru/BO_CancelledAndPostVoidedTransactionsReport_ru.xlf"/>
+     ru End -->
+     
+     <!-- sv Begin
+     <LocaleDocument locale="sv" type="XLF" document="transactionexceptions/locales/sv/BO_CancelledAndPostVoidedTransactionsReport_sv.xlf"/>
+     sv End -->
+     
+     <!-- tr Begin
+     <LocaleDocument locale="tr" type="XLF" document="transactionexceptions/locales/tr/BO_CancelledAndPostVoidedTransactionsReport_tr.xlf"/>
+     tr End -->
+     
+     <!-- zh Begin
+     <LocaleDocument locale="zh" type="XLF" document="transactionexceptions/locales/zh/BO_CancelledAndPostVoidedTransactionsReport_zh.xlf"/>
+     zh End -->
+     
+     <!-- zh_TW Begin
+     <LocaleDocument locale="zh_TW" type="XLF" document="transactionexceptions/locales/zh_TW/BO_CancelledAndPostVoidedTransactionsReport_zh_TW.xlf"/>
+     zh_TW End -->
+
+  </Layout>
+  
+  <!-- StoreOps -->
+  <Layout name="BankDepositDetail" type="RTF" document="storeops/StoreOps_BankDepositReport.rtf" html="true" pdf="true" rtf="true" excel="true" xml="true">
+
+     <!-- de Begin
+     <LocaleDocument locale="de" type="XLF" document="storeops/locales/de/StoreOps_BankDepositReport_de.xlf"/>
+     de End -->
+     
+     <!-- el Begin
+     <LocaleDocument locale="el" type="XLF" document="storeops/locales/el/StoreOps_BankDepositReport_el.xlf"/>
+     el End -->
+     
+     <!-- en Begin -->
+     <LocaleDocument locale="en" type="XLF" document="storeops/locales/en/StoreOps_BankDepositReport_en.xlf"/>
+<!-- en End -->
+     
+     <!-- es Begin
+     <LocaleDocument locale="es" type="XLF" document="storeops/locales/es/StoreOps_BankDepositReport_es.xlf"/>
+     es End -->
+     
+     <!-- fr Begin
+     <LocaleDocument locale="fr" type="XLF" document="storeops/locales/fr/StoreOps_BankDepositReport_fr.xlf"/>
+     fr End -->
+     
+     <!-- hr Begin
+     <LocaleDocument locale="hr" type="XLF" document="storeops/locales/hr/StoreOps_BankDepositReport_hr.xlf"/>
+     hr End -->
+     
+     <!-- hu Begin
+     <LocaleDocument locale="hu" type="XLF" document="storeops/locales/hu/StoreOps_BankDepositReport_hu.xlf"/>
+     hu End -->
+     
+     <!-- it Begin
+     <LocaleDocument locale="it" type="XLF" document="storeops/locales/it/StoreOps_BankDepositReport_it.xlf"/>
+     it End -->
+     
+     <!-- ja Begin
+     <LocaleDocument locale="ja" type="XLF" document="storeops/locales/ja/StoreOps_BankDepositReport_ja.xlf"/>
+     ja End -->
+     
+     <!-- ko Begin
+     <LocaleDocument locale="ko" type="XLF" document="storeops/locales/ko/StoreOps_BankDepositReport_ko.xlf"/>
+     ko End -->
+     
+     <!-- nl Begin
+     <LocaleDocument locale="nl" type="XLF" document="storeops/locales/nl/StoreOps_BankDepositReport_nl.xlf"/>
+     nl End -->
+     
+     <!-- pl Begin
+     <LocaleDocument locale="pl" type="XLF" document="storeops/locales/pl/StoreOps_BankDepositReport_pl.xlf"/>
+     pl End -->
+     
+     <!-- pt Begin
+     <LocaleDocument locale="pt" type="XLF" document="storeops/locales/pt/StoreOps_BankDepositReport_pt.xlf"/>
+     pt End -->
+     
+     <!-- ru Begin
+     <LocaleDocument locale="ru" type="XLF" document="storeops/locales/ru/StoreOps_BankDepositReport_ru.xlf"/>
+     ru End -->
+     
+     <!-- sv Begin
+     <LocaleDocument locale="sv" type="XLF" document="storeops/locales/sv/StoreOps_BankDepositReport_sv.xlf"/>
+     sv End -->
+     
+     <!-- tr Begin
+     <LocaleDocument locale="tr" type="XLF" document="storeops/locales/tr/StoreOps_BankDepositReport_tr.xlf"/>
+     tr End -->
+     
+     <!-- zh Begin
+     <LocaleDocument locale="zh" type="XLF" document="storeops/locales/zh/StoreOps_BankDepositReport_zh.xlf"/>
+     zh End -->
+     
+     <!-- zh_TW Begin
+     <LocaleDocument locale="zh_TW" type="XLF" document="storeops/locales/zh_TW/StoreOps_BankDepositReport_zh_TW.xlf"/>
+     zh_TW End -->
+
+  </Layout>
+
+  <Layout name="TillFloatSummary" type="RTF" document="storeops/StoreOps_TillFloatSummaryReport.rtf" html="true" pdf="true" rtf="true" excel="true" xml="true">
+
+     <!-- de Begin
+     <LocaleDocument locale="de" type="XLF" document="storeops/locales/de/StoreOps_TillFloatSummaryReport_de.xlf"/>
+     de End -->
+     
+     <!-- el Begin
+     <LocaleDocument locale="el" type="XLF" document="storeops/locales/el/StoreOps_TillFloatSummaryReport_el.xlf"/>
+     el End -->
+     
+     <!-- en Begin -->
+     <LocaleDocument locale="en" type="XLF" document="storeops/locales/en/StoreOps_TillFloatSummaryReport_en.xlf"/>
+<!-- en End -->
+     
+     <!-- es Begin
+     <LocaleDocument locale="es" type="XLF" document="storeops/locales/es/StoreOps_TillFloatSummaryReport_es.xlf"/>
+     es End -->
+     
+     <!-- fr Begin
+     <LocaleDocument locale="fr" type="XLF" document="storeops/locales/fr/StoreOps_TillFloatSummaryReport_fr.xlf"/>
+     fr End -->
+     
+     <!-- hr Begin
+     <LocaleDocument locale="hr" type="XLF" document="storeops/locales/hr/StoreOps_TillFloatSummaryReport_hr.xlf"/>
+     hr End -->
+     
+     <!-- hu Begin
+     <LocaleDocument locale="hu" type="XLF" document="storeops/locales/hu/StoreOps_TillFloatSummaryReport_hu.xlf"/>
+     hu End -->
+     
+     <!-- it Begin
+     <LocaleDocument locale="it" type="XLF" document="storeops/locales/it/StoreOps_TillFloatSummaryReport_it.xlf"/>
+     it End -->
+     
+     <!-- ja Begin
+     <LocaleDocument locale="ja" type="XLF" document="storeops/locales/ja/StoreOps_TillFloatSummaryReport_ja.xlf"/>
+     ja End -->
+     
+     <!-- ko Begin
+     <LocaleDocument locale="ko" type="XLF" document="storeops/locales/ko/StoreOps_TillFloatSummaryReport_ko.xlf"/>
+     ko End -->
+     
+     <!-- nl Begin
+     <LocaleDocument locale="nl" type="XLF" document="storeops/locales/nl/StoreOps_TillFloatSummaryReport_nl.xlf"/>
+     nl End -->
+     
+     <!-- pl Begin
+     <LocaleDocument locale="pl" type="XLF" document="storeops/locales/pl/StoreOps_TillFloatSummaryReport_pl.xlf"/>
+     pl End -->
+     
+     <!-- pt Begin
+     <LocaleDocument locale="pt" type="XLF" document="storeops/locales/pt/StoreOps_TillFloatSummaryReport_pt.xlf"/>
+     pt End -->
+     
+     <!-- ru Begin
+     <LocaleDocument locale="ru" type="XLF" document="storeops/locales/ru/StoreOps_TillFloatSummaryReport_ru.xlf"/>
+     ru End -->
+     
+     <!-- sv Begin
+     <LocaleDocument locale="sv" type="XLF" document="storeops/locales/sv/StoreOps_TillFloatSummaryReport_sv.xlf"/>
+     sv End -->
+     
+     <!-- tr Begin
+     <LocaleDocument locale="tr" type="XLF" document="storeops/locales/tr/StoreOps_TillFloatSummaryReport_tr.xlf"/>
+     tr End -->
+     
+     <!-- zh Begin
+     <LocaleDocument locale="zh" type="XLF" document="storeops/locales/zh/StoreOps_TillFloatSummaryReport_zh.xlf"/>
+     zh End -->
+     
+     <!-- zh_TW Begin
+     <LocaleDocument locale="zh_TW" type="XLF" document="storeops/locales/zh_TW/StoreOps_TillFloatSummaryReport_zh_TW.xlf"/>
+     zh_TW End -->
+
+  </Layout>
+
+  <Layout name="TillFloatDetail" type="RTF" document="storeops/StoreOps_TillFloatCountDetailReport.rtf" html="true" pdf="true" rtf="true" excel="true" xml="true">
+
+     <!-- de Begin
+     <LocaleDocument locale="de" type="XLF" document="storeops/locales/de/StoreOps_TillFloatCountDetailReport_de.xlf"/>
+     de End -->
+     
+     <!-- el Begin
+     <LocaleDocument locale="el" type="XLF" document="storeops/locales/el/StoreOps_TillFloatCountDetailReport_el.xlf"/>
+     el End -->
+     
+     <!-- en Begin -->
+     <LocaleDocument locale="en" type="XLF" document="storeops/locales/en/StoreOps_TillFloatCountDetailReport_en.xlf"/>
+<!-- en End -->
+     
+     <!-- es Begin
+     <LocaleDocument locale="es" type="XLF" document="storeops/locales/es/StoreOps_TillFloatCountDetailReport_es.xlf"/>
+     es End -->
+     
+     <!-- fr Begin
+     <LocaleDocument locale="fr" type="XLF" document="storeops/locales/fr/StoreOps_TillFloatCountDetailReport_fr.xlf"/>
+     fr End -->
+     
+     <!-- hr Begin
+     <LocaleDocument locale="hr" type="XLF" document="storeops/locales/hr/StoreOps_TillFloatCountDetailReport_hr.xlf"/>
+     hr End -->
+     
+     <!-- hu Begin
+     <LocaleDocument locale="hu" type="XLF" document="storeops/locales/hu/StoreOps_TillFloatCountDetailReport_hu.xlf"/>
+     hu End -->
+     
+     <!-- it Begin
+     <LocaleDocument locale="it" type="XLF" document="storeops/locales/it/StoreOps_TillFloatCountDetailReport_it.xlf"/>
+     it End -->
+     
+     <!-- ja Begin
+     <LocaleDocument locale="ja" type="XLF" document="storeops/locales/ja/StoreOps_TillFloatCountDetailReport_ja.xlf"/>
+     ja End -->
+     
+     <!-- ko Begin
+     <LocaleDocument locale="ko" type="XLF" document="storeops/locales/ko/StoreOps_TillFloatCountDetailReport_ko.xlf"/>
+     ko End -->
+     
+     <!-- nl Begin
+     <LocaleDocument locale="nl" type="XLF" document="storeops/locales/nl/StoreOps_TillFloatCountDetailReport_nl.xlf"/>
+     nl End -->
+     
+     <!-- pl Begin
+     <LocaleDocument locale="pl" type="XLF" document="storeops/locales/pl/StoreOps_TillFloatCountDetailReport_pl.xlf"/>
+     pl End -->
+     
+     <!-- pt Begin
+     <LocaleDocument locale="pt" type="XLF" document="storeops/locales/pt/StoreOps_TillFloatCountDetailReport_pt.xlf"/>
+     pt End -->
+     
+     <!-- ru Begin
+     <LocaleDocument locale="ru" type="XLF" document="storeops/locales/ru/StoreOps_TillFloatCountDetailReport_ru.xlf"/>
+     ru End -->
+     
+     <!-- sv Begin
+     <LocaleDocument locale="sv" type="XLF" document="storeops/locales/sv/StoreOps_TillFloatCountDetailReport_sv.xlf"/>
+     sv End -->
+     
+     <!-- tr Begin
+     <LocaleDocument locale="tr" type="XLF" document="storeops/locales/tr/StoreOps_TillFloatCountDetailReport_tr.xlf"/>
+     tr End -->
+     
+     <!-- zh Begin
+     <LocaleDocument locale="zh" type="XLF" document="storeops/locales/zh/StoreOps_TillFloatCountDetailReport_zh.xlf"/>
+     zh End -->
+     
+     <!-- zh_TW Begin
+     <LocaleDocument locale="zh_TW" type="XLF" document="storeops/locales/zh_TW/StoreOps_TillFloatCountDetailReport_zh_TW.xlf"/>
+     zh_TW End -->
+
+  </Layout>
+
+  <Layout name="TillCountSummary" type="RTF" document="storeops/StoreOps_TillCountSummaryReport.rtf" html="true" pdf="true" rtf="true" excel="true" xml="true">
+
+     <!-- de Begin
+     <LocaleDocument locale="de" type="XLF" document="storeops/locales/de/StoreOps_TillCountSummaryReport_de.xlf"/>
+     de End -->
+     
+     <!-- el Begin
+     <LocaleDocument locale="el" type="XLF" document="storeops/locales/el/StoreOps_TillCountSummaryReport_el.xlf"/>
+     el End -->
+     
+     <!-- en Begin -->
+     <LocaleDocument locale="en" type="XLF" document="storeops/locales/en/StoreOps_TillCountSummaryReport_en.xlf"/>
+<!-- en End -->
+     
+     <!-- es Begin
+     <LocaleDocument locale="es" type="XLF" document="storeops/locales/es/StoreOps_TillCountSummaryReport_es.xlf"/>
+     es End -->
+     
+     <!-- fr Begin
+     <LocaleDocument locale="fr" type="XLF" document="storeops/locales/fr/StoreOps_TillCountSummaryReport_fr.xlf"/>
+     fr End -->
+     
+     <!-- hr Begin
+     <LocaleDocument locale="hr" type="XLF" document="storeops/locales/hr/StoreOps_TillCountSummaryReport_hr.xlf"/>
+     hr End -->
+     
+     <!-- hu Begin
+     <LocaleDocument locale="hu" type="XLF" document="storeops/locales/hu/StoreOps_TillCountSummaryReport_hu.xlf"/>
+     hu End -->
+     
+     <!-- it Begin
+     <LocaleDocument locale="it" type="XLF" document="storeops/locales/it/StoreOps_TillCountSummaryReport_it.xlf"/>
+     it End -->
+     
+     <!-- ja Begin
+     <LocaleDocument locale="ja" type="XLF" document="storeops/locales/ja/StoreOps_TillCountSummaryReport_ja.xlf"/>
+     ja End -->
+     
+     <!-- ko Begin
+     <LocaleDocument locale="ko" type="XLF" document="storeops/locales/ko/StoreOps_TillCountSummaryReport_ko.xlf"/>
+     ko End -->
+     
+     <!-- nl Begin
+     <LocaleDocument locale="nl" type="XLF" document="storeops/locales/nl/StoreOps_TillCountSummaryReport_nl.xlf"/>
+     nl End -->
+     
+     <!-- pl Begin
+     <LocaleDocument locale="pl" type="XLF" document="storeops/locales/pl/StoreOps_TillCountSummaryReport_pl.xlf"/>
+     pl End -->
+     
+     <!-- pt Begin
+     <LocaleDocument locale="pt" type="XLF" document="storeops/locales/pt/StoreOps_TillCountSummaryReport_pt.xlf"/>
+     pt End -->
+     
+     <!-- ru Begin
+     <LocaleDocument locale="ru" type="XLF" document="storeops/locales/ru/StoreOps_TillCountSummaryReport_ru.xlf"/>
+     ru End -->
+     
+     <!-- sv Begin
+     <LocaleDocument locale="sv" type="XLF" document="storeops/locales/sv/StoreOps_TillCountSummaryReport_sv.xlf"/>
+     sv End -->
+     
+     <!-- tr Begin
+     <LocaleDocument locale="tr" type="XLF" document="storeops/locales/tr/StoreOps_TillCountSummaryReport_tr.xlf"/>
+     tr End -->
+     
+     <!-- zh Begin
+     <LocaleDocument locale="zh" type="XLF" document="storeops/locales/zh/StoreOps_TillCountSummaryReport_zh.xlf"/>
+     zh End -->
+     
+     <!-- zh_TW Begin
+     <LocaleDocument locale="zh_TW" type="XLF" document="storeops/locales/zh_TW/StoreOps_TillCountSummaryReport_zh_TW.xlf"/>
+     zh_TW End -->
+
+  </Layout>
+
+  <Layout name="TillCountDetail" type="RTF" document="storeops/StoreOps_TillCountDetailReport.rtf" html="true" pdf="true" rtf="true" excel="true" xml="true">
+
+     <!-- de Begin
+     <LocaleDocument locale="de" type="XLF" document="storeops/locales/de/StoreOps_TillCountDetailReport_de.xlf"/>
+     de End -->
+     
+     <!-- el Begin
+     <LocaleDocument locale="el" type="XLF" document="storeops/locales/el/StoreOps_TillCountDetailReport_el.xlf"/>
+     el End -->
+     
+     <!-- en Begin -->
+     <LocaleDocument locale="en" type="XLF" document="storeops/locales/en/StoreOps_TillCountDetailReport_en.xlf"/>
+<!-- en End -->
+     
+     <!-- es Begin
+     <LocaleDocument locale="es" type="XLF" document="storeops/locales/es/StoreOps_TillCountDetailReport_es.xlf"/>
+     es End -->
+     
+     <!-- fr Begin
+     <LocaleDocument locale="fr" type="XLF" document="storeops/locales/fr/StoreOps_TillCountDetailReport_fr.xlf"/>
+     fr End -->
+     
+     <!-- hr Begin
+     <LocaleDocument locale="hr" type="XLF" document="storeops/locales/hr/StoreOps_TillCountDetailReport_hr.xlf"/>
+     hr End -->
+     
+     <!-- hu Begin
+     <LocaleDocument locale="hu" type="XLF" document="storeops/locales/hu/StoreOps_TillCountDetailReport_hu.xlf"/>
+     hu End -->
+     
+     <!-- it Begin
+     <LocaleDocument locale="it" type="XLF" document="storeops/locales/it/StoreOps_TillCountDetailReport_it.xlf"/>
+     it End -->
+     
+     <!-- ja Begin
+     <LocaleDocument locale="ja" type="XLF" document="storeops/locales/ja/StoreOps_TillCountDetailReport_ja.xlf"/>
+     ja End -->
+     
+     <!-- ko Begin
+     <LocaleDocument locale="ko" type="XLF" document="storeops/locales/ko/StoreOps_TillCountDetailReport_ko.xlf"/>
+     ko End -->
+     
+     <!-- nl Begin
+     <LocaleDocument locale="nl" type="XLF" document="storeops/locales/nl/StoreOps_TillCountDetailReport_nl.xlf"/>
+     nl End -->
+     
+     <!-- pl Begin
+     <LocaleDocument locale="pl" type="XLF" document="storeops/locales/pl/StoreOps_TillCountDetailReport_pl.xlf"/>
+     pl End -->
+     
+     <!-- pt Begin
+     <LocaleDocument locale="pt" type="XLF" document="storeops/locales/pt/StoreOps_TillCountDetailReport_pt.xlf"/>
+     pt End -->
+     
+     <!-- ru Begin
+     <LocaleDocument locale="ru" type="XLF" document="storeops/locales/ru/StoreOps_TillCountDetailReport_ru.xlf"/>
+     ru End -->
+     
+     <!-- sv Begin
+     <LocaleDocument locale="sv" type="XLF" document="storeops/locales/sv/StoreOps_TillCountDetailReport_sv.xlf"/>
+     sv End -->
+     
+     <!-- tr Begin
+     <LocaleDocument locale="tr" type="XLF" document="storeops/locales/tr/StoreOps_TillCountDetailReport_tr.xlf"/>
+     tr End -->
+     
+     <!-- zh Begin
+     <LocaleDocument locale="zh" type="XLF" document="storeops/locales/zh/StoreOps_TillCountDetailReport_zh.xlf"/>
+     zh End -->
+     
+     <!-- zh_TW Begin
+     <LocaleDocument locale="zh_TW" type="XLF" document="storeops/locales/zh_TW/StoreOps_TillCountDetailReport_zh_TW.xlf"/>
+     zh_TW End -->
+
+  </Layout>
+
+  <Layout name="ArgSummary" type="RTF" document="storeops/StoreOps_ARGSummaryReport.rtf" html="true" pdf="false" rtf="true" excel="true" xml="true"/>
+
+  <Layout name="SuspendedTransactions" type="RTF" document="storeops/StoreOps_SuspendedTransactions.rtf" html="true" pdf="true" rtf="true" excel="true" xml="true">
+
+     <!-- de Begin
+     <LocaleDocument locale="de" type="XLF" document="storeops/locales/de/StoreOps_SuspendedTransactions_de.xlf"/>
+     de End -->
+     
+     <!-- el Begin
+     <LocaleDocument locale="el" type="XLF" document="storeops/locales/el/StoreOps_SuspendedTransactions_el.xlf"/>
+     el End -->
+     
+     <!-- en Begin -->
+     <LocaleDocument locale="en" type="XLF" document="storeops/locales/en/StoreOps_SuspendedTransactions_en.xlf"/>
+<!-- en End -->
+     
+     <!-- es Begin
+     <LocaleDocument locale="es" type="XLF" document="storeops/locales/es/StoreOps_SuspendedTransactions_es.xlf"/>
+     es End -->
+     
+     <!-- fr Begin
+     <LocaleDocument locale="fr" type="XLF" document="storeops/locales/fr/StoreOps_SuspendedTransactions_fr.xlf"/>
+     fr End -->
+     
+     <!-- hr Begin
+     <LocaleDocument locale="hr" type="XLF" document="storeops/locales/hr/StoreOps_SuspendedTransactions_hr.xlf"/>
+     hr End -->
+     
+     <!-- hu Begin
+     <LocaleDocument locale="hu" type="XLF" document="storeops/locales/hu/StoreOps_SuspendedTransactions_hu.xlf"/>
+     hu End -->
+     
+     <!-- it Begin
+     <LocaleDocument locale="it" type="XLF" document="storeops/locales/it/StoreOps_SuspendedTransactions_it.xlf"/>
+     it End -->
+     
+     <!-- ja Begin
+     <LocaleDocument locale="ja" type="XLF" document="storeops/locales/ja/StoreOps_SuspendedTransactions_ja.xlf"/>
+     ja End -->
+     
+     <!-- ko Begin
+     <LocaleDocument locale="ko" type="XLF" document="storeops/locales/ko/StoreOps_SuspendedTransactions_ko.xlf"/>
+     ko End -->
+     
+     <!-- nl Begin
+     <LocaleDocument locale="nl" type="XLF" document="storeops/locales/nl/StoreOps_SuspendedTransactions_nl.xlf"/>
+     nl End -->
+     
+     <!-- pl Begin
+     <LocaleDocument locale="pl" type="XLF" document="storeops/locales/pl/StoreOps_SuspendedTransactions_pl.xlf"/>
+     pl End -->
+     
+     <!-- pt Begin
+     <LocaleDocument locale="pt" type="XLF" document="storeops/locales/pt/StoreOps_SuspendedTransactions_pt.xlf"/>
+     pt End -->
+     
+     <!-- ru Begin
+     <LocaleDocument locale="ru" type="XLF" document="storeops/locales/ru/StoreOps_SuspendedTransactions_ru.xlf"/>
+     ru End -->
+     
+     <!-- sv Begin
+     <LocaleDocument locale="sv" type="XLF" document="storeops/locales/sv/StoreOps_SuspendedTransactions_sv.xlf"/>
+     sv End -->
+     
+     <!-- tr Begin
+     <LocaleDocument locale="tr" type="XLF" document="storeops/locales/tr/StoreOps_SuspendedTransactions_tr.xlf"/>
+     tr End -->
+     
+     <!-- zh Begin
+     <LocaleDocument locale="zh" type="XLF" document="storeops/locales/zh/StoreOps_SuspendedTransactions_zh.xlf"/>
+     zh End -->
+     
+     <!-- zh_TW Begin
+     <LocaleDocument locale="zh_TW" type="XLF" document="storeops/locales/zh_TW/StoreOps_SuspendedTransactions_zh_TW.xlf"/>
+     zh_TW End -->
+
+  </Layout>
+
+  <!-- Time maintenance -->
+  <Layout name="DetailEmployeeTime" type="RTF" document="timemaintenance/TM_DetailEmployeeTimeReport.rtf" html="true" pdf="true" rtf="true" excel="true" xml="true">
+  
+
+     <!-- de Begin
+     <LocaleDocument locale="de" type="XLF" document="timemaintenance/locales/de/TM_DetailEmployeeTimeReport_de.xlf"/>
+     de End -->
+     
+     <!-- el Begin
+     <LocaleDocument locale="el" type="XLF" document="timemaintenance/locales/el/TM_DetailEmployeeTimeReport_el.xlf"/>
+     el End -->
+     
+     <!-- en Begin -->
+     <LocaleDocument locale="en" type="XLF" document="timemaintenance/locales/en/TM_DetailEmployeeTimeReport_en.xlf"/>
+<!-- en End -->
+     
+     <!-- es Begin
+     <LocaleDocument locale="es" type="XLF" document="timemaintenance/locales/es/TM_DetailEmployeeTimeReport_es.xlf"/>
+     es End -->
+     
+     <!-- fr Begin
+     <LocaleDocument locale="fr" type="XLF" document="timemaintenance/locales/fr/TM_DetailEmployeeTimeReport_fr.xlf"/>
+     fr End -->
+     
+     <!-- hr Begin
+     <LocaleDocument locale="hr" type="XLF" document="timemaintenance/locales/hr/TM_DetailEmployeeTimeReport_hr.xlf"/>
+     hr End -->
+     
+     <!-- hu Begin
+     <LocaleDocument locale="hu" type="XLF" document="timemaintenance/locales/hu/TM_DetailEmployeeTimeReport_hu.xlf"/>
+     hu End -->
+     
+     <!-- it Begin
+     <LocaleDocument locale="it" type="XLF" document="timemaintenance/locales/it/TM_DetailEmployeeTimeReport_it.xlf"/>
+     it End -->
+     
+     <!-- ja Begin
+     <LocaleDocument locale="ja" type="XLF" document="timemaintenance/locales/ja/TM_DetailEmployeeTimeReport_ja.xlf"/>
+     ja End -->
+     
+     <!-- ko Begin
+     <LocaleDocument locale="ko" type="XLF" document="timemaintenance/locales/ko/TM_DetailEmployeeTimeReport_ko.xlf"/>
+     ko End -->
+     
+     <!-- nl Begin
+     <LocaleDocument locale="nl" type="XLF" document="timemaintenance/locales/nl/TM_DetailEmployeeTimeReport_nl.xlf"/>
+     nl End -->
+     
+     <!-- pl Begin
+     <LocaleDocument locale="pl" type="XLF" document="timemaintenance/locales/pl/TM_DetailEmployeeTimeReport_pl.xlf"/>
+     pl End -->
+     
+     <!-- pt Begin
+     <LocaleDocument locale="pt" type="XLF" document="timemaintenance/locales/pt/TM_DetailEmployeeTimeReport_pt.xlf"/>
+     pt End -->
+     
+     <!-- ru Begin
+     <LocaleDocument locale="ru" type="XLF" document="timemaintenance/locales/ru/TM_DetailEmployeeTimeReport_ru.xlf"/>
+     ru End -->
+     
+     <!-- sv Begin
+     <LocaleDocument locale="sv" type="XLF" document="timemaintenance/locales/sv/TM_DetailEmployeeTimeReport_sv.xlf"/>
+     sv End -->
+     
+     <!-- tr Begin
+     <LocaleDocument locale="tr" type="XLF" document="timemaintenance/locales/tr/TM_DetailEmployeeTimeReport_tr.xlf"/>
+     tr End -->
+     
+     <!-- zh Begin
+     <LocaleDocument locale="zh" type="XLF" document="timemaintenance/locales/zh/TM_DetailEmployeeTimeReport_zh.xlf"/>
+     zh End -->
+     
+     <!-- zh_TW Begin
+     <LocaleDocument locale="zh_TW" type="XLF" document="timemaintenance/locales/zh_TW/TM_DetailEmployeeTimeReport_zh_TW.xlf"/>
+     zh_TW End -->
+
+  </Layout>
+
+  <Layout name="SummaryEmployeeTime" type="RTF" document="timemaintenance/TM_SummaryEmployeeTimeReport.rtf" html="true" pdf="true" rtf="true" excel="true" xml="true">
+  
+
+     <!-- de Begin
+     <LocaleDocument locale="de" type="XLF" document="timemaintenance/locales/de/TM_SummaryEmployeeTimeReport_de.xlf"/>
+     de End -->
+     
+     <!-- el Begin
+     <LocaleDocument locale="el" type="XLF" document="timemaintenance/locales/el/TM_SummaryEmployeeTimeReport_el.xlf"/>
+     el End -->
+     
+     <!-- en Begin -->
+     <LocaleDocument locale="en" type="XLF" document="timemaintenance/locales/en/TM_SummaryEmployeeTimeReport_en.xlf"/>
+<!-- en End -->
+     
+     <!-- es Begin
+     <LocaleDocument locale="es" type="XLF" document="timemaintenance/locales/es/TM_SummaryEmployeeTimeReport_es.xlf"/>
+     es End -->
+     
+     <!-- fr Begin
+     <LocaleDocument locale="fr" type="XLF" document="timemaintenance/locales/fr/TM_SummaryEmployeeTimeReport_fr.xlf"/>
+     fr End -->
+     
+     <!-- hr Begin
+     <LocaleDocument locale="hr" type="XLF" document="timemaintenance/locales/hr/TM_SummaryEmployeeTimeReport_hr.xlf"/>
+     hr End -->
+     
+     <!-- hu Begin
+     <LocaleDocument locale="hu" type="XLF" document="timemaintenance/locales/hu/TM_SummaryEmployeeTimeReport_hu.xlf"/>
+     hu End -->
+     
+     <!-- it Begin
+     <LocaleDocument locale="it" type="XLF" document="timemaintenance/locales/it/TM_SummaryEmployeeTimeReport_it.xlf"/>
+     it End -->
+     
+     <!-- ja Begin
+     <LocaleDocument locale="ja" type="XLF" document="timemaintenance/locales/ja/TM_SummaryEmployeeTimeReport_ja.xlf"/>
+     ja End -->
+     
+     <!-- ko Begin
+     <LocaleDocument locale="ko" type="XLF" document="timemaintenance/locales/ko/TM_SummaryEmployeeTimeReport_ko.xlf"/>
+     ko End -->
+     
+     <!-- nl Begin
+     <LocaleDocument locale="nl" type="XLF" document="timemaintenance/locales/nl/TM_SummaryEmployeeTimeReport_nl.xlf"/>
+     nl End -->
+     
+     <!-- pl Begin
+     <LocaleDocument locale="pl" type="XLF" document="timemaintenance/locales/pl/TM_SummaryEmployeeTimeReport_pl.xlf"/>
+     pl End -->
+     
+     <!-- pt Begin
+     <LocaleDocument locale="pt" type="XLF" document="timemaintenance/locales/pt/TM_SummaryEmployeeTimeReport_pt.xlf"/>
+     pt End -->
+     
+     <!-- ru Begin
+     <LocaleDocument locale="ru" type="XLF" document="timemaintenance/locales/ru/TM_SummaryEmployeeTimeReport_ru.xlf"/>
+     ru End -->
+     
+     <!-- sv Begin
+     <LocaleDocument locale="sv" type="XLF" document="timemaintenance/locales/sv/TM_SummaryEmployeeTimeReport_sv.xlf"/>
+     sv End -->
+     
+     <!-- tr Begin
+     <LocaleDocument locale="tr" type="XLF" document="timemaintenance/locales/tr/TM_SummaryEmployeeTimeReport_tr.xlf"/>
+     tr End -->
+     
+     <!-- zh Begin
+     <LocaleDocument locale="zh" type="XLF" document="timemaintenance/locales/zh/TM_SummaryEmployeeTimeReport_zh.xlf"/>
+     zh End -->
+     
+     <!-- zh_TW Begin
+     <LocaleDocument locale="zh_TW" type="XLF" document="timemaintenance/locales/zh_TW/TM_SummaryEmployeeTimeReport_zh_TW.xlf"/>
+     zh_TW End -->
+
+  </Layout>
+</Layouts>

@@ -1,0 +1,107 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<xliff version="1.0">
+   <file source-language="EN" target-language="sv-SE" datatype="XDO" original="orphan.xlf" product-version="orphan.xlf" product-name="">
+      <header/>
+      <body>
+         <trans-unit id="d8deaeb9">
+            <source>Template Table 1</source>
+            <target>Malltabell 1</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">bGF0ZSBUYWI=</prop>
+            </prop-group>
+            <note>Text located: table</note>
+         </trans-unit>
+         <trans-unit id="9a7b44ce" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Start Date:</source>
+            <target>Startdatum:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b0333ab1" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">Run Date:[&amp;0] </source>
+            <target xml:space="preserve">Körningsdatum:[&amp;0] </target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="7da98287" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>End Date:</source>
+            <target>Slutdatum:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="8827c62f" maxbytes="4000" maxwidth="32" size-unit="char" translate="yes">
+            <source>Store:[&amp;0] [&amp;1:STOREINFO]- [&amp;2]</source>
+            <target>Butik:[&amp;0] [&amp;1:STOREINFO]- [&amp;2]</target>
+            <prop-group name="ora_reconstruction">
+               <prop prop-type="e1">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL1NUT1JFX0lEIiB4ZG9mbzpmaWVsZC1u
+YW1lPSJTVE9SRV9JRCIvPg==</prop>
+               <prop prop-type="e2">PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Ii4vL1NUT1JFX05BTUUiIHhkb2ZvOmZpZWxk
+LW5hbWU9IlNUT1JFX05BTUUiLz4=</prop>
+            </prop-group>
+            <note>Text located: body/table, token &amp;1 ,&amp;2:storeInfo</note>
+         </trans-unit>
+         <trans-unit id="91b" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>ID</source>
+            <target>Id</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="4afd4ace" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Employee</source>
+            <target>Anställd</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="27515e" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Sick</source>
+            <target>Tillfälligt sjuk</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="9f5e86fd" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Vacation</source>
+            <target>Semester</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="dffc8b0b" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Comp Day</source>
+            <target>Kompdag</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b495fd64" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Jury Duty</source>
+            <target>Jurytjänstgöring</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="fa476260" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source xml:space="preserve">Personal    </source>
+            <target xml:space="preserve">Privat</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="562a993a" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Bereave</source>
+            <target>Dödsfall</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="af20154b" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Regular Hours</source>
+            <target>Normalarbetstid</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="a4ca85bf" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Other Hours</source>
+            <target>Övrig tid</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="de1deaf3" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total Hours</source>
+            <target>Summa tid</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="e59f73a7" maxbytes="4000" maxwidth="23" size-unit="char" translate="yes">
+            <source>Total Hours:</source>
+            <target>Summa tid:</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+         <trans-unit id="b8059df2" maxbytes="4000" maxwidth="26" size-unit="char" translate="yes">
+            <source>No Data Available</source>
+            <target>Inga tillgängliga data</target>
+            <note>Text located: body/table</note>
+         </trans-unit>
+      </body>
+   </file>
+</xliff>

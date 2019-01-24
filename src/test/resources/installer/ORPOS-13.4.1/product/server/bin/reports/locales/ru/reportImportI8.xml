@@ -1,0 +1,176 @@
+<!--
+/* ===========================================================================
+* Copyright (c) 2009, 2013, Oracle and/or its affiliates. All rights reserved.
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/locales/ru/reportImportI8.xml /main/19 2013/11/06 01:47:01 msarangi Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    ohorne    10/24/13 - corrected locale values
+ *    npoola    06/01/10 - repackaged to oracle.retail.stores
+ *    ohorne    04/14/10 - added accountability param for Over And Short
+ *                         Reports
+ *    npoola    03/23/10 - Added the Parameters for FlashReport and
+ *                         BankDepositSummary to the reportI8 xml files
+ *    sgu       03/11/10 - check in after merge with Owen's txn
+ *    ohorne    03/10/10 - flashsales no longer uses posDept
+ *    sgu       03/11/10 - rework the flash sale adhoc report
+ *    abondala  01/02/10 - Update Header date
+ *    npoola    12/24/09 - added the CancelledAndVoidTransactionReports to
+ *                         parameters and reports
+ *    kulu      02/09/09 - Fix JUnit test and add comments
+ *
+ * ===========================================================================
+ */
+-->
+<ReportImportI18N locale="ru">
+  <Reports>
+    <!-- Sales -->
+    <Report name="FlashSalesReport" displayName="Оперативные данные продаж" category="Продажи"/>
+    <Report name="MerchandiseDrillDownReport" displayName="Развернутая иерархия товаров" category="Сведения"/>
+    <Report name="SalesSummaryByRegisterReport" displayName="Продажи - сводка по кассовым аппаратам" category="Продажи"/>
+    <Report name="HourlyProductivityReport" displayName="Часовая производительность" category="Продажи"/>
+
+    <!-- Sales Adhoc-->
+    <Report name="FlashSalesReportAdhoc" displayName="Оперативные данные продаж" category="Сведения"/>
+    <Report name="SalesSummaryByRegisterReportAdhoc" displayName="Продажи - сводка по кассовым аппаратам" category="Сведения"/>
+    <Report name="HourlyProductivityReportAdhoc" displayName="Часовая производительность" category="Сведения"/>
+
+    <!-- Financial -->
+    <Report name="OverAndShortByCashierReport" displayName="Излишки и недостачи по кассирам" category="Финансовый"/>
+    <Report name="OverAndShortByRegisterReport" displayName="Излишки и недостачи по кассовым аппаратам" category="Финансовый"/>
+    <Report name="BankDepositSummaryReport" displayName="Банковский депозит" category="Финансовый"/>
+	<Report name="TillStatusReport" displayName="Статус кассы" category="Финансовый"/>
+
+    <!-- Financial -Adhoc -->
+    <Report name="OverAndShortByCashierReportAdhoc" displayName="Излишки и недостачи по кассирам" category="Сведения"/>
+    <Report name="OverAndShortByRegisterReportAdhoc" displayName="Излишки и недостачи по кассовым аппаратам" category="Сведения"/>
+    <Report name="BankDepositSummaryReportAdhoc" displayName="Банковский депозит" category="Сведения"/>
+
+	<!-- Exceptions -->
+	<Report name="SuspendedTransactionsReport" displayName="Приостановленный" category="Исключения"/>
+	<Report name="CancelledAndPostVoidedTransactionsReport" displayName="Отмененные и аннулированные" category="Исключения"/>
+	<Report name="NoSalesTransactionsReport" displayName="Нет продаж" category="Исключения"/>
+
+	<!-- Exceptions -Adhoc -->
+	<Report name="SuspendedTransactionsReportAdhoc" displayName="Приостановленный" category="Сведения"/>
+	<Report name="CancelledAndPostVoidedTransactionsReportAdhoc" displayName="Отмененные и аннулированные" category="Сведения"/>
+	<Report name="NoSalesTransactionsReportAdhoc" displayName="Нет продаж" category="Сведения"/>
+
+    <!-- StoreOps -->
+    <Report name="TillFloatSummaryReport" displayName="Подсчет остатка кассы при сверке" category="Сведения"/>
+    <Report name="TillFloatDetailReport" displayName="Подсчет остатка кассы при сверке" category="Сведения"/>
+    <Report name="TillCountSummaryReport" displayName="Подсчет кассы при сверке" category="Сведения"/>
+    <Report name="TillCountDetailReport" displayName="Подсчет кассы при сверке" category="Сведения"/>
+    <Report name="SummaryReport" displayName="Сводка" category="Сведения"/>
+    <Report name="TillReconcileSummaryReport" displayName="Сводка по кассе" category="Сведения"/>
+    <Report name="RegisterSummaryReport" displayName="Сводка по кассе" category="Сведения"/>
+    <Report name="StoreSummaryReport" displayName="Сводка по магазину" category="Сведения"/>
+    <Report name="SuspendedTransactionReport" displayName="Приостановленные транзакции" category="Сведения"/>
+    <Report name="BankDepositDetailReport" displayName="Банковский депозит" category="Сведения"/>
+
+    <!-- Time maintenance -->
+    <Report name="EmployeeTimeSummaryReport" displayName="Сводка рабочего времени работника" category="Сведения"/>
+    <Report name="EmployeeTimeDetailReport" displayName="Подробный отчет о рабочем времени работника" category="Сведения"/>
+    <Report name="EmployeeTimeMaintenanceReport" displayName="Учет рабочего времени работника" category="Сведения"/>
+ </Reports>
+
+ <UIParameters>
+ 	<Parameters reportRef="FlashSalesReport">
+      <Parameter name="hideAdhoc" displayName=""/>
+	</Parameters>
+	<Parameters reportRef="BankDepositSummaryReport">
+      <Parameter name="hideReportPeriods" displayName=""/>
+	</Parameters>
+   <Parameters reportRef="FlashSalesReportAdhoc">
+      <Parameter name="storeId" displayName="Магазин"/>
+      <Parameter name="merchandiseHierarchyId" displayName="Иерархия товаров"/>
+   </Parameters>
+   <Parameters reportRef="MerchandiseDrillDownReport">
+      <Parameter name="hideAdhoc" displayName=""/>
+      <Parameter name="hideReportPeriods" displayName=""/>
+      <Parameter name="departmentId" displayName="Отдел"/>
+   </Parameters>
+   <Parameters reportRef="OverAndShortByCashierReportAdhoc">
+      <Parameter name="storeId" displayName="Магазин"/>
+      <Parameter name="cashierId" displayName="Кассир"/>
+      <Parameter name="accountability" displayName=""/>
+   </Parameters>
+   <Parameters reportRef="OverAndShortByCashierReport">
+      <Parameter name="cashierId" displayName=""/>
+      <Parameter name="accountability" displayName=""/>
+   </Parameters>
+   <Parameters reportRef="OverAndShortByRegisterReportAdhoc">
+      <Parameter name="storeId" displayName="Магазин"/>
+      <Parameter name="registerId" displayName="Кассовый аппарат"/>
+      <Parameter name="accountability" displayName=""/>
+   </Parameters>
+   <Parameters reportRef="OverAndShortByRegisterReport">
+      <Parameter name="registerId" displayName=""/>
+      <Parameter name="accountability" displayName=""/>
+   </Parameters>
+   <Parameters reportRef="SalesSummaryByRegisterReport">
+      <Parameter name="registerId" displayName=""/>
+   </Parameters>
+   <Parameters reportRef="SalesSummaryByRegisterReportAdhoc">
+      <Parameter name="storeId" displayName="Магазин"/>
+      <Parameter name="registerId" displayName="Кассовый аппарат"/>
+   </Parameters>
+   <Parameters reportRef="HourlyProductivityReport">
+      <Parameter name="hideYearlyReportingPeriod" displayName=""/>
+   </Parameters>
+   <Parameters reportRef="HourlyProductivityReportAdhoc">
+      <Parameter name="storeId" displayName="Магазин"/>
+      <Parameter name="registerId" displayName="Кассовый аппарат"/>
+      <Parameter name="employeeId" displayName="Кассир"/>
+      <Parameter name="timeIncrement" displayName="Приращение времени"/>
+      <Parameter name="hideYearlyReportingPeriod" displayName=""/>
+      <Parameter name="showTime" displayName=""/>
+      <Parameter name="startTimeStr" displayName=""/>
+      <Parameter name="endTimeStr" displayName=""/>
+   </Parameters>
+   <Parameters reportRef="EmployeeTimeSummaryReport">
+      <Parameter name="employeeID" displayName="Идентификатор сотрудника"/>
+   </Parameters>
+   <Parameters reportRef="EmployeeTimeDetailReport">
+      <Parameter name="employeeID" displayName="Идентификатор сотрудника"/>
+   </Parameters>
+   <Parameters reportRef="EmployeeTimeMaintenanceReport">
+      <Parameter name="employeeID" displayName="Идентификатор сотрудника"/>
+   </Parameters>
+   <!-- Sharath - Changes Start -->
+	 <Parameters reportRef="TillStatusReport">
+	      <Parameter name="hideAdhoc" defaultValue="true" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	      <Parameter name="hideReportPeriods" defaultValue="true" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	  </Parameters>
+	  <Parameters reportRef="NoSalesTransactionsReport">
+	      <Parameter name="hideYearlyReportingPeriod" defaultValue="true" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	      <Parameter name="hideAdhoc" defaultValue="false" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	  </Parameters>
+	  <Parameters reportRef="SuspendedTransactionsReport">
+	      <Parameter name="hideAdhoc" defaultValue="true" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	      <Parameter name="hideReportPeriods" defaultValue="true" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	  </Parameters>
+	  <Parameters reportRef="CancelledAndPostVoidedTransactionsReport">
+	      <Parameter name="hideYearlyReportingPeriod" defaultValue="true" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	      <Parameter name="hideAdhoc" defaultValue="false" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	  </Parameters>
+	  <Parameters reportRef="CancelledAndPostVoidedTransactionsReportAdhoc">
+	      <Parameter name="hideYearlyReportingPeriod" defaultValue="true" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+  		  <Parameter name="showTime" defaultValue="true" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	      <Parameter name="storeId" defaultValue="04241" displayName="Магазин" parameterType="oracle.retail.stores.commerceservices.report.configuration.NonEditableTextEditor" viewable="1" required="0" section="1"/>
+	      <Parameter name="registerId" defaultValue="All" displayName="Кассовый аппарат" parameterType="oracle.retail.stores.webmodules.storeops.ui.report.SingleWorkstationEditor" viewable="1" required="0" section="1"/>
+	      <Parameter name="cashierId" defaultValue="04241" displayName="Кассир" parameterType="oracle.retail.stores.webmodules.employee.ui.report.SingleOperatorEditor" viewable="1" required="0" section="1"/>
+	   </Parameters>
+	   <Parameters reportRef="NoSalesTransactionsReportAdhoc">
+	   	  <Parameter name="hideYearlyReportingPeriod" defaultValue="true" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	      <Parameter name="showTime" defaultValue="true" displayName="" parameterType="Boolean" viewable="0" required="0" section="0"/>
+	      <Parameter name="storeId" defaultValue="04241" displayName="Магазин" parameterType="oracle.retail.stores.commerceservices.report.configuration.NonEditableTextEditor" viewable="1" required="0" section="1"/>
+	      <Parameter name="registerId" defaultValue="All" displayName="Кассовый аппарат" parameterType="oracle.retail.stores.webmodules.storeops.ui.report.SingleWorkstationEditor" viewable="1" required="0" section="1"/>
+	      <Parameter name="cashierId" defaultValue="04241" displayName="Кассир" parameterType="oracle.retail.stores.webmodules.employee.ui.report.SingleOperatorEditor" viewable="1" required="0" section="1"/>
+	   </Parameters>
+  <!-- Sharath - Changes End -->
+ </UIParameters>
+</ReportImportI18N>

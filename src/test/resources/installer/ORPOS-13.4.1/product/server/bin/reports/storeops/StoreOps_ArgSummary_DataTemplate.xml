@@ -1,0 +1,671 @@
+<!--
+/* ===========================================================================
+* Copyright (c) 2008, 2014, Oracle and/or its affiliates. All rights reserved.
+ * ===========================================================================
+ * $Header: rgbustores/applications/backoffice/reports/storeops/StoreOps_ArgSummary_DataTemplate.xml /main/20 2014/03/24 10:08:10 vtemker Exp $
+ * ===========================================================================
+ * NOTES
+ * <other useful comments, qualifications, etc.>
+ *
+ * MODIFIED    (MM/DD/YY)
+ *    vtemker   03/20/14 - Adding back the restocking fee non taxable line
+ *    vtemker   03/03/14 - Removing Restocking fee Non taxable from the report
+ *    yiqzhao   10/02/13 - Change Order New to Orders
+ *    subrdey   07/04/13 - Consolidating orders break up into single field
+ *                         'Orders'
+ *    hyin      02/20/13 - add cash rounding amount.
+ *    nkgautam  07/29/10 - report changes for Bill Payment
+ *    abondala  01/02/10 - Update Header date
+ *    mjadiyav  04/10/09 - added Restocking Fee Non Taxable
+ *    ohorne    11/11/08 - Library upgrade: XMLP 5.6.2 to BIP 10.1.3.4
+ *    cgreene   10/27/08 - update header to Oracle ade
+ *
+ * ===========================================================================
+ */
+-->
+<dataTemplate name="ARGSummaryReport" version="1.0">
+<properties>
+	<property name="xml_tag_case" value="as_are" /> 
+</properties>
+<parameters>
+<parameter name="reportType" dataType="character"/>
+<parameter name="runDateTime" dataType="character" />
+<parameter name="startingDate" dataType="character" defaultValue="10/12/2006"/>
+<parameter name="userName" dataType="character" />
+<parameter name="storeNumber" dataType="character" />
+<parameter name="registerNumber" dataType="character" />
+<parameter name="tillID" dataType="character" />
+<parameter name="xmlpReportTitle" dataType="character" />
+
+<!-- Safe -->
+<parameter name="openSafe" dataType="character" defaultValue="0.00"/>
+<parameter name="closingSafe" dataType="character" defaultValue="0.00"/>
+<parameter name="safeOverShort" dataType="character" defaultValue="0.00"/>
+<parameter name="openFloat" dataType="character" defaultValue="0.00"/>
+<parameter name="closingFloat" dataType="character" defaultValue="0.00"/>
+<parameter name="floatOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- Tender Summary -->
+<parameter name="baseCurrency" dataType="character" defaultValue="USD"/>
+<parameter name="altCurrency" dataType="character" defaultValue="CAD"/>
+
+
+<!-- 22. Cash -->
+<parameter name="cashIn" dataType="character" defaultValue="0.00"/>
+<parameter name="cashOut" dataType="character" defaultValue="0.00"/>
+<parameter name="cashNet" dataType="character" defaultValue="0.00"/>
+<parameter name="cashCounted" dataType="number" defaultValue="0"/>
+<parameter name="cashOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 23. E Check -->
+<parameter name="eCheckIn" dataType="character" defaultValue="0.00"/>
+<parameter name="eCheckOut" dataType="character" defaultValue="0.00"/>
+<parameter name="eCheckNet" dataType="character" defaultValue="0.00"/>
+<parameter name="eCheckCounted" dataType="number" defaultValue="0"/>
+<parameter name="eCheckOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 24. Check  -->
+<parameter name="checkIn" dataType="character" defaultValue="0.00"/>
+<parameter name="checkOut" dataType="character" defaultValue="0.00"/>
+<parameter name="checkNet" dataType="character" defaultValue="0.00"/>
+<parameter name="checkCounted" dataType="number" defaultValue="0"/>
+<parameter name="checkOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 25. Mail Bank Check (New) -->
+<parameter name="mBCheckIn" dataType="character" defaultValue="N/A"/>
+<parameter name="mBCheckOut" dataType="character" defaultValue="0.00"/>
+<parameter name="mBCheckNet" dataType="character" defaultValue="0.00"/>
+<parameter name="mBCheckCounted" dataType="character" defaultValue="N/A"/>
+<parameter name="mBCheckOverShort" dataType="character" defaultValue="N/A"/>
+
+<!-- 26. Visa -->
+<parameter name="visaIn" dataType="character" defaultValue="0.00"/>
+<parameter name="visaOut" dataType="character" defaultValue="0.00"/>
+<parameter name="visaNet" dataType="character" defaultValue="0.00"/>
+<parameter name="visaCounted" dataType="number" defaultValue="0"/>
+<parameter name="visaOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 27. Master Card -->
+<parameter name="mcIn" dataType="character" defaultValue="0.00"/>
+<parameter name="mcOut" dataType="character" defaultValue="0.00"/>
+<parameter name="mcNet" dataType="character" defaultValue="0.00"/>
+<parameter name="mcCounted" dataType="number" defaultValue="0"/>
+<parameter name="mcOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 28. Amex Card -->
+<parameter name="amexIn" dataType="character" defaultValue="0.00"/>
+<parameter name="amexOut" dataType="character" defaultValue="0.00"/>
+<parameter name="amexNet" dataType="character" defaultValue="0.00"/>
+<parameter name="amexCounted" dataType="number" defaultValue="0"/>
+<parameter name="amexOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 29. Discover Card -->
+<parameter name="discIn" dataType="character" defaultValue="0.00"/>
+<parameter name="discOut" dataType="character" defaultValue="0.00"/>
+<parameter name="discNet" dataType="character" defaultValue="0.00"/>
+<parameter name="discCounted" dataType="number" defaultValue="0"/>
+<parameter name="discOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 30. Diners Card -->
+<parameter name="dinersIn" dataType="character" defaultValue="0.00"/>
+<parameter name="dinersOut" dataType="character" defaultValue="0.00"/>
+<parameter name="dinersNet" dataType="character" defaultValue="0.00"/>
+<parameter name="dinersCounted" dataType="number" defaultValue="0"/>
+<parameter name="dinersOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 31. JCB (New) -->
+<parameter name="jcbIn" dataType="character" defaultValue="0.00"/>
+<parameter name="jcbOut" dataType="character" defaultValue="0.00"/>
+<parameter name="jcbNet" dataType="character" defaultValue="0.00"/>
+<parameter name="jcbCounted" dataType="number" defaultValue="0"/>
+<parameter name="jcbOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 32. House Card -->
+<parameter name="hcIn" dataType="character" defaultValue="0.00"/>
+<parameter name="hcOut" dataType="character" defaultValue="0.00"/>
+<parameter name="hcNet" dataType="character" defaultValue="0.00"/>
+<parameter name="hcCounted" dataType="number" defaultValue="0"/>
+<parameter name="hcOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 33. Debit -->
+<parameter name="debitIn" dataType="character" defaultValue="0.00"/>
+<parameter name="debitOut" dataType="character" defaultValue="0.00"/>
+<parameter name="debitNet" dataType="character" defaultValue="0.00"/>
+<parameter name="debitCounted" dataType="number" defaultValue="0"/>
+<parameter name="debitOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 34. Gift Card -->
+<parameter name="gCardIn" dataType="character" defaultValue="0.00"/>
+<parameter name="gCardOut" dataType="character" defaultValue="0.00"/>
+<parameter name="gCardNet" dataType="character" defaultValue="0.00"/>
+<parameter name="gCardCounted" dataType="number" defaultValue="0"/>
+<parameter name="gCardOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 35. Gift Certificates -->
+<parameter name="gCertIn" dataType="character" defaultValue="0.00"/>
+<parameter name="gCertOut" dataType="character" defaultValue="0.00"/>
+<parameter name="gCertNet" dataType="character" defaultValue="0.00"/>
+<parameter name="gCertCounted" dataType="number" defaultValue="0"/>
+<parameter name="gCertOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 36. Travelers Check -->
+<parameter name="tcIn" dataType="character" defaultValue="0.00"/>
+<parameter name="tcOut" dataType="character" defaultValue="0.00"/>
+<parameter name="tcNet" dataType="character" defaultValue="0.00"/>
+<parameter name="tcCounted" dataType="number" defaultValue="0"/>
+<parameter name="tcOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 37. Non Store Coupon -->
+<parameter name="coupIn" dataType="character" defaultValue="0.00"/>
+<parameter name="coupOut" dataType="character" defaultValue="0.00"/>
+<parameter name="coupNet" dataType="character" defaultValue="0.00"/>
+<parameter name="coupCounted" dataType="number" defaultValue="0"/>
+<parameter name="coupOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 38. Store Credit -->
+<parameter name="scIn" dataType="character" defaultValue="0.00"/>
+<parameter name="scOut" dataType="character" defaultValue="0.00"/>
+<parameter name="scNet" dataType="character" defaultValue="0.00"/>
+<parameter name="scCounted" dataType="number" defaultValue="0"/>
+<parameter name="scOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 39. Mail Gift Certificate -->
+<parameter name="mallCertIn" dataType="character" defaultValue="0.00"/>
+<parameter name="mallCertOut" dataType="character" defaultValue="0.00"/>
+<parameter name="mallCertNet" dataType="character" defaultValue="0.00"/>
+<parameter name="mallCertCounted" dataType="number" defaultValue="0"/>
+<parameter name="mallCertOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 40. Purchase Order Tender -->
+<parameter name="poIn" dataType="character" defaultValue="0.00"/>
+<parameter name="poOut" dataType="character" defaultValue="0.00"/>
+<parameter name="poNet" dataType="character" defaultValue="0.00"/>
+<parameter name="poCounted" dataType="number" defaultValue="0"/>
+<parameter name="poOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 41. Money Order -->
+<parameter name="moIn" dataType="character" defaultValue="0.00"/>
+<parameter name="moOut" dataType="character" defaultValue="0.00"/>
+<parameter name="moNet" dataType="character" defaultValue="0.00"/>
+<parameter name="moCounted" dataType="number" defaultValue="0"/>
+<parameter name="moOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 43. Alternate Currency Cash -->
+<parameter name="altCashIn" dataType="character" defaultValue="0.00"/>
+<parameter name="altCashOut" dataType="character" defaultValue="0.00"/>
+<parameter name="altCashNet" dataType="character" defaultValue="0.00"/>
+<parameter name="altCashCounted" dataType="number" defaultValue="0"/>
+<parameter name="altCashCountedUnformatted" dataType="number" defaultValue="0"/>
+<parameter name="altCashOverShort" dataType="character" defaultValue="0.00"/>
+<parameter name="altCashInUnformatted" dataType="number" defaultValue="0"/>
+
+<!-- 44. Alternate Currency Check -->
+<parameter name="zaltCheckIn" dataType="character" defaultValue="0.00"/>
+<parameter name="zaltCheckOut" dataType="character" defaultValue="0.00"/>
+<parameter name="zaltCheckNet" dataType="character" defaultValue="0.00"/>
+<parameter name="zaltCheckCounted" dataType="number" defaultValue="0"/>
+<parameter name="zaltCheckCountedUnformatted" dataType="number" defaultValue="0"/>
+<parameter name="zaltCheckOverShort" dataType="character" defaultValue="0.00"/>
+<parameter name="zaltCheckInUnformatted" dataType="number" defaultValue="0"/>
+
+<!-- 45. Alternate Currency Gift Certificate -->
+<parameter name="altCertIn" dataType="character" defaultValue="0.00"/>
+<parameter name="altCertOut" dataType="character" defaultValue="0.00"/>
+<parameter name="altCertNet" dataType="character" defaultValue="0.00"/>
+<parameter name="altCertCounted" dataType="number" defaultValue="0"/>
+<parameter name="altCertCountedUnformatted" dataType="number" defaultValue="0"/>
+<parameter name="altCertOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 46. Alternate Currency Store Credit -->
+<parameter name="altScIn" dataType="character" defaultValue="0.00"/>
+<parameter name="altScOut" dataType="character" defaultValue="0.00"/>
+<parameter name="altScNet" dataType="character" defaultValue="0.00"/>
+<parameter name="altScCounted" dataType="number" defaultValue="0"/>
+<parameter name="altScCountedUnformatted" dataType="number" defaultValue="0"/>
+<parameter name="altScOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 46. Alternate Currency eCheck -->
+<parameter name="alteCheckIn" dataType="character" defaultValue="0.00"/>
+<parameter name="alteCheckOut" dataType="character" defaultValue="0.00"/>
+<parameter name="alteCheckNet" dataType="character" defaultValue="0.00"/>
+<parameter name="alteCheckCounted" dataType="number" defaultValue="0"/>
+<parameter name="alteCheckInUnformatted" dataType="number" defaultValue="0"/>
+<parameter name="alteCheckOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 47. Alternate Currency Travelers Check -->
+<parameter name="altTcIn" dataType="character" defaultValue="0.00"/>
+<parameter name="altTcOut" dataType="character" defaultValue="0.00"/>
+<parameter name="altTcNet" dataType="character" defaultValue="0.00"/>
+<parameter name="altTcCounted" dataType="number" defaultValue="0"/>
+<parameter name="altTcCountedUnformatted" dataType="number" defaultValue="0"/>
+<parameter name="altTcOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 49. CAD Currency Gift Certificate (New) -->
+<parameter name="caCertIn" dataType="character" defaultValue="0.00"/>
+<parameter name="caCertOut" dataType="character" defaultValue="0.00"/>
+<parameter name="caCertNet" dataType="character" defaultValue="0.00"/>
+<parameter name="caCertCounted" dataType="number" defaultValue="0"/>
+<parameter name="caCertCountedUnformatted" dataType="number" defaultValue="0"/>
+<parameter name="caCertOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 50. CAD Currency Store Credit (New) -->
+<parameter name="caScIn" dataType="character" defaultValue="0.00"/>
+<parameter name="caScOut" dataType="character" defaultValue="0.00"/>
+<parameter name="caScNet" dataType="character" defaultValue="0.00"/>
+<parameter name="caScCounted" dataType="number" defaultValue="0"/>
+<parameter name="caScCountedUnformatted" dataType="number" defaultValue="0"/>
+<parameter name="caScOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 49. MXN Currency Gift Certificate (New) -->
+<parameter name="mxCertIn" dataType="character" defaultValue="0.00"/>
+<parameter name="mxCertOut" dataType="character" defaultValue="0.00"/>
+<parameter name="mxCertNet" dataType="character" defaultValue="0.00"/>
+<parameter name="mxCertCounted" dataType="number" defaultValue="0"/>
+<parameter name="mxCertCountedUnformatted" dataType="number" defaultValue="0"/>
+<parameter name="mxCertOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 50. MXN Currency Store Credit (New) -->
+<parameter name="mxScIn" dataType="character" defaultValue="0.00"/>
+<parameter name="mxScOut" dataType="character" defaultValue="0.00"/>
+<parameter name="mxScNet" dataType="character" defaultValue="0.00"/>
+<parameter name="mxScCounted" dataType="number" defaultValue="0"/>
+<parameter name="mxScCountedUnformatted" dataType="number" defaultValue="0"/>
+<parameter name="mxScOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 52.  GBP Currency Gift Certificate (New) -->
+<parameter name="gbCertIn" dataType="character" defaultValue="0.00"/>
+<parameter name="gbCertOut" dataType="character" defaultValue="0.00"/>
+<parameter name="gbCertNet" dataType="character" defaultValue="0.00"/>
+<parameter name="gbCertCounted" dataType="number" defaultValue="0"/>
+<parameter name="gbCertCountedUnformatted" dataType="number" defaultValue="0"/>
+<parameter name="gbCertOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 53. GBP Currency Store Credit (New) -->
+<parameter name="gbScIn" dataType="character" defaultValue="0.00"/>
+<parameter name="gbScOut" dataType="character" defaultValue="0.00"/>
+<parameter name="gbScNet" dataType="character" defaultValue="0.00"/>
+<parameter name="gbScCounted" dataType="number" defaultValue="0"/>
+<parameter name="gbScCountedUnformatted" dataType="number" defaultValue="0"/>
+<parameter name="gbScOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 55. EUR Currency Gift Certificate (New) -->
+<parameter name="euCertIn" dataType="character" defaultValue="0.00"/>
+<parameter name="euCertOut" dataType="character" defaultValue="0.00"/>
+<parameter name="euCertNet" dataType="character" defaultValue="0.00"/>
+<parameter name="euCertCounted" dataType="number" defaultValue="0"/>
+<parameter name="euCertCountedUnformatted" dataType="number" defaultValue="0"/>
+<parameter name="euCertOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 56. EUR Currency Store Credit (New)-->
+<parameter name="euScIn" dataType="character" defaultValue="0.00"/>
+<parameter name="euScOut" dataType="character" defaultValue="0.00"/>
+<parameter name="euScNet" dataType="character" defaultValue="0.00"/>
+<parameter name="euScCounted" dataType="number" defaultValue="0"/>
+<parameter name="euScCountedUnformatted" dataType="number" defaultValue="0"/>
+<parameter name="euScOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 58. JPY Currency Gift Certificate (New) -->
+<parameter name="jpCertIn" dataType="character" defaultValue="0.00"/>
+<parameter name="jpCertOut" dataType="character" defaultValue="0.00"/>
+<parameter name="jpCertNet" dataType="character" defaultValue="0.00"/>
+<parameter name="jpCertCounted" dataType="number" defaultValue="0"/>
+<parameter name="jpCertCountedUnformatted" dataType="number" defaultValue="0"/>
+<parameter name="jpCertOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 59. JPY Currency Store Credit (New) -->
+<parameter name="jpScIn" dataType="character" defaultValue="0.00"/>
+<parameter name="jpScOut" dataType="character" defaultValue="0.00"/>
+<parameter name="jpScNet" dataType="character" defaultValue="0.00"/>
+<parameter name="jpScCounted" dataType="number" defaultValue="0"/>
+<parameter name="jpScCountedUnformatted" dataType="number" defaultValue="0"/>
+<parameter name="jpScOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 61. Tender Total -->
+<parameter name="tenderTotIn" dataType="character" defaultValue="0.00"/>
+<parameter name="tenderTotOut" dataType="character" defaultValue="0.00"/>
+<parameter name="tenderTotNet" dataType="character" defaultValue="0.00"/>
+<parameter name="tenderTotCounted" dataType="number" defaultValue="0"/>
+<parameter name="tenderTotOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 62. Tender Alternate Currency Total -->
+<parameter name="tenderAltTotIn" dataType="character" defaultValue="0.00"/>
+<parameter name="tenderAltTotOut" dataType="character" defaultValue="0.00"/>
+<parameter name="tenderAltTotNet" dataType="character" defaultValue="0.00"/>
+<parameter name="tenderAltTotCounted" dataType="number" defaultValue="0"/>
+<parameter name="tenderAltTotCountedUnformatted" dataType="number" defaultValue="0"/>
+<parameter name="tenderAltTotOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 63. Tender CAD Currency Total (New) -->
+<parameter name="tenderCATotIn" dataType="character" defaultValue="0.00"/>
+<parameter name="tenderCATotOut" dataType="character" defaultValue="0.00"/>
+<parameter name="tenderCATotNet" dataType="character" defaultValue="0.00"/>
+<parameter name="tenderCATotCounted" dataType="number" defaultValue="0"/>
+<parameter name="tenderCATotCountedUnformatted" dataType="number" defaultValue="0"/>
+<parameter name="tenderCATotOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 63. Tender MXN Currency Total (New) -->
+<parameter name="tenderMXTotIn" dataType="character" defaultValue="0.00"/>
+<parameter name="tenderMXTotOut" dataType="character" defaultValue="0.00"/>
+<parameter name="tenderMXTotNet" dataType="character" defaultValue="0.00"/>
+<parameter name="tenderMXTotCounted" dataType="number" defaultValue="0"/>
+<parameter name="tenderMXTotCountedUnformatted" dataType="number" defaultValue="0"/>
+<parameter name="tenderMXTotOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 64. Tender GBP Currency Total (New) -->
+<parameter name="tenderGBTotIn" dataType="character" defaultValue="0.00"/>
+<parameter name="tenderGBTotOut" dataType="character" defaultValue="0.00"/>
+<parameter name="tenderGBTotNet" dataType="character" defaultValue="0.00"/>
+<parameter name="tenderGBTotCounted" dataType="number" defaultValue="0"/>
+<parameter name="tenderGBTotCountedUnformatted" dataType="number" defaultValue="0"/>
+<parameter name="tenderGBTotOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 65. Tender EUR Currency Total (New) -->
+<parameter name="tenderEUTotIn" dataType="character" defaultValue="0.00"/>
+<parameter name="tenderEUTotOut" dataType="character" defaultValue="0.00"/>
+<parameter name="tenderEUTotNet" dataType="character" defaultValue="0.00"/>
+<parameter name="tenderEUTotCounted" dataType="number" defaultValue="0"/>
+<parameter name="tenderEUTotCountedUnformatted" dataType="number" defaultValue="0"/>
+<parameter name="tenderEUTotOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- 66. Tender JPY Currency Total (New) -->
+<parameter name="tenderJPTotIn" dataType="character" defaultValue="0.00"/>
+<parameter name="tenderJPTotOut" dataType="character" defaultValue="0.00"/>
+<parameter name="tenderJPTotNet" dataType="character" defaultValue="0.00"/>
+<parameter name="tenderJPTotCounted" dataType="number" defaultValue="0"/>
+<parameter name="tenderJPTotCountedUnformatted" dataType="number" defaultValue="0"/>
+<parameter name="tenderJPTotOverShort" dataType="character" defaultValue="0.00"/>
+
+<!-- Title Alternate Currency -->
+<parameter name="titleAltCurrency" dataType="character" defaultValue="C"/>
+
+
+
+<!-- Transaction Summary -->
+
+<!-- 73. Net Transaction Taxable -->
+<parameter name="nttAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 74. Net Transaction Non - Taxable -->
+<parameter name="ntntAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 75. Sales Tax -->
+<parameter name="salesTaxAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 77. Till Pickup -->
+<parameter name="localPickupsAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 78. Alternate Currency Till Pickup -->
+<parameter name="transAltPickupsAmount" dataType="number" defaultValue="0"/>
+
+<!-- 79. Till Loan -->
+<parameter name="loanAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 80. Till Pay In -->
+<parameter name="payInsAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 81. Till Pay Out -->
+<parameter name="payOutsAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 82. House Account Payment -->
+<parameter name="haPaymentAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 83. Layaway New  (New)-->
+<parameter name="layawayNewAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 84. Layaway Pickup  (New)-->
+<parameter name="layawayPickupAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 85. Layaway Payment -->
+<parameter name="layawayPaymentAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 86. Layaway Delete -->
+<parameter name="layawayDelAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 87. Orders -->
+<parameter name="ordersAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- Bill Payment Amount -->
+<parameter name="billPaymentAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 93. Total (BASE Currency)  -->
+<parameter name="transTotals" dataType="character" defaultValue="0.00"/>
+
+
+<!-- House Account Enrollment Summary -->
+
+<!-- Accepted Count -->
+<parameter name="houseAcctApplAprvdCount" dataType="number" defaultValue="0"/>
+
+<!-- Declined Count  -->
+<parameter name="houseAcctApplDeclCount" dataType="number" defaultValue="0"/>
+
+
+<!-- Statistical Summary Section -->
+
+<!-- 110. Gift Cards Issued  -->
+<parameter name="giftCardsIssuedAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 111. Gift Cards Reloaded  -->
+<parameter name="giftCardsRldAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 112. Gift Cards Credit  -->
+<parameter name="giftCardsCrdAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 113. Gift Cards Redeemed  -->
+<parameter name="giftCardsRdmAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 114. Gift Certificates Issued  -->
+<parameter name="giftCertsIssuedAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 115. Gift Certificates Redeemed  -->
+<parameter name="giftCertsRdmAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 116. Store Credits Issued  -->
+<parameter name="storeCrdIssuedAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 117. Store Credits Redeemed  -->
+<parameter name="storeCrdRdmAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 118. Item Employee Discount  -->
+<parameter name="zitemEmplDiscAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 119. Trans. Employee Discount  -->
+<parameter name="trnsEmplDiscAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 120. Transaction Discount  -->
+<parameter name="trnsDiscAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 121. Item Discount  -->
+<parameter name="itemDiscAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 122. Item Markdown  -->
+<parameter name="itemMarkDownAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 123. Post Void Transaction  -->
+<parameter name="pvtAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 126. Non Merchandise  -->
+<parameter name="statNonMerAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 127. Line Item Delete  -->
+<parameter name="statLIDAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 128. Layaway Fee  -->
+<parameter name="statLFeeAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 129. Layaway Delete Fee -->
+<parameter name="statLDFAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 130. Re Stocking Fee -->
+<parameter name="statRFAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 130. Re Stocking Fee -->
+<parameter name="statRFNonTaxableAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 131. Shipping Charges -->
+<parameter name="statSCAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 132. Cash Rounded Adjustment -->
+<parameter name="cshRoundedAmt" dataType="character" defaultValue="0.00"/>
+
+
+<!-- Count Summary -->
+<!-- 138. Price Overrides  -->
+<parameter name="priceOverrideCount" dataType="number" defaultValue="0"/>
+
+<!-- 139. Price Adjustments  (New) -->
+<parameter name="priceAdjustmentsCount" dataType="number" defaultValue="0"/>
+
+<!-- 140. Price Cancelled  -->
+<parameter name="statCanTransCount" dataType="number" defaultValue="0"/>
+
+<!-- 141. No Sales  -->
+<parameter name="noSalesCount" dataType="number" defaultValue="0"/>
+
+<!-- 142. Pos Voids  (New) -->
+<parameter name="pvtCount" dataType="number" defaultValue="0"/>
+
+
+<!-- Last Section -->
+
+<!-- 147. Sales Taxable -->
+<parameter name="statSTaxAmt" dataType="character" defaultValue="0.00"/>
+
+<!-- 148. Sales Non Taxable -->
+<parameter name="statSNTAmt" dataType="character" defaultValue="0.00"/>
+
+<!-- 163. Sales Tax (Base) Total  (New) -->
+<parameter name="totSalesTaxAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 164. Sales Tax (Alternate) Total  (New) -->
+<parameter name="totSalesTaxAltAmount" dataType="character" defaultValue="0.00"/>
+
+<!-- 165. Shipping Tax Total -->
+<parameter name="totShippingTaxAmount" dataType="character" defaultValue="0.00"/>
+
+<parameter name="criteriaType" dataType="character" defaultValue="0.00" />
+
+</parameters>
+
+<dataQuery>
+<sqlStatement name="Q1">
+<![CDATA[SELECT ID FROM report_config WHERE id=0]]>
+</sqlStatement>
+<sqlStatement name="Q2">
+<![CDATA[ SELECT sum(taxhistory.mo_tx) taxAmt, athy.nm_athy_tx taxJuri, txru.nm_ru_tx taxName FROM ru_tx_gp txru, 
+hst_tx taxhistory, pa_athy_tx athy WHERE taxhistory.id_str_rt = :storeNumber
+AND taxhistory.dc_dy_bsn = :startingDate AND athy.id_athy_tx = taxhistory.id_athy_tx AND txru.id_gp_tx = 
+taxhistory.id_gp_tx AND txru.id_athy_tx = taxhistory.id_athy_tx AND txru.ty_tx = taxhistory.ty_tx 
+AND txru.flg_tx_hdy = taxhistory.flg_tx_hdy AND taxhistory.fl_tx_inc = '0' group by athy.nm_athy_tx,txru.nm_ru_tx 
+order by athy.nm_athy_tx, txru.nm_ru_tx]]>
+</sqlStatement>
+<sqlStatement name="Q3">
+<![CDATA[SELECT sum(taxhistory.mo_tx)  taxAmt, athy.nm_athy_tx taxJuri, txru.nm_ru_tx taxName FROM ru_tx_gp txru, 
+hst_tx taxhistory, pa_athy_tx athy WHERE taxhistory.id_str_rt = :storeNumber 
+AND taxhistory.id_ws =  :registerNumber
+AND taxhistory.dc_dy_bsn = :startingDate AND athy.id_athy_tx = taxhistory.id_athy_tx AND txru.id_gp_tx = 
+taxhistory.id_gp_tx AND txru.id_athy_tx = taxhistory.id_athy_tx AND txru.ty_tx = taxhistory.ty_tx 
+AND txru.flg_tx_hdy = taxhistory.flg_tx_hdy AND taxhistory.fl_tx_inc = '0' group by athy.nm_athy_tx,txru.nm_ru_tx 
+order by athy.nm_athy_tx, txru.nm_ru_tx]]>
+</sqlStatement>
+<sqlStatement name="Q4">
+<![CDATA[SELECT sum(taxhistory.mo_tx) taxAmt, athy.nm_athy_tx taxJuri, txru.nm_ru_tx taxName FROM ru_tx_gp txru, 
+hst_tx taxhistory, pa_athy_tx athy WHERE taxhistory.id_str_rt = :storeNumber 
+AND taxhistory.id_ws = :registerNumber AND taxhistory.ID_TL_CRT = :tillID
+AND taxhistory.dc_dy_bsn = :startingDate AND athy.id_athy_tx = taxhistory.id_athy_tx AND txru.id_gp_tx = 
+taxhistory.id_gp_tx AND txru.id_athy_tx = taxhistory.id_athy_tx AND txru.ty_tx = taxhistory.ty_tx 
+AND txru.flg_tx_hdy = taxhistory.flg_tx_hdy AND taxhistory.fl_tx_inc = '0' group by athy.nm_athy_tx,txru.nm_ru_tx
+order by athy.nm_athy_tx, txru.nm_ru_tx ]]>
+</sqlStatement>
+<sqlStatement name="Q5">
+<![CDATA[ SELECT sum(taxhistory.mo_tx) taxStrTot FROM ru_tx_gp txru, 
+hst_tx taxhistory, pa_athy_tx athy WHERE taxhistory.id_str_rt = :storeNumber
+AND taxhistory.dc_dy_bsn = :startingDate AND athy.id_athy_tx = taxhistory.id_athy_tx AND txru.id_gp_tx = 
+taxhistory.id_gp_tx AND txru.id_athy_tx = taxhistory.id_athy_tx AND txru.ty_tx = taxhistory.ty_tx 
+AND txru.flg_tx_hdy = taxhistory.flg_tx_hdy AND taxhistory.fl_tx_inc = '0'  ]]>
+</sqlStatement>
+<sqlStatement name="Q6">
+<![CDATA[SELECT sum(taxhistory.mo_tx)  taxRegTot FROM ru_tx_gp txru, 
+hst_tx taxhistory, pa_athy_tx athy WHERE taxhistory.id_str_rt = :storeNumber 
+AND taxhistory.id_ws =  :registerNumber
+AND taxhistory.dc_dy_bsn = :startingDate AND athy.id_athy_tx = taxhistory.id_athy_tx AND txru.id_gp_tx = 
+taxhistory.id_gp_tx AND txru.id_athy_tx = taxhistory.id_athy_tx AND txru.ty_tx = taxhistory.ty_tx 
+AND txru.flg_tx_hdy = taxhistory.flg_tx_hdy AND taxhistory.fl_tx_inc = '0' ]]>
+</sqlStatement>
+<sqlStatement name="Q7">
+<![CDATA[SELECT sum(taxhistory.mo_tx) taxTillTot FROM ru_tx_gp txru, 
+hst_tx taxhistory, pa_athy_tx athy WHERE taxhistory.id_str_rt = :storeNumber 
+AND taxhistory.id_ws = :registerNumber AND taxhistory.ID_TL_CRT = :tillID
+AND taxhistory.dc_dy_bsn = :startingDate AND athy.id_athy_tx = taxhistory.id_athy_tx AND txru.id_gp_tx = 
+taxhistory.id_gp_tx AND txru.id_athy_tx = taxhistory.id_athy_tx AND txru.ty_tx = taxhistory.ty_tx 
+AND txru.flg_tx_hdy = taxhistory.flg_tx_hdy  AND taxhistory.fl_tx_inc = '0' ]]>
+</sqlStatement>
+
+<!-- Begin Shipping Tax Queries -->
+<sqlStatement name="Q8">
+<![CDATA[SELECT sum(tillhistory.mo_shp_chr_tx_tot) shippingTaxStoreTot FROM le_hst_tl tillhistory
+WHERE tillhistory.id_str_rt = :storeNumber 
+AND tillhistory.dc_dy_bsn = :startingDate]]>
+</sqlStatement>
+<sqlStatement name="Q9">
+<![CDATA[SELECT sum(tillhistory.mo_shp_chr_tx_tot) shippingTaxRegTot FROM le_hst_tl tillhistory
+WHERE tillhistory.id_str_rt = :storeNumber 
+AND tillhistory.id_ws = :registerNumber
+AND tillhistory.dc_dy_bsn = :startingDate]]>
+</sqlStatement>
+<sqlStatement name="Q10">
+<![CDATA[SELECT sum(tillhistory.mo_shp_chr_tx_tot) shippingTaxTillTot FROM le_hst_tl tillhistory
+WHERE tillhistory.id_str_rt = :storeNumber 
+AND tillhistory.id_ws = :registerNumber AND tillhistory.id_rpsty_tnd = :tillID
+AND tillhistory.dc_dy_bsn = :startingDate]]>
+</sqlStatement>
+<!-- End Shipping Tax Queries -->
+</dataQuery>
+<dataStructure>
+<group name="G_TAX_DATA_STORE" source="Q2"  >
+			<element name="TAX_JURI" value="taxJuri"  />
+			<group name = "G_TAX_INFO" source="Q2"  >
+				<element name="TAX_NAME" value="taxName"/>
+				<element name="TAX_AMT" value="taxAmt"/>
+			</group>
+</group>
+<group name="G_TAX_DATA_WS" source="Q3"  >
+			<element name="TAX_JURI" value="taxJuri"  />
+			<group name = "G_TAX_INFO" source="Q3"  >
+				<element name="TAX_NAME" value="taxName"/>
+				<element name="TAX_AMT" value="taxAmt"/>
+			</group>
+</group>
+
+<group name="G_TAX_DATA_TILL" source="Q4"  >
+		<element name="TAX_JURI" value="taxJuri"  />
+		<group name = "G_TAX_INFO" source="Q4"  >
+			<element name="TAX_NAME" value="taxName"/>
+			<element name="TAX_AMT" value="taxAmt"/>
+		</group>
+</group>
+
+<group name="G_TAX_DATA_STR" source="Q5"  >
+	<element name="TAX_AMT_TOT_STR"  value ="taxStrTot" />
+</group>
+<group name="G_TAX_DATA_REG" source="Q6"  >
+	<element name="TAX_AMT_TOT_REG"  value ="taxRegTot" />
+</group>
+<group name="G_TAX_DATA_TILL" source="Q7"  >
+	<element name="TAX_AMT_TOT_TILL"  value ="taxTillTot" />
+</group>
+
+
+<group name="G_SHIPPING_TAX_DATA_STR" source="Q8"  >
+    <element name="SHIPPING_TAX_TOT_STR"  value ="shippingTaxStoreTot" />
+</group>
+<group name="G_SHIPPING_TAX_DATA_REG" source="Q9"  >
+    <element name="SHIPPING_TAX_TOT_REG"  value ="shippingTaxRegTot" />
+</group>
+<group name="G_SHIPPING_TAX_DATA_TILL" source="Q10"  >
+    <element name="SHIPPING_TAX_TOT_TILL"  value ="shippingTaxTillTot" />
+</group>
+
+
+</dataStructure>
+</dataTemplate>
