@@ -67,7 +67,7 @@ public class XmlpRpt  implements java.io.Serializable {
     public void setIdRptXmlp(BigDecimal idRptXmlp) {
         this.idRptXmlp = idRptXmlp;
     }
-@ManyToOne(fetch=FetchType.EAGER)
+@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="ID_DT_TMPL_RPT", nullable=false)
     public XmlpRptDtTmpl getXmlpRptDtTmpl() {
         return this.xmlpRptDtTmpl;

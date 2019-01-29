@@ -14,6 +14,9 @@ public class Application {
             e.printStackTrace();
             System.exit(-1);
         }
+        lobber.beginTransactions();
         lobber.lob();
+        lobber.commitTransactionAndClose();
+        System.exit(0);
     }
 }

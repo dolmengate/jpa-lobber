@@ -2,6 +2,9 @@ package info.sroman;
 
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
+import org.hibernate.LockMode;
+import org.hibernate.ReplicationMode;
+import org.hibernate.Session;
 import org.reflections.Reflections;
 
 import javax.persistence.EntityManager;
@@ -23,13 +26,14 @@ public class JPALobber
 //    private static Logger _logger = LogManager.getLogger();
 
     private final String SOURCE_PROPERTIES_PATH = "./src-db.properties";
-    private Properties sourceDbConfigsProperties = new Properties();
+    private Properties runOptionsProperties = new Properties();
 
-    private boolean recordTransferEnabledSetting = false;
+    // for the purposes of executing the runnable jar as a "dry run" to test for connectivity, etc.
+    private boolean dryRunEnabledSetting = true;
     private boolean confirmationEnabledSetting = true;
 
-    private static EntityManagerFactory srcSessionFactory;
-    private static EntityManagerFactory destSessionFactory;
+    public static EntityManagerFactory srcSessionFactory;
+    public static EntityManagerFactory destSessionFactory;
 
     // these are reused in testing since EntityManagerFactorys are so resource intensive to create
     private EntityManager srcEntityManager;
@@ -47,31 +51,34 @@ public class JPALobber
      * Constructor for testing only.
      */
     JPALobber(Properties testProperties, String[] args) throws IllegalArgumentException, IOException {
-        sourceDbConfigsProperties = testProperties;
+        runOptionsProperties = testProperties;
         configurePersistence("test-src", "test-dest");
         configureCommandLineOpts(args);
     }
 
     public void lob() {
-
-        srcEntityManager.getTransaction().begin();
-        destEntityManager.getTransaction().begin();
-
         // todo add confirmation by stdin
-        for (String table : sourceDbConfigsProperties.getProperty("lobber.tables").split(",")) {
+        for (String table : runOptionsProperties.getProperty("lobber.tables").split(",")) {
             try {
                 Class<?> entityClazz = Class.forName("info.sroman.entity." + findEntityClassNameForTableName(table));
+
                 List srcRecords = selectAllForEntityClass(srcEntityManager, entityClazz);
+                // evict all entities from persistence context to prevent:
+                // HibernateException: Illegal attempt to associate a collection with two open sessions.
+                srcEntityManager.clear();
+
                 List destRecords = selectAllForEntityClass(destEntityManager, entityClazz);
+                destEntityManager.clear();
 
-//                printTableRecords(entityClazz.getSimpleName(), srcRecords, "source");
-//                printTableRecords(entityClazz.getSimpleName(), destRecords, "destination");
+                printTableRecords(entityClazz.getSimpleName(), srcRecords, "source");
+                printTableRecords(entityClazz.getSimpleName(), destRecords, "destination");
 
-                if (!recordTransferEnabledSetting) {
+                if (!dryRunEnabledSetting) {
                     if (confirmationEnabledSetting) {
                         Scanner in = new Scanner(System.in);
                         System.out.println("Test mode not detected, copy the above records from the Source DB to Destination DB? (y/N)");
-                        System.out.println( in.next() );
+                        // todo
+                        System.out.println(in.next());
                         System.exit(0);
                     }
                     for (Object r : srcRecords) {
@@ -86,15 +93,9 @@ public class JPALobber
                 destEntityManager.getTransaction().rollback();
             }
         }
-
-        destEntityManager.getTransaction().commit();
-        destEntityManager.close();
-        srcEntityManager.close();
-
-        System.exit(0);
     }
 
-    public String findEntityClassNameForTableName(String tableName) {
+    private String findEntityClassNameForTableName(String tableName) {
         Reflections reflections = new Reflections("info.sroman.entity");
         Set<Class<?>> clazzes = reflections.getTypesAnnotatedWith(Table.class);
         for (Class<?> c : clazzes) {
@@ -106,7 +107,7 @@ public class JPALobber
         return null;
     }
 
-    public void printTableRecords(String tableName, List records, String sourceOrDest) {
+    private void printTableRecords(String tableName, List records, String sourceOrDest) {
         System.out.println("------ " + sourceOrDest + " CONTENTS FOR TABLE " + tableName + " ------");
         for (Object rpt : records) {
             System.out.println(rpt.toString());
@@ -118,7 +119,8 @@ public class JPALobber
     }
 
     public void persistRecordToDestDB(Object record) {
-        destEntityManager.persist(record);
+        Session destSession = destEntityManager.unwrap(Session.class);
+        destSession.replicate(record, ReplicationMode.EXCEPTION);
     }
 
     public void configureCommandLineOpts(String[] args) throws IllegalArgumentException {
@@ -127,25 +129,43 @@ public class JPALobber
         for (String arg : args) {
             switch(arg) {
                 case "--transfer":
-                    recordTransferEnabledSetting = true;
+                    dryRunEnabledSetting = false;
+                    break;
                 case "--no-confirm":
                     confirmationEnabledSetting = false;
+                    break;
             }
         }
     }
 
-    // fixme this is being called twice on one construction somehow
     private void configurePersistence(String srcPersistenceUnitName, String destPersistenceUnitName) throws IOException {
         System.out.println("Configuring persistence for units: [" + srcPersistenceUnitName + ", " + destPersistenceUnitName + "]");
-        sourceDbConfigsProperties.load(new FileInputStream(new File((SOURCE_PROPERTIES_PATH))));
+        runOptionsProperties.load(new FileInputStream(new File((SOURCE_PROPERTIES_PATH))));
         srcSessionFactory = Persistence.createEntityManagerFactory(srcPersistenceUnitName);
         destSessionFactory = Persistence.createEntityManagerFactory(destPersistenceUnitName);
         srcEntityManager = srcSessionFactory.createEntityManager();
         destEntityManager = destSessionFactory.createEntityManager();
     }
 
-    boolean isRecordTransferEnabledSetting() {
-        return recordTransferEnabledSetting;
+    /**
+     * Don't use this for testing
+     */
+    public void beginTransactions() {
+        srcEntityManager.getTransaction().begin();
+        destEntityManager.getTransaction().begin();
+    }
+
+    /**
+     * Don't use this for testing
+     */
+    public void commitTransactionAndClose() {
+        destEntityManager.getTransaction().commit();
+        destEntityManager.close();
+        srcEntityManager.close();
+    }
+
+    boolean isDryRunEnabledSetting() {
+        return dryRunEnabledSetting;
     }
 
     boolean isConfirmationEnabledSetting() {
@@ -160,4 +180,7 @@ public class JPALobber
         return destEntityManager;
     }
 
+    public void setRunOptionsProperties(Properties runOptionsProperties) {
+        this.runOptionsProperties = runOptionsProperties;
+    }
 }

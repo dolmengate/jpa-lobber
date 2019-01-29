@@ -1,14 +1,16 @@
 package info.sroman;
 
-import org.junit.Before;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Properties;
+
+import static org.junit.Assert.assertEquals;
 
 public class JPAHibernateTestSetup {
 
@@ -17,13 +19,51 @@ public class JPAHibernateTestSetup {
     private static Properties dbReportsProperties = new Properties();
     private static final String HERE = new File(".").getAbsolutePath();
 
+    protected static JPALobber testLobber = null;
+
+    // todo use reflection in place of getters used for thest to access private JPALobber members
+
+    private static boolean setupComplete = false;
+
+    static {
+        if (!setupComplete) {
+            try {
+                lobberInitialization_setupInitialLobberConfig_successfullyConstructs();
+                setupComplete = true;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private static void lobberInitialization_setupInitialLobberConfig_successfullyConstructs() throws IOException {
+        String[] initArgs = {"--no-confirm", "--transfer"};
+        testLobber = new JPALobber(new Properties(), initArgs);
+    }
+
+    @BeforeClass
+    public static void lobberInitialization_setupInitialLobberConfig_optionsCorrect() {
+        assertEquals(testLobber.isConfirmationEnabledSetting(), false);
+        assertEquals(testLobber.isDryRunEnabledSetting(), false);
+    }
+
+    @After
+    public void rollbackTransactions_JPALobberTest() {
+
+        if (testLobber.getDestEntityManager().getTransaction().isActive())
+            testLobber.getDestEntityManager().getTransaction().rollback();
+
+        if (testLobber.getSrcEntityManager().getTransaction().isActive())
+            testLobber.getSrcEntityManager().getTransaction().rollback();
+    }
+
     /**
      * Once this method has successfully executed for both src-test and dest-test DBs you can disable it
      * by commenting it out. The '@Ignore' annotation seems not to work.
      * @throws IOException
      * @throws InterruptedException
      */
-//    @Before
+//    @BeforeClass
 //    public void initializeDatabase() throws IOException, InterruptedException {
 //        dbProperties.load(new FileInputStream(new File("src/test/resources/installer/ORPOS-13.4.1/product/server/bin/db.properties")));
 //        dbReportsProperties.load(new FileInputStream(new File("src/test/resources/installer/ORPOS-13.4.1/product/server/bin/db-reports.properties")));
