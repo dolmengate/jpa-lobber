@@ -2,7 +2,6 @@ package info.sroman;
 
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
-import org.hibernate.LockMode;
 import org.hibernate.ReplicationMode;
 import org.hibernate.Session;
 import org.reflections.Reflections;
@@ -119,8 +118,9 @@ public class JPALobber
     }
 
     public void persistRecordToDestDB(Object record) {
+        System.out.println("Persisting record to destination DB " + record);
         Session destSession = destEntityManager.unwrap(Session.class);
-        destSession.replicate(record, ReplicationMode.EXCEPTION);
+        destSession.replicate(record, ReplicationMode.IGNORE);
     }
 
     public void configureCommandLineOpts(String[] args) throws IllegalArgumentException {
@@ -147,9 +147,6 @@ public class JPALobber
         destEntityManager = destSessionFactory.createEntityManager();
     }
 
-    /**
-     * Don't use this for testing
-     */
     public void beginTransactions() {
         srcEntityManager.getTransaction().begin();
         destEntityManager.getTransaction().begin();

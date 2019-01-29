@@ -3,19 +3,35 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0">
 
-    <persistence-unit name="dest-db">
-        <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <exclude-unlisted-classes>false</exclude-unlisted-classes>
-        <properties>
-            <property name="hibernate.archive.autodetection" value="class" />
-            <property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
-            <property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1522:orcl"/>
-            <property name="hibernate.connection.username" value="owner"/>
-            <property name="hibernate.connection.password" value="dbowner"/>
-            <property name="hibernate.hbm2ddl.auto" value="validate" />
-        </properties>
-    </persistence-unit>
+    <!-- test -->
+    <!--<persistence-unit name="src-db">-->
+        <!--<provider>org.hibernate.ejb.HibernatePersistence</provider>-->
+        <!--<exclude-unlisted-classes>false</exclude-unlisted-classes>-->
+        <!--<properties>-->
+            <!--<property name="hibernate.archive.autodetection" value="class" />-->
+            <!--<property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>-->
+            <!--<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>-->
+            <!--<property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1555:orcl"/>-->
+            <!--<property name="hibernate.connection.username" value="owner"/>-->
+            <!--<property name="hibernate.connection.password" value="dbowner"/>-->
+            <!--<property name="hibernate.hbm2ddl.auto" value="validate" />-->
+        <!--</properties>-->
+    <!--</persistence-unit>-->
+
+    <!-- test -->
+    <!--<persistence-unit name="dest-db">-->
+        <!--<provider>org.hibernate.ejb.HibernatePersistence</provider>-->
+        <!--<exclude-unlisted-classes>false</exclude-unlisted-classes>-->
+        <!--<properties>-->
+            <!--<property name="hibernate.archive.autodetection" value="class" />-->
+            <!--<property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>-->
+            <!--<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>-->
+            <!--<property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1555:orcl2"/>-->
+            <!--<property name="hibernate.connection.username" value="owner"/>-->
+            <!--<property name="hibernate.connection.password" value="dbowner"/>-->
+            <!--<property name="hibernate.hbm2ddl.auto" value="validate" />-->
+        <!--</properties>-->
+    <!--</persistence-unit>-->
 
     <persistence-unit name="src-db">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
@@ -24,11 +40,24 @@
             <property name="hibernate.archive.autodetection" value="class" />
             <property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
-            <property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1555:orcl"/>
-            <property name="hibernate.connection.username" value="owner"/>
-            <property name="hibernate.connection.password" value="dbowner"/>
-            <property name="hibernate.hbm2ddl.auto" value="validate" />
+            <property name="hibernate.connection.url" value="jdbc:oracle:thin:@192.168.1.205:1521:boprddb"/>
+            <property name="hibernate.connection.username" value="bodbprdowner"/>
+            <property name="hibernate.connection.password" value="b0db0wner2o15"/>
+            <property name="hibernate.hbm2ddl.auto" value="" />
         </properties>
     </persistence-unit>
 
+    <persistence-unit name="dest-db">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="hibernate.archive.autodetection" value="class" />
+            <property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
+            <property name="hibernate.connection.url" value="jdbc:oracle:thin:@192.168.60.21:1521:boprddb"/>
+            <property name="hibernate.connection.username" value="bodbprdowner"/>
+            <property name="hibernate.connection.password" value="b0db0wner2o15"/>
+            <property name="hibernate.hbm2ddl.auto" value="" />
+        </properties>
+    </persistence-unit>
 </persistence>

@@ -2,6 +2,8 @@ package info.sroman.entity;
 // Generated Dec 7, 2018 11:22:01 PM by Hibernate Tools 3.2.2.GA
 
 
+import org.hibernate.annotations.Cascade;
+
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -21,7 +23,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="XMLP_RPT"
-    ,schema="OWNER"
 )
 public class XmlpRpt  implements java.io.Serializable {
 
@@ -76,7 +77,7 @@ public class XmlpRpt  implements java.io.Serializable {
     public void setXmlpRptDtTmpl(XmlpRptDtTmpl xmlpRptDtTmpl) {
         this.xmlpRptDtTmpl = xmlpRptDtTmpl;
     }
-@ManyToOne(fetch=FetchType.EAGER)
+@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="ID_LYT_RPT", nullable=false)
     public XmlpRptLyt getXmlpRptLyt() {
         return this.xmlpRptLyt;

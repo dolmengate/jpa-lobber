@@ -1,1 +1,1 @@
-mvn clean package assembly:single
+mvn clean package assembly:single -DskipTests

@@ -14,7 +14,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="XMLP_RPT_CFG_PRMT_I8"
-    ,schema="OWNER"
 )
 public class XmlpRptCfgPrmtI8  implements java.io.Serializable {
 

@@ -1,11 +1,10 @@
 package info.sroman;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
-import javax.persistence.EntityManager;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Properties;
@@ -20,6 +19,7 @@ public class JPAHibernateTestSetup {
     private static final String HERE = new File(".").getAbsolutePath();
 
     protected static JPALobber testLobber = null;
+    protected static Properties testProps = new Properties();
 
     // todo use reflection in place of getters used for thest to access private JPALobber members
 
@@ -64,13 +64,14 @@ public class JPAHibernateTestSetup {
      * @throws InterruptedException
      */
 //    @BeforeClass
-//    public void initializeDatabase() throws IOException, InterruptedException {
+//    public static void initializeDatabase() throws IOException, InterruptedException {
 //        dbProperties.load(new FileInputStream(new File("src/test/resources/installer/ORPOS-13.4.1/product/server/bin/db.properties")));
 //        dbReportsProperties.load(new FileInputStream(new File("src/test/resources/installer/ORPOS-13.4.1/product/server/bin/db-reports.properties")));
 //
 //        // todo programmatically edit dbProperties file to point to src/dest test DBs and run then this twice
 //        // todo redirect subprocess input output to remove the need for testing developer to run the 'encrypt-pos-passwords' Ant task
 //        // the database being populated here is the one described by the JDBC url within db.properties and db-reports.properties
+//        // at {installer_dir}/product/server/bin
 //
 //        File srcLog = new File("test-database-init.log");
 //        if (srcLog.exists()) srcLog.delete();

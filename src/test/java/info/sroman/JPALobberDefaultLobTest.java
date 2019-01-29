@@ -5,17 +5,15 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.Properties;
 
 import static org.junit.Assert.assertEquals;
 
 public class JPALobberDefaultLobTest extends JPAHibernateTestSetup{
 
-    private static Properties testProps = new Properties();
-
     @BeforeClass
-    public static void configLobber_JPALobberTest() {
-        testProps.setProperty("lobber.tables", "XMLP_RPT_LYT");
+    public static void configLobberForTest() {
+        testProps.clear();
+        testProps.setProperty("lobber.tables", "XMLP_RPT");
         testLobber.setRunOptionsProperties(testProps);
     }
 

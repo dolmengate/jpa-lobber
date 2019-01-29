@@ -19,7 +19,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="XMLP_RPT_DT_TMPL"
-    ,schema="OWNER"
 )
 public class XmlpRptDtTmpl  implements java.io.Serializable {
 
@@ -28,7 +27,7 @@ public class XmlpRptDtTmpl  implements java.io.Serializable {
      private String nmMdlRpt;
      private String tyMdlRpt;
      private Blob doMdlRpt;
-     private Set<XmlpRpt> xmlpRpts = new HashSet<XmlpRpt>(0);
+//     private Set<XmlpRpt> xmlpRpts = new HashSet<XmlpRpt>(0);
 
     public XmlpRptDtTmpl() {
     }
@@ -37,12 +36,14 @@ public class XmlpRptDtTmpl  implements java.io.Serializable {
     public XmlpRptDtTmpl(BigDecimal idDtTmplRpt) {
         this.idDtTmplRpt = idDtTmplRpt;
     }
-    public XmlpRptDtTmpl(BigDecimal idDtTmplRpt, String nmMdlRpt, String tyMdlRpt, Blob doMdlRpt, Set<XmlpRpt> xmlpRpts) {
+    public XmlpRptDtTmpl(BigDecimal idDtTmplRpt, String nmMdlRpt, String tyMdlRpt, Blob doMdlRpt
+//            , Set<XmlpRpt> xmlpRpts
+    ) {
        this.idDtTmplRpt = idDtTmplRpt;
        this.nmMdlRpt = nmMdlRpt;
        this.tyMdlRpt = tyMdlRpt;
        this.doMdlRpt = doMdlRpt;
-       this.xmlpRpts = xmlpRpts;
+//       this.xmlpRpts = xmlpRpts;
     }
    
      @Id 
@@ -82,14 +83,14 @@ public class XmlpRptDtTmpl  implements java.io.Serializable {
     public void setDoMdlRpt(Blob doMdlRpt) {
         this.doMdlRpt = doMdlRpt;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="xmlpRptDtTmpl")
-    public Set<XmlpRpt> getXmlpRpts() {
-        return this.xmlpRpts;
-    }
-    
-    public void setXmlpRpts(Set<XmlpRpt> xmlpRpts) {
-        this.xmlpRpts = xmlpRpts;
-    }
+//@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="xmlpRptDtTmpl")
+//    public Set<XmlpRpt> getXmlpRpts() {
+//        return this.xmlpRpts;
+//    }
+//
+//    public void setXmlpRpts(Set<XmlpRpt> xmlpRpts) {
+//        this.xmlpRpts = xmlpRpts;
+//    }
 
 
     @Override
@@ -99,7 +100,7 @@ public class XmlpRptDtTmpl  implements java.io.Serializable {
                 ", nmMdlRpt='" + nmMdlRpt + '\'' +
                 ", tyMdlRpt='" + tyMdlRpt + '\'' +
                 ", doMdlRpt=" + doMdlRpt +
-                ", xmlpRpts=" + xmlpRpts +
+//                ", xmlpRpts=" + xmlpRpts +
                 '}';
     }
 }

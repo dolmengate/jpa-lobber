@@ -19,7 +19,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="XMLP_RPT_LYT"
-    ,schema="OWNER"
 )
 public class XmlpRptLyt  implements java.io.Serializable {
 
@@ -34,7 +33,7 @@ public class XmlpRptLyt  implements java.io.Serializable {
      private Character flExcelRpt;
      private Character flXmlRpt;
      private Set<XmlpRptLytI8> xmlpRptLytI8s = new HashSet<XmlpRptLytI8>(0);
-     private Set<XmlpRpt> xmlpRpts = new HashSet<XmlpRpt>(0);
+//     private Set<XmlpRpt> xmlpRpts = new HashSet<XmlpRpt>(0);
 
     public XmlpRptLyt() {
     }
@@ -43,7 +42,9 @@ public class XmlpRptLyt  implements java.io.Serializable {
     public XmlpRptLyt(BigDecimal idLytRpt) {
         this.idLytRpt = idLytRpt;
     }
-    public XmlpRptLyt(BigDecimal idLytRpt, String nmLytRpt, String tyLytRpt, Blob doLytRpt, Character flHtmlRpt, Character flPdfRpt, Character flRtfRpt, Character flExcelRpt, Character flXmlRpt, Set<XmlpRptLytI8> xmlpRptLytI8s, Set<XmlpRpt> xmlpRpts) {
+    public XmlpRptLyt(BigDecimal idLytRpt, String nmLytRpt, String tyLytRpt, Blob doLytRpt, Character flHtmlRpt, Character flPdfRpt, Character flRtfRpt, Character flExcelRpt, Character flXmlRpt, Set<XmlpRptLytI8> xmlpRptLytI8s
+//            , Set<XmlpRpt> xmlpRpts
+    ) {
        this.idLytRpt = idLytRpt;
        this.nmLytRpt = nmLytRpt;
        this.tyLytRpt = tyLytRpt;
@@ -54,7 +55,7 @@ public class XmlpRptLyt  implements java.io.Serializable {
        this.flExcelRpt = flExcelRpt;
        this.flXmlRpt = flXmlRpt;
        this.xmlpRptLytI8s = xmlpRptLytI8s;
-       this.xmlpRpts = xmlpRpts;
+//       this.xmlpRpts = xmlpRpts;
     }
    
      @Id 
@@ -147,14 +148,14 @@ public class XmlpRptLyt  implements java.io.Serializable {
     public void setXmlpRptLytI8s(Set<XmlpRptLytI8> xmlpRptLytI8s) {
         this.xmlpRptLytI8s = xmlpRptLytI8s;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="xmlpRptLyt")
-    public Set<XmlpRpt> getXmlpRpts() {
-        return this.xmlpRpts;
-    }
-    
-    public void setXmlpRpts(Set<XmlpRpt> xmlpRpts) {
-        this.xmlpRpts = xmlpRpts;
-    }
+//@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="xmlpRptLyt")
+//    public Set<XmlpRpt> getXmlpRpts() {
+//        return this.xmlpRpts;
+//    }
+//
+//    public void setXmlpRpts(Set<XmlpRpt> xmlpRpts) {
+//        this.xmlpRpts = xmlpRpts;
+//    }
 
     // todo better toString
 
@@ -171,7 +172,7 @@ public class XmlpRptLyt  implements java.io.Serializable {
                 ", flExcelRpt=" + flExcelRpt +
                 ", flXmlRpt=" + flXmlRpt +
 //                ", xmlpRptLytI8s=" + xmlpRptLytI8s +
-                ", xmlpRpts=" + xmlpRpts +
+//                ", xmlpRpts=" + xmlpRpts +
                 '}';
     }
 }
