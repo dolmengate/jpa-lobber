@@ -1,6 +1,7 @@
 package info.sroman;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.BeforeClass;
 
 import java.io.File;
@@ -13,7 +14,6 @@ import static org.junit.Assert.assertEquals;
 
 public class JPAHibernateTestSetup {
 
-    private static volatile int exitCode;
     private static Properties dbProperties = new Properties();
     private static Properties dbReportsProperties = new Properties();
     private static final String HERE = new File(".").getAbsolutePath();
@@ -21,30 +21,30 @@ public class JPAHibernateTestSetup {
     protected static JPALobber testLobber = null;
     protected static Properties testProps = new Properties();
 
-    // todo use reflection in place of getters used for thest to access private JPALobber members
-
-    private static boolean setupComplete = false;
+    // todo use reflection in place of getters used for tests to access private JPALobber members
 
     static {
-        if (!setupComplete) {
-            try {
-                lobberInitialization_setupInitialLobberConfig_successfullyConstructs();
-                setupComplete = true;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            lobberInitialization_setupInitialLobberConfig_successfullyConstructs();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     private static void lobberInitialization_setupInitialLobberConfig_successfullyConstructs() throws IOException {
         String[] initArgs = {"--no-confirm", "--transfer"};
-        testLobber = new JPALobber(new Properties(), initArgs);
+        testLobber = new JPALobber(testProps, initArgs);
     }
 
     @BeforeClass
     public static void lobberInitialization_setupInitialLobberConfig_optionsCorrect() {
         assertEquals(testLobber.isConfirmationEnabledSetting(), false);
         assertEquals(testLobber.isDryRunEnabledSetting(), false);
+    }
+
+    @Before
+    public void clearPreviousTestLobberProperties() {
+        testProps.clear();
     }
 
     @After
@@ -107,4 +107,8 @@ public class JPAHibernateTestSetup {
         processBuilder.redirectOutput(ProcessBuilder.Redirect.appendTo(logFile));
         return processBuilder.start().waitFor();
     }
+
+    void addLobberConfig(String property, String value) {
+        testProps.setProperty(property, value);
+   }
 }

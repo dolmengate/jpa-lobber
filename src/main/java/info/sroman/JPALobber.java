@@ -4,12 +4,10 @@ package info.sroman;
 //import org.apache.logging.log4j.Logger;
 import org.hibernate.ReplicationMode;
 import org.hibernate.Session;
-import org.reflections.Reflections;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Table;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -18,6 +16,7 @@ import java.util.*;
 // todo add Spring? -- it has good integration with Hibernate for cool stuff like this
 // https://stackoverflow.com/questions/11257598/how-to-scan-packages-for-hibernate-entities-instead-of-using-hbm-xml
 // https://stackoverflow.com/questions/1413190/hibernate-mapping-package
+// todo add overwrite mode by changing ReplicationMode.OVERWRITE
 
 public class JPALobber
 {
@@ -57,17 +56,24 @@ public class JPALobber
 
     public void lob() {
         // todo add confirmation by stdin
+        // todo completely fail and commit NO transactions on unrecognized table name (ClassNotFoundException)
         for (String table : runOptionsProperties.getProperty("lobber.tables").split(",")) {
             try {
-                Class<?> entityClazz = Class.forName("info.sroman.entity." + findEntityClassNameForTableName(table));
+                Class<?> entityClazz = Utils.findEntityClassForTableName(table);
+                if (entityClazz == null)
+                    throw new ClassNotFoundException();
+
+                // get entities for printing only then evict from persistence context to prevent
+                // HibernateException: Illegal attempt to associate a collection with two open sessions
+                // the two sessions being the srcEntityManager session and destEntityManager session
 
                 List srcRecords = selectAllForEntityClass(srcEntityManager, entityClazz);
-                // evict all entities from persistence context to prevent:
-                // HibernateException: Illegal attempt to associate a collection with two open sessions.
-                srcEntityManager.clear();
+                for (Object s: srcRecords)
+                    srcEntityManager.detach(s);
 
                 List destRecords = selectAllForEntityClass(destEntityManager, entityClazz);
-                destEntityManager.clear();
+                for (Object d: destRecords)
+                    srcEntityManager.detach(d);
 
                 printTableRecords(entityClazz.getSimpleName(), srcRecords, "source");
                 printTableRecords(entityClazz.getSimpleName(), destRecords, "destination");
@@ -92,18 +98,6 @@ public class JPALobber
                 destEntityManager.getTransaction().rollback();
             }
         }
-    }
-
-    private String findEntityClassNameForTableName(String tableName) {
-        Reflections reflections = new Reflections("info.sroman.entity");
-        Set<Class<?>> clazzes = reflections.getTypesAnnotatedWith(Table.class);
-        for (Class<?> c : clazzes) {
-            String tName = c.getAnnotation(Table.class).name();
-            if (tName.equals(tableName)) {
-                return c.getSimpleName();
-            }
-        }
-        return null;
     }
 
     private void printTableRecords(String tableName, List records, String sourceOrDest) {
